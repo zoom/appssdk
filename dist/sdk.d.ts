@@ -20,10 +20,18 @@
  * SOFTWARE.
  */
 
+/**
+ * @deprecated
+ */
 declare const ZERO_SIXTEEN_ZERO = "0.16.0";
+declare const ZERO_SIXTEEN = "0.16";
+/**
+ * @deprecated
+ */
 declare const ZERO_FOURTEEN_ZERO = "0.14.0";
+declare const ZERO_FOURTEEN = "0.14";
 
-declare type SdkVersion = typeof ZERO_FOURTEEN_ZERO | typeof ZERO_SIXTEEN_ZERO;
+declare type SdkVersion = typeof ZERO_FOURTEEN | typeof ZERO_FOURTEEN_ZERO | typeof ZERO_SIXTEEN | typeof ZERO_SIXTEEN_ZERO;
 declare type GeneralMessage = 'Success' | 'Failure';
 /**
  * @returns {string} Success, if no error
@@ -659,10 +667,12 @@ declare type ConfigOptions = {
     popoutSize?: ConfigSize;
     /** target SDK version, required if loading SDK from Zoom Apps CDN
      * ```
-     * const zoomSdk = new ZoomSdk({ version: '0.16.0' })
+     * const zoomSdk = new ZoomSdk({ version: '0.16' })
      * ```
      */
     version?: SdkVersion;
+    /** @hidden */
+    size?: ConfigSize;
 };
 declare type AuthObject = {
     status: 'authorized' | 'unauthorized';
@@ -741,7 +751,7 @@ declare type GetMeetingContextResponse = {
     meetingTopic: string;
     meetingID: string;
 };
-declare type Apis = 'addBreakoutRoom' | 'allowParticipantToRecord' | 'assignParticipantsToBreakoutRoom' | 'assignParticipantToBreakoutRoom' | 'authorize' | 'canSupportVirtualBackground' | 'changeBreakoutRoom' | 'clearImage' | 'clearParticipant' | 'clearWebView' | 'closeBreakoutRooms' | 'closeChannel' | 'closeLobby' | 'closeRenderingContext' | 'cloudRecording' | 'configureBreakoutRooms' | 'connect' | 'createBreakoutRooms' | 'deleteBreakoutRoom' | 'drawImage' | 'drawParticipant' | 'drawWebView' | 'endCollaborate' | 'endSyncData' | 'executeOnZoomAction' | 'expandApp' | 'getBreakoutRoomList' | 'getImmersiveViewContext' | 'getMeetingContext' | 'getMeetingJoinUrl' | 'getMeetingParticipants' | 'getMeetingUUID' | 'getMyOpenedAppList' | 'getOnZoomProperties' | 'getPairingStatus' | 'getRecordingContext' | 'getRunningContext' | 'getScreenshot' | 'getSupportedJsApis' | 'getUserContext' | 'getUserMediaAudio' | 'getUserMediaVideo' | 'joinCollaborate' | 'joinOnZoomEvent' | 'joinZoomRoom' | 'launchAppInMeeting' | 'leaveCollaborate' | 'listCameras' | 'onActiveSpeakerChange' | 'onAppPopout' | 'onAuthenticate' | 'onAuthorized' | 'onBreakoutRoomChange' | 'onCloseAppForParticipants' | 'onCloudRecording' | 'onCollaborateChange' | 'onConnect' | 'onExpandApp' | 'onExtendedProcessing' | 'onImmersiveViewChange' | 'onMeeting' | 'onMeetingConfigChanged' | 'onMessage' | 'onMyActiveSpeakerChange' | 'onMyAppListChanged' | 'onMyMediaChange' | 'onMyReaction' | 'onMyUserContextChange' | 'onOnZoomJoinStatusChange' | 'onOpenCloseApp' | 'onPairingStatusChange' | 'onParticipantChange' | 'onReaction' | 'onRunningContextChange' | 'onSendAppInvitation' | 'onShareApp' | 'onThemeModeChange' | 'onUserAction' | 'openApp' | 'openBreakoutRooms' | 'openChannel' | 'openDM' | 'openUrl' | 'postMessage' | 'promptAuthorize' | 'pushState' | 'removeImmersiveView' | 'removeVirtualBackground' | 'removeVirtualForeground' | 'renameBreakoutRoom' | 'runRenderingContext' | 'sendAppInvitation' | 'sendAppInvitationToAllParticipants' | 'sendAppInvitationToMeetingOwner' | 'setAuthCancel' | 'setAuthResult' | 'setCamera' | 'setImmersiveView' | 'setUserMediaAudio' | 'setUserMediaVideo' | 'setVideoMirrorEffect' | 'setVirtualBackground' | 'setVirtualForeground' | 'shareApp' | 'showAppInvitationDialog' | 'showNotification' | 'startCollaborate' | 'toggleParticipantMediaAudio' | 'onInviteCollaboration';
+declare type Apis = 'addBreakoutRoom' | 'allowParticipantToRecord' | 'assignParticipantsToBreakoutRoom' | 'assignParticipantToBreakoutRoom' | 'authorize' | 'changeBreakoutRoom' | 'clearImage' | 'clearParticipant' | 'clearWebView' | 'closeBreakoutRooms' | 'closeChannel' | 'closeLobby' | 'closeRenderingContext' | 'cloudRecording' | 'configureBreakoutRooms' | 'connect' | 'createBreakoutRooms' | 'deleteBreakoutRoom' | 'drawImage' | 'drawParticipant' | 'drawWebView' | 'endCollaborate' | 'endSyncData' | 'executeOnZoomAction' | 'expandApp' | 'getBreakoutRoomList' | 'getImmersiveViewContext' | 'getMeetingContext' | 'getMeetingJoinUrl' | 'getMeetingParticipants' | 'getMeetingUUID' | 'getMyOpenedAppList' | 'getOnZoomProperties' | 'getPairingStatus' | 'getRecordingContext' | 'getRunningContext' | 'getScreenshot' | 'getSupportedJsApis' | 'getUserContext' | 'getUserMediaAudio' | 'getUserMediaVideo' | 'joinCollaborate' | 'joinOnZoomEvent' | 'joinZoomRoom' | 'launchAppInMeeting' | 'leaveCollaborate' | 'listCameras' | 'onActiveSpeakerChange' | 'onAppPopout' | 'onAuthenticate' | 'onAuthorized' | 'onBreakoutRoomChange' | 'onCloseAppForParticipants' | 'onCloudRecording' | 'onCollaborateChange' | 'onConnect' | 'onExpandApp' | 'onExtendedProcessing' | 'onImmersiveViewChange' | 'onMeeting' | 'onMeetingConfigChanged' | 'onMessage' | 'onMyActiveSpeakerChange' | 'onMyAppListChanged' | 'onMyMediaChange' | 'onMyReaction' | 'onMyUserContextChange' | 'onOnZoomJoinStatusChange' | 'onOpenCloseApp' | 'onPairingStatusChange' | 'onParticipantChange' | 'onReaction' | 'onRunningContextChange' | 'onSendAppInvitation' | 'onShareApp' | 'onThemeModeChange' | 'onUserAction' | 'openApp' | 'openBreakoutRooms' | 'openChannel' | 'openDM' | 'openUrl' | 'postMessage' | 'promptAuthorize' | 'pushState' | 'removeImmersiveView' | 'removeVirtualBackground' | 'removeVirtualForeground' | 'renameBreakoutRoom' | 'runRenderingContext' | 'sendAppInvitation' | 'sendAppInvitationToAllParticipants' | 'sendAppInvitationToMeetingOwner' | 'setAuthCancel' | 'setAuthResult' | 'setCamera' | 'setImmersiveView' | 'setUserMediaAudio' | 'setUserMediaVideo' | 'setVideoMirrorEffect' | 'setVirtualBackground' | 'setVirtualForeground' | 'shareApp' | 'showAppInvitationDialog' | 'showNotification' | 'startCollaborate' | 'toggleParticipantMediaAudio' | 'onInviteCollaboration';
 /**
  * Example:
  * ```
@@ -1349,9 +1359,9 @@ declare type ToggleParticipantMediaAudioOptions = {
  *
  * The Zoom Apps SDK is a JavaScript library that faciliates communication between your Zoom App and the Zoom client. The SDK allows you to take advantage of the many APIs and events Zoom exposes in its embedded browser.
  *
- * ## Usage
+ * ## Installation
  *
- * There are two ways to use the Zoom Apps SDK.
+ * There are two ways to install the Zoom Apps SDK into your frontend project
  *
  * ### NPM
  *
@@ -1368,9 +1378,42 @@ declare type ToggleParticipantMediaAudioOptions = {
  * ```
  * <script src="https://appssdk.zoom.us/sdk.js"></script>
  * ```
+ * ## Usage
  *
- * If you choose to use the CDN, note that the SDK is unversioned and subject to on-demand updates. Because of this, you will need to specify an additional parameter `version` when calling `zoomSdk.config`.
+ * If you installed Zoom Apps SDK from NPM, import `zoomSdk` into the component where you wanted to use the SDK and call `config` as your first call to verify your application with Zoom.
  *
+ * ```
+ * import zoomSdk from "@zoom/appssdk"
+ *
+ * async function configureApp {
+ *   const configResponse = await zoomSdk.config({
+ *     popoutSize: {width: 480, height: 360},
+ *     capabilities: ["shareApp"]
+ *   })
+ * }
+ * ```
+ *
+ * When you load the SDK using a script tag, zoomSDK is served as a global object and can be called across components. Even in this case `zoomSdk.config` should be the first call.
+ *
+ * ```
+ * async function configureApp {
+ *    const configResponse = await zoomSdk.config({
+ *      version: "0.16"
+ *      popoutSize: {width: 480, height: 360},
+ *      capabilities: ["shareApp"]
+ *    })
+ * }
+ * ```
+ *
+ * The cloud SDK is designed to provide on-demand patch updates, and it does not support exact versions. You will always get the latest patch version within the major version specified in the version parameter of `zoomSdk.config`. In other words, if you supplied an exact version like `0.16.1`, you will get the latest patch within the `0.16` major version.
+ *
+ * ## Resources to create a Zoom App
+ *
+ * - Create your first Zoom App following these [steps](https://marketplace.zoom.us/docs/zoom-apps/getstarted).
+ * - To help you start developing Zoom Apps we also provide sample reference [apps](https://marketplace.zoom.us/docs/zoom-apps/referenceapp#quick-start-reference-apps).
+ * - Watch [How to Create a Zoom App](https://www.youtube.com/watch?v=otlyDxnU-RI) and [How To Configure the Basic Zoom App](https://www.youtube.com/watch?v=SS87nqO9ScQ).
+ * - Discover more learning [resources](https://marketplace.zoom.us/docs/zoom-apps/introduction) for Zoom Apps Development.
+ * - Zoom Apps SDK on [npm](https://www.npmjs.com/package/@zoom/appssdk)
  */
 declare class ZoomSdk {
     private _postMessage;
@@ -1401,7 +1444,9 @@ declare class ZoomSdk {
      * If your Zoom App is a single page app, we suggest modifying your navigation methods to automate this.
      * ```
      * const configResponse = await zoomSdk.config({
-     *   version: '0.16.0',
+     *   version: '0.16',
+     *   // The `version` param is only required if using the Cloud SDK (not NPM SDK).
+     *   // See README for more details.
      *   popoutSize: { width: 480, height: 360 },
      *   capabilities: [
      *     //APIs
@@ -1418,7 +1463,6 @@ declare class ZoomSdk {
      *     "showNotification",
      *     "openUrl",
      *     "setVirtualBackground",
-     *     "canSupportVirtualBackground",
      *     "listCameras",
      *     "setCamera",
      *     "sendAppInvitation",
@@ -1451,7 +1495,7 @@ declare class ZoomSdk {
      *
      * @category Core Endpoints
      */
-    config({ capabilities, popoutSize, version, }: ConfigOptions): Promise<ConfigResponse>;
+    config({ capabilities, popoutSize, size, version, }: ConfigOptions): Promise<ConfigResponse>;
     /**
      *
      * Returns an array of APIs and events supported by the current running context.

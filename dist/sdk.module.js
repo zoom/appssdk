@@ -22,7 +22,7 @@
 
 'use strict';
 
-var version = "0.16.0";
+var version = "0.16.1";
 
 var extendStatics = function(d, b) {
     extendStatics = Object.setPrototypeOf ||
@@ -93,8 +93,8 @@ function __spreadArray(to, from, pack) {
     return to.concat(ar || Array.prototype.slice.call(from));
 }
 
-var ZERO_SIXTEEN_ZERO = '0.16.0';
-var ZERO_FOURTEEN_ZERO = '0.14.0';
+var ZERO_SIXTEEN = '0.16';
+var ZERO_FOURTEEN = '0.14';
 
 function createApplyProxy(targetApi, prop) {
     return new Proxy(targetApi, {
@@ -359,10 +359,10 @@ var helpers = {
     },
 };
 
-var _a$1, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18;
+var _a$1, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17;
 var mappings = (_a$1 = {},
     _a$1[NativeApis.SEND_APP_INVITATION] = (_b = {},
-        _b[ZERO_SIXTEEN_ZERO] = {
+        _b[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapInput: renameKeys({
                     participants: 'user_list',
@@ -372,14 +372,17 @@ var mappings = (_a$1 = {},
         },
         _b),
     _a$1[NativeApis.TOGGLE_PARTICIPANT_MEDIA_AUDIO] = (_c = {},
-        _c[ZERO_SIXTEEN_ZERO] = {
+        _c[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapInput: renameKeys({ participants: 'user_list' }),
+                mapOutput: function (value) {
+                    return wrapInObject({ key: 'message', value: value });
+                },
             },
         },
         _c),
     _a$1[NativeApis.GET_RUNNING_CONTEXT] = (_d = {},
-        _d[ZERO_SIXTEEN_ZERO] = {
+        _d[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'context', value: value });
@@ -388,21 +391,21 @@ var mappings = (_a$1 = {},
         },
         _d),
     _a$1[NativeApis.GET_RUNNING_CONTEXT] = (_e = {},
-        _e[ZERO_SIXTEEN_ZERO] = {
+        _e[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapOutput: function (context) { return ({ context: context }); },
             },
         },
         _e),
     _a$1[NativeApis.OPEN_URL] = (_f = {},
-        _f[ZERO_FOURTEEN_ZERO] = {
+        _f[ZERO_FOURTEEN] = {
             '0.0.0': {
                 validate: function (data) {
                     new URL(data.url);
                 },
             },
         },
-        _f[ZERO_SIXTEEN_ZERO] = {
+        _f[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
@@ -414,7 +417,7 @@ var mappings = (_a$1 = {},
         },
         _f),
     _a$1[NativeApis.SET_VIRTUAL_BACKGROUND] = (_g = {},
-        _g[ZERO_SIXTEEN_ZERO] = {
+        _g[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
@@ -423,7 +426,7 @@ var mappings = (_a$1 = {},
         },
         _g),
     _a$1[NativeApis.REMOVE_VIRTUAL_BACKGROUND] = (_h = {},
-        _h[ZERO_SIXTEEN_ZERO] = {
+        _h[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
@@ -432,7 +435,7 @@ var mappings = (_a$1 = {},
         },
         _h),
     _a$1[NativeApis.SET_VIRTUAL_FOREGROUND] = (_j = {},
-        _j[ZERO_SIXTEEN_ZERO] = {
+        _j[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
@@ -441,7 +444,7 @@ var mappings = (_a$1 = {},
         },
         _j),
     _a$1[NativeApis.REMOVE_VIRTUAL_FOREGROUND] = (_k = {},
-        _k[ZERO_SIXTEEN_ZERO] = {
+        _k[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
@@ -450,7 +453,7 @@ var mappings = (_a$1 = {},
         },
         _k),
     _a$1[NativeApis.SHOW_NOTIFICATION] = (_l = {},
-        _l[ZERO_SIXTEEN_ZERO] = {
+        _l[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
@@ -459,7 +462,7 @@ var mappings = (_a$1 = {},
         },
         _l),
     _a$1[NativeApis.CLOUD_RECORDING] = (_m = {},
-        _m[ZERO_SIXTEEN_ZERO] = {
+        _m[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
@@ -468,7 +471,7 @@ var mappings = (_a$1 = {},
         },
         _m),
     _a$1[NativeApis.SHARE_APP] = (_o = {},
-        _o[ZERO_SIXTEEN_ZERO] = {
+        _o[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
@@ -477,7 +480,7 @@ var mappings = (_a$1 = {},
         },
         _o),
     _a$1[NativeApis.SET_CAMERA] = (_p = {},
-        _p[ZERO_SIXTEEN_ZERO] = {
+        _p[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
@@ -486,7 +489,7 @@ var mappings = (_a$1 = {},
         },
         _p),
     _a$1[NativeApis.SET_VIDEO_MIRROR_EFFECT] = (_q = {},
-        _q[ZERO_SIXTEEN_ZERO] = {
+        _q[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
@@ -495,7 +498,7 @@ var mappings = (_a$1 = {},
         },
         _q),
     _a$1[NativeApis.EXPAND_APP] = (_r = {},
-        _r[ZERO_SIXTEEN_ZERO] = {
+        _r[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
@@ -504,7 +507,7 @@ var mappings = (_a$1 = {},
         },
         _r),
     _a$1[NativeApis.CONNECT] = (_s = {},
-        _s[ZERO_SIXTEEN_ZERO] = {
+        _s[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
@@ -513,7 +516,7 @@ var mappings = (_a$1 = {},
         },
         _s),
     _a$1[NativeApis.POST_MESSAGE] = (_t = {},
-        _t[ZERO_SIXTEEN_ZERO] = {
+        _t[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
@@ -522,7 +525,7 @@ var mappings = (_a$1 = {},
         },
         _t),
     _a$1[NativeApis.ALLOW_PARTICIPANT_TO_RECORD] = (_u = {},
-        _u[ZERO_SIXTEEN_ZERO] = {
+        _u[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
@@ -531,7 +534,7 @@ var mappings = (_a$1 = {},
         },
         _u),
     _a$1[NativeApis.LAUNCH_APP_IN_MEETING] = (_v = {},
-        _v[ZERO_SIXTEEN_ZERO] = {
+        _v[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
@@ -540,7 +543,7 @@ var mappings = (_a$1 = {},
         },
         _v),
     _a$1[NativeApis.SHOW_APP_INVITATION_DIALOG] = (_w = {},
-        _w[ZERO_SIXTEEN_ZERO] = {
+        _w[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
@@ -549,7 +552,7 @@ var mappings = (_a$1 = {},
         },
         _w),
     _a$1[NativeApis.RUN_RENDERING_CONTEXT] = (_x = {},
-        _x[ZERO_SIXTEEN_ZERO] = {
+        _x[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
@@ -558,7 +561,7 @@ var mappings = (_a$1 = {},
         },
         _x),
     _a$1[NativeApis.CLOSE_RENDERING_CONTEXT] = (_y = {},
-        _y[ZERO_SIXTEEN_ZERO] = {
+        _y[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
@@ -567,7 +570,7 @@ var mappings = (_a$1 = {},
         },
         _y),
     _a$1[NativeApis.DRAW_PARTICIPANT] = (_z = {},
-        _z[ZERO_SIXTEEN_ZERO] = {
+        _z[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
@@ -576,7 +579,7 @@ var mappings = (_a$1 = {},
         },
         _z),
     _a$1[NativeApis.CLEAR_PARTICIPANT] = (_0 = {},
-        _0[ZERO_SIXTEEN_ZERO] = {
+        _0[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
@@ -585,7 +588,7 @@ var mappings = (_a$1 = {},
         },
         _0),
     _a$1[NativeApis.CLEAR_IMAGE] = (_1 = {},
-        _1[ZERO_SIXTEEN_ZERO] = {
+        _1[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
@@ -594,7 +597,7 @@ var mappings = (_a$1 = {},
         },
         _1),
     _a$1[NativeApis.DRAW_WEBVIEW] = (_2 = {},
-        _2[ZERO_SIXTEEN_ZERO] = {
+        _2[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
@@ -603,7 +606,7 @@ var mappings = (_a$1 = {},
         },
         _2),
     _a$1[NativeApis.CLEAR_WEBVIEW] = (_3 = {},
-        _3[ZERO_SIXTEEN_ZERO] = {
+        _3[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
@@ -612,7 +615,7 @@ var mappings = (_a$1 = {},
         },
         _3),
     _a$1[NativeApis.BREAKOUT_ROOMS_OPEN] = (_4 = {},
-        _4[ZERO_SIXTEEN_ZERO] = {
+        _4[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
@@ -621,7 +624,7 @@ var mappings = (_a$1 = {},
         },
         _4),
     _a$1[NativeApis.BREAKOUT_ROOMS_CLOSE] = (_5 = {},
-        _5[ZERO_SIXTEEN_ZERO] = {
+        _5[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
@@ -630,7 +633,7 @@ var mappings = (_a$1 = {},
         },
         _5),
     _a$1[NativeApis.BREAKOUT_ROOM_DELETE] = (_6 = {},
-        _6[ZERO_SIXTEEN_ZERO] = {
+        _6[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
@@ -639,7 +642,7 @@ var mappings = (_a$1 = {},
         },
         _6),
     _a$1[NativeApis.BREAKOUT_ROOM_RENAME] = (_7 = {},
-        _7[ZERO_SIXTEEN_ZERO] = {
+        _7[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
@@ -648,7 +651,7 @@ var mappings = (_a$1 = {},
         },
         _7),
     _a$1[NativeApis.BREAKOUT_ROOM_ASSIGN_PARTICIPANT] = (_8 = {},
-        _8[ZERO_SIXTEEN_ZERO] = {
+        _8[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
@@ -657,7 +660,7 @@ var mappings = (_a$1 = {},
         },
         _8),
     _a$1[NativeApis.BREAKOUT_ROOM_CHANGE] = (_9 = {},
-        _9[ZERO_SIXTEEN_ZERO] = {
+        _9[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
@@ -666,7 +669,7 @@ var mappings = (_a$1 = {},
         },
         _9),
     _a$1[NativeApis.COLLABORATE_START] = (_10 = {},
-        _10[ZERO_SIXTEEN_ZERO] = {
+        _10[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
@@ -675,7 +678,7 @@ var mappings = (_a$1 = {},
         },
         _10),
     _a$1[NativeApis.COLLABORATE_END] = (_11 = {},
-        _11[ZERO_SIXTEEN_ZERO] = {
+        _11[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
@@ -684,7 +687,7 @@ var mappings = (_a$1 = {},
         },
         _11),
     _a$1[NativeApis.COLLABORATE_LEAVE] = (_12 = {},
-        _12[ZERO_SIXTEEN_ZERO] = {
+        _12[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
@@ -693,7 +696,7 @@ var mappings = (_a$1 = {},
         },
         _12),
     _a$1[NativeApis.COLLABORATE_JOIN] = (_13 = {},
-        _13[ZERO_SIXTEEN_ZERO] = {
+        _13[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
@@ -702,7 +705,7 @@ var mappings = (_a$1 = {},
         },
         _13),
     _a$1[NativeApis.AUTHORIZE] = (_14 = {},
-        _14[ZERO_SIXTEEN_ZERO] = {
+        _14[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
@@ -716,7 +719,7 @@ var mappings = (_a$1 = {},
         },
         _14),
     _a$1[NativeApis.PROMPT_AUTHORIZE] = (_15 = {},
-        _15[ZERO_SIXTEEN_ZERO] = {
+        _15[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
@@ -725,7 +728,7 @@ var mappings = (_a$1 = {},
         },
         _15),
     _a$1[NativeApis.SET_USER_MEDIA_VIDEO] = (_16 = {},
-        _16[ZERO_SIXTEEN_ZERO] = {
+        _16[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
@@ -734,7 +737,7 @@ var mappings = (_a$1 = {},
         },
         _16),
     _a$1[NativeApis.SET_USER_MEDIA_AUDIO] = (_17 = {},
-        _17[ZERO_SIXTEEN_ZERO] = {
+        _17[ZERO_SIXTEEN] = {
             '0.0.0': {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
@@ -742,15 +745,6 @@ var mappings = (_a$1 = {},
             },
         },
         _17),
-    _a$1[NativeApis.TOGGLE_PARTICIPANT_MEDIA_AUDIO] = (_18 = {},
-        _18[ZERO_SIXTEEN_ZERO] = {
-            '0.0.0': {
-                mapOutput: function (value) {
-                    return wrapInObject({ key: 'message', value: value });
-                },
-            },
-        },
-        _18),
     _a$1);
 function renameKeys(keyMap) {
     return function (data) {
@@ -777,10 +771,11 @@ function getMappingFunctions(apiName, sdkVersion, clientVersion) {
         mapOutput: identity,
         validate: noop,
     };
+    var convertedSdkVersion = convertVersion(sdkVersion);
     var apiMappings = mappings[apiName];
     if (!apiMappings)
         return fns;
-    var sdkMappings = apiMappings[sdkVersion];
+    var sdkMappings = apiMappings[convertedSdkVersion];
     if (!sdkMappings)
         return fns;
     var versions = Object.keys(sdkMappings).sort(compareVersions);
@@ -819,6 +814,21 @@ function compareVersions(v1, v2) {
     else if (c2 > c1)
         return 1;
     return 0;
+}
+function convertVersion(sdkVersion) {
+    if (typeof sdkVersion !== 'string') {
+        console.warn('You have not provided a valid sdk version');
+        return;
+    }
+    var _a = sdkVersion.split('.'), maj = _a[0], min = _a[1]; _a[2];
+    switch ("".concat(maj, ".").concat(min)) {
+        case ZERO_FOURTEEN:
+            return ZERO_FOURTEEN;
+        case ZERO_SIXTEEN:
+            return ZERO_SIXTEEN;
+        default:
+            console.warn('You have not provided a valid sdk version');
+    }
 }
 
 var _a;
@@ -871,7 +881,7 @@ var ZoomSdk =  (function () {
                     nativeApiRequest.data = mapInput(data);
                 }
                 if (apiName === NativeApis.OPEN_URL &&
-                    this._version !== ZERO_FOURTEEN_ZERO) {
+                    this._version !== ZERO_FOURTEEN) {
                     this._postMessage(nativeApiRequest);
                     return [2 , { message: 'success' }];
                 }
@@ -899,7 +909,7 @@ var ZoomSdk =  (function () {
         });
     };
     ZoomSdk.prototype.config = function (_a) {
-        var capabilities = _a.capabilities, popoutSize = _a.popoutSize, _b = _a.version, version = _b === void 0 ? ZERO_FOURTEEN_ZERO : _b;
+        var capabilities = _a.capabilities, popoutSize = _a.popoutSize, size = _a.size, _b = _a.version, version = _b === void 0 ? ZERO_FOURTEEN : _b;
         return __awaiter(this, void 0, void 0, function () {
             var newOptions, response;
             var _this = this;
@@ -908,12 +918,12 @@ var ZoomSdk =  (function () {
                     case 0:
                         newOptions = {
                             js_api_lists: capabilities,
-                            size: popoutSize,
+                            size: popoutSize || size,
                         };
                         if (!isString(this._version)) {
                             this._version = version;
                         }
-                        if (this._version === ZERO_FOURTEEN_ZERO) {
+                        if (this._version === ZERO_FOURTEEN) {
                             console.warn('You are using an outdated version of the SDK, please update to the latest version.');
                         }
                         this._postMessage = setPostMessage.call(this);
