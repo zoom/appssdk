@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-var version = "0.16.1";
+var version = "0.16.2";
 
 var extendStatics = function(d, b) {
     extendStatics = Object.setPrototypeOf ||
@@ -1177,20 +1177,9 @@ var ZoomSdk =  (function () {
     ZoomSdk.prototype.drawParticipant = function (options) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                if (options) {
-                    if (options.x) {
-                        options.x = getDevicePixelsForValue(options.x, window.innerWidth);
-                    }
-                    if (options.y) {
-                        options.y = getDevicePixelsForValue(options.y, window.innerHeight);
-                    }
-                    if (options.width) {
-                        options.width = getDevicePixelsForValue(options.width, window.innerWidth);
-                    }
-                    if (options.height) {
-                        options.height = getDevicePixelsForValue(options.height, window.innerHeight);
-                    }
-                }
+                updateOptionsPixelsXY(options);
+                updateOptionsPixelsWidthHeight(options);
+                updateOptionsZIndex(options);
                 return [2 , this.callZoomApi(NativeApis.DRAW_PARTICIPANT, options)];
             });
         });
@@ -1205,12 +1194,8 @@ var ZoomSdk =  (function () {
     ZoomSdk.prototype.drawImage = function (options) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                if (options.x) {
-                    options.x = getDevicePixelsForValue(options.x, window.innerWidth);
-                }
-                if (options.y) {
-                    options.y = getDevicePixelsForValue(options.y, window.innerHeight);
-                }
+                updateOptionsPixelsXY(options);
+                updateOptionsZIndex(options);
                 return [2 , this.callZoomApi(NativeApis.DRAW_IMAGE, options)];
             });
         });
@@ -1225,6 +1210,9 @@ var ZoomSdk =  (function () {
     ZoomSdk.prototype.drawWebView = function (options) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
+                updateOptionsPixelsXY(options);
+                updateOptionsPixelsWidthHeight(options);
+                updateOptionsZIndex(options);
                 return [2 , this.callZoomApi(NativeApis.DRAW_WEBVIEW, options)];
             });
         });
@@ -1483,8 +1471,39 @@ function getDevicePixelsForValue(pixelValue, containerSize) {
         else if (pixelValue.endsWith('%')) {
             return Math.trunc((value / 100.0) * containerSize * window.devicePixelRatio);
         }
+        else {
+            return value;
+        }
     }
     return pixelValue;
+}
+function updateOptionsPixelsXY(options) {
+    if (options) {
+        if (options.x) {
+            options.x = getDevicePixelsForValue(options.x, window.innerWidth);
+        }
+        if (options.y) {
+            options.y = getDevicePixelsForValue(options.y, window.innerHeight);
+        }
+    }
+}
+function updateOptionsPixelsWidthHeight(options) {
+    if (options) {
+        if (options.width) {
+            options.width = getDevicePixelsForValue(options.width, window.innerWidth);
+        }
+        if (options.height) {
+            options.height = getDevicePixelsForValue(options.height, window.innerHeight);
+        }
+    }
+}
+function updateOptionsZIndex(options) {
+    if (options) {
+        if (options.zIndex && isString(options.zIndex)) {
+            var zIndex = options.zIndex;
+            options.zIndex = parseInt(zIndex);
+        }
+    }
 }
 
 var module = new ZoomSdk({ version: version });
