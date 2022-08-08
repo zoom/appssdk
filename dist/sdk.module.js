@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2021 Zoom Video Communications, Inc.
+ * Copyright (c) 2022 Zoom Video Communications, Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,7 +22,7 @@
 
 'use strict';
 
-var version = "0.16.2";
+var version = "0.16.3";
 
 var extendStatics = function(d, b) {
     extendStatics = Object.setPrototypeOf ||
@@ -359,354 +359,353 @@ var helpers = {
     },
 };
 
-var _a$1, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17;
+var BASE_VERSION = '0.0.0';
+var MAX_MAX_MAX = '999.999.999';
+
+var _a$1, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28, _29, _30, _31, _32, _33, _34, _35, _36, _37, _38, _39, _40, _41, _42, _43, _44, _45, _46, _47, _48, _49, _50, _51, _52, _53, _54, _55, _56, _57;
 var mappings = (_a$1 = {},
     _a$1[NativeApis.SEND_APP_INVITATION] = (_b = {},
-        _b[ZERO_SIXTEEN] = {
-            '0.0.0': {
+        _b[ZERO_SIXTEEN] = (_c = {},
+            _c[BASE_VERSION] = {
                 mapInput: renameKeys({
                     participants: 'user_list',
                     participantUUIDs: 'user_UUID_list',
                 }),
             },
-        },
+            _c),
         _b),
-    _a$1[NativeApis.TOGGLE_PARTICIPANT_MEDIA_AUDIO] = (_c = {},
-        _c[ZERO_SIXTEEN] = {
-            '0.0.0': {
-                mapInput: renameKeys({ participants: 'user_list' }),
+    _a$1[NativeApis.TOGGLE_PARTICIPANT_MEDIA_AUDIO] = (_d = {},
+        _d[ZERO_SIXTEEN] = (_e = {},
+            _e[BASE_VERSION] = {
+                mapInput: renameKeys({
+                    participants: 'user_list',
+                    participantUUIDs: 'user_UUID_list',
+                }),
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
                 },
             },
-        },
-        _c),
-    _a$1[NativeApis.GET_RUNNING_CONTEXT] = (_d = {},
-        _d[ZERO_SIXTEEN] = {
-            '0.0.0': {
+            _e),
+        _d),
+    _a$1[NativeApis.GET_RUNNING_CONTEXT] = (_f = {},
+        _f[ZERO_SIXTEEN] = (_g = {},
+            _g[BASE_VERSION] = {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'context', value: value });
                 },
             },
-        },
-        _d),
-    _a$1[NativeApis.GET_RUNNING_CONTEXT] = (_e = {},
-        _e[ZERO_SIXTEEN] = {
-            '0.0.0': {
-                mapOutput: function (context) { return ({ context: context }); },
-            },
-        },
-        _e),
-    _a$1[NativeApis.OPEN_URL] = (_f = {},
-        _f[ZERO_FOURTEEN] = {
-            '0.0.0': {
-                validate: function (data) {
-                    new URL(data.url);
-                },
-            },
-        },
-        _f[ZERO_SIXTEEN] = {
-            '0.0.0': {
-                mapOutput: function (value) {
-                    return wrapInObject({ key: 'message', value: value });
-                },
-                validate: function (data) {
-                    new URL(data.url);
-                },
-            },
-        },
+            _g),
         _f),
-    _a$1[NativeApis.SET_VIRTUAL_BACKGROUND] = (_g = {},
-        _g[ZERO_SIXTEEN] = {
-            '0.0.0': {
+    _a$1[NativeApis.OPEN_URL] = (_h = {},
+        _h[ZERO_FOURTEEN] = (_j = {},
+            _j[BASE_VERSION] = {
+                validate: function (data) {
+                    new URL(data.url);
+                },
+            },
+            _j),
+        _h[ZERO_SIXTEEN] = (_k = {},
+            _k[BASE_VERSION] = {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
                 },
-            },
-        },
-        _g),
-    _a$1[NativeApis.REMOVE_VIRTUAL_BACKGROUND] = (_h = {},
-        _h[ZERO_SIXTEEN] = {
-            '0.0.0': {
-                mapOutput: function (value) {
-                    return wrapInObject({ key: 'message', value: value });
+                validate: function (data) {
+                    new URL(data.url);
                 },
             },
-        },
+            _k),
         _h),
-    _a$1[NativeApis.SET_VIRTUAL_FOREGROUND] = (_j = {},
-        _j[ZERO_SIXTEEN] = {
-            '0.0.0': {
+    _a$1[NativeApis.SET_VIRTUAL_BACKGROUND] = (_l = {},
+        _l[ZERO_SIXTEEN] = (_m = {},
+            _m[BASE_VERSION] = {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
                 },
             },
-        },
-        _j),
-    _a$1[NativeApis.REMOVE_VIRTUAL_FOREGROUND] = (_k = {},
-        _k[ZERO_SIXTEEN] = {
-            '0.0.0': {
-                mapOutput: function (value) {
-                    return wrapInObject({ key: 'message', value: value });
-                },
-            },
-        },
-        _k),
-    _a$1[NativeApis.SHOW_NOTIFICATION] = (_l = {},
-        _l[ZERO_SIXTEEN] = {
-            '0.0.0': {
-                mapOutput: function (value) {
-                    return wrapInObject({ key: 'message', value: value });
-                },
-            },
-        },
+            _m),
         _l),
-    _a$1[NativeApis.CLOUD_RECORDING] = (_m = {},
-        _m[ZERO_SIXTEEN] = {
-            '0.0.0': {
+    _a$1[NativeApis.REMOVE_VIRTUAL_BACKGROUND] = (_o = {},
+        _o[ZERO_SIXTEEN] = (_p = {},
+            _p[BASE_VERSION] = {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
                 },
             },
-        },
-        _m),
-    _a$1[NativeApis.SHARE_APP] = (_o = {},
-        _o[ZERO_SIXTEEN] = {
-            '0.0.0': {
-                mapOutput: function (value) {
-                    return wrapInObject({ key: 'message', value: value });
-                },
-            },
-        },
+            _p),
         _o),
-    _a$1[NativeApis.SET_CAMERA] = (_p = {},
-        _p[ZERO_SIXTEEN] = {
-            '0.0.0': {
+    _a$1[NativeApis.SET_VIRTUAL_FOREGROUND] = (_q = {},
+        _q[ZERO_SIXTEEN] = (_r = {},
+            _r[BASE_VERSION] = {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
                 },
             },
-        },
-        _p),
-    _a$1[NativeApis.SET_VIDEO_MIRROR_EFFECT] = (_q = {},
-        _q[ZERO_SIXTEEN] = {
-            '0.0.0': {
-                mapOutput: function (value) {
-                    return wrapInObject({ key: 'message', value: value });
-                },
-            },
-        },
+            _r),
         _q),
-    _a$1[NativeApis.EXPAND_APP] = (_r = {},
-        _r[ZERO_SIXTEEN] = {
-            '0.0.0': {
+    _a$1[NativeApis.REMOVE_VIRTUAL_FOREGROUND] = (_s = {},
+        _s[ZERO_SIXTEEN] = (_t = {},
+            _t[BASE_VERSION] = {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
                 },
             },
-        },
-        _r),
-    _a$1[NativeApis.CONNECT] = (_s = {},
-        _s[ZERO_SIXTEEN] = {
-            '0.0.0': {
-                mapOutput: function (value) {
-                    return wrapInObject({ key: 'message', value: value });
-                },
-            },
-        },
+            _t),
         _s),
-    _a$1[NativeApis.POST_MESSAGE] = (_t = {},
-        _t[ZERO_SIXTEEN] = {
-            '0.0.0': {
+    _a$1[NativeApis.SHOW_NOTIFICATION] = (_u = {},
+        _u[ZERO_SIXTEEN] = (_v = {},
+            _v[BASE_VERSION] = {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
                 },
             },
-        },
-        _t),
-    _a$1[NativeApis.ALLOW_PARTICIPANT_TO_RECORD] = (_u = {},
-        _u[ZERO_SIXTEEN] = {
-            '0.0.0': {
-                mapOutput: function (value) {
-                    return wrapInObject({ key: 'message', value: value });
-                },
-            },
-        },
+            _v),
         _u),
-    _a$1[NativeApis.LAUNCH_APP_IN_MEETING] = (_v = {},
-        _v[ZERO_SIXTEEN] = {
-            '0.0.0': {
+    _a$1[NativeApis.CLOUD_RECORDING] = (_w = {},
+        _w[ZERO_SIXTEEN] = (_x = {},
+            _x[BASE_VERSION] = {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
                 },
             },
-        },
-        _v),
-    _a$1[NativeApis.SHOW_APP_INVITATION_DIALOG] = (_w = {},
-        _w[ZERO_SIXTEEN] = {
-            '0.0.0': {
-                mapOutput: function (value) {
-                    return wrapInObject({ key: 'message', value: value });
-                },
-            },
-        },
+            _x),
         _w),
-    _a$1[NativeApis.RUN_RENDERING_CONTEXT] = (_x = {},
-        _x[ZERO_SIXTEEN] = {
-            '0.0.0': {
+    _a$1[NativeApis.SHARE_APP] = (_y = {},
+        _y[ZERO_SIXTEEN] = (_z = {},
+            _z[BASE_VERSION] = {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
                 },
             },
-        },
-        _x),
-    _a$1[NativeApis.CLOSE_RENDERING_CONTEXT] = (_y = {},
-        _y[ZERO_SIXTEEN] = {
-            '0.0.0': {
-                mapOutput: function (value) {
-                    return wrapInObject({ key: 'message', value: value });
-                },
-            },
-        },
+            _z),
         _y),
-    _a$1[NativeApis.DRAW_PARTICIPANT] = (_z = {},
-        _z[ZERO_SIXTEEN] = {
-            '0.0.0': {
+    _a$1[NativeApis.SET_CAMERA] = (_0 = {},
+        _0[ZERO_SIXTEEN] = (_1 = {},
+            _1[BASE_VERSION] = {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
                 },
             },
-        },
-        _z),
-    _a$1[NativeApis.CLEAR_PARTICIPANT] = (_0 = {},
-        _0[ZERO_SIXTEEN] = {
-            '0.0.0': {
-                mapOutput: function (value) {
-                    return wrapInObject({ key: 'message', value: value });
-                },
-            },
-        },
+            _1),
         _0),
-    _a$1[NativeApis.CLEAR_IMAGE] = (_1 = {},
-        _1[ZERO_SIXTEEN] = {
-            '0.0.0': {
+    _a$1[NativeApis.SET_VIDEO_MIRROR_EFFECT] = (_2 = {},
+        _2[ZERO_SIXTEEN] = (_3 = {},
+            _3[BASE_VERSION] = {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
                 },
             },
-        },
-        _1),
-    _a$1[NativeApis.DRAW_WEBVIEW] = (_2 = {},
-        _2[ZERO_SIXTEEN] = {
-            '0.0.0': {
-                mapOutput: function (value) {
-                    return wrapInObject({ key: 'message', value: value });
-                },
-            },
-        },
+            _3),
         _2),
-    _a$1[NativeApis.CLEAR_WEBVIEW] = (_3 = {},
-        _3[ZERO_SIXTEEN] = {
-            '0.0.0': {
+    _a$1[NativeApis.EXPAND_APP] = (_4 = {},
+        _4[ZERO_SIXTEEN] = (_5 = {},
+            _5[BASE_VERSION] = {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
                 },
             },
-        },
-        _3),
-    _a$1[NativeApis.BREAKOUT_ROOMS_OPEN] = (_4 = {},
-        _4[ZERO_SIXTEEN] = {
-            '0.0.0': {
-                mapOutput: function (value) {
-                    return wrapInObject({ key: 'message', value: value });
-                },
-            },
-        },
+            _5),
         _4),
-    _a$1[NativeApis.BREAKOUT_ROOMS_CLOSE] = (_5 = {},
-        _5[ZERO_SIXTEEN] = {
-            '0.0.0': {
+    _a$1[NativeApis.CONNECT] = (_6 = {},
+        _6[ZERO_SIXTEEN] = (_7 = {},
+            _7[BASE_VERSION] = {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
                 },
             },
-        },
-        _5),
-    _a$1[NativeApis.BREAKOUT_ROOM_DELETE] = (_6 = {},
-        _6[ZERO_SIXTEEN] = {
-            '0.0.0': {
-                mapOutput: function (value) {
-                    return wrapInObject({ key: 'message', value: value });
-                },
-            },
-        },
+            _7),
         _6),
-    _a$1[NativeApis.BREAKOUT_ROOM_RENAME] = (_7 = {},
-        _7[ZERO_SIXTEEN] = {
-            '0.0.0': {
+    _a$1[NativeApis.POST_MESSAGE] = (_8 = {},
+        _8[ZERO_SIXTEEN] = (_9 = {},
+            _9[BASE_VERSION] = {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
                 },
             },
-        },
-        _7),
-    _a$1[NativeApis.BREAKOUT_ROOM_ASSIGN_PARTICIPANT] = (_8 = {},
-        _8[ZERO_SIXTEEN] = {
-            '0.0.0': {
-                mapOutput: function (value) {
-                    return wrapInObject({ key: 'message', value: value });
-                },
-            },
-        },
+            _9),
         _8),
-    _a$1[NativeApis.BREAKOUT_ROOM_CHANGE] = (_9 = {},
-        _9[ZERO_SIXTEEN] = {
-            '0.0.0': {
+    _a$1[NativeApis.ALLOW_PARTICIPANT_TO_RECORD] = (_10 = {},
+        _10[ZERO_SIXTEEN] = (_11 = {},
+            _11[BASE_VERSION] = {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
                 },
             },
-        },
-        _9),
-    _a$1[NativeApis.COLLABORATE_START] = (_10 = {},
-        _10[ZERO_SIXTEEN] = {
-            '0.0.0': {
-                mapOutput: function (value) {
-                    return wrapInObject({ key: 'message', value: value });
-                },
-            },
-        },
+            _11),
         _10),
-    _a$1[NativeApis.COLLABORATE_END] = (_11 = {},
-        _11[ZERO_SIXTEEN] = {
-            '0.0.0': {
+    _a$1[NativeApis.LAUNCH_APP_IN_MEETING] = (_12 = {},
+        _12[ZERO_SIXTEEN] = (_13 = {},
+            _13[BASE_VERSION] = {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
                 },
             },
-        },
-        _11),
-    _a$1[NativeApis.COLLABORATE_LEAVE] = (_12 = {},
-        _12[ZERO_SIXTEEN] = {
-            '0.0.0': {
-                mapOutput: function (value) {
-                    return wrapInObject({ key: 'message', value: value });
-                },
-            },
-        },
+            _13),
         _12),
-    _a$1[NativeApis.COLLABORATE_JOIN] = (_13 = {},
-        _13[ZERO_SIXTEEN] = {
-            '0.0.0': {
+    _a$1[NativeApis.SHOW_APP_INVITATION_DIALOG] = (_14 = {},
+        _14[ZERO_SIXTEEN] = (_15 = {},
+            _15[BASE_VERSION] = {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
                 },
             },
-        },
-        _13),
-    _a$1[NativeApis.AUTHORIZE] = (_14 = {},
-        _14[ZERO_SIXTEEN] = {
-            '0.0.0': {
+            _15),
+        _14),
+    _a$1[NativeApis.RUN_RENDERING_CONTEXT] = (_16 = {},
+        _16[ZERO_SIXTEEN] = (_17 = {},
+            _17[BASE_VERSION] = {
+                mapOutput: function (value) {
+                    return wrapInObject({ key: 'message', value: value });
+                },
+            },
+            _17),
+        _16),
+    _a$1[NativeApis.CLOSE_RENDERING_CONTEXT] = (_18 = {},
+        _18[ZERO_SIXTEEN] = (_19 = {},
+            _19[BASE_VERSION] = {
+                mapOutput: function (value) {
+                    return wrapInObject({ key: 'message', value: value });
+                },
+            },
+            _19),
+        _18),
+    _a$1[NativeApis.DRAW_PARTICIPANT] = (_20 = {},
+        _20[ZERO_SIXTEEN] = (_21 = {},
+            _21[BASE_VERSION] = {
+                mapOutput: function (value) {
+                    return wrapInObject({ key: 'message', value: value });
+                },
+            },
+            _21),
+        _20),
+    _a$1[NativeApis.CLEAR_PARTICIPANT] = (_22 = {},
+        _22[ZERO_SIXTEEN] = (_23 = {},
+            _23[BASE_VERSION] = {
+                mapOutput: function (value) {
+                    return wrapInObject({ key: 'message', value: value });
+                },
+            },
+            _23),
+        _22),
+    _a$1[NativeApis.CLEAR_IMAGE] = (_24 = {},
+        _24[ZERO_SIXTEEN] = (_25 = {},
+            _25[BASE_VERSION] = {
+                mapOutput: function (value) {
+                    return wrapInObject({ key: 'message', value: value });
+                },
+            },
+            _25),
+        _24),
+    _a$1[NativeApis.DRAW_WEBVIEW] = (_26 = {},
+        _26[ZERO_SIXTEEN] = (_27 = {},
+            _27[BASE_VERSION] = {
+                mapOutput: function (value) {
+                    return wrapInObject({ key: 'message', value: value });
+                },
+            },
+            _27),
+        _26),
+    _a$1[NativeApis.CLEAR_WEBVIEW] = (_28 = {},
+        _28[ZERO_SIXTEEN] = (_29 = {},
+            _29[BASE_VERSION] = {
+                mapOutput: function (value) {
+                    return wrapInObject({ key: 'message', value: value });
+                },
+            },
+            _29),
+        _28),
+    _a$1[NativeApis.BREAKOUT_ROOMS_OPEN] = (_30 = {},
+        _30[ZERO_SIXTEEN] = (_31 = {},
+            _31[BASE_VERSION] = {
+                mapOutput: function (value) {
+                    return wrapInObject({ key: 'message', value: value });
+                },
+            },
+            _31),
+        _30),
+    _a$1[NativeApis.BREAKOUT_ROOMS_CLOSE] = (_32 = {},
+        _32[ZERO_SIXTEEN] = (_33 = {},
+            _33[BASE_VERSION] = {
+                mapOutput: function (value) {
+                    return wrapInObject({ key: 'message', value: value });
+                },
+            },
+            _33),
+        _32),
+    _a$1[NativeApis.BREAKOUT_ROOM_DELETE] = (_34 = {},
+        _34[ZERO_SIXTEEN] = (_35 = {},
+            _35[BASE_VERSION] = {
+                mapOutput: function (value) {
+                    return wrapInObject({ key: 'message', value: value });
+                },
+            },
+            _35),
+        _34),
+    _a$1[NativeApis.BREAKOUT_ROOM_RENAME] = (_36 = {},
+        _36[ZERO_SIXTEEN] = (_37 = {},
+            _37[BASE_VERSION] = {
+                mapOutput: function (value) {
+                    return wrapInObject({ key: 'message', value: value });
+                },
+            },
+            _37),
+        _36),
+    _a$1[NativeApis.BREAKOUT_ROOM_ASSIGN_PARTICIPANT] = (_38 = {},
+        _38[ZERO_SIXTEEN] = (_39 = {},
+            _39[BASE_VERSION] = {
+                mapOutput: function (value) {
+                    return wrapInObject({ key: 'message', value: value });
+                },
+            },
+            _39),
+        _38),
+    _a$1[NativeApis.BREAKOUT_ROOM_CHANGE] = (_40 = {},
+        _40[ZERO_SIXTEEN] = (_41 = {},
+            _41[BASE_VERSION] = {
+                mapOutput: function (value) {
+                    return wrapInObject({ key: 'message', value: value });
+                },
+            },
+            _41),
+        _40),
+    _a$1[NativeApis.COLLABORATE_START] = (_42 = {},
+        _42[ZERO_SIXTEEN] = (_43 = {},
+            _43[BASE_VERSION] = {
+                mapOutput: function (value) {
+                    return wrapInObject({ key: 'message', value: value });
+                },
+            },
+            _43),
+        _42),
+    _a$1[NativeApis.COLLABORATE_END] = (_44 = {},
+        _44[ZERO_SIXTEEN] = (_45 = {},
+            _45[BASE_VERSION] = {
+                mapOutput: function (value) {
+                    return wrapInObject({ key: 'message', value: value });
+                },
+            },
+            _45),
+        _44),
+    _a$1[NativeApis.COLLABORATE_LEAVE] = (_46 = {},
+        _46[ZERO_SIXTEEN] = (_47 = {},
+            _47[BASE_VERSION] = {
+                mapOutput: function (value) {
+                    return wrapInObject({ key: 'message', value: value });
+                },
+            },
+            _47),
+        _46),
+    _a$1[NativeApis.COLLABORATE_JOIN] = (_48 = {},
+        _48[ZERO_SIXTEEN] = (_49 = {},
+            _49[BASE_VERSION] = {
+                mapOutput: function (value) {
+                    return wrapInObject({ key: 'message', value: value });
+                },
+            },
+            _49),
+        _48),
+    _a$1[NativeApis.AUTHORIZE] = (_50 = {},
+        _50[ZERO_SIXTEEN] = (_51 = {},
+            _51[BASE_VERSION] = {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
                 },
@@ -716,35 +715,35 @@ var mappings = (_a$1 = {},
                     }
                 },
             },
-        },
-        _14),
-    _a$1[NativeApis.PROMPT_AUTHORIZE] = (_15 = {},
-        _15[ZERO_SIXTEEN] = {
-            '0.0.0': {
+            _51),
+        _50),
+    _a$1[NativeApis.PROMPT_AUTHORIZE] = (_52 = {},
+        _52[ZERO_SIXTEEN] = (_53 = {},
+            _53[BASE_VERSION] = {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
                 },
             },
-        },
-        _15),
-    _a$1[NativeApis.SET_USER_MEDIA_VIDEO] = (_16 = {},
-        _16[ZERO_SIXTEEN] = {
-            '0.0.0': {
+            _53),
+        _52),
+    _a$1[NativeApis.SET_USER_MEDIA_VIDEO] = (_54 = {},
+        _54[ZERO_SIXTEEN] = (_55 = {},
+            _55[BASE_VERSION] = {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
                 },
             },
-        },
-        _16),
-    _a$1[NativeApis.SET_USER_MEDIA_AUDIO] = (_17 = {},
-        _17[ZERO_SIXTEEN] = {
-            '0.0.0': {
+            _55),
+        _54),
+    _a$1[NativeApis.SET_USER_MEDIA_AUDIO] = (_56 = {},
+        _56[ZERO_SIXTEEN] = (_57 = {},
+            _57[BASE_VERSION] = {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
                 },
             },
-        },
-        _17),
+            _57),
+        _56),
     _a$1);
 function renameKeys(keyMap) {
     return function (data) {
@@ -765,40 +764,40 @@ function wrapInObject(_a) {
 
 var identity = function (x) { return x; };
 var noop = function (x) { };
-function getMappingFunctions(apiName, sdkVersion, clientVersion) {
+function getMappingFunctions(apiName, sdkVersionInput, clientVersionInput) {
     var fns = {
         mapInput: identity,
         mapOutput: identity,
         validate: noop,
     };
-    var convertedSdkVersion = convertVersion(sdkVersion);
+    var majorSdkVersion = getMajorVersionFromExact(sdkVersionInput);
     var apiMappings = mappings[apiName];
     if (!apiMappings)
         return fns;
-    var sdkMappings = apiMappings[convertedSdkVersion];
+    var sdkMappings = apiMappings[majorSdkVersion];
     if (!sdkMappings)
         return fns;
-    var versions = Object.keys(sdkMappings).sort(compareVersions);
-    var matchedVersion = versions
-        .reverse()
-        .find(function (version) { return compareVersions(clientVersion, version) >= 0; });
-    if (!matchedVersion)
-        return fns;
-    var _a = sdkMappings[matchedVersion], mapInput = _a.mapInput, mapOutput = _a.mapOutput, validate = _a.validate;
-    if (mapInput)
-        fns.mapInput = mapInput;
-    if (mapOutput)
-        fns.mapOutput = mapOutput;
-    if (validate)
-        fns.validate = validate;
+    var clientVals = clientVersionInput.split('.').map(function (n) { return parseInt(n); });
+    if (clientVals.some(isNaN)) {
+        clientVersionInput = MAX_MAX_MAX;
+    }
+    var possibleClientVersions = Object.keys(sdkMappings)
+        .filter(function (clientVersion) { return compareVersions(clientVersionInput, clientVersion) >= 0; })
+        .sort(compareVersions);
+    possibleClientVersions.forEach(function (clientVersion) {
+        var _a = sdkMappings[clientVersion], mapInput = _a.mapInput, mapOutput = _a.mapOutput, validate = _a.validate;
+        if (mapInput)
+            fns.mapInput = mapInput;
+        if (mapOutput)
+            fns.mapOutput = mapOutput;
+        if (validate)
+            fns.validate = validate;
+    });
     return fns;
 }
 function compareVersions(v1, v2) {
     var vals1 = v1.split('.').map(function (n) { return parseInt(n); });
     var vals2 = v2.split('.').map(function (n) { return parseInt(n); });
-    if (vals1.some(isNaN)) {
-        return -1;
-    }
     var a1 = vals1[0], b1 = vals1[1], c1 = vals1[2];
     var a2 = vals2[0], b2 = vals2[1], c2 = vals2[2];
     if (a1 > a2)
@@ -815,7 +814,7 @@ function compareVersions(v1, v2) {
         return 1;
     return 0;
 }
-function convertVersion(sdkVersion) {
+function getMajorVersionFromExact(sdkVersion) {
     if (typeof sdkVersion !== 'string') {
         console.warn('You have not provided a valid sdk version');
         return;
@@ -828,6 +827,7 @@ function convertVersion(sdkVersion) {
             return ZERO_SIXTEEN;
         default:
             console.warn('You have not provided a valid sdk version');
+            return;
     }
 }
 
@@ -863,9 +863,9 @@ var ZoomSdk =  (function () {
     };
     ZoomSdk.prototype.callZoomApi = function (apiName, data, timeout) {
         return __awaiter(this, void 0, void 0, function () {
-            var jsCallId, nativeApiRequest, _a, mapInput, mapOutput, validate;
+            var jsCallId, nativeApiRequest, mapping, mapInput, mapOutput, validate;
             var _this = this;
-            return __generator(this, function (_b) {
+            return __generator(this, function (_a) {
                 jsCallId = getJsCallId();
                 nativeApiRequest = {
                     jsCallId: jsCallId,
@@ -875,7 +875,15 @@ var ZoomSdk =  (function () {
                     (!isString(this._version) || !isString(this._clientVersion))) {
                     throw new Error('must call zoomSdk.config before using other API methods');
                 }
-                _a = mappingFunctionCache[apiName], mapInput = _a.mapInput, mapOutput = _a.mapOutput, validate = _a.validate;
+                mapping = mappingFunctionCache[apiName];
+                if (!mapping) {
+                    mapping = {
+                        mapInput: identity,
+                        mapOutput: identity,
+                        validate: noop,
+                    };
+                }
+                mapInput = mapping.mapInput, mapOutput = mapping.mapOutput, validate = mapping.validate;
                 if (data) {
                     validate(data);
                     nativeApiRequest.data = mapInput(data);

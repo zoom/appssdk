@@ -22,6 +22,12 @@ Alternatively, you can load the SDK from a CDN, using a script tag in your HTML 
 <script src="https://appssdk.zoom.us/sdk.js"></script>
 ```
 
+You can also load a minified SDK, using a script tag in your HTML document:
+
+```
+<script src="https://appssdk.zoom.us/sdk.min.js"></script>
+```
+
 ## Usage
 
 If you installed Zoom Apps SDK from NPM, import `zoomSdk` into the component where you wanted to use the SDK and call `config` as your first call to verify your application with Zoom.
@@ -115,6 +121,10 @@ sendAppInvitation ({ participantUUIDs: [participantUUID1, participantUUID2, ...]
 ## Documentation
 
 Refer to Apps SDK documentation [here](https://marketplace.zoom.us/docs/zoom-apps/js-sdk/reference).
+
+## Release notes
+
+Refer to [release notes](https://github.com/zoom/appssdk/releases) to discover changes made in the Apps SDK.
 
 ## Resources to create a Zoom App
 

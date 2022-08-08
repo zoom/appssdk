@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2021 Zoom Video Communications, Inc.
+ * Copyright (c) 2022 Zoom Video Communications, Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -751,7 +751,7 @@ declare type GetMeetingContextResponse = {
     meetingTopic: string;
     meetingID: string;
 };
-declare type Apis = 'addBreakoutRoom' | 'allowParticipantToRecord' | 'assignParticipantsToBreakoutRoom' | 'assignParticipantToBreakoutRoom' | 'authorize' | 'changeBreakoutRoom' | 'clearImage' | 'clearParticipant' | 'clearWebView' | 'closeBreakoutRooms' | 'closeChannel' | 'closeLobby' | 'closeRenderingContext' | 'cloudRecording' | 'configureBreakoutRooms' | 'connect' | 'createBreakoutRooms' | 'deleteBreakoutRoom' | 'drawImage' | 'drawParticipant' | 'drawWebView' | 'endCollaborate' | 'endSyncData' | 'executeOnZoomAction' | 'expandApp' | 'getBreakoutRoomList' | 'getImmersiveViewContext' | 'getMeetingContext' | 'getMeetingJoinUrl' | 'getMeetingParticipants' | 'getMeetingUUID' | 'getMyOpenedAppList' | 'getOnZoomProperties' | 'getPairingStatus' | 'getRecordingContext' | 'getRunningContext' | 'getScreenshot' | 'getSupportedJsApis' | 'getUserContext' | 'getUserMediaAudio' | 'getUserMediaVideo' | 'joinCollaborate' | 'joinOnZoomEvent' | 'joinZoomRoom' | 'launchAppInMeeting' | 'leaveCollaborate' | 'listCameras' | 'onActiveSpeakerChange' | 'onAppPopout' | 'onAuthenticate' | 'onAuthorized' | 'onBreakoutRoomChange' | 'onCloseAppForParticipants' | 'onCloudRecording' | 'onCollaborateChange' | 'onConnect' | 'onExpandApp' | 'onExtendedProcessing' | 'onImmersiveViewChange' | 'onMeeting' | 'onMeetingConfigChanged' | 'onMessage' | 'onMyActiveSpeakerChange' | 'onMyAppListChanged' | 'onMyMediaChange' | 'onMyReaction' | 'onMyUserContextChange' | 'onOnZoomJoinStatusChange' | 'onOpenCloseApp' | 'onPairingStatusChange' | 'onParticipantChange' | 'onReaction' | 'onRunningContextChange' | 'onSendAppInvitation' | 'onShareApp' | 'onThemeModeChange' | 'onUserAction' | 'openApp' | 'openBreakoutRooms' | 'openChannel' | 'openDM' | 'openUrl' | 'postMessage' | 'promptAuthorize' | 'pushState' | 'removeImmersiveView' | 'removeVirtualBackground' | 'removeVirtualForeground' | 'renameBreakoutRoom' | 'runRenderingContext' | 'sendAppInvitation' | 'sendAppInvitationToAllParticipants' | 'sendAppInvitationToMeetingOwner' | 'setAuthCancel' | 'setAuthResult' | 'setCamera' | 'setImmersiveView' | 'setUserMediaAudio' | 'setUserMediaVideo' | 'setVideoMirrorEffect' | 'setVirtualBackground' | 'setVirtualForeground' | 'shareApp' | 'showAppInvitationDialog' | 'showNotification' | 'startCollaborate' | 'toggleParticipantMediaAudio' | 'onInviteCollaboration';
+declare type Apis = 'addBreakoutRoom' | 'allowParticipantToRecord' | 'assignParticipantsToBreakoutRoom' | 'assignParticipantToBreakoutRoom' | 'authorize' | 'changeBreakoutRoom' | 'clearImage' | 'clearParticipant' | 'clearWebView' | 'closeBreakoutRooms' | 'closeChannel' | 'closeLobby' | 'closeRenderingContext' | 'cloudRecording' | 'configureBreakoutRooms' | 'connect' | 'createBreakoutRooms' | 'deleteBreakoutRoom' | 'drawImage' | 'drawParticipant' | 'drawWebView' | 'endCollaborate' | 'endSyncData' | 'executeOnZoomAction' | 'expandApp' | 'getBreakoutRoomList' | 'getImmersiveViewContext' | 'getMeetingContext' | 'getMeetingJoinUrl' | 'getMeetingParticipants' | 'getMeetingUUID' | 'getOnZoomProperties' | 'getPairingStatus' | 'getRecordingContext' | 'getRunningContext' | 'getScreenshot' | 'getSupportedJsApis' | 'getUserContext' | 'getUserMediaAudio' | 'getUserMediaVideo' | 'joinCollaborate' | 'joinOnZoomEvent' | 'joinZoomRoom' | 'launchAppInMeeting' | 'leaveCollaborate' | 'listCameras' | 'onActiveSpeakerChange' | 'onAppPopout' | 'onAuthenticate' | 'onAuthorized' | 'onBreakoutRoomChange' | 'onCloseAppForParticipants' | 'onCloudRecording' | 'onCollaborateChange' | 'onConnect' | 'onExpandApp' | 'onExtendedProcessing' | 'onImmersiveViewChange' | 'onMeeting' | 'onMeetingConfigChanged' | 'onMessage' | 'onMyActiveSpeakerChange' | 'onMyMediaChange' | 'onMyReaction' | 'onMyUserContextChange' | 'onOnZoomJoinStatusChange' | 'onPairingStatusChange' | 'onParticipantChange' | 'onReaction' | 'onRunningContextChange' | 'onSendAppInvitation' | 'onShareApp' | 'onThemeModeChange' | 'openBreakoutRooms' | 'openChannel' | 'openDM' | 'openUrl' | 'postMessage' | 'promptAuthorize' | 'pushState' | 'removeImmersiveView' | 'removeVirtualBackground' | 'removeVirtualForeground' | 'renameBreakoutRoom' | 'runRenderingContext' | 'sendAppInvitation' | 'sendAppInvitationToAllParticipants' | 'sendAppInvitationToMeetingOwner' | 'setCamera' | 'setImmersiveView' | 'setUserMediaAudio' | 'setUserMediaVideo' | 'setVideoMirrorEffect' | 'setVirtualBackground' | 'setVirtualForeground' | 'shareApp' | 'showAppInvitationDialog' | 'showNotification' | 'startCollaborate' | 'toggleParticipantMediaAudio' | 'onInviteCollaboration';
 /**
  * Example:
  * ```
@@ -1018,16 +1018,27 @@ declare type LaunchAppInMeetingOptions = {
  */
 /** `"immersive"` to fill the entire meeting canvas, or `"camera"` to affect only the user's video stream. */
 declare type RenderingContextView = 'immersive' | 'camera';
-/** The cutout behavior of `drawParticipant()`: `"person"` says to cut out backgrounds, or `"rectangle"` says to display their full video rectangle.*/
-declare type RenderingContextCutout = 'person' | 'rectangle';
+/** The cutout behavior of `drawParticipant()`:
+ *
+ * _Introduced in client version 5.11.3_:
+ *   - `"person"`: Cut out the participant's background
+ *   - `"rectangle"`: Crop the participant's video into a rectangle with rounded corners
+ *
+ * _Additional shapes added in client version 5.11.6_:
+ *   - `"standard"`: Display the participant's full uncropped video
+ *   - `"circle"`: Crop the participant's video into a circle
+ *   - `"square"`: Crop the participant's video into a square with rounded corners
+ *   - `"verticalRectangle"`: Crop the participant's video into a vertical rectangle with rounded corners
+ */
+declare type ParticipantCutoutShape = 'person' | 'standard' | 'rectangle' | 'circle' | 'square' | 'verticalRectangle';
 /**
  * @category Core Endpoints
  */
 declare type RunRenderingContextOptions = {
     /** `"immersive"` to fill the entire meeting canvas, or `"camera"` to affect only the user's video stream. */
     view?: RenderingContextView;
-    /** The default cutout behavior of `drawParticipant()`: `"person"` says to cut out backgrounds, or `"rectangle"` says to display their full video rectangle.*/
-    defaultCutout?: RenderingContextCutout;
+    /** The default cutout behavior of `drawParticipant()`: `"person"` means cut out the background; other shapes mean crop the participant's video into the named shape */
+    defaultCutout?: ParticipantCutoutShape;
 };
 /**
  * Pixel-related values:
@@ -1060,6 +1071,10 @@ declare type DrawParticipantOptions = {
     height?: PixelValue;
     /** The relative z-ordering of the item (Default: 1). */
     zIndex?: number;
+    /** The cutout behavior: `"person"` means cut out the background; other shapes mean crop the participant's video into the named shape.
+     * Introduced in client version 5.11.3. Additional shapes added in client version 5.11.6.
+     */
+    cutout?: ParticipantCutoutShape;
 };
 /**
  * @category Core Endpoints
@@ -1152,8 +1167,10 @@ declare type OnRenderedAppOpenedEvent = {
     timestamp: number;
     /** The rendered app's view type: `"immersive"` filling the entire meeting canvas, or `"camera"` affecting only the user's video stream. */
     view: RenderingContextView;
-    /** The default cutout behavior of `drawParticipant()`: `"person"` says to cut out backgrounds, or `"rectangle"` says to display their full video rectangle.*/
-    defaultCutout?: RenderingContextCutout;
+    /** The default cutout behavior of `drawParticipant()`: `"person"` means cut out the background; other shapes mean crop the participant's video into the named shape.
+     * Introduced in client version 5.11.3. Additional shapes added in client version 5.11.6.
+     */
+    defaultCutout?: ParticipantCutoutShape;
     /** The rendered app was opened as the result of an invitation */
     byInvitation?: boolean;
 };
@@ -1351,8 +1368,12 @@ declare type GetUserMediaAudioResponse = {
 declare type ToggleParticipantMediaAudioOptions = {
     /** mute or unmute participants. true = unmute, false = mute */
     audio: boolean;
-    /** Target participants with specified ParticipantUUIDs. If list is empty, all participants are muted or unmuted based on the action specified. Maximum 10 participantIDs. For more than 10, use mute/unmute all. You can use getMeetingParticipants to get a list of meeting participants.*/
-    participants: string[];
+    /** use participantUUID instead of participantId
+     * @deprecated
+     */
+    participants?: string[];
+    /** Target participants with specified participantUUIDs. If list is empty, all participants are muted or unmuted based on the action specified. Maximum 10 participantUUIDs. For more than 10, use mute/unmute all. You can use getMeetingParticipants to get a list of meeting participants. */
+    participantUUIDs?: string[];
 };
 /**
  * # Zoom Apps SDK
@@ -1469,6 +1490,10 @@ declare type ToggleParticipantMediaAudioOptions = {
  * sendAppInvitation ({ participantUUIDs: [participantUUID1, participantUUID2, ...], message: ""})
  * ```
  *
+ * ## Release notes
+ *
+ * Refer to [release notes](https://github.com/zoom/appssdk/releases) to discover changes made in the Apps SDK.
+ *
  * ## Resources to create a Zoom App
  *
  * - Create your first Zoom App following these [steps](https://marketplace.zoom.us/docs/zoom-apps/getstarted).
@@ -1583,7 +1608,7 @@ declare class ZoomSdk {
      * await zoomSdk.openUrl({ url: "https://awesome-zoom-app.com/login" });
      * ```
      *
-     * *You must whitelist the URL's domain in your Marketplace app configuration before it can be called with this API.*
+     * *You must whitelist the URL's domain in your Marketplace app configuration, otherwise the browser will show a warning "Accessing Untrusted Web Site". And the user has to manually click the link to trigger marketplace to redirect them to the specified url.*
      *
      * @category Core Endpoints
      */
@@ -1956,11 +1981,8 @@ declare class ZoomSdk {
      * await zoomSdk.launchAppInMeeting({ joinURL: 'xxx' })
      * ```
      *
-     * The behavior of this method changes depending on whether the context is inMeeting or inMainClient and whether or not a joinURL is provided. The table below details what to expect.
-     *
      * |                      | with joinURL  |	without joinURL|
      * | -------------------- | ------------- | -------- |
-     * | inMeeting | 	Launches app in current meeting |	Launches app in current meeting |
      * | inMainClient |	Joins meeting associated with the `joinURL` and launches app in it | Starts a new meeting and launches app in it |
      *
      * @category Core Endpoints
@@ -2463,6 +2485,7 @@ declare class ZoomSdk {
      * **Note:**
      * 1. Rooms need to be open
      * 2. Room configuration should allow user to initiate the change
+     * 3. This method returns success when changing breakout rooms is initiated, but the transition for the user might not be completed in some scenarios. Use onBreakoutRoomChange to confirm successful transition. If the event doesn’t fire, repeat changeBreakoutRoom call
      *
      * @category Managing Breakout Rooms
      */
@@ -2604,24 +2627,28 @@ declare class ZoomSdk {
      *
      * **Supports Guest Mode**: No
      *
-     * **Return values**: None
-     *
      * **Scope label**: Manage Devices
      *
      * **Scope hierarchy**: zoomapps.meetings / zoomapps.webinar
      *
-     * **Confirmation / Consent moments**: none
+     * **Confirmation / Consent moments**
      *
-     * Usage Example:
+     * - ###### All participants
+     * "[AppName] wants to unmute all participants" [Don’t Allow] [Allow]
+     *
+     * - ###### Single participant
+     * "[AppName] wants to unmute this participant: [Screen name]" [Don’t Allow] [Allow]
+     *
+     * - ###### Multiple participants
+     * "[AppName] wants to unmute these participants: [Screen name 1], [Screen name 2], [Screen name 3],…" [Don’t Allow] [Allow]
+     *
      * ```
-     * zoomSdk.toggleParticipantMediaAudio( {// (host/cohost)
-     *   "participants":['participantUUID1','participantUUID2'....],
+     * zoomSdk.toggleParticipantMediaAudio({
+     *   "participantUUIDs":['participantUUID1','participantUUID2'....],
      *   "audio": true | false
-     *   })
-     *   .then(function(response) => {})
-     *   .catch(function(error) => {
-     *            // handle error
-     *   })
+     * })
+     * .then((response) => { console.log(response); })
+     * .catch((e) => { console.log(e); })
      * ```
      * @category Core Endpoints
      */
