@@ -1,16 +1,16 @@
 /**
  * Copyright (c) 2022 Zoom Video Communications, Inc.
- *
+ * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -57,6 +57,32 @@ declare type GeneralMessageResponse = {
  * @category Core Endpoints
  */
 declare type RunningContext = 'inMeeting' | 'inImmersive' | 'inWebinar' | 'inMainClient' | 'inPhone' | 'inCollaborate' | 'inCamera';
+
+declare enum NativeEvents {
+    ON_ACTIVE_SPEAKER_CHANGE = "onActiveSpeakerChange",
+    ON_APP_POPOUT = "onAppPopout",
+    ON_CLOUD_RECORDING = "onCloudRecording",
+    ON_CONNECT = "onConnect",
+    ON_EXPAND_APP = "onExpandApp",
+    ON_MEETING = "onMeeting",
+    ON_MESSAGE = "onMessage",
+    ON_MY_ACTIVE_SPEAKER_CHANGE = "onMyActiveSpeakerChange",
+    ON_MY_MEDIA_CHANGE = "onMyMediaChange",
+    ON_MY_REACTION = "onMyReaction",
+    ON_MY_USER_CONTEXT_CHANGE = "onMyUserContextChange",
+    ON_PARTICIPANT_CHANGE = "onParticipantChange",
+    ON_REACTION = "onReaction",
+    ON_SEND_APP_INVITATION = "sendAppInvitation",
+    ON_SHARE_APP = "shareApp",
+    ON_MEETING_CONFIG_CHANGED = "onMeetingConfigChanged",
+    ON_BREAKOUT_ROOM_CHANGE = "onBreakoutRoomChange",
+    ON_INVITE_COLLABORATION = "onInviteCollaboration",
+    ON_COLLABORATE_CHANGE = "onCollaborateChange",
+    ON_RUNNING_CONTEXT_CHANGE = "onRunningContextChange",
+    ON_AUTHORIZED = "onAuthorized",
+    ON_CLOSE_APP_FOR_PARTICIPANTS = "onCloseAppForParticipants",
+    ON_RENDERED_APP_OPENED = "onRenderedAppOpened"
+}
 
 declare type GenericEventHandler<T> = (data: T) => void;
 /**
@@ -426,10 +452,20 @@ declare type OnMeetingEvent = {
  * - `breakoutRoomParticipantsJoined`:	Participants joined a breakout room, or by method `changeBreakoutRoom`.
  * - `breakoutRoomParticipantsLeft`:	Participants left a breakout room, or by method `changeBreakoutRoom`.
  * - `breakoutRoomOpened | breakoutRoomClosed`:	Opening or Closing breakout rooms using UX or by method `openBreakoutRooms` or method `closeBreakoutRooms`.
+ * - 'breakoutRoomOpened': Opening breakout rooms using UX or by method `openBreakoutRooms`
+ * - 'breakoutRoomClosed': Closing breakout rooms using UX or by method `closeBreakoutRooms`.
+ *
+ * Note:
+ *  - `breakoutRoomOpened | breakoutRoomClosed` is deprecated
+ *
+ * | client    | <=0.14 SDK                                 | >=0.16 SDK                                   |
+ * |-----------|--------------------------------------------|----------------------------------------------|
+ * | < 5.11.0  | `breakoutRoomOpened \| breakoutRoomClosed` | `breakoutRoomOpened \| breakoutRoomClosed`   |
+ * | >= 5.11.0 | `breakoutRoomOpened \| breakoutRoomClosed` | `breakoutRoomOpened`, or `breakoutRoomClosed` |
  *
  * @category Events Managing Breakout Rooms
  */
-declare type BreakoutEvents = 'breakoutRoomsCreated' | 'breakoutRoomsConfigured' | 'breakoutRoomsUpdated' | 'breakoutRoomParticipantsAssigned' | 'breakoutRoomParticipantsJoined' | 'breakoutRoomParticipantsLeft' | 'breakoutRoomOpened | breakoutRoomClosed';
+declare type BreakoutEvents = 'breakoutRoomsCreated' | 'breakoutRoomsConfigured' | 'breakoutRoomsUpdated' | 'breakoutRoomParticipantsAssigned' | 'breakoutRoomParticipantsJoined' | 'breakoutRoomParticipantsLeft' | 'breakoutRoomOpened | breakoutRoomClosed' | 'breakoutRoomOpened' | 'breakoutRoomClosed';
 /**
  * Usage:
  * ```
@@ -934,6 +970,18 @@ declare type VirtualBackgroundOptions = BlurVirtualBackground | FileUrlVirtualBa
 declare type VirtualForegroundOptions = {
     /** ImageData object, limited to 15MB after encoding. We recommend using the resolution of your camera reported by onMyMediaChange */
     imageData: ImageData;
+    /**
+     * The foreground image persistence (_added in client version 5.11.6_):
+     *  - `"meeting"`: (**Default**) Does not load a foreground; removes the virtual foreground when the meeting ends
+     *  - `"save"`: Loads the virtual foreground from disk when future meetings start
+     *  - `"app"`: Does not load a foreground; removes the virtual foreground when the Zoom App that set it is closed
+     *
+     * **Note:** The previous functionality of setVirtualForeground() is the same as `"meeting"` persistence.
+  
+  
+  
+     */
+    persistence?: 'save' | 'app' | 'meeting';
 };
 /**
  * @category Core Endpoints
@@ -1100,7 +1148,9 @@ declare type DrawImageResponse = {
  * @category Core Endpoints
  */
 declare type DrawWebViewOptions = {
-    /** The webviewId to draw (Layers Camera Mode off-screen-rendering) */
+    /**
+     * @hidden
+     * The webviewId to draw (Layers Camera Mode off-screen-rendering) */
     webviewId: string;
     /** The horizontal position to draw the webview within the OSR target area. (Default: 0) */
     x?: PixelValue;
@@ -1133,11 +1183,12 @@ declare type ClearImageOptions = {
     imageId: string;
 };
 /**
- *
+ * @hidden // hiding all the options for now
  * @category Core Endpoints
  */
 declare type ClearWebViewOptions = {
-    /** The webviewId to clear (Layers Camera Mode off-screen-rendering) */
+    /**
+     * The webviewId to clear (Layers Camera Mode off-screen-rendering) */
     webviewId: string;
 };
 /**
@@ -1337,33 +1388,33 @@ declare type AppInvitationResponse = {
 /**
  * @category User Media Endpoints
  */
-declare type SetUserMediaVideoOptions = {
+declare type SetVideoStateOptions = {
     /** Default false for setting participant video off */
     video: boolean;
 };
 /**
  * @category User Media Endpoints
  */
-declare type GetUserMediaVideoResponse = {
+declare type GetVideoStateResponse = {
     /** boolean denoting the status of video. False means off, true means on. */
     video: boolean;
 };
 /**
  * @category User Media Endpoints
  */
-declare type SetUserMediaAudioOptions = {
+declare type SetAudioStateOptions = {
     /** Default false for setting participant audio off */
     audio: boolean;
 };
 /**
  * @category User Media Endpoints
  */
-declare type GetUserMediaAudioResponse = {
+declare type GetAudioStateResponse = {
     /** boolean denoting the status of audio. False means muted, true means unmuted. */
     audio: boolean;
 };
 /**
- * @category Core Endpoints
+ * @category User Media Endpoints
  */
 declare type ToggleParticipantMediaAudioOptions = {
     /** mute or unmute participants. true = unmute, false = mute */
@@ -1399,6 +1450,13 @@ declare type ToggleParticipantMediaAudioOptions = {
  * ```
  * <script src="https://appssdk.zoom.us/sdk.js"></script>
  * ```
+ *
+ * You can also load a minified SDK, using a script tag in your HTML document:
+ *
+ * ```
+ * <script src="https://appssdk.zoom.us/sdk.min.js"></script>
+ * ```
+ *
  * ## Usage
  *
  * If you installed Zoom Apps SDK from NPM, import `zoomSdk` into the component where you wanted to use the SDK and call `config` as your first call to verify your application with Zoom.
@@ -1569,7 +1627,6 @@ declare class ZoomSdk {
      *     "expandApp",
      *     "connect",
      *     "postMessage",
-     *     "allowParticipantToStartLocalRecording",
      *     //Events
      *     "onShareApp",
      *     "onSendAppInvitation",
@@ -2139,7 +2196,7 @@ declare class ZoomSdk {
     /**
      * Clears the content set by drawImage.
      *
-     * *Supports Guest Mode* = Yes.
+     * *Supports Guest Mode* = Yes
      *
      * ```
      * zoomSdk.clearImage({
@@ -2158,8 +2215,11 @@ declare class ZoomSdk {
      *
      * ```
      * zoomSdk.drawWebView({
-     *    webviewId: 'camera'
-     *     x: 0, y: 0, width: 1280, height: 720, zIndex: 2
+     *   x: 0,
+     *   y: 0,
+     *   width: 1280,
+     *   height: 720,
+     *   zIndex: 2
      * })
      * .catch((e) => {
      *    console.log(e);
@@ -2173,9 +2233,7 @@ declare class ZoomSdk {
      * Clears the content set by drawWebView. [Layers Camera Mode]
      *
      * ```
-     * zoomSdk.clearWebView({
-     *    webviewId: 'camera'
-     * })
+     * zoomSdk.clearWebView()
      * .catch((e) => {
      *    console.log(e);
      * });
@@ -2183,7 +2241,7 @@ declare class ZoomSdk {
      *
      * @category Core Endpoints
      */
-    clearWebView(options: ClearWebViewOptions): Promise<GeneralMessageResponse>;
+    clearWebView(): Promise<GeneralMessageResponse>;
     /**
      * This event occurs when the user clicks the share icon from the Zoom App sidebar during a meeting, and when the user stops the share.
      *
@@ -2223,7 +2281,7 @@ declare class ZoomSdk {
      */
     onParticipantChange(handler: GenericEventHandler<OnParticipantChangeEvent>): void;
     /**
-     * This event occurs when the active speaker changes in a meeting.
+     * This event occurs when the active speaker changes in a meeting. The response array contains all active speakers.
      *
      * **Role-based permissions** This event is only available to an app instance being run by a Meeting Owner.
      *
@@ -2372,21 +2430,27 @@ declare class ZoomSdk {
      */
     onRenderedAppOpened(handler: GenericEventHandler<OnRenderedAppOpenedEvent>): void;
     /**
-     * @ignore
-     *
      * Low-level method used to register event handlers in the SDK. This is useful because it allows you to use new events in the client without needing to update the JS SDK. You can register multiple listeners per event.
      *
      */
-    addEventListener(event: string, handler: (data: any) => any): void;
+    addEventListener(event: `${NativeEvents}`, handler: (data: any) => any): void;
     /**
-     * @ignore
-     *
      * Use this method to remove a previously registered listener.
      *
      * Note that the removeEventListener method requires that you registered a named listener function. If you use an anonymous function, you will not be able to remove it using this method.
      *
      */
-    removeEventListener(event: string, handler: (data: any) => any): void;
+    removeEventListener(event: `${NativeEvents}`, handler: (data: any) => any): void;
+    /**
+     * Alias for {@link ZoomSdk.addEventListener}
+     *
+     */
+    on(event: `${NativeEvents}`, handler: (data: any) => any): void;
+    /**
+     * Alias for {@link ZoomSdk.removeEventListener}
+     *
+     */
+    off(event: `${NativeEvents}`, handler: (data: any) => any): void;
     /**
      * Deletes all existing breakout rooms and creates new ones. Response is same as getBreakoutRoomList.
      * @category Managing Breakout Rooms
@@ -2484,8 +2548,9 @@ declare class ZoomSdk {
      *
      * **Note:**
      * 1. Rooms need to be open
-     * 2. Room configuration should allow user to initiate the change
-     * 3. This method returns success when changing breakout rooms is initiated, but the transition for the user might not be completed in some scenarios. Use onBreakoutRoomChange to confirm successful transition. If the event doesn’t fire, repeat changeBreakoutRoom call
+     * 2. To use this method, rooms must be configured to allow participant to choose rooms (`allowParticipantsToChooseRoom=true` when using `configureBreakoutRooms`)
+     * 3. Method is available to Guests
+     * 4. This method returns `success` when changing breakout rooms is initiated, but the transition for the user might not be completed in some scenarios. Use `onBreakoutRoomChange` to confirm successful transition. If the event doesn’t fire, repeat `changeBreakoutRoom` call
      *
      * @category Managing Breakout Rooms
      */
@@ -2561,6 +2626,8 @@ declare class ZoomSdk {
      *
      * Upon user authorization, an `onAuthorized` event is triggered with an authorization code. You have to add an event listener for this event to get authorization code.
      *
+     * *Supports Guest Mode* = No
+     *
      * ```
      * zoomSdk.authorize({
      *    state: 'TIA5UgoM38',
@@ -2583,6 +2650,7 @@ declare class ZoomSdk {
      *
      * IMPORTANT: Calling `promptAuthorize` will update user context status, per the states noted above.  You MUST reconfigure the application upon user context status change, by re-calling the config method. The recommended approach is to listen for the `onMyUserContextChange` event and invoke `config` once more if the user context status has changed.
      *
+     * *Supports Guest Mode* = Yes
      *
      * ```
      * zoomSdk.promptAuthorize()
@@ -2594,29 +2662,25 @@ declare class ZoomSdk {
      */
     promptAuthorize(): Promise<GeneralMessageResponse>;
     /**
-     * @hidden
-     *
+     * Turn on or off the primary video.
      * @category User Media
      */
-    setUserMediaVideo(options: SetUserMediaVideoOptions): Promise<GeneralMessageResponse>;
+    setVideoState(options: SetVideoStateOptions): Promise<GeneralMessageResponse>;
     /**
-     * @hidden
-     *
+     * Mute or unmute the primary audio
      * @category User Media
      */
-    setUserMediaAudio(options: SetUserMediaAudioOptions): Promise<GeneralMessageResponse>;
+    setAudioState(options: SetAudioStateOptions): Promise<GeneralMessageResponse>;
     /**
-     * @hidden
-     *
+     * Gets the on or off status of the primary video.
      * @category User Media
      */
-    getUserMediaVideo(): Promise<GetUserMediaVideoResponse>;
+    getVideoState(): Promise<GetVideoStateResponse>;
     /**
-     * @hidden
-     *
+     * 	Gets the mute or unmute status of the primary audio.
      * @category User Media
      */
-    getUserMediaAudio(): Promise<GetUserMediaAudioResponse>;
+    getAudioState(): Promise<GetAudioStateResponse>;
     /**
      *
      * Allows hosts and co-hosts to mute and unmute all, or specific, meeting participants. The action doesn’t affect the person initiating the request.
@@ -2650,11 +2714,11 @@ declare class ZoomSdk {
      * .then((response) => { console.log(response); })
      * .catch((e) => { console.log(e); })
      * ```
-     * @category Core Endpoints
+     * @category User Media
      */
     toggleParticipantMediaAudio(options: ToggleParticipantMediaAudioOptions): Promise<GeneralMessageResponse>;
 }
 
 declare const _default: ZoomSdk;
 
-export { _default as default };
+export { AddBreakoutRoomOptions, AllowParticipantToRecordOptions, Apis, AppInvitationResponse, AssignParticipantToBreakoutRoomOptions, AuthObject, AuthorizeOptions, BlurVirtualBackground, BreakOutRoom, BreakOutRoomParticipant, BreakoutEvents, BreakoutRoomAssignmentMethods, BreakoutRoomsResponse, Camera, ChangeBreakoutRoomJoinOption, ChangeBreakoutRoomOptions, ChangeBreakoutRoomOtherOptions, ClearImageOptions, ClearParticipantOptions, ClearWebViewOptions, CloudRecordingOptions, ConfigOptions, ConfigResponse, ConfigSize, ConfigureBreakoutRoomsOptions, ConfigureBreakoutRoomsResponse, CreateBreakoutRoomsOptions, DrawImageOptions, DrawImageResponse, DrawParticipantOptions, DrawWebViewOptions, ExpandAppOptions, FileUrlVirtualBackground, GenericEventHandler, GetAudioStateResponse, GetMeetingContextResponse, GetMeetingJoinUrlResponse, GetMeetingParticipantsResponse, GetMeetingUUIDResponse, GetRecordingContextResponse, GetSupportedJsApisResponse, GetUserContextResponse, GetVideoStateResponse, ImageDataVirtualBackground, JSONValue, LaunchAppInMeetingOptions, ListCamerasResponse, MediaObject, NotificationOptions, OnActiveSpeakerChangeEvent, OnActiveSpeakerChangeUserType, OnAppPopoutEvent, OnAuthorizedEvent, OnBreakoutRoomChangeEvent, OnCloudRecordingEvent, OnCollaborateChangeEvent, OnConnectEvent, OnExpandAppEvent, OnMeetingEvent, OnMessageEvent, OnMyActiveSpeakerChangeEvent, OnMyMediaChangeAudioType, OnMyMediaChangeEvent, OnMyMediaChangeVideoType, OnMyReactionEvent, OnMyUserContextChangeEvent, OnParticipantChangeEvent, OnParticipantChangeParticipantType, OnReactionEvent, OnRenderedAppOpenedEvent, OnRunningContextChangeEvent, OnSendAppInvitationEvent, OnShareAppEvent, OpenUrlOptions, Participant, ParticipantCutoutShape, PixelValue, RenameBreakoutRoomOptions, RenderingContextView, RunRenderingContextOptions, RunningContextResponse, SdkOptions, SendAppInvitationOptions, SetAudioStateOptions, SetCameraOptions, SetVideoMirrorEffectOptions, SetVideoStateOptions, ShareAppOptions, StartCollaborateOptions, ToggleParticipantMediaAudioOptions, Uuid, VirtualBackgroundOptions, VirtualForegroundOptions, _default as default, onMeetingConfigChangedEvent };

@@ -1,16 +1,17 @@
+/* Zoom Apps SDK v0.16.4  */
 /**
  * Copyright (c) 2022 Zoom Video Communications, Inc.
- *
+ * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -22,7 +23,7 @@
 
 'use strict';
 
-var version = "0.16.3";
+var version = "0.16.4";
 
 var extendStatics = function(d, b) {
     extendStatics = Object.setPrototypeOf ||
@@ -176,8 +177,8 @@ var NativeApis;
     NativeApis["GET_RUNNING_CONTEXT"] = "getRunningContext";
     NativeApis["GET_SUPPORTED_JS_APIS"] = "getSupportedJsApis";
     NativeApis["GET_USER_CONTEXT"] = "getUserContext";
-    NativeApis["GET_USER_MEDIA_AUDIO"] = "getUserMediaAudio";
-    NativeApis["GET_USER_MEDIA_VIDEO"] = "getUserMediaVideo";
+    NativeApis["GET_AUDIO_STATE"] = "getAudioState";
+    NativeApis["GET_VIDEO_STATE"] = "getVideoState";
     NativeApis["LAUNCH_APP_IN_MEETING"] = "launchAppInMeeting";
     NativeApis["LIST_CAMERAS"] = "listCameras";
     NativeApis["OPEN_URL"] = "openUrl";
@@ -190,8 +191,8 @@ var NativeApis;
     NativeApis["SEND_APP_INVITATION_TO_ALL_PARTICIPANTS"] = "sendAppInvitationToAllParticipants";
     NativeApis["SEND_APP_INVITATION_TO_MEETING_OWNER"] = "sendAppInvitationToMeetingOwner";
     NativeApis["SET_CAMERA"] = "setCamera";
-    NativeApis["SET_USER_MEDIA_AUDIO"] = "setUserMediaAudio";
-    NativeApis["SET_USER_MEDIA_VIDEO"] = "setUserMediaVideo";
+    NativeApis["SET_AUDIO_STATE"] = "setAudioState";
+    NativeApis["SET_VIDEO_STATE"] = "setVideoState";
     NativeApis["SET_VIDEO_MIRROR_EFFECT"] = "setVideoMirrorEffect";
     NativeApis["SET_VIRTUAL_BACKGROUND"] = "setVirtualBackground";
     NativeApis["SET_VIRTUAL_FOREGROUND"] = "setVirtualForeground";
@@ -338,7 +339,7 @@ function setPostMessage() {
 }
 
 var FIXED_WIDTH = 1280;
-var helpers = {
+var helpers$1 = {
     getImageData: function (fileUrl, width, height) {
         return new Promise(function (resolve) {
             var canvas = document.createElement('canvas');
@@ -362,19 +363,19 @@ var helpers = {
 var BASE_VERSION = '0.0.0';
 var MAX_MAX_MAX = '999.999.999';
 
-var _a$1, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28, _29, _30, _31, _32, _33, _34, _35, _36, _37, _38, _39, _40, _41, _42, _43, _44, _45, _46, _47, _48, _49, _50, _51, _52, _53, _54, _55, _56, _57;
-var mappings = (_a$1 = {},
-    _a$1[NativeApis.SEND_APP_INVITATION] = (_b = {},
-        _b[ZERO_SIXTEEN] = (_c = {},
-            _c[BASE_VERSION] = {
+var _a$2, _b$1, _c$1, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28, _29, _30, _31, _32, _33, _34, _35, _36, _37, _38, _39, _40, _41, _42, _43, _44, _45, _46, _47, _48, _49, _50, _51, _52, _53, _54, _55, _56, _57;
+var compatibilityFnsApis = (_a$2 = {},
+    _a$2[NativeApis.SEND_APP_INVITATION] = (_b$1 = {},
+        _b$1[ZERO_SIXTEEN] = (_c$1 = {},
+            _c$1[BASE_VERSION] = {
                 mapInput: renameKeys({
                     participants: 'user_list',
                     participantUUIDs: 'user_UUID_list',
                 }),
             },
-            _c),
-        _b),
-    _a$1[NativeApis.TOGGLE_PARTICIPANT_MEDIA_AUDIO] = (_d = {},
+            _c$1),
+        _b$1),
+    _a$2[NativeApis.TOGGLE_PARTICIPANT_MEDIA_AUDIO] = (_d = {},
         _d[ZERO_SIXTEEN] = (_e = {},
             _e[BASE_VERSION] = {
                 mapInput: renameKeys({
@@ -387,7 +388,7 @@ var mappings = (_a$1 = {},
             },
             _e),
         _d),
-    _a$1[NativeApis.GET_RUNNING_CONTEXT] = (_f = {},
+    _a$2[NativeApis.GET_RUNNING_CONTEXT] = (_f = {},
         _f[ZERO_SIXTEEN] = (_g = {},
             _g[BASE_VERSION] = {
                 mapOutput: function (value) {
@@ -396,7 +397,7 @@ var mappings = (_a$1 = {},
             },
             _g),
         _f),
-    _a$1[NativeApis.OPEN_URL] = (_h = {},
+    _a$2[NativeApis.OPEN_URL] = (_h = {},
         _h[ZERO_FOURTEEN] = (_j = {},
             _j[BASE_VERSION] = {
                 validate: function (data) {
@@ -415,7 +416,7 @@ var mappings = (_a$1 = {},
             },
             _k),
         _h),
-    _a$1[NativeApis.SET_VIRTUAL_BACKGROUND] = (_l = {},
+    _a$2[NativeApis.SET_VIRTUAL_BACKGROUND] = (_l = {},
         _l[ZERO_SIXTEEN] = (_m = {},
             _m[BASE_VERSION] = {
                 mapOutput: function (value) {
@@ -424,7 +425,7 @@ var mappings = (_a$1 = {},
             },
             _m),
         _l),
-    _a$1[NativeApis.REMOVE_VIRTUAL_BACKGROUND] = (_o = {},
+    _a$2[NativeApis.REMOVE_VIRTUAL_BACKGROUND] = (_o = {},
         _o[ZERO_SIXTEEN] = (_p = {},
             _p[BASE_VERSION] = {
                 mapOutput: function (value) {
@@ -433,7 +434,7 @@ var mappings = (_a$1 = {},
             },
             _p),
         _o),
-    _a$1[NativeApis.SET_VIRTUAL_FOREGROUND] = (_q = {},
+    _a$2[NativeApis.SET_VIRTUAL_FOREGROUND] = (_q = {},
         _q[ZERO_SIXTEEN] = (_r = {},
             _r[BASE_VERSION] = {
                 mapOutput: function (value) {
@@ -442,7 +443,7 @@ var mappings = (_a$1 = {},
             },
             _r),
         _q),
-    _a$1[NativeApis.REMOVE_VIRTUAL_FOREGROUND] = (_s = {},
+    _a$2[NativeApis.REMOVE_VIRTUAL_FOREGROUND] = (_s = {},
         _s[ZERO_SIXTEEN] = (_t = {},
             _t[BASE_VERSION] = {
                 mapOutput: function (value) {
@@ -451,7 +452,7 @@ var mappings = (_a$1 = {},
             },
             _t),
         _s),
-    _a$1[NativeApis.SHOW_NOTIFICATION] = (_u = {},
+    _a$2[NativeApis.SHOW_NOTIFICATION] = (_u = {},
         _u[ZERO_SIXTEEN] = (_v = {},
             _v[BASE_VERSION] = {
                 mapOutput: function (value) {
@@ -460,7 +461,7 @@ var mappings = (_a$1 = {},
             },
             _v),
         _u),
-    _a$1[NativeApis.CLOUD_RECORDING] = (_w = {},
+    _a$2[NativeApis.CLOUD_RECORDING] = (_w = {},
         _w[ZERO_SIXTEEN] = (_x = {},
             _x[BASE_VERSION] = {
                 mapOutput: function (value) {
@@ -469,7 +470,7 @@ var mappings = (_a$1 = {},
             },
             _x),
         _w),
-    _a$1[NativeApis.SHARE_APP] = (_y = {},
+    _a$2[NativeApis.SHARE_APP] = (_y = {},
         _y[ZERO_SIXTEEN] = (_z = {},
             _z[BASE_VERSION] = {
                 mapOutput: function (value) {
@@ -478,7 +479,7 @@ var mappings = (_a$1 = {},
             },
             _z),
         _y),
-    _a$1[NativeApis.SET_CAMERA] = (_0 = {},
+    _a$2[NativeApis.SET_CAMERA] = (_0 = {},
         _0[ZERO_SIXTEEN] = (_1 = {},
             _1[BASE_VERSION] = {
                 mapOutput: function (value) {
@@ -487,7 +488,7 @@ var mappings = (_a$1 = {},
             },
             _1),
         _0),
-    _a$1[NativeApis.SET_VIDEO_MIRROR_EFFECT] = (_2 = {},
+    _a$2[NativeApis.SET_VIDEO_MIRROR_EFFECT] = (_2 = {},
         _2[ZERO_SIXTEEN] = (_3 = {},
             _3[BASE_VERSION] = {
                 mapOutput: function (value) {
@@ -496,7 +497,7 @@ var mappings = (_a$1 = {},
             },
             _3),
         _2),
-    _a$1[NativeApis.EXPAND_APP] = (_4 = {},
+    _a$2[NativeApis.EXPAND_APP] = (_4 = {},
         _4[ZERO_SIXTEEN] = (_5 = {},
             _5[BASE_VERSION] = {
                 mapOutput: function (value) {
@@ -505,7 +506,7 @@ var mappings = (_a$1 = {},
             },
             _5),
         _4),
-    _a$1[NativeApis.CONNECT] = (_6 = {},
+    _a$2[NativeApis.CONNECT] = (_6 = {},
         _6[ZERO_SIXTEEN] = (_7 = {},
             _7[BASE_VERSION] = {
                 mapOutput: function (value) {
@@ -514,7 +515,7 @@ var mappings = (_a$1 = {},
             },
             _7),
         _6),
-    _a$1[NativeApis.POST_MESSAGE] = (_8 = {},
+    _a$2[NativeApis.POST_MESSAGE] = (_8 = {},
         _8[ZERO_SIXTEEN] = (_9 = {},
             _9[BASE_VERSION] = {
                 mapOutput: function (value) {
@@ -523,7 +524,7 @@ var mappings = (_a$1 = {},
             },
             _9),
         _8),
-    _a$1[NativeApis.ALLOW_PARTICIPANT_TO_RECORD] = (_10 = {},
+    _a$2[NativeApis.ALLOW_PARTICIPANT_TO_RECORD] = (_10 = {},
         _10[ZERO_SIXTEEN] = (_11 = {},
             _11[BASE_VERSION] = {
                 mapOutput: function (value) {
@@ -532,7 +533,7 @@ var mappings = (_a$1 = {},
             },
             _11),
         _10),
-    _a$1[NativeApis.LAUNCH_APP_IN_MEETING] = (_12 = {},
+    _a$2[NativeApis.LAUNCH_APP_IN_MEETING] = (_12 = {},
         _12[ZERO_SIXTEEN] = (_13 = {},
             _13[BASE_VERSION] = {
                 mapOutput: function (value) {
@@ -541,7 +542,7 @@ var mappings = (_a$1 = {},
             },
             _13),
         _12),
-    _a$1[NativeApis.SHOW_APP_INVITATION_DIALOG] = (_14 = {},
+    _a$2[NativeApis.SHOW_APP_INVITATION_DIALOG] = (_14 = {},
         _14[ZERO_SIXTEEN] = (_15 = {},
             _15[BASE_VERSION] = {
                 mapOutput: function (value) {
@@ -550,7 +551,7 @@ var mappings = (_a$1 = {},
             },
             _15),
         _14),
-    _a$1[NativeApis.RUN_RENDERING_CONTEXT] = (_16 = {},
+    _a$2[NativeApis.RUN_RENDERING_CONTEXT] = (_16 = {},
         _16[ZERO_SIXTEEN] = (_17 = {},
             _17[BASE_VERSION] = {
                 mapOutput: function (value) {
@@ -559,7 +560,7 @@ var mappings = (_a$1 = {},
             },
             _17),
         _16),
-    _a$1[NativeApis.CLOSE_RENDERING_CONTEXT] = (_18 = {},
+    _a$2[NativeApis.CLOSE_RENDERING_CONTEXT] = (_18 = {},
         _18[ZERO_SIXTEEN] = (_19 = {},
             _19[BASE_VERSION] = {
                 mapOutput: function (value) {
@@ -568,7 +569,7 @@ var mappings = (_a$1 = {},
             },
             _19),
         _18),
-    _a$1[NativeApis.DRAW_PARTICIPANT] = (_20 = {},
+    _a$2[NativeApis.DRAW_PARTICIPANT] = (_20 = {},
         _20[ZERO_SIXTEEN] = (_21 = {},
             _21[BASE_VERSION] = {
                 mapOutput: function (value) {
@@ -577,7 +578,7 @@ var mappings = (_a$1 = {},
             },
             _21),
         _20),
-    _a$1[NativeApis.CLEAR_PARTICIPANT] = (_22 = {},
+    _a$2[NativeApis.CLEAR_PARTICIPANT] = (_22 = {},
         _22[ZERO_SIXTEEN] = (_23 = {},
             _23[BASE_VERSION] = {
                 mapOutput: function (value) {
@@ -586,7 +587,7 @@ var mappings = (_a$1 = {},
             },
             _23),
         _22),
-    _a$1[NativeApis.CLEAR_IMAGE] = (_24 = {},
+    _a$2[NativeApis.CLEAR_IMAGE] = (_24 = {},
         _24[ZERO_SIXTEEN] = (_25 = {},
             _25[BASE_VERSION] = {
                 mapOutput: function (value) {
@@ -595,7 +596,7 @@ var mappings = (_a$1 = {},
             },
             _25),
         _24),
-    _a$1[NativeApis.DRAW_WEBVIEW] = (_26 = {},
+    _a$2[NativeApis.DRAW_WEBVIEW] = (_26 = {},
         _26[ZERO_SIXTEEN] = (_27 = {},
             _27[BASE_VERSION] = {
                 mapOutput: function (value) {
@@ -604,7 +605,7 @@ var mappings = (_a$1 = {},
             },
             _27),
         _26),
-    _a$1[NativeApis.CLEAR_WEBVIEW] = (_28 = {},
+    _a$2[NativeApis.CLEAR_WEBVIEW] = (_28 = {},
         _28[ZERO_SIXTEEN] = (_29 = {},
             _29[BASE_VERSION] = {
                 mapOutput: function (value) {
@@ -613,7 +614,7 @@ var mappings = (_a$1 = {},
             },
             _29),
         _28),
-    _a$1[NativeApis.BREAKOUT_ROOMS_OPEN] = (_30 = {},
+    _a$2[NativeApis.BREAKOUT_ROOMS_OPEN] = (_30 = {},
         _30[ZERO_SIXTEEN] = (_31 = {},
             _31[BASE_VERSION] = {
                 mapOutput: function (value) {
@@ -622,7 +623,7 @@ var mappings = (_a$1 = {},
             },
             _31),
         _30),
-    _a$1[NativeApis.BREAKOUT_ROOMS_CLOSE] = (_32 = {},
+    _a$2[NativeApis.BREAKOUT_ROOMS_CLOSE] = (_32 = {},
         _32[ZERO_SIXTEEN] = (_33 = {},
             _33[BASE_VERSION] = {
                 mapOutput: function (value) {
@@ -631,7 +632,7 @@ var mappings = (_a$1 = {},
             },
             _33),
         _32),
-    _a$1[NativeApis.BREAKOUT_ROOM_DELETE] = (_34 = {},
+    _a$2[NativeApis.BREAKOUT_ROOM_DELETE] = (_34 = {},
         _34[ZERO_SIXTEEN] = (_35 = {},
             _35[BASE_VERSION] = {
                 mapOutput: function (value) {
@@ -640,7 +641,7 @@ var mappings = (_a$1 = {},
             },
             _35),
         _34),
-    _a$1[NativeApis.BREAKOUT_ROOM_RENAME] = (_36 = {},
+    _a$2[NativeApis.BREAKOUT_ROOM_RENAME] = (_36 = {},
         _36[ZERO_SIXTEEN] = (_37 = {},
             _37[BASE_VERSION] = {
                 mapOutput: function (value) {
@@ -649,7 +650,7 @@ var mappings = (_a$1 = {},
             },
             _37),
         _36),
-    _a$1[NativeApis.BREAKOUT_ROOM_ASSIGN_PARTICIPANT] = (_38 = {},
+    _a$2[NativeApis.BREAKOUT_ROOM_ASSIGN_PARTICIPANT] = (_38 = {},
         _38[ZERO_SIXTEEN] = (_39 = {},
             _39[BASE_VERSION] = {
                 mapOutput: function (value) {
@@ -658,7 +659,7 @@ var mappings = (_a$1 = {},
             },
             _39),
         _38),
-    _a$1[NativeApis.BREAKOUT_ROOM_CHANGE] = (_40 = {},
+    _a$2[NativeApis.BREAKOUT_ROOM_CHANGE] = (_40 = {},
         _40[ZERO_SIXTEEN] = (_41 = {},
             _41[BASE_VERSION] = {
                 mapOutput: function (value) {
@@ -667,7 +668,7 @@ var mappings = (_a$1 = {},
             },
             _41),
         _40),
-    _a$1[NativeApis.COLLABORATE_START] = (_42 = {},
+    _a$2[NativeApis.COLLABORATE_START] = (_42 = {},
         _42[ZERO_SIXTEEN] = (_43 = {},
             _43[BASE_VERSION] = {
                 mapOutput: function (value) {
@@ -676,7 +677,7 @@ var mappings = (_a$1 = {},
             },
             _43),
         _42),
-    _a$1[NativeApis.COLLABORATE_END] = (_44 = {},
+    _a$2[NativeApis.COLLABORATE_END] = (_44 = {},
         _44[ZERO_SIXTEEN] = (_45 = {},
             _45[BASE_VERSION] = {
                 mapOutput: function (value) {
@@ -685,7 +686,7 @@ var mappings = (_a$1 = {},
             },
             _45),
         _44),
-    _a$1[NativeApis.COLLABORATE_LEAVE] = (_46 = {},
+    _a$2[NativeApis.COLLABORATE_LEAVE] = (_46 = {},
         _46[ZERO_SIXTEEN] = (_47 = {},
             _47[BASE_VERSION] = {
                 mapOutput: function (value) {
@@ -694,7 +695,7 @@ var mappings = (_a$1 = {},
             },
             _47),
         _46),
-    _a$1[NativeApis.COLLABORATE_JOIN] = (_48 = {},
+    _a$2[NativeApis.COLLABORATE_JOIN] = (_48 = {},
         _48[ZERO_SIXTEEN] = (_49 = {},
             _49[BASE_VERSION] = {
                 mapOutput: function (value) {
@@ -703,7 +704,7 @@ var mappings = (_a$1 = {},
             },
             _49),
         _48),
-    _a$1[NativeApis.AUTHORIZE] = (_50 = {},
+    _a$2[NativeApis.AUTHORIZE] = (_50 = {},
         _50[ZERO_SIXTEEN] = (_51 = {},
             _51[BASE_VERSION] = {
                 mapOutput: function (value) {
@@ -717,7 +718,7 @@ var mappings = (_a$1 = {},
             },
             _51),
         _50),
-    _a$1[NativeApis.PROMPT_AUTHORIZE] = (_52 = {},
+    _a$2[NativeApis.PROMPT_AUTHORIZE] = (_52 = {},
         _52[ZERO_SIXTEEN] = (_53 = {},
             _53[BASE_VERSION] = {
                 mapOutput: function (value) {
@@ -726,7 +727,7 @@ var mappings = (_a$1 = {},
             },
             _53),
         _52),
-    _a$1[NativeApis.SET_USER_MEDIA_VIDEO] = (_54 = {},
+    _a$2[NativeApis.SET_VIDEO_STATE] = (_54 = {},
         _54[ZERO_SIXTEEN] = (_55 = {},
             _55[BASE_VERSION] = {
                 mapOutput: function (value) {
@@ -735,7 +736,7 @@ var mappings = (_a$1 = {},
             },
             _55),
         _54),
-    _a$1[NativeApis.SET_USER_MEDIA_AUDIO] = (_56 = {},
+    _a$2[NativeApis.SET_AUDIO_STATE] = (_56 = {},
         _56[ZERO_SIXTEEN] = (_57 = {},
             _57[BASE_VERSION] = {
                 mapOutput: function (value) {
@@ -744,7 +745,7 @@ var mappings = (_a$1 = {},
             },
             _57),
         _56),
-    _a$1);
+    _a$2);
 function renameKeys(keyMap) {
     return function (data) {
         if (typeof data === 'object' && !Array.isArray(data) && data !== null) {
@@ -762,85 +763,129 @@ function wrapInObject(_a) {
     return _b = {}, _b[key] = value, _b;
 }
 
+var _a$1, _b, _c;
+var compatibilityFnsEvents = (_a$1 = {},
+    _a$1[NativeEvents.ON_MEETING_CONFIG_CHANGED] = (_b = {},
+        _b[ZERO_FOURTEEN] = (_c = {},
+            _c['5.11.0'] = {
+                mapEventData: function (data) {
+                    if (data.change === 'breakoutRoomOpened' ||
+                        data.change === 'breakoutRoomClosed') {
+                        return {
+                            timestamp: data.timestamp,
+                            change: 'breakoutRoomOpened | breakoutRoomClosed',
+                        };
+                    }
+                    else {
+                        return data;
+                    }
+                },
+            },
+            _c),
+        _b),
+    _a$1);
+
 var identity = function (x) { return x; };
 var noop = function (x) { };
-function getMappingFunctions(apiName, sdkVersionInput, clientVersionInput) {
+
+function getCompatibilitiesApis(apiName, sdkVersionInput, clientVersionInput) {
     var fns = {
         mapInput: identity,
         mapOutput: identity,
         validate: noop,
     };
-    var majorSdkVersion = getMajorVersionFromExact(sdkVersionInput);
-    var apiMappings = mappings[apiName];
-    if (!apiMappings)
+    return getCompatibilitiesHelper(apiName, sdkVersionInput, clientVersionInput, compatibilityFnsApis, fns);
+}
+function getCompatibilitiesEvents(apiName, sdkVersionInput, clientVersionInput) {
+    var fns = {
+        mapEventData: identity,
+    };
+    return getCompatibilitiesHelper(apiName, sdkVersionInput, clientVersionInput, compatibilityFnsEvents, fns);
+}
+function getCompatibilitiesHelper(apiName, sdkVersionInput, clientVersionInput, compatibility, fns) {
+    var apiCompatibilities = compatibility[apiName];
+    if (!apiCompatibilities)
         return fns;
-    var sdkMappings = apiMappings[majorSdkVersion];
-    if (!sdkMappings)
+    var majorSdkVersion = helpers.getMajorVersionFromExact(sdkVersionInput);
+    var sdkCompatibilities = apiCompatibilities[majorSdkVersion];
+    if (!sdkCompatibilities)
         return fns;
     var clientVals = clientVersionInput.split('.').map(function (n) { return parseInt(n); });
     if (clientVals.some(isNaN)) {
         clientVersionInput = MAX_MAX_MAX;
     }
-    var possibleClientVersions = Object.keys(sdkMappings)
-        .filter(function (clientVersion) { return compareVersions(clientVersionInput, clientVersion) >= 0; })
-        .sort(compareVersions);
+    var possibleClientVersions = Object.keys(sdkCompatibilities)
+        .filter(function (clientVersion) {
+        return helpers.compareVersions(clientVersionInput, clientVersion) >= 0;
+    })
+        .sort(helpers.compareVersions);
     possibleClientVersions.forEach(function (clientVersion) {
-        var _a = sdkMappings[clientVersion], mapInput = _a.mapInput, mapOutput = _a.mapOutput, validate = _a.validate;
-        if (mapInput)
-            fns.mapInput = mapInput;
-        if (mapOutput)
-            fns.mapOutput = mapOutput;
-        if (validate)
-            fns.validate = validate;
+        var compatibilityObject = sdkCompatibilities[clientVersion];
+        Object.keys(compatibilityObject).forEach(function (key) {
+            fns[key] = compatibilityObject[key];
+        });
     });
     return fns;
 }
-function compareVersions(v1, v2) {
-    var vals1 = v1.split('.').map(function (n) { return parseInt(n); });
-    var vals2 = v2.split('.').map(function (n) { return parseInt(n); });
-    var a1 = vals1[0], b1 = vals1[1], c1 = vals1[2];
-    var a2 = vals2[0], b2 = vals2[1], c2 = vals2[2];
-    if (a1 > a2)
-        return 1;
-    else if (a2 > a1)
-        return -1;
-    if (b1 > b2)
-        return 1;
-    else if (b2 > b1)
-        return -1;
-    if (c1 > c2)
-        return 1;
-    else if (c2 > c1)
-        return 1;
-    return 0;
+function setupCompatibilityApisCache(compatibilityCache, sdkVersion, clientVersion) {
+    Object.values(NativeApis).forEach(function (apiName) {
+        compatibilityCache[apiName] = getCompatibilitiesApis(apiName, sdkVersion, clientVersion);
+    });
 }
-function getMajorVersionFromExact(sdkVersion) {
-    if (typeof sdkVersion !== 'string') {
-        console.warn('You have not provided a valid sdk version');
-        return;
-    }
-    var _a = sdkVersion.split('.'), maj = _a[0], min = _a[1]; _a[2];
-    switch ("".concat(maj, ".").concat(min)) {
-        case ZERO_FOURTEEN:
-            return ZERO_FOURTEEN;
-        case ZERO_SIXTEEN:
-            return ZERO_SIXTEEN;
-        default:
+function setupCompatibilityEventsCache(compatibilityCache, sdkVersion, clientVersion) {
+    Object.values(NativeEvents).forEach(function (eventName) {
+        compatibilityCache[eventName] = getCompatibilitiesEvents(eventName, sdkVersion, clientVersion);
+    });
+}
+var helpers = {
+    compareVersions: function (v1, v2) {
+        var vals1 = v1.split('.').map(function (n) { return parseInt(n); });
+        var vals2 = v2.split('.').map(function (n) { return parseInt(n); });
+        var a1 = vals1[0], b1 = vals1[1], c1 = vals1[2];
+        var a2 = vals2[0], b2 = vals2[1], c2 = vals2[2];
+        if (a1 > a2)
+            return 1;
+        else if (a2 > a1)
+            return -1;
+        if (b1 > b2)
+            return 1;
+        else if (b2 > b1)
+            return -1;
+        if (c1 > c2)
+            return 1;
+        else if (c2 > c1)
+            return -1;
+        return 0;
+    },
+    getMajorVersionFromExact: function (sdkVersion) {
+        if (typeof sdkVersion !== 'string') {
             console.warn('You have not provided a valid sdk version');
             return;
-    }
-}
+        }
+        var _a = sdkVersion.split('.'), maj = _a[0], min = _a[1]; _a[2];
+        switch ("".concat(maj, ".").concat(min)) {
+            case ZERO_FOURTEEN:
+                return ZERO_FOURTEEN;
+            case ZERO_SIXTEEN:
+                return ZERO_SIXTEEN;
+            default:
+                console.warn('You have not provided a valid sdk version');
+                return;
+        }
+    },
+};
 
 var _a;
 var nativeApiCallbacks = {};
 var nativeEventHandlers = {};
-var mappingFunctionCache = (_a = {},
+var compatibilityApisCache = (_a = {},
     _a[NativeApis.CONFIG] = {
         mapInput: function (d) { return d; },
         mapOutput: function (d) { return d; },
         validate: function (d) { return d; },
     },
     _a);
+var compatibilityEventsCache = {};
 var ZoomSdk =  (function () {
     function ZoomSdk(options) {
         this._version = options.version;
@@ -855,15 +900,21 @@ var ZoomSdk =  (function () {
             }
         }
         else if (message.data.type === 'event') {
-            nativeEventHandlers[message.data.name] &&
-                nativeEventHandlers[message.data.name].forEach(function (handler) {
-                    return handler(message.data.data);
+            var eventName_1 = message.data.name;
+            var inputData_1 = message.data.data;
+            nativeEventHandlers[eventName_1] &&
+                nativeEventHandlers[eventName_1].forEach(function (handler) {
+                    var compatibility = compatibilityEventsCache[eventName_1];
+                    if (!compatibility) {
+                        compatibility = { mapEventData: identity };
+                    }
+                    handler(compatibility.mapEventData(inputData_1));
                 });
         }
     };
     ZoomSdk.prototype.callZoomApi = function (apiName, data, timeout) {
         return __awaiter(this, void 0, void 0, function () {
-            var jsCallId, nativeApiRequest, mapping, mapInput, mapOutput, validate;
+            var jsCallId, nativeApiRequest, compatibility, mapInput, mapOutput, validate;
             var _this = this;
             return __generator(this, function (_a) {
                 jsCallId = getJsCallId();
@@ -875,15 +926,15 @@ var ZoomSdk =  (function () {
                     (!isString(this._version) || !isString(this._clientVersion))) {
                     throw new Error('must call zoomSdk.config before using other API methods');
                 }
-                mapping = mappingFunctionCache[apiName];
-                if (!mapping) {
-                    mapping = {
+                compatibility = compatibilityApisCache[apiName];
+                if (!compatibility) {
+                    compatibility = {
                         mapInput: identity,
                         mapOutput: identity,
                         validate: noop,
                     };
                 }
-                mapInput = mapping.mapInput, mapOutput = mapping.mapOutput, validate = mapping.validate;
+                mapInput = compatibility.mapInput, mapOutput = compatibility.mapOutput, validate = compatibility.validate;
                 if (data) {
                     validate(data);
                     nativeApiRequest.data = mapInput(data);
@@ -920,7 +971,6 @@ var ZoomSdk =  (function () {
         var capabilities = _a.capabilities, popoutSize = _a.popoutSize, size = _a.size, _b = _a.version, version = _b === void 0 ? ZERO_FOURTEEN : _b;
         return __awaiter(this, void 0, void 0, function () {
             var newOptions, response;
-            var _this = this;
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
@@ -940,9 +990,8 @@ var ZoomSdk =  (function () {
                         response = _c.sent();
                         if (response.clientVersion) {
                             this._clientVersion = response.clientVersion;
-                            Object.values(NativeApis).forEach(function (apiName) {
-                                mappingFunctionCache[apiName] = getMappingFunctions(apiName, _this._version, _this._clientVersion);
-                            });
+                            setupCompatibilityApisCache(compatibilityApisCache, this._version, this._clientVersion);
+                            setupCompatibilityEventsCache(compatibilityEventsCache, this._version, this._clientVersion);
                         }
                         return [2 , response];
                 }
@@ -988,7 +1037,7 @@ var ZoomSdk =  (function () {
                         }
                         if (!options.fileUrl) return [3 , 2];
                         new URL(options.fileUrl);
-                        return [4 , helpers.getImageData(options.fileUrl)];
+                        return [4 , helpers$1.getImageData(options.fileUrl)];
                     case 1:
                         params = _a.sent();
                         return [2 , this.callZoomApi(NativeApis.SET_VIRTUAL_BACKGROUND, params, Timeouts.SET_VIRTUAL_BACKGROUND)];
@@ -1220,6 +1269,7 @@ var ZoomSdk =  (function () {
     ZoomSdk.prototype.drawWebView = function (options) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
+                options.webviewId = '';
                 updateOptionsPixelsXY(options);
                 updateOptionsPixelsWidthHeight(options);
                 updateOptionsZIndex(options);
@@ -1227,9 +1277,13 @@ var ZoomSdk =  (function () {
             });
         });
     };
-    ZoomSdk.prototype.clearWebView = function (options) {
+    ZoomSdk.prototype.clearWebView = function () {
         return __awaiter(this, void 0, void 0, function () {
+            var options;
             return __generator(this, function (_a) {
+                options = {
+                    webviewId: '',
+                };
                 return [2 , this.callZoomApi(NativeApis.CLEAR_WEBVIEW, options)];
             });
         });
@@ -1309,6 +1363,12 @@ var ZoomSdk =  (function () {
         if (!nativeEventHandlers[event])
             return;
         nativeEventHandlers[event] = nativeEventHandlers[event].filter(function (fn) { return fn !== handler; });
+    };
+    ZoomSdk.prototype.on = function (event, handler) {
+        this.addEventListener(event, handler);
+    };
+    ZoomSdk.prototype.off = function (event, handler) {
+        this.removeEventListener(event, handler);
     };
     ZoomSdk.prototype.createBreakoutRooms = function (options) {
         return __awaiter(this, void 0, void 0, function () {
@@ -1422,31 +1482,31 @@ var ZoomSdk =  (function () {
             });
         });
     };
-    ZoomSdk.prototype.setUserMediaVideo = function (options) {
+    ZoomSdk.prototype.setVideoState = function (options) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 , this.callZoomApi(NativeApis.SET_USER_MEDIA_VIDEO, options)];
+                return [2 , this.callZoomApi(NativeApis.SET_VIDEO_STATE, options)];
             });
         });
     };
-    ZoomSdk.prototype.setUserMediaAudio = function (options) {
+    ZoomSdk.prototype.setAudioState = function (options) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 , this.callZoomApi(NativeApis.SET_USER_MEDIA_AUDIO, options)];
+                return [2 , this.callZoomApi(NativeApis.SET_AUDIO_STATE, options)];
             });
         });
     };
-    ZoomSdk.prototype.getUserMediaVideo = function () {
+    ZoomSdk.prototype.getVideoState = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 , this.callZoomApi(NativeApis.GET_USER_MEDIA_VIDEO)];
+                return [2 , this.callZoomApi(NativeApis.GET_VIDEO_STATE)];
             });
         });
     };
-    ZoomSdk.prototype.getUserMediaAudio = function () {
+    ZoomSdk.prototype.getAudioState = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 , this.callZoomApi(NativeApis.GET_USER_MEDIA_AUDIO)];
+                return [2 , this.callZoomApi(NativeApis.GET_AUDIO_STATE)];
             });
         });
     };
