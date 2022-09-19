@@ -1,6 +1,6 @@
 {
   "name": "@zoom/appssdk",
-  "version": "0.16.4",
+  "version": "0.16.5",
   "description": "Zoom Apps SDK",
   "license": "MIT",
   "files": [
@@ -17,8 +17,9 @@
   "scripts": {
     "clean": "rm -rf dist/dts",
     "coverage": "jest --env=jsdom --coverage --watchAll=false",
-    "docs": "npm run clean && npx typedoc",
-    "docs:watch": "./scripts/docs.sh",
+    "docs:plugin": "npm run build --prefix typedocplugins",
+    "docs": "tsc -p ./typedocplugins --outDir ./typedocplugins/dist && npm run clean && npx typedoc",
+    "docs:watch": "tsc -p ./typedocplugins --outDir ./typedocplugins/dist && ./scripts/docs.sh",
     "schemas": "./scripts/schemas.sh",
     "lint": "eslint . --ext .ts,.js",
     "lint:fix": "npm run lint -- --fix",

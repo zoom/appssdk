@@ -787,7 +787,7 @@ declare type GetMeetingContextResponse = {
     meetingTopic: string;
     meetingID: string;
 };
-declare type Apis = 'addBreakoutRoom' | 'allowParticipantToRecord' | 'assignParticipantsToBreakoutRoom' | 'assignParticipantToBreakoutRoom' | 'authorize' | 'changeBreakoutRoom' | 'clearImage' | 'clearParticipant' | 'clearWebView' | 'closeBreakoutRooms' | 'closeChannel' | 'closeLobby' | 'closeRenderingContext' | 'cloudRecording' | 'configureBreakoutRooms' | 'connect' | 'createBreakoutRooms' | 'deleteBreakoutRoom' | 'drawImage' | 'drawParticipant' | 'drawWebView' | 'endCollaborate' | 'endSyncData' | 'executeOnZoomAction' | 'expandApp' | 'getBreakoutRoomList' | 'getImmersiveViewContext' | 'getMeetingContext' | 'getMeetingJoinUrl' | 'getMeetingParticipants' | 'getMeetingUUID' | 'getOnZoomProperties' | 'getPairingStatus' | 'getRecordingContext' | 'getRunningContext' | 'getScreenshot' | 'getSupportedJsApis' | 'getUserContext' | 'getUserMediaAudio' | 'getUserMediaVideo' | 'joinCollaborate' | 'joinOnZoomEvent' | 'joinZoomRoom' | 'launchAppInMeeting' | 'leaveCollaborate' | 'listCameras' | 'onActiveSpeakerChange' | 'onAppPopout' | 'onAuthenticate' | 'onAuthorized' | 'onBreakoutRoomChange' | 'onCloseAppForParticipants' | 'onCloudRecording' | 'onCollaborateChange' | 'onConnect' | 'onExpandApp' | 'onExtendedProcessing' | 'onImmersiveViewChange' | 'onMeeting' | 'onMeetingConfigChanged' | 'onMessage' | 'onMyActiveSpeakerChange' | 'onMyMediaChange' | 'onMyReaction' | 'onMyUserContextChange' | 'onOnZoomJoinStatusChange' | 'onPairingStatusChange' | 'onParticipantChange' | 'onReaction' | 'onRunningContextChange' | 'onSendAppInvitation' | 'onShareApp' | 'onThemeModeChange' | 'openBreakoutRooms' | 'openChannel' | 'openDM' | 'openUrl' | 'postMessage' | 'promptAuthorize' | 'pushState' | 'removeImmersiveView' | 'removeVirtualBackground' | 'removeVirtualForeground' | 'renameBreakoutRoom' | 'runRenderingContext' | 'sendAppInvitation' | 'sendAppInvitationToAllParticipants' | 'sendAppInvitationToMeetingOwner' | 'setCamera' | 'setImmersiveView' | 'setUserMediaAudio' | 'setUserMediaVideo' | 'setVideoMirrorEffect' | 'setVirtualBackground' | 'setVirtualForeground' | 'shareApp' | 'showAppInvitationDialog' | 'showNotification' | 'startCollaborate' | 'toggleParticipantMediaAudio' | 'onInviteCollaboration';
+declare type Apis = 'addBreakoutRoom' | 'allowParticipantToRecord' | 'assignParticipantsToBreakoutRoom' | 'assignParticipantToBreakoutRoom' | 'authorize' | 'changeBreakoutRoom' | 'clearImage' | 'clearParticipant' | 'clearWebView' | 'closeBreakoutRooms' | 'closeChannel' | 'closeLobby' | 'closeRenderingContext' | 'cloudRecording' | 'configureBreakoutRooms' | 'connect' | 'createBreakoutRooms' | 'deleteBreakoutRoom' | 'drawImage' | 'drawParticipant' | 'drawWebView' | 'endCollaborate' | 'endSyncData' | 'executeOnZoomAction' | 'expandApp' | 'getBreakoutRoomList' | 'getImmersiveViewContext' | 'getMeetingContext' | 'getMeetingJoinUrl' | 'getMeetingParticipants' | 'getMeetingUUID' | 'getOnZoomProperties' | 'getPairingStatus' | 'getRecordingContext' | 'getRunningContext' | 'getScreenshot' | 'getSupportedJsApis' | 'getUserContext' | 'getUserMediaAudio' | 'getUserMediaVideo' | 'joinCollaborate' | 'joinOnZoomEvent' | 'joinZoomRoom' | 'launchAppInMeeting' | 'leaveCollaborate' | 'listCameras' | 'onActiveSpeakerChange' | 'onAppPopout' | 'onAuthenticate' | 'onAuthorized' | 'onBreakoutRoomChange' | 'onCloseAppForParticipants' | 'onCloudRecording' | 'onCollaborateChange' | 'onConnect' | 'onExpandApp' | 'onExtendedProcessing' | 'onImmersiveViewChange' | 'onMeeting' | 'onMeetingConfigChanged' | 'onMessage' | 'onMyActiveSpeakerChange' | 'onMyMediaChange' | 'onMyReaction' | 'onMyUserContextChange' | 'onOnZoomJoinStatusChange' | 'onPairingStatusChange' | 'onParticipantChange' | 'onReaction' | 'onRunningContextChange' | 'onSendAppInvitation' | 'onShareApp' | 'onThemeModeChange' | 'openBreakoutRooms' | 'openChannel' | 'openDM' | 'openUrl' | 'postMessage' | 'promptAuthorize' | 'pushState' | 'removeImmersiveView' | 'removeVirtualBackground' | 'removeVirtualForeground' | 'renameBreakoutRoom' | 'runRenderingContext' | 'sendAppInvitation' | 'sendAppInvitationToAllParticipants' | 'sendAppInvitationToMeetingOwner' | 'setCamera' | 'setImmersiveView' | 'setUserMediaAudio' | 'setUserMediaVideo' | 'setVideoMirrorEffect' | 'setVirtualBackground' | 'setVirtualForeground' | 'shareApp' | 'showAppInvitationDialog' | 'showNotification' | 'startCollaborate' | 'toggleParticipantMediaAudio' | 'onInviteCollaboration' | 'getAppContext';
 /**
  * Example:
  * ```
@@ -926,6 +926,7 @@ declare type Camera = {
     name: string;
 };
 /**
+ * @zoomClientVersion 5.6.7
  * @category Core Endpoints
  */
 declare type ListCamerasResponse = {
@@ -1009,6 +1010,7 @@ declare type ShareAppOptions = {
     action: 'start' | 'stop';
 };
 /**
+ * @zoomClientVersion 5.6.7
  * @category Core Endpoints
  */
 declare type SetCameraOptions = {
@@ -1018,6 +1020,7 @@ declare type SetCameraOptions = {
     save: boolean;
 };
 /**
+ * @zoomClientVersion 5.6.7
  * @category Core Endpoints
  */
 declare type SetVideoMirrorEffectOptions = {
@@ -1068,11 +1071,13 @@ declare type LaunchAppInMeetingOptions = {
 declare type RenderingContextView = 'immersive' | 'camera';
 /** The cutout behavior of `drawParticipant()`:
  *
- * _Introduced in client version 5.11.3_:
+ * _Introduced in client version 5.9.3_:
  *   - `"person"`: Cut out the participant's background
+ *
+ * _Introduced in client version 5.11.0_:
  *   - `"rectangle"`: Crop the participant's video into a rectangle with rounded corners
  *
- * _Additional shapes added in client version 5.11.6_:
+ * _Additional shapes added in client version 5.11.3_:
  *   - `"standard"`: Display the participant's full uncropped video
  *   - `"circle"`: Crop the participant's video into a circle
  *   - `"square"`: Crop the participant's video into a square with rounded corners
@@ -1120,7 +1125,7 @@ declare type DrawParticipantOptions = {
     /** The relative z-ordering of the item (Default: 1). */
     zIndex?: number;
     /** The cutout behavior: `"person"` means cut out the background; other shapes mean crop the participant's video into the named shape.
-     * Introduced in client version 5.11.3. Additional shapes added in client version 5.11.6.
+     * Introduced in client version 5.9.3. Additional shapes added in client version 5.11.3.
      */
     cutout?: ParticipantCutoutShape;
 };
@@ -1219,7 +1224,7 @@ declare type OnRenderedAppOpenedEvent = {
     /** The rendered app's view type: `"immersive"` filling the entire meeting canvas, or `"camera"` affecting only the user's video stream. */
     view: RenderingContextView;
     /** The default cutout behavior of `drawParticipant()`: `"person"` means cut out the background; other shapes mean crop the participant's video into the named shape.
-     * Introduced in client version 5.11.3. Additional shapes added in client version 5.11.6.
+     * Introduced in client version 5.9.3. Additional shapes added in client version 5.11.3.
      */
     defaultCutout?: ParticipantCutoutShape;
     /** The rendered app was opened as the result of an invitation */
@@ -1425,6 +1430,42 @@ declare type ToggleParticipantMediaAudioOptions = {
     participants?: string[];
     /** Target participants with specified participantUUIDs. If list is empty, all participants are muted or unmuted based on the action specified. Maximum 10 participantUUIDs. For more than 10, use mute/unmute all. You can use getMeetingParticipants to get a list of meeting participants. */
     participantUUIDs?: string[];
+};
+/**
+ * @category Core Endpoints
+ */
+declare type GetAppContextResponse = {
+    /** Signed app context data */
+    /** see DecryptedAppContextResponse type for payload properties*/
+    context: string;
+};
+/**
+ * @category Core Endpoints
+ */
+declare type DecryptedAppContextResponse = {
+    /** decrypted app context data */
+    /** the context type where the app is opened, could be 'panel', 'meeting', or 'webinar' */
+    typ: string;
+    /** string, the Zoom user id who opens the app */
+    uid: string;
+    /** string, the Zoom meeting uuid identifies the meeting in which this app is opened, only returned when value of 'typ' is 'meeting' */
+    mid?: string;
+    /** long, the create timestamp of this context */
+    ts: number;
+    /** string, host - meeting/webinar, co-host - meeting/webinar, participant - meeting, panelist - webinar, attendee - webinar. This role may change after app context is generated. */
+    attendrole?: 'host' | 'co-host' | 'participant' | 'panelist' | 'attendee';
+    /** breakout room UUID as returned by getBreakoutRoomList */
+    bmid?: string;
+    /** collaborateId session identifier is passed when app is opened through inivitation to collaborate, expires in 5 minutes */
+    cid?: string;
+    /** invitation id is passed when app is open through invitation, expires is 5 minutes */
+    iid?: string;
+    /** action payload supplied in the deeplink, expires in 5 minutes */
+    act?: string;
+    /** string, "marketplace.zoom.us" the issuer claim will always be present */
+    iss: 'marketplace.zoom.us';
+    /** string, the audience is a string containing the CLIENT ID of the zoom app. */
+    aud: string;
 };
 /**
  * # Zoom Apps SDK
@@ -1648,8 +1689,12 @@ declare class ZoomSdk {
      */
     config({ capabilities, popoutSize, size, version, }: ConfigOptions): Promise<ConfigResponse>;
     /**
-     *
+     * @zoomClientVersion 5.6.7
      * Returns an array of APIs and events supported by the current running context.
+     *
+     * *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     *
+     * *Supports Guest Mode*: Yes
      *
      * ```
      * await zoomSdk.getSupportedJsApis();
@@ -1659,7 +1704,12 @@ declare class ZoomSdk {
      */
     getSupportedJsApis(): Promise<GetSupportedJsApisResponse>;
     /**
+     * @zoomClientVersion 5.6.7
      * Opens a URL in the system browser of a user's device.
+     *
+     * *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     *
+     * *Supports Guest Mode*: Yes
      *
      * ```
      * await zoomSdk.openUrl({ url: "https://awesome-zoom-app.com/login" });
@@ -1671,9 +1721,12 @@ declare class ZoomSdk {
      */
     openUrl(options: OpenUrlOptions): Promise<GeneralMessageResponse>;
     /**
-     *
+     * @zoomClientVersion 5.6.7
      * Returns the context in which the Zoom App is launched: `inMeeting`, `inWebinar`, `inMainClient`, `inPhone`, `inCollaborate`. This is useful for controlling your app's behavior based on the presence of a single user or multiple collaborative users.
      *
+     * *Supported roles*: Host, Co-Host, Participant , Panelist , Attendee
+     *
+     * *Supports Guest Mode*: Yes
      * ```
      * await zoomSdk.getRunningContext();
      * ```
@@ -1682,8 +1735,12 @@ declare class ZoomSdk {
      */
     getRunningContext(): Promise<RunningContextResponse>;
     /**
-     *
+     * @zoomClientVersion 5.6.7
      * This API is only available in meetings. It returns an object containing basic information about the meeting.
+     *
+     * *Supported roles*: Owner
+     *
+     * *Supports Guest Mode*: No
      *
      * **Role-based permissions** This API is only available to an app instance being run by a _Meeting Owner_.
      *
@@ -1695,11 +1752,14 @@ declare class ZoomSdk {
      */
     getMeetingContext(): Promise<GetMeetingContextResponse>;
     /**
-     *
+     * @zoomClientVersion 5.6.7
      * This sets a virtual background or blur the user's native background.
      *
      * When setVirtualBackground is invoked in a context where the smart virtual background package is not yet installed, a dialog prompts the user to download the package. When the user clicks "Install" in the dialog box, the package is downloaded. The client will subsequently show the consent dialog for setting the background.
      *
+     * *Supported roles*: Host, Co-Host, Participant , Panelist , Attendee
+     *
+     * *Supports Guest Mode*: Yes
      * ```
      * var myOptions = {
      *    fileUrl: "https://unsplash.com/photos/itTHOJ5aUk4"
@@ -1712,11 +1772,14 @@ declare class ZoomSdk {
      */
     setVirtualBackground(options: VirtualBackgroundOptions): Promise<GeneralMessageResponse>;
     /**
+     * @zoomClientVersion 5.6.7
      * Removes current virtual background and resets to use the camera.
      *
      * Note that when calling removeVirtualBackground, the client will pop up a confirmation dialog to let the user allow or disallow. If the user does not allow the action, the client will return an error code of 10017 to the app.
      *
-     * *Supports Guest Mode* = Yes
+     * *Supported roles*: Host, Co-Host, Participant , Panelist , Attendee
+     *
+     * *Supports Guest Mode*: Yes
      *
      * ```
      * zoomSdk.removeVirtualBackground().then(function() => {
@@ -1731,7 +1794,12 @@ declare class ZoomSdk {
      */
     removeVirtualBackground(): Promise<GeneralMessageResponse>;
     /**
+     * @zoomClientVersion 5.9.0
      * Draws an image in the foreground of the user’s video.
+     *
+     * *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     *
+     *  *Supports Guest Mode*: Yes
      *
      * ```
      * zoomSdk.setVirtualForeground({
@@ -1753,7 +1821,12 @@ declare class ZoomSdk {
      */
     setVirtualForeground(options: VirtualForegroundOptions): Promise<GeneralMessageResponse>;
     /**
+     * @zoomClientVersion 5.9.0
      * Removes the image which was set using setVirtualForeground from the foreground of the user’s video.
+     *
+     *  *Supported roles*: Host, Co-Host, Participant,  Panelist, Attendee
+     *
+     *  *Supports Guest Mode*: Yes
      *
      * ```
      * zoomSdk.removeVirtualForeground()
@@ -1766,9 +1839,12 @@ declare class ZoomSdk {
      */
     removeVirtualForeground(): Promise<GeneralMessageResponse>;
     /**
+     * @zoomClientVersion 5.6.7
      * Triggers a push notification. The embedded browser does not support the Web Notification API, so we have provided a similar API via the JS SDK.
      *
-     * *Supports Guest Mode* = Yes
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     *
+     *  *Supports Guest Mode*: Yes
      *
      * ```
      * await zoomSdk.showNotification({
@@ -1782,7 +1858,12 @@ declare class ZoomSdk {
      */
     showNotification(options: NotificationOptions): Promise<GeneralMessageResponse>;
     /**
+     * @zoomClientVersion 5.6.7
      * The cloud recording API allows you to control cloud recording actions during a meeting.
+     *
+     *  *Supported roles*: Host, Co-Host
+     *
+     *  *Supports Guest Mode*: No
      *
      * ```
      * await zoomSdk.cloudRecording({ action: "start" });
@@ -1792,11 +1873,14 @@ declare class ZoomSdk {
      */
     cloudRecording(options: CloudRecordingOptions): Promise<GeneralMessageResponse>;
     /**
+     * @zoomClientVersion 5.6.7
      * Screenshare current app.
      *
-     * Role-based permissions In webinars, this API is only available to an app instance being run by a panelist or host. Webinar attendees cannot use this API.
+     *  *Supported roles*: Host, Co-Host, Participant , Panelist
      *
-     * *Supports Guest Mode* = Yes
+     *  *Supports Guest Mode*: Yes
+     *
+     * Role-based permissions In webinars, this API is only available to an app instance being run by a panelist or host. Webinar attendees cannot use this API.
      *
      * ```
      * await zoomSdk.shareApp({ action: "start" });
@@ -1806,10 +1890,12 @@ declare class ZoomSdk {
      */
     shareApp(options: ShareAppOptions): Promise<GeneralMessageResponse>;
     /**
-     *
+     * @zoomClientVersion 5.6.7
      * Get all available cameras.
      *
-     * *Supports Guest Mode* = Yes
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     *
+     *  *Supports Guest Mode*: Yes
      *
      * ```
      * await zoomSdk.listCameras();
@@ -1830,10 +1916,12 @@ declare class ZoomSdk {
      */
     listCameras(): Promise<ListCamerasResponse>;
     /**
-     *
+     * @zoomClientVersion 5.6.7
      * Choose a camera input to use.
      *
-     * *Supports Guest Mode* = Yes
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     *
+     *  *Supports Guest Mode*: Yes
      *
      * ```
      * zoomSdk.setCamera({
@@ -1846,10 +1934,12 @@ declare class ZoomSdk {
      */
     setCamera(options: SetCameraOptions): Promise<GeneralMessageResponse>;
     /**
-     *
+     * @zoomClientVersion 5.6.7
      * Mirror my video/virtual background.
      *
-     * *Supports Guest Mode* = Yes
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     *
+     *  *Supports Guest Mode*: Yes
      *
      * ```
      * zoomSdk.setVideoMirrorEffect({
@@ -1861,10 +1951,14 @@ declare class ZoomSdk {
      */
     setVideoMirrorEffect(options: SetVideoMirrorEffectOptions): Promise<GeneralMessageResponse>;
     /**
+     * @zoomClientVersion 5.6.7
+     * Get information of the participants in the current meeting. Note that for breakout rooms, the participants in the current room will be returned, not those of the parent meeting.
+     *
+     *  *Supported roles*: Owner
+     *
+     *  *Supports Guest Mode*: No
      *
      * Role-based permissions This API is only available to an app instance being run by a Meeting Owner.
-     *
-     * Get information of the participants in the current meeting. Note that for breakout rooms, the participants in the current room will be returned, not those of the parent meeting.
      *
      * ```
      * await zoomSdk.getMeetingParticipants();
@@ -1874,8 +1968,12 @@ declare class ZoomSdk {
      */
     getMeetingParticipants(): Promise<GetMeetingParticipantsResponse>;
     /**
-     *
+     * @zoomClientVersion 5.6.7
      * Send app to list of participants in the meeting.
+     *
+     *  *Supported roles*: Host, Co-Host
+     *
+     *  *Supports Guest Mode*: No
      *
      * ```
      * await zoomSdk.sendAppInvitation({
@@ -1894,10 +1992,12 @@ declare class ZoomSdk {
      */
     sendAppInvitation(options: SendAppInvitationOptions): Promise<AppInvitationResponse>;
     /**
-     *
+     * @zoomClientVersion 5.6.7
      * It returns basic information about the meeting participant while in a meeting.
      *
-     * *Supported in Guest Mode* = Yes.
+     *  *Supported roles*: Host, Co-Host, Participant , Panelist, Attendee
+     *
+     *  *Supports Guest Mode*: Yes
      *
      * ```
      * zoomSdk.getUserContext().then((result) => {
@@ -1912,8 +2012,12 @@ declare class ZoomSdk {
      */
     getUserContext(): Promise<GetUserContextResponse>;
     /**
-     *
+     * @zoomClientVersion 5.6.7
      * This API endpoint is only available in meetings. It returns basic information about the meeting recording while in a meeting.
+     *
+     *  *Supported roles*: Host, Co-Host
+     *
+     *  *Supports Guest Mode*: No
      *
      * ```
      * zoomSdk.getRecordingContext().then((result) => {
@@ -1928,8 +2032,12 @@ declare class ZoomSdk {
      */
     getRecordingContext(): Promise<GetRecordingContextResponse>;
     /**
-     *
+     * @zoomClientVersion 5.6.7
      * This API endpoint is only available in meetings. It allows the app to access the JoinUrl while in a meeting.
+     *
+     *  *Supported roles*: Owner
+     *
+     *  *Supports Guest Mode*: No
      *
      * Role-based permissions This API is only available to an app instance being run by a Meeting Owner.
      *
@@ -1947,12 +2055,14 @@ declare class ZoomSdk {
      */
     getMeetingJoinUrl(): Promise<GetMeetingJoinUrlResponse>;
     /**
-     *
+     * @zoomClientVersion 5.6.7
      * This API endpoint is only available in meetings. It allows the app to access the meetingUUID while in a meeting.
      *
      * In breakout rooms,meetingUUID identifies the specific breakout room, and parentUUID helps connect individual rooms to the main meeting. Note that the value of parentUUID must be used for REST API calls inside of breakout rooms, while meetingUUID is otherwise used.
      *
-     * *Supported in Guest Mode* = Yes.
+     *  *Supported roles*: Host, Co-Host, Participant , Panelist , Attendee
+     *
+     *  *Supports Guest Mode*: Yes
      *
      * ```
      * zoomSdk.getMeetingUUID()
@@ -1968,10 +2078,12 @@ declare class ZoomSdk {
      */
     getMeetingUUID(): Promise<GetMeetingUUIDResponse>;
     /**
-     *
+     * @zoomClientVersion 5.6.7
      * Tells the client to expand to the larger size or collapse it back to the default app UI size.
      *
-     * *Supported in Guest Mode* = Yes.
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     *
+     *  *Supports Guest Mode*: Yes
      *
      * ```
      * await zoomSdk.expandApp({
@@ -1984,9 +2096,13 @@ declare class ZoomSdk {
      */
     expandApp(options: ExpandAppOptions): Promise<GeneralMessageResponse>;
     /**
-     *
-     *
+     * @zoomClientVersion 5.6.7
      * The API can only be called in meeting. Allows the App to communicate with the instance of the app running on the main client.
+     *
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist
+     *
+     *  *Supports Guest Mode*: No
+     *
      * ```
      * await zoomSdk.connect()
      * ```
@@ -1994,9 +2110,13 @@ declare class ZoomSdk {
      */
     connect(): Promise<GeneralMessageResponse>;
     /**
-     *
-     *
+     * @zoomClientVersion 5.6.7
      * Send a message with the current state of the mirrored app. The structure of the payload depends on the needs of the app.
+     *
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist
+     *
+     *  *Supports Guest Mode*: No
+     *
      * ```
      * await zoomSdk.postMessage({ JSON })
      * ```
@@ -2004,9 +2124,13 @@ declare class ZoomSdk {
      */
     postMessage(options: JSONObject): Promise<GeneralMessageResponse>;
     /**
-     *
-     *
+     * @zoomClientVersion 5.7.3
      * Tells the client to end the data communication between connected apps. Note that the client will close the connection between the apps when endSyncData is called or 10 seconds after the onMeeting event with event.action == 'ended' is recieved, whichever comes first.
+     *
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist
+     *
+     *  *Supports Guest Mode*: No
+     *
      * ```
      * await zoomSdk.endSyncData()
      * ```
@@ -2014,7 +2138,12 @@ declare class ZoomSdk {
      */
     endSyncData(): Promise<void>;
     /**
+     * @zoomClientVersion 5.8.3
      * Allow a specific participant to start a local recording. This API will trigger a pop-up consent dialog in the client to let the host allow or not allow.
+     *
+     *  *Supported roles*: Host, Co-Host
+     *
+     *  *Supports Guest Mode*: No
      *
      * Role-based permissions This API is only available to an app instance being run by a Meeting Host who is also a Meeting Owner. This API is not available in webinars.
      *
@@ -2031,8 +2160,12 @@ declare class ZoomSdk {
      */
     allowParticipantToRecord(options: AllowParticipantToRecordOptions): Promise<GeneralMessageResponse>;
     /**
-     *
+     * @zoomClientVersion 5.8.3
      * Starts a new meeting or joins an existing meeting and launches the app in the meeting.
+     *
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist
+     *
+     *  *Supports Guest Mode*: No
      *
      * ```
      * await zoomSdk.launchAppInMeeting({ joinURL: 'xxx' })
@@ -2046,9 +2179,14 @@ declare class ZoomSdk {
      */
     launchAppInMeeting(options?: LaunchAppInMeetingOptions): Promise<GeneralMessageResponse>;
     /**
+     * @zoomClientVersion 5.7.3
      * Shows client participant selection dialog window for sending an app invitation.
      *
      * Triggers client built in participant selection UI, so that apps running in non-owner context that do not have screen names can invite specific users
+     *
+     *  *Supported roles*: Host, Co-Host , Participant, Panelist
+     *
+     *  *Supports Guest Mode*: No
      *
      * ```
      * await zoomSdk.showAppInvitationDialog();
@@ -2058,9 +2196,14 @@ declare class ZoomSdk {
      */
     showAppInvitationDialog(): Promise<GeneralMessageResponse>;
     /**
+     * @zoomClientVersion 5.7.3
      * Sends invitation of current app to the meeting owner (person who scheduled the meeting).
      *
      * Sends app invitations specifically to the meeting owner. Sent to both meeting & persistent chat when the meeting owner is in the meeting. Sent to persistent chat when the meeting owner is not in the meeting that might be ongoing.
+     *
+     *  *Supported roles*: Host, Co-Host , Participant , Panelist
+     *
+     *  *Supports Guest Mode*: No
      *
      * Role-based permissions In webinars, this API is only available to an app instance being run by a panelist or host. Webinar attendees cannot use this API.
      *
@@ -2072,11 +2215,16 @@ declare class ZoomSdk {
      */
     sendAppInvitationToMeetingOwner(): Promise<AppInvitationResponse>;
     /**
+     * @zoomClientVersion 5.7.6
      * Sends invitation for the current app to all participants currently in the meeting.
      *
      * In breakout rooms, this will only send invitations to participants within the current room.
      *
      * This API may behave differently depending on the in-meeting chat setting enabled by the host for the meeting participants. The meeting host can determine whether meeting participants can chat with: No one, Hosts and Cohosts, Everyone, Everyone and Anyone directly.
+     *
+     *  *Supported roles*: Host, Co-Host, Participant
+     *
+     *  *Supports Guest Mode*: No
      *
      * Role-based permissions This API is not available to panelists or attendees in webinars.
      *
@@ -2094,7 +2242,15 @@ declare class ZoomSdk {
      */
     sendAppInvitationToAllParticipants(): Promise<AppInvitationResponse>;
     /**
+     * @zoomClientVersion 5.9.0
      * Changes the app's rendering context from the meeting sidebar to the main meeting window, with behavior defined by the specified view option.
+     * Only a meeting host may invoke an immersive `runRenderingContext`. To transition other meeting participants to an immersive view, the meeting host’s app must use the `sendAppInvitationToAllParticipants` API.
+     *
+     * *Warning*: Only one app instance can create an `immersive` rendering context at a time. If another attempts to, it will fail with an error.
+     *
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     *
+     *  *Supports Guest Mode*: Yes
      *
      * ```
      * zoomSdk.runRenderingContext({
@@ -2102,15 +2258,16 @@ declare class ZoomSdk {
      * })
      * ```
      *
-     * Only a meeting host may invoke an immersive `runRenderingContext`. To transition other meeting participants to an immersive view, the meeting host’s app must use the `sendAppInvitationToAllParticipants` API.
-     *
-     * *Warning*: Only one app instance can create an `immersive` rendering context at a time. If another attempts to, it will fail with an error.
-     *
      * @category Core Endpoints
      */
     runRenderingContext(options: RunRenderingContextOptions): Promise<GeneralMessageResponse>;
     /**
+     * @zoomClientVersion 5.9.0
      * Returns the rendering context of the app to the sidebar.
+     *
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     *
+     *  *Supports Guest Mode*: Yes
      *
      * ```
      * zoomSdk.closeRenderingContext()
@@ -2126,9 +2283,14 @@ declare class ZoomSdk {
      */
     closeRenderingContext(): Promise<GeneralMessageResponse>;
     /**
+     * @zoomClientVersion 5.9.0
      * Draws participant videos and static images on top of the background.
      *
      * The getMeetingParticipants method provides a list of meeting participants. For each of these, the app can specify a position, size and z-index with using drawParticipant. This method is available when using the "immersive" rendering context. All visible meeting participants are shown using a video cutout, removing their background.
+     *
+     *  *Supported roles*: Host, Co-Host
+     *
+     *  *Supports Guest Mode*: Yes
      *
      * ```
      * zoomSdk.drawParticipant({
@@ -2152,7 +2314,12 @@ declare class ZoomSdk {
      */
     drawParticipant(options: DrawParticipantOptions): Promise<GeneralMessageResponse>;
     /**
+     * @zoomClientVersion 5.9.0
      * Clears the content set by drawParticipant.
+     *
+     *  *Supported roles*: Host, Co-Host
+     *
+     *  *Supports Guest Mode*: Yes
      *
      * ```
      * zoomSdk.clearParticipant({
@@ -2167,9 +2334,12 @@ declare class ZoomSdk {
      */
     clearParticipant(options: ClearParticipantOptions): Promise<GeneralMessageResponse>;
     /**
+     * @zoomClientVersion 5.9.0
      * Draws an image in the rendering context's canvas.
      *
-     * *Supports Guest Mode* = Yes.
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     *
+     *  *Supports Guest Mode*: Yes
      *
      * ```
      * zoomSdk.drawImage({
@@ -2194,9 +2364,12 @@ declare class ZoomSdk {
      */
     drawImage(options: DrawImageOptions): Promise<DrawImageResponse>;
     /**
+     * @zoomClientVersion 5.9.0
      * Clears the content set by drawImage.
      *
-     * *Supports Guest Mode* = Yes
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     *
+     *  *Supports Guest Mode*: Yes
      *
      * ```
      * zoomSdk.clearImage({
@@ -2211,7 +2384,12 @@ declare class ZoomSdk {
      */
     clearImage(options: ClearImageOptions): Promise<GeneralMessageResponse>;
     /**
+     * @zoomClientVersion 5.10.6
      * Draws the OSR webview with the specified size, location and zIndex [Layers Camera Mode]
+     *
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     *
+     *  *Supports Guest Mode*: Yes
      *
      * ```
      * zoomSdk.drawWebView({
@@ -2230,7 +2408,12 @@ declare class ZoomSdk {
      */
     drawWebView(options: DrawWebViewOptions): Promise<GeneralMessageResponse>;
     /**
+     * @zoomClientVersion 5.10.6
      * Clears the content set by drawWebView. [Layers Camera Mode]
+     *
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     *
+     *  *Supports Guest Mode*: Yes
      *
      * ```
      * zoomSdk.clearWebView()
@@ -2243,169 +2426,254 @@ declare class ZoomSdk {
      */
     clearWebView(): Promise<GeneralMessageResponse>;
     /**
+     * @zoomClientVersion 5.6.7
      * This event occurs when the user clicks the share icon from the Zoom App sidebar during a meeting, and when the user stops the share.
      *
-     * Supports Guest Mode = Yes
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     *
+     *  *Supports Guest Mode*: Yes
      *
      * @category Events Core
      */
     onShareApp(handler: GenericEventHandler<OnShareAppEvent>): void;
     /**
+     * @zoomClientVersion 5.6.7
      * This event occurs when the user clicks the invite icon from the Zoom App sidebar during a meeting. All attendees and participants receive an invitation. The sender receives an event.
+     *
+     *  *Supported roles*: Host, Co-Host
+     *
+     *  *Supports Guest Mode*: No
      *
      * @category Events Core
      */
     onSendAppInvitation(handler: GenericEventHandler<OnSendAppInvitationEvent>): void;
     /**
+     * @zoomClientVersion 5.6.7
      * The cloud recording events occur when a user starts, pauses, stops or resumes recording a Zoom meeting (where your app is being run) to the cloud using the Zoom UI or programmatically using the JS APIs. Additionally, the `"connecting"` event action will be trigered prior to the start of a cloud recording.
+     *
+     *  *Supported roles*: Host, Co-Host
+     *
+     *  *Supports Guest Mode*: No
      *
      * @category Events Core
      */
     onCloudRecording(handler: GenericEventHandler<OnCloudRecordingEvent>): void;
     /**
+     * @zoomClientVersion 5.6.7
      * This event occurs when a meeting participant sends a reaction.
      *
-     * **Role-based permissions** This event is only available to an app instance being run by a Meeting Owner.
+     *  *Supported roles*: Host, Co-Host
+     *
+     *  *Supports Guest Mode*: No
+     *
+     * *Role-based permissions*: This event is only available to an app instance being run by a Meeting Owner.
      *
      * @category Events Core
      */
     onReaction(handler: GenericEventHandler<OnReactionEvent>): void;
     /**
+     * @zoomClientVersion 5.6.7
      * This event is triggered when a user joins or leaves a meeting or when a participant's role changes for that meeting.
      *
      * **Note** The event triggers twice in some situations, such as when a participant leaves a meeting with one role and rejoins the meeting with a new role. The participantId of the user might change when the role changes.
      *
-     * **Role-based permissions** This event is only available to an app instance being run by a Meeting Owner.
+     *  *Supported roles*: Owner
+     *
+     *  *Supports Guest Mode*: No
+     *
+     * *Role-based permissions*: This event is only available to an app instance being run by a Meeting Owner.
      *
      * @category Events Core
      */
     onParticipantChange(handler: GenericEventHandler<OnParticipantChangeEvent>): void;
     /**
+     * @zoomClientVersion 5.6.7
      * This event occurs when the active speaker changes in a meeting. The response array contains all active speakers.
      *
-     * **Role-based permissions** This event is only available to an app instance being run by a Meeting Owner.
+     *  *Supported roles*: Owner
+     *
+     *  *Supports Guest Mode*: No
+     *
+     * *Role-based permissions*: This event is only available to an app instance being run by a Meeting Owner.
      *
      * @category Events Core
      */
     onActiveSpeakerChange(handler: GenericEventHandler<OnActiveSpeakerChangeEvent>): void;
     /**
+     * @zoomClientVersion 5.6.7
      * This event occurs when the popout/pop-in button is clicked on the app window.
      *
-     * *Supports Guest Mode* = Yes
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     *
+     *  *Supports Guest Mode*: Yes
      *
      * @category Events Core
      */
     onAppPopout(handler: GenericEventHandler<OnAppPopoutEvent>): void;
     /**
+     * @zoomClientVersion 5.6.7
      * Notifies app when the client expands or collapses the app.
      *
-     * *Supports Guest Mode* = Yes
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     *
+     *  *Supports Guest Mode*: Yes
      *
      * @category Events Core
      */
     onExpandApp(handler: GenericEventHandler<OnExpandAppEvent>): void;
     /**
+     * @zoomClientVersion 5.6.7
      * In order to maintain state after a meeting, the instance of the app that is running in the meeting must communicate with the instance of the app running in the main client. The following events facilitate that process. For more information, see [an example of this process](https://marketplace.zoom.us/docs/beta-docs/zoom-apps/guides/maintaining-state/).
      *
      * Notify the event listener when the API call `connect` has finished attempting to connect to the app instance running in the main client. This event can only be received in meeting.
+     *
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist
+     *
+     *  *Supports Guest Mode*: No
      *
      * @category Events maintaining state outside of a meeting
      */
     onConnect(handler: GenericEventHandler<OnConnectEvent>): void;
     /**
+     * @zoomClientVersion 5.6.7
      * In order to maintain state after a meeting, the instance of the app that is running in the meeting must communicate with the instance of the app running in the main client. The following events facilitate that process. For more information, see [an example of this process](https://marketplace.zoom.us/docs/beta-docs/zoom-apps/guides/maintaining-state/).
      *
      * Receive a sent message from the mirrored app. The structure of the payload depends on the needs of the app.
+     *
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist
+     *
+     *  *Supports Guest Mode*: No
      *
      * @category Events maintaining state outside of a meeting
      */
     onMessage(handler: GenericEventHandler<OnMessageEvent>): void;
     /**
+     * @zoomClientVersion 5.6.7
      * In order to maintain state after a meeting, the instance of the app that is running in the meeting must communicate with the instance of the app running in the main client. The following events facilitate that process. For more information, see [an example of this process](https://marketplace.zoom.us/docs/beta-docs/zoom-apps/guides/maintaining-state/).
      *
      * Meeting is closed, then notify the mirrored app and update state one more time.
+     *
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist
+     *
+     *  *Supports Guest Mode*: No
      *
      * @category Events maintaining state outside of a meeting
      */
     onMeeting(handler: GenericEventHandler<OnMeetingEvent>): void;
     /**
-     *
+     * @zoomClientVersion 5.8.6
      * The event is triggered when any change happens to breakout rooms configuration. This method informs the app when the host changes the configuration manually, or when another app changes the configuration.
      *
      * The event does not provide detailed information about the specific change, so the app needs to make an additional API request to retrieve the updated data.
      *
-     * *Supports Guest Mode = Yes*
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     *
+     *  *Supports Guest Mode = Yes*
      *
      * @category Events Managing Breakout Rooms
      */
     onMeetingConfigChanged(handler: GenericEventHandler<onMeetingConfigChangedEvent>): void;
     /**
-     *
+     * @zoomClientVersion 5.8.3
      * Notifies Zoom App when a user leaves or joins a breakout room.
      *
-     * *Supports Guest Mode = Yes*
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     *
+     *  *Supports Guest Mode*: Yes
      *
      * @category Events Managing Breakout Rooms
      */
     onBreakoutRoomChange(handler: GenericEventHandler<OnBreakoutRoomChangeEvent>): void;
     /**
-     *
+     * @zoomClientVersion 5.10.0
      * The event is triggered when changes such as start, end, leave or join happen in Collaborate mode. This method informs the app when the host or co-hosts start or end a collaboration, and when meeting participants leave or join a collaboration.
      *
      * The event is applicable to users based on their role in the meeting. For participants, the join and leave actions will apply. For hosts and co hosts, the start and end actions will apply. The event does not provide detailed information about the specific change, so the app needs to make an additional API request to retrieve the updated data.
+     *
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist
+     *
+     *  *Supports Guest Mode*: No
      *
      * @category Events Managing Collaborations
      */
     onCollaborateChange(handler: GenericEventHandler<OnCollaborateChangeEvent>): void;
     /**
+     *  @zoomClientVersion 5.10.0
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist
+     *
+     *  *Supports Guest Mode*: No
      *
      * @category Events Managing Collaborations
      */
     onRunningContextChange(handler: GenericEventHandler<OnRunningContextChangeEvent>): void;
     /**
+     * @zoomClientVersion 5.7.3
      * Notifies Zoom App when current user reacts with a reaction in a meeting.
+     *
+     *  *Supported roles*: Host, Co-Host , Participant, Panelist, Attendee
+     *
+     *  *Supports Guest Mode*: No
      *
      * @category Events Core
      */
     onMyReaction(handler: GenericEventHandler<OnMyReactionEvent>): void;
     /**
+     * @zoomClientVersion 5.7.3
      * Notifies Zoom App when current user starts or stops speaking.
+     *
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist
+     *
+     *  *Supports Guest Mode*: No
      *
      * @category Events Core
      */
     onMyActiveSpeakerChange(handler: GenericEventHandler<OnMyActiveSpeakerChangeEvent>): void;
     /**
+     * @zoomClientVersion 5.7.3
      * This event is triggered when the current user’s role changes.
      *
      * `onMyUserContextChange` is be available to apps regardless of whether the app user is an owner, host or attendee in a meeting, but would only provide data for the user that’s running the app (and not the other participants in the meeting).
      *
      * IMPORTANT: Some changes to user context (for example, change to status following `onMyUserContextChange`), will require the application to configure again, by invoking `config` once more.
      *
-     * *Supports Guest Mode = Yes*
+     *  *Supported roles*: Host, Co-Host
+     *
+     *  *Supports Guest Mode*: Yes
      *
      * @category Events Core
      */
     onMyUserContextChange(handler: GenericEventHandler<OnMyUserContextChangeEvent>): void;
     /**
+     * @zoomClientVersion 5.9.0
      * Notifies the app when the current user's video settings change, when it’s toggled on or off, and when the audio is muted or unmuted.
      *
      * For example, when the user chooses a different camera, mutes or unmutes their primary audio, or toggles: "Original ratio", "HD" in video settings, or primary camera on or off.
      *
-     * *Supports Guest Mode = Yes*
+     * *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     *
+     * *Supports Guest Mode*: Yes
      *
      * @category Events Core
      */
     onMyMediaChange(handler: GenericEventHandler<OnMyMediaChangeEvent>): void;
     /**
-     *
+     * @zoomClientVersion 5.9.0
      * Notifies the third-party app that the user has finished the in-client OAuth
+     *
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist
+     *
+     * *Supports Guest Mode*: No
      *
      * @category In-client Auth
      */
     onAuthorized(handler: GenericEventHandler<OnAuthorizedEvent>): void;
     /**
-     *
+     * @zoomClientVersion 5.9.3
      * The event triggers when the user closes the app for participants. It is only triggered for the user who performed the action. Example: The host uses an app to poll participants. When the host closes the app for participants, the app displays the results.
+     *
+     *  *Supported roles*: Host, Co-Host, Panelist
+     *
+     *  *Supports Guest Mode*: No
      *
      *  Usage:
      * ```
@@ -2422,9 +2690,14 @@ declare class ZoomSdk {
      */
     onCloseAppForParticipants(handler: GenericEventHandler<any>): void;
     /**
+     * @zoomClientVersion 5.11.0
      * @hidden
      *
      * Notifies the inMeeting instance of an app that a second instance of the app has been opened in the meeting for Layers API related rendering purposes.
+     *
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     *
+     *  *Supports Guest Mode*: Yes
      *
      * @category Events Core
      */
@@ -2452,12 +2725,23 @@ declare class ZoomSdk {
      */
     off(event: `${NativeEvents}`, handler: (data: any) => any): void;
     /**
+     * @zoomClientVersion 5.8.6
      * Deletes all existing breakout rooms and creates new ones. Response is same as getBreakoutRoomList.
+     *
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist
+     *
+     *  *Supports Guest Mode*: No
+     *
      * @category Managing Breakout Rooms
      */
     createBreakoutRooms(options: CreateBreakoutRoomsOptions): Promise<BreakoutRoomsResponse>;
     /**
+     * @zoomClientVersion 5.8.6
      * Change breakout room settings.
+     *
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist
+     *
+     * *Supports Guest Mode*: No
      *
      * **Note:** Each parameter is optional. If the parameter is missing, the related setting is not changed.
      *
@@ -2477,19 +2761,33 @@ declare class ZoomSdk {
      */
     configureBreakoutRooms(options: ConfigureBreakoutRoomsOptions): Promise<ConfigureBreakoutRoomsResponse>;
     /**
+     * @zoomClientVersion 5.8.6
      * Open breakout rooms.
+     *
+     * *Supported roles*: Host, Co-Host, Participant, Panelist
+     *
+     * *Supports Guest Mode*: No
      *
      * @category Managing Breakout Rooms
      */
     openBreakoutRooms(): Promise<GeneralMessageResponse>;
     /**
+     * @zoomClientVersion 5.8.6
      * Close breakout rooms.
+     *
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist
+     *
+     * *Supports Guest Mode*: No
      *
      * @category Managing Breakout Rooms
      */
     closeBreakoutRooms(): Promise<GeneralMessageResponse>;
     /**
+     * @zoomClientVersion 5.9.3
      * List all breakout rooms. Owners get list of rooms and participants for each breakout room. Co-hosts and participants get only list of rooms. The method works for participants only when breakout rooms are open.
+     *
+     * *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     * *Supports Guest Mode*: Yes
      *
      * Example payload
      * ```
@@ -2515,25 +2813,45 @@ declare class ZoomSdk {
      */
     getBreakoutRoomList(): Promise<BreakoutRoomsResponse>;
     /**
+     * @zoomClientVersion 5.8.6
      * Add one more breakout room. This method is allowed only when breakout rooms are closed. Returns UUID of newly created breakout room.
+     *
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist
+     *
+     * *Supports Guest Mode*: No
      *
      * @category Managing Breakout Rooms
      */
     addBreakoutRoom(options: AddBreakoutRoomOptions): Promise<Uuid>;
     /**
+     * @zoomClientVersion 5.8.6
      * Delete one breakout room. This method is allowed only when breakout rooms are closed.
+     *
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist
+     *
+     *  *Supports Guest Mode*: No
      *
      * @category Managing Breakout Rooms
      */
     deleteBreakoutRoom(options: Uuid): Promise<GeneralMessageResponse>;
     /**
+     * @zoomClientVersion 5.8.6
      * Renames a breakout room. This method is allowed only when breakout rooms are closed.
+     *
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist
+     *
+     *  *Supports Guest Mode*: No
      *
      * @category Managing Breakout Rooms
      */
     renameBreakoutRoom(options: RenameBreakoutRoomOptions): Promise<GeneralMessageResponse>;
     /**
+     * @zoomClientVersion 5.9.0
      * Assigns a participant to a breakout room (other than the host / co-host). Only one user assigned per call. For open breakout rooms, the method triggers a user flow to join the room.
+     *
+     *  *Supported roles*: Host, Co-Host
+     *
+     *  *Supports Guest Mode*: No
      *
      * **Note:**
      *
@@ -2544,19 +2862,28 @@ declare class ZoomSdk {
      */
     assignParticipantToBreakoutRoom(options: AssignParticipantToBreakoutRoomOptions): Promise<GeneralMessageResponse>;
     /**
+     * @zoomClientVersion 5.8.6
      * Called by a host / co-host / participant. Allows single participant user to join or leave a breakout room.
+     *
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     *
+     *  *Supports Guest Mode*: Yes
      *
      * **Note:**
      * 1. Rooms need to be open
      * 2. To use this method, rooms must be configured to allow participant to choose rooms (`allowParticipantsToChooseRoom=true` when using `configureBreakoutRooms`)
-     * 3. Method is available to Guests
-     * 4. This method returns `success` when changing breakout rooms is initiated, but the transition for the user might not be completed in some scenarios. Use `onBreakoutRoomChange` to confirm successful transition. If the event doesn’t fire, repeat `changeBreakoutRoom` call
+     * 3. This method returns `success` when changing breakout rooms is initiated, but the transition for the user might not be completed in some scenarios. Use `onBreakoutRoomChange` to confirm successful transition. If the event doesn’t fire, repeat `changeBreakoutRoom` call
      *
      * @category Managing Breakout Rooms
      */
     changeBreakoutRoom(options: ChangeBreakoutRoomOptions): Promise<GeneralMessageResponse>;
     /**
+     * @zoomClientVersion 5.10.0
      * Starts Collaborate mode in a meeting. Can be initiated by hosts or co-hosts. Use the optional shareScreen parameter to opt out of sharing the host’s app screen with participants as a preview or when participants ignore the Collaborate invite.
+     *
+     *  *Supported roles*: Host, Co-Host
+     *
+     *  *Supports Guest Mode*: No
      *
      * ```
      * zoomSdk.startCollaborate(
@@ -2571,7 +2898,12 @@ declare class ZoomSdk {
      */
     startCollaborate(options: StartCollaborateOptions): Promise<GeneralMessageResponse>;
     /**
+     * @zoomClientVersion 5.10.0
      * Ends Collaborate mode in a meeting. Can be initiated by hosts or co-hosts.
+     *
+     *  *Supported roles*: Host, Co-Host
+     *
+     *  *Supports Guest Mode*: No
      *
      * ```
      * zoomSdk.endCollaborate()
@@ -2585,7 +2917,12 @@ declare class ZoomSdk {
      */
     endCollaborate(): Promise<GeneralMessageResponse>;
     /**
+     * @zoomClientVersion 5.10.0
      * Leave Collaborate mode. Can be initiated by participants in a meeting who are currently in Collaborate mode.
+     *
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist
+     *
+     *  *Supports Guest Mode*: No
      *
      * ```
      * zoomSdk.leaveCollaborate()
@@ -2599,7 +2936,12 @@ declare class ZoomSdk {
      */
     leaveCollaborate(): Promise<GeneralMessageResponse>;
     /**
+     * @zoomClientVersion 5.10.0
      * Join Collaborate mode. Can be initiated by participants in a meeting when they are invited to collaborate.
+     *
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist
+     *
+     *  *Supports Guest Mode*: No
      *
      * ```
      * zoomSdk.joinCollaborate()
@@ -2613,7 +2955,7 @@ declare class ZoomSdk {
      */
     joinCollaborate(): Promise<GeneralMessageResponse>;
     /**
-     *
+     * @zoomClientVersion 5.10.0
      *
      * This method is part of in-client OAuth feature. It initiates on OAuth authorization request from the Zoom Client - Zoom Apps tab - to the Zoom marketplace.
      *
@@ -2626,7 +2968,9 @@ declare class ZoomSdk {
      *
      * Upon user authorization, an `onAuthorized` event is triggered with an authorization code. You have to add an event listener for this event to get authorization code.
      *
-     * *Supports Guest Mode* = No
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist
+     *
+     *  *Supports Guest Mode*: No
      *
      * ```
      * zoomSdk.authorize({
@@ -2642,6 +2986,7 @@ declare class ZoomSdk {
      */
     authorize(options: AuthorizeOptions): Promise<GeneralMessageResponse>;
     /**
+     * @zoomClientVersion 5.10.6
      * Triggers a contextual prompt for the user to sign in with Zoom (if the user context status is not "authenticated"), or add the app (if the user context status is "authenticated"). The prompt is asynchronous and non-blocking, users can continue using the app while it is visible, or close the prompt.
      *
      * If user context is "unauthenticated", Zoom does not know the user, and only some Zoom APIs are allowed. Invoking `promptAuthorize` will ask the user to log in to Zoom, upon which user context status will update to "authenticated".
@@ -2650,7 +2995,9 @@ declare class ZoomSdk {
      *
      * IMPORTANT: Calling `promptAuthorize` will update user context status, per the states noted above.  You MUST reconfigure the application upon user context status change, by re-calling the config method. The recommended approach is to listen for the `onMyUserContextChange` event and invoke `config` once more if the user context status has changed.
      *
-     * *Supports Guest Mode* = Yes
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     *
+     *  *Supports Guest Mode*: Yes
      *
      * ```
      * zoomSdk.promptAuthorize()
@@ -2662,40 +3009,67 @@ declare class ZoomSdk {
      */
     promptAuthorize(): Promise<GeneralMessageResponse>;
     /**
+     * @zoomClientVersion 5.11.6
      * Turn on or off the primary video.
+     *
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist
+     *
+     *  *Supports Guest Mode*: No
+     *
      * @category User Media
      */
     setVideoState(options: SetVideoStateOptions): Promise<GeneralMessageResponse>;
     /**
+     * @zoomClientVersion 5.11.6
      * Mute or unmute the primary audio
+     *
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist
+     *
+     *  *Supports Guest Mode*: No
+     *
      * @category User Media
      */
     setAudioState(options: SetAudioStateOptions): Promise<GeneralMessageResponse>;
     /**
+     * @zoomClientVersion 5.11.6
      * Gets the on or off status of the primary video.
+     *
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist
+     *
+     *  *Supports Guest Mode*: No
+     *
      * @category User Media
      */
     getVideoState(): Promise<GetVideoStateResponse>;
     /**
+     * @zoomClientVersion 5.11.6
      * 	Gets the mute or unmute status of the primary audio.
+     *
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist
+     *
+     *  *Supports Guest Mode*: No
+     *
      * @category User Media
      */
     getAudioState(): Promise<GetAudioStateResponse>;
     /**
-     *
+     * @zoomClientVersion 5.10.3
      * Allows hosts and co-hosts to mute and unmute all, or specific, meeting participants. The action doesn’t affect the person initiating the request.
      *
-     * **Role-based permission**: meeting host and co-hosts
+     * *Role-based permission*: meeting host and co-hosts
      *
-     * **Running context**: inMeeting, inWebinar
+     * *Running context*: inMeeting, inWebinar
      *
-     * **Supports Guest Mode**: No
      *
-     * **Scope label**: Manage Devices
+     * *Supported roles*: Host, Co-Host
      *
-     * **Scope hierarchy**: zoomapps.meetings / zoomapps.webinar
+     * *Supports Guest Mode*: No
      *
-     * **Confirmation / Consent moments**
+     * *Scope label*: Manage Devices
+     *
+     * *Scope hierarchy*: zoomapps.meetings / zoomapps.webinar
+     *
+     * *Confirmation / Consent moments*
      *
      * - ###### All participants
      * "[AppName] wants to unmute all participants" [Don’t Allow] [Allow]
@@ -2717,8 +3091,32 @@ declare class ZoomSdk {
      * @category User Media
      */
     toggleParticipantMediaAudio(options: ToggleParticipantMediaAudioOptions): Promise<GeneralMessageResponse>;
+    /**
+     * **Beta** API may undergo some changes
+     * @zoomClientVersion 5.11.3
+     *
+     * This API returns app context token that contains signed app context data for secure backend validation.
+     * See https://marketplace.zoom.us/docs/zoom-apps/zoomappcontext for more details.
+     *
+     * *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     *
+     * *Running context*: all
+     *
+     * *Supports Guest Mode*: Yes
+     *
+     * *Scope hierarchy*: zoomapps.meetings /  zoomapps.meetings.content
+     *
+     * ```
+     * zoomSdk.getAppContext()
+     * .then((appContext) => console.log(appContext))
+     * .catch((err) => console.log(err))
+     * ```
+     *
+     * @category Core Endpoints
+     */
+    getAppContext(): Promise<GetAppContextResponse>;
 }
 
 declare const _default: ZoomSdk;
 
-export { AddBreakoutRoomOptions, AllowParticipantToRecordOptions, Apis, AppInvitationResponse, AssignParticipantToBreakoutRoomOptions, AuthObject, AuthorizeOptions, BlurVirtualBackground, BreakOutRoom, BreakOutRoomParticipant, BreakoutEvents, BreakoutRoomAssignmentMethods, BreakoutRoomsResponse, Camera, ChangeBreakoutRoomJoinOption, ChangeBreakoutRoomOptions, ChangeBreakoutRoomOtherOptions, ClearImageOptions, ClearParticipantOptions, ClearWebViewOptions, CloudRecordingOptions, ConfigOptions, ConfigResponse, ConfigSize, ConfigureBreakoutRoomsOptions, ConfigureBreakoutRoomsResponse, CreateBreakoutRoomsOptions, DrawImageOptions, DrawImageResponse, DrawParticipantOptions, DrawWebViewOptions, ExpandAppOptions, FileUrlVirtualBackground, GenericEventHandler, GetAudioStateResponse, GetMeetingContextResponse, GetMeetingJoinUrlResponse, GetMeetingParticipantsResponse, GetMeetingUUIDResponse, GetRecordingContextResponse, GetSupportedJsApisResponse, GetUserContextResponse, GetVideoStateResponse, ImageDataVirtualBackground, JSONValue, LaunchAppInMeetingOptions, ListCamerasResponse, MediaObject, NotificationOptions, OnActiveSpeakerChangeEvent, OnActiveSpeakerChangeUserType, OnAppPopoutEvent, OnAuthorizedEvent, OnBreakoutRoomChangeEvent, OnCloudRecordingEvent, OnCollaborateChangeEvent, OnConnectEvent, OnExpandAppEvent, OnMeetingEvent, OnMessageEvent, OnMyActiveSpeakerChangeEvent, OnMyMediaChangeAudioType, OnMyMediaChangeEvent, OnMyMediaChangeVideoType, OnMyReactionEvent, OnMyUserContextChangeEvent, OnParticipantChangeEvent, OnParticipantChangeParticipantType, OnReactionEvent, OnRenderedAppOpenedEvent, OnRunningContextChangeEvent, OnSendAppInvitationEvent, OnShareAppEvent, OpenUrlOptions, Participant, ParticipantCutoutShape, PixelValue, RenameBreakoutRoomOptions, RenderingContextView, RunRenderingContextOptions, RunningContextResponse, SdkOptions, SendAppInvitationOptions, SetAudioStateOptions, SetCameraOptions, SetVideoMirrorEffectOptions, SetVideoStateOptions, ShareAppOptions, StartCollaborateOptions, ToggleParticipantMediaAudioOptions, Uuid, VirtualBackgroundOptions, VirtualForegroundOptions, _default as default, onMeetingConfigChangedEvent };
+export { AddBreakoutRoomOptions, AllowParticipantToRecordOptions, Apis, AppInvitationResponse, AssignParticipantToBreakoutRoomOptions, AuthObject, AuthorizeOptions, BlurVirtualBackground, BreakOutRoom, BreakOutRoomParticipant, BreakoutEvents, BreakoutRoomAssignmentMethods, BreakoutRoomsResponse, Camera, ChangeBreakoutRoomJoinOption, ChangeBreakoutRoomOptions, ChangeBreakoutRoomOtherOptions, ClearImageOptions, ClearParticipantOptions, ClearWebViewOptions, CloudRecordingOptions, ConfigOptions, ConfigResponse, ConfigSize, ConfigureBreakoutRoomsOptions, ConfigureBreakoutRoomsResponse, CreateBreakoutRoomsOptions, DecryptedAppContextResponse, DrawImageOptions, DrawImageResponse, DrawParticipantOptions, DrawWebViewOptions, ExpandAppOptions, FileUrlVirtualBackground, GenericEventHandler, GetAppContextResponse, GetAudioStateResponse, GetMeetingContextResponse, GetMeetingJoinUrlResponse, GetMeetingParticipantsResponse, GetMeetingUUIDResponse, GetRecordingContextResponse, GetSupportedJsApisResponse, GetUserContextResponse, GetVideoStateResponse, ImageDataVirtualBackground, JSONValue, LaunchAppInMeetingOptions, ListCamerasResponse, MediaObject, NotificationOptions, OnActiveSpeakerChangeEvent, OnActiveSpeakerChangeUserType, OnAppPopoutEvent, OnAuthorizedEvent, OnBreakoutRoomChangeEvent, OnCloudRecordingEvent, OnCollaborateChangeEvent, OnConnectEvent, OnExpandAppEvent, OnMeetingEvent, OnMessageEvent, OnMyActiveSpeakerChangeEvent, OnMyMediaChangeAudioType, OnMyMediaChangeEvent, OnMyMediaChangeVideoType, OnMyReactionEvent, OnMyUserContextChangeEvent, OnParticipantChangeEvent, OnParticipantChangeParticipantType, OnReactionEvent, OnRenderedAppOpenedEvent, OnRunningContextChangeEvent, OnSendAppInvitationEvent, OnShareAppEvent, OpenUrlOptions, Participant, ParticipantCutoutShape, PixelValue, RenameBreakoutRoomOptions, RenderingContextView, RunRenderingContextOptions, RunningContextResponse, SdkOptions, SendAppInvitationOptions, SetAudioStateOptions, SetCameraOptions, SetVideoMirrorEffectOptions, SetVideoStateOptions, ShareAppOptions, StartCollaborateOptions, ToggleParticipantMediaAudioOptions, Uuid, VirtualBackgroundOptions, VirtualForegroundOptions, _default as default, onMeetingConfigChangedEvent };

@@ -1,4 +1,4 @@
-/* Zoom Apps SDK v0.16.4  */
+/* Zoom Apps SDK v0.16.5  */
 /**
  * Copyright (c) 2022 Zoom Video Communications, Inc.
  * 
@@ -21,7 +21,7 @@
  * SOFTWARE.
  */
 
-var version = "0.16.4";
+var version = "0.16.5";
 
 var extendStatics = function(d, b) {
     extendStatics = Object.setPrototypeOf ||
@@ -198,6 +198,7 @@ var NativeApis;
     NativeApis["SHOW_APP_INVITATION_DIALOG"] = "showAppInvitationDialog";
     NativeApis["SHOW_NOTIFICATION"] = "showNotification";
     NativeApis["TOGGLE_PARTICIPANT_MEDIA_AUDIO"] = "toggleParticipantMediaAudio";
+    NativeApis["GET_APP_CONTEXT"] = "getAppContext";
 })(NativeApis || (NativeApis = {}));
 var NativeEvents;
 (function (NativeEvents) {
@@ -975,6 +976,7 @@ var ZoomSdk =  (function () {
                         newOptions = {
                             js_api_lists: capabilities,
                             size: popoutSize || size,
+                            version: version,
                         };
                         if (!isString(this._version)) {
                             this._version = version;
@@ -1512,6 +1514,13 @@ var ZoomSdk =  (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 return [2 , this.callZoomApi(NativeApis.TOGGLE_PARTICIPANT_MEDIA_AUDIO, options)];
+            });
+        });
+    };
+    ZoomSdk.prototype.getAppContext = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 , this.callZoomApi(NativeApis.GET_APP_CONTEXT)];
             });
         });
     };
