@@ -444,28 +444,43 @@ declare type OnMeetingEvent = {
     timestamp: number;
     action: string;
 };
-/**
- * - `breakoutRoomsCreated`:	Breakout rooms are created in UX or by `createBreakoutRooms`.
- * - `breakoutRoomsConfigured`:	Breakout rooms configurations are changed in UX or by method `configureBreakoutRoom`.
- * - `breakoutRoomsUpdated`:	There are changes in the rooms list by UX or by methods `addBreakoutRoom`, `deleteBreakoutRoom`, `renameBreakoutRoom`.
- * - `breakoutRoomParticipantsAssigned`:	By UX or by method `assignParticipantToBreakoutRoom`.
- * - `breakoutRoomParticipantsJoined`:	Participants joined a breakout room, or by method `changeBreakoutRoom`.
- * - `breakoutRoomParticipantsLeft`:	Participants left a breakout room, or by method `changeBreakoutRoom`.
- * - `breakoutRoomOpened | breakoutRoomClosed`:	Opening or Closing breakout rooms using UX or by method `openBreakoutRooms` or method `closeBreakoutRooms`.
- * - 'breakoutRoomOpened': Opening breakout rooms using UX or by method `openBreakoutRooms`
- * - 'breakoutRoomClosed': Closing breakout rooms using UX or by method `closeBreakoutRooms`.
- *
- * Note:
- *  - `breakoutRoomOpened | breakoutRoomClosed` is deprecated
- *
- * | client    | <=0.14 SDK                                 | >=0.16 SDK                                   |
- * |-----------|--------------------------------------------|----------------------------------------------|
- * | < 5.11.0  | `breakoutRoomOpened \| breakoutRoomClosed` | `breakoutRoomOpened \| breakoutRoomClosed`   |
- * | >= 5.11.0 | `breakoutRoomOpened \| breakoutRoomClosed` | `breakoutRoomOpened`, or `breakoutRoomClosed` |
- *
- * @category Events Managing Breakout Rooms
- */
-declare type BreakoutEvents = 'breakoutRoomsCreated' | 'breakoutRoomsConfigured' | 'breakoutRoomsUpdated' | 'breakoutRoomParticipantsAssigned' | 'breakoutRoomParticipantsJoined' | 'breakoutRoomParticipantsLeft' | 'breakoutRoomOpened | breakoutRoomClosed' | 'breakoutRoomOpened' | 'breakoutRoomClosed';
+/** Breakout rooms are created in UX or by `createBreakoutRooms`. */
+declare type BreakoutRoomsCreated = {
+    timestamp: number;
+    change: 'breakoutRoomsCreated';
+    breakoutRoomUUIDs: string[];
+};
+/** There are changes in the rooms list by UX or by methods `addBreakoutRoom`, `deleteBreakoutRoom`, `renameBreakoutRoom`. */
+declare type BreakoutRoomsUpdated = {
+    timestamp: number;
+    change: 'breakoutRoomsUpdated';
+    breakoutRoomUUIDs: string[];
+    changeType: 'deleted' | 'added' | 'renamed';
+};
+/** By UX or by method `assignParticipantToBreakoutRoom`. */
+declare type BreakoutRoomsParticipantsAssigned = {
+    timestamp: number;
+    change: 'breakoutRoomParticipantsAssigned';
+    breakoutRoomUUID: string;
+    /** host / co-host only */
+    participantUUIDs?: string[];
+};
+/** Participants joined a breakout room, or by method `changeBreakoutRoom`. */
+declare type BreakoutRoomsParticipantsJoined = {
+    timestamp: number;
+    change: 'breakoutRoomParticipantsJoined';
+    breakoutRoomUUID: string;
+    /** host / co-host only */
+    participantUUIDs?: string[];
+};
+/** Participants left a breakout room, or by method `changeBreakoutRoom`. */
+declare type BreakoutRoomsParticipantsLeft = {
+    timestamp: number;
+    change: 'breakoutRoomParticipantsLeft';
+    breakoutRoomUUID: string;
+    /** host / co-host only */
+    participantUUIDs?: string[];
+};
 /**
  * Usage:
  * ```
@@ -473,13 +488,27 @@ declare type BreakoutEvents = 'breakoutRoomsCreated' | 'breakoutRoomsConfigured'
  *   console.log(event)
  * });
  * ```
+ *  Note:
+ *  - `breakoutRoomOpened | breakoutRoomClosed` as a single string is deprecated
+ *
+ * | client    | <=0.14 SDK                                 | >=0.16 SDK                                   |
+ * |-----------|--------------------------------------------|----------------------------------------------|
+ * | < 5.11.0  | `breakoutRoomOpened \| breakoutRoomClosed` | `breakoutRoomOpened \| breakoutRoomClosed`   |
+ * | >= 5.11.0 | `breakoutRoomOpened \| breakoutRoomClosed` | `breakoutRoomOpened` or `breakoutRoomClosed` |
+ *
  *
  * @category Events Managing Breakout Rooms
  */
 declare type onMeetingConfigChangedEvent = {
     timestamp: number;
-    change: BreakoutEvents;
-};
+    change: 'breakoutRoomsConfigured'
+    /** Opening or Closing breakout rooms using UX or by method `openBreakoutRooms` or method `closeBreakoutRooms`. Deprecated in client version 5.11.0 */
+     | 'breakoutRoomOpened | breakoutRoomClosed'
+    /** Opening breakout rooms using UX or by method `openBreakoutRooms` */
+     | 'breakoutRoomOpened'
+    /** Closing breakout rooms using UX or by method `closeBreakoutRooms`. */
+     | 'breakoutRoomClosed';
+} | BreakoutRoomsCreated | BreakoutRoomsUpdated | BreakoutRoomsParticipantsAssigned | BreakoutRoomsParticipantsJoined | BreakoutRoomsParticipantsLeft;
 /**
  * Usage:
  * ```
@@ -1264,10 +1293,12 @@ declare type BreakoutRoomAssignmentMethods = 'automatically' | 'manually' | 'par
  * @category Breakout Room Endpoints
  */
 declare type CreateBreakoutRoomsOptions = {
-    /** Amount of breakout rooms to create. Between 1 and 50 */
+    /** Amount of breakout rooms to create. Between 1 and 50. Optional if `names` is present */
     numberOfRooms: number;
     /** Method to assign participants to rooms. (automatically, manually, participantsChoose) */
     assign: BreakoutRoomAssignmentMethods;
+    /** List of names to give breakoutrooms upon creation. Between 1 and 50. If `numberOfRooms` is present, must match the length of this list. Added in client version 5.12.6*/
+    names?: string[];
 };
 /**
  *
@@ -1724,7 +1755,7 @@ declare class ZoomSdk {
      * @zoomClientVersion 5.6.7
      * Returns the context in which the Zoom App is launched: `inMeeting`, `inWebinar`, `inMainClient`, `inPhone`, `inCollaborate`. This is useful for controlling your app's behavior based on the presence of a single user or multiple collaborative users.
      *
-     * *Supported roles*: Host, Co-Host, Participant , Panelist , Attendee
+     * *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
      *
      * *Supports Guest Mode*: Yes
      * ```
@@ -1742,7 +1773,6 @@ declare class ZoomSdk {
      *
      * *Supports Guest Mode*: No
      *
-     * **Role-based permissions** This API is only available to an app instance being run by a _Meeting Owner_.
      *
      * ```
      * await zoomSdk.getMeetingContext();
@@ -1757,7 +1787,7 @@ declare class ZoomSdk {
      *
      * When setVirtualBackground is invoked in a context where the smart virtual background package is not yet installed, a dialog prompts the user to download the package. When the user clicks "Install" in the dialog box, the package is downloaded. The client will subsequently show the consent dialog for setting the background.
      *
-     * *Supported roles*: Host, Co-Host, Participant , Panelist , Attendee
+     * *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
      *
      * *Supports Guest Mode*: Yes
      * ```
@@ -1777,7 +1807,7 @@ declare class ZoomSdk {
      *
      * Note that when calling removeVirtualBackground, the client will pop up a confirmation dialog to let the user allow or disallow. If the user does not allow the action, the client will return an error code of 10017 to the app.
      *
-     * *Supported roles*: Host, Co-Host, Participant , Panelist , Attendee
+     * *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
      *
      * *Supports Guest Mode*: Yes
      *
@@ -1876,11 +1906,9 @@ declare class ZoomSdk {
      * @zoomClientVersion 5.6.7
      * Screenshare current app.
      *
-     *  *Supported roles*: Host, Co-Host, Participant , Panelist
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist
      *
      *  *Supports Guest Mode*: Yes
-     *
-     * Role-based permissions In webinars, this API is only available to an app instance being run by a panelist or host. Webinar attendees cannot use this API.
      *
      * ```
      * await zoomSdk.shareApp({ action: "start" });
@@ -1958,8 +1986,6 @@ declare class ZoomSdk {
      *
      *  *Supports Guest Mode*: No
      *
-     * Role-based permissions This API is only available to an app instance being run by a Meeting Owner.
-     *
      * ```
      * await zoomSdk.getMeetingParticipants();
      * ```
@@ -1995,7 +2021,7 @@ declare class ZoomSdk {
      * @zoomClientVersion 5.6.7
      * It returns basic information about the meeting participant while in a meeting.
      *
-     *  *Supported roles*: Host, Co-Host, Participant , Panelist, Attendee
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
      *
      *  *Supports Guest Mode*: Yes
      *
@@ -2039,8 +2065,6 @@ declare class ZoomSdk {
      *
      *  *Supports Guest Mode*: No
      *
-     * Role-based permissions This API is only available to an app instance being run by a Meeting Owner.
-     *
      * ```
      * zoomSdk.getMeetingJoinUrl()
      *   .then((result) => {
@@ -2060,7 +2084,7 @@ declare class ZoomSdk {
      *
      * In breakout rooms,meetingUUID identifies the specific breakout room, and parentUUID helps connect individual rooms to the main meeting. Note that the value of parentUUID must be used for REST API calls inside of breakout rooms, while meetingUUID is otherwise used.
      *
-     *  *Supported roles*: Host, Co-Host, Participant , Panelist , Attendee
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
      *
      *  *Supports Guest Mode*: Yes
      *
@@ -2145,8 +2169,7 @@ declare class ZoomSdk {
      *
      *  *Supports Guest Mode*: No
      *
-     * Role-based permissions This API is only available to an app instance being run by a Meeting Host who is also a Meeting Owner. This API is not available in webinars.
-     *
+     * This API is not available in webinars.
      * ```
      * await zoomSdk.allowParticipantToRecord({
      *   participantUUID: 'xxxx',
@@ -2184,7 +2207,7 @@ declare class ZoomSdk {
      *
      * Triggers client built in participant selection UI, so that apps running in non-owner context that do not have screen names can invite specific users
      *
-     *  *Supported roles*: Host, Co-Host , Participant, Panelist
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist
      *
      *  *Supports Guest Mode*: No
      *
@@ -2201,11 +2224,9 @@ declare class ZoomSdk {
      *
      * Sends app invitations specifically to the meeting owner. Sent to both meeting & persistent chat when the meeting owner is in the meeting. Sent to persistent chat when the meeting owner is not in the meeting that might be ongoing.
      *
-     *  *Supported roles*: Host, Co-Host , Participant , Panelist
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist
      *
      *  *Supports Guest Mode*: No
-     *
-     * Role-based permissions In webinars, this API is only available to an app instance being run by a panelist or host. Webinar attendees cannot use this API.
      *
      * ```
      * await zoomSdk.sendAppInvitationToMeetingOwner();
@@ -2225,8 +2246,6 @@ declare class ZoomSdk {
      *  *Supported roles*: Host, Co-Host, Participant
      *
      *  *Supports Guest Mode*: No
-     *
-     * Role-based permissions This API is not available to panelists or attendees in webinars.
      *
      * ```
      * await zoomSdk.sendAppInvitationToAllParticipants()
@@ -2466,8 +2485,6 @@ declare class ZoomSdk {
      *
      *  *Supports Guest Mode*: No
      *
-     * *Role-based permissions*: This event is only available to an app instance being run by a Meeting Owner.
-     *
      * @category Events Core
      */
     onReaction(handler: GenericEventHandler<OnReactionEvent>): void;
@@ -2481,8 +2498,6 @@ declare class ZoomSdk {
      *
      *  *Supports Guest Mode*: No
      *
-     * *Role-based permissions*: This event is only available to an app instance being run by a Meeting Owner.
-     *
      * @category Events Core
      */
     onParticipantChange(handler: GenericEventHandler<OnParticipantChangeEvent>): void;
@@ -2493,8 +2508,6 @@ declare class ZoomSdk {
      *  *Supported roles*: Owner
      *
      *  *Supports Guest Mode*: No
-     *
-     * *Role-based permissions*: This event is only available to an app instance being run by a Meeting Owner.
      *
      * @category Events Core
      */
@@ -2566,9 +2579,9 @@ declare class ZoomSdk {
      *
      * The event does not provide detailed information about the specific change, so the app needs to make an additional API request to retrieve the updated data.
      *
-     *  *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     *  *Supported roles*: Host, Co-Host, Participant
      *
-     *  *Supports Guest Mode = Yes*
+     *  *Supports Guest Mode* = Yes
      *
      * @category Events Managing Breakout Rooms
      */
@@ -2577,7 +2590,7 @@ declare class ZoomSdk {
      * @zoomClientVersion 5.8.3
      * Notifies Zoom App when a user leaves or joins a breakout room.
      *
-     *  *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     *  *Supported roles*: Host, Co-Host, Participant
      *
      *  *Supports Guest Mode*: Yes
      *
@@ -2610,7 +2623,7 @@ declare class ZoomSdk {
      * @zoomClientVersion 5.7.3
      * Notifies Zoom App when current user reacts with a reaction in a meeting.
      *
-     *  *Supported roles*: Host, Co-Host , Participant, Panelist, Attendee
+     *  *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
      *
      *  *Supports Guest Mode*: No
      *
@@ -2728,7 +2741,7 @@ declare class ZoomSdk {
      * @zoomClientVersion 5.8.6
      * Deletes all existing breakout rooms and creates new ones. Response is same as getBreakoutRoomList.
      *
-     *  *Supported roles*: Host, Co-Host, Participant, Panelist
+     *  *Supported roles*: Host, Co-Host
      *
      *  *Supports Guest Mode*: No
      *
@@ -2739,7 +2752,7 @@ declare class ZoomSdk {
      * @zoomClientVersion 5.8.6
      * Change breakout room settings.
      *
-     *  *Supported roles*: Host, Co-Host, Participant, Panelist
+     *  *Supported roles*: Host, Co-Host
      *
      * *Supports Guest Mode*: No
      *
@@ -2764,7 +2777,7 @@ declare class ZoomSdk {
      * @zoomClientVersion 5.8.6
      * Open breakout rooms.
      *
-     * *Supported roles*: Host, Co-Host, Participant, Panelist
+     * *Supported roles*: Host, Co-Host
      *
      * *Supports Guest Mode*: No
      *
@@ -2775,7 +2788,7 @@ declare class ZoomSdk {
      * @zoomClientVersion 5.8.6
      * Close breakout rooms.
      *
-     *  *Supported roles*: Host, Co-Host, Participant, Panelist
+     *  *Supported roles*: Host, Co-Host
      *
      * *Supports Guest Mode*: No
      *
@@ -2786,7 +2799,8 @@ declare class ZoomSdk {
      * @zoomClientVersion 5.9.3
      * List all breakout rooms. Owners get list of rooms and participants for each breakout room. Co-hosts and participants get only list of rooms. The method works for participants only when breakout rooms are open.
      *
-     * *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     * *Supported roles*: Host, Co-Host, Participant
+     *
      * *Supports Guest Mode*: Yes
      *
      * Example payload
@@ -2816,7 +2830,7 @@ declare class ZoomSdk {
      * @zoomClientVersion 5.8.6
      * Add one more breakout room. This method is allowed only when breakout rooms are closed. Returns UUID of newly created breakout room.
      *
-     *  *Supported roles*: Host, Co-Host, Participant, Panelist
+     *  *Supported roles*: Host, Co-Host
      *
      * *Supports Guest Mode*: No
      *
@@ -2827,7 +2841,7 @@ declare class ZoomSdk {
      * @zoomClientVersion 5.8.6
      * Delete one breakout room. This method is allowed only when breakout rooms are closed.
      *
-     *  *Supported roles*: Host, Co-Host, Participant, Panelist
+     *  *Supported roles*: Host, Co-Host
      *
      *  *Supports Guest Mode*: No
      *
@@ -2838,7 +2852,7 @@ declare class ZoomSdk {
      * @zoomClientVersion 5.8.6
      * Renames a breakout room. This method is allowed only when breakout rooms are closed.
      *
-     *  *Supported roles*: Host, Co-Host, Participant, Panelist
+     *  *Supported roles*: Host, Co-Host
      *
      *  *Supports Guest Mode*: No
      *
@@ -2865,7 +2879,7 @@ declare class ZoomSdk {
      * @zoomClientVersion 5.8.6
      * Called by a host / co-host / participant. Allows single participant user to join or leave a breakout room.
      *
-     *  *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     *  *Supported roles*: Host, Co-Host, Participant
      *
      *  *Supports Guest Mode*: Yes
      *
@@ -3056,10 +3070,7 @@ declare class ZoomSdk {
      * @zoomClientVersion 5.10.3
      * Allows hosts and co-hosts to mute and unmute all, or specific, meeting participants. The action doesn’t affect the person initiating the request.
      *
-     * *Role-based permission*: meeting host and co-hosts
-     *
      * *Running context*: inMeeting, inWebinar
-     *
      *
      * *Supported roles*: Host, Co-Host
      *
@@ -3119,4 +3130,4 @@ declare class ZoomSdk {
 
 declare const _default: ZoomSdk;
 
-export { AddBreakoutRoomOptions, AllowParticipantToRecordOptions, Apis, AppInvitationResponse, AssignParticipantToBreakoutRoomOptions, AuthObject, AuthorizeOptions, BlurVirtualBackground, BreakOutRoom, BreakOutRoomParticipant, BreakoutEvents, BreakoutRoomAssignmentMethods, BreakoutRoomsResponse, Camera, ChangeBreakoutRoomJoinOption, ChangeBreakoutRoomOptions, ChangeBreakoutRoomOtherOptions, ClearImageOptions, ClearParticipantOptions, ClearWebViewOptions, CloudRecordingOptions, ConfigOptions, ConfigResponse, ConfigSize, ConfigureBreakoutRoomsOptions, ConfigureBreakoutRoomsResponse, CreateBreakoutRoomsOptions, DecryptedAppContextResponse, DrawImageOptions, DrawImageResponse, DrawParticipantOptions, DrawWebViewOptions, ExpandAppOptions, FileUrlVirtualBackground, GenericEventHandler, GetAppContextResponse, GetAudioStateResponse, GetMeetingContextResponse, GetMeetingJoinUrlResponse, GetMeetingParticipantsResponse, GetMeetingUUIDResponse, GetRecordingContextResponse, GetSupportedJsApisResponse, GetUserContextResponse, GetVideoStateResponse, ImageDataVirtualBackground, JSONValue, LaunchAppInMeetingOptions, ListCamerasResponse, MediaObject, NotificationOptions, OnActiveSpeakerChangeEvent, OnActiveSpeakerChangeUserType, OnAppPopoutEvent, OnAuthorizedEvent, OnBreakoutRoomChangeEvent, OnCloudRecordingEvent, OnCollaborateChangeEvent, OnConnectEvent, OnExpandAppEvent, OnMeetingEvent, OnMessageEvent, OnMyActiveSpeakerChangeEvent, OnMyMediaChangeAudioType, OnMyMediaChangeEvent, OnMyMediaChangeVideoType, OnMyReactionEvent, OnMyUserContextChangeEvent, OnParticipantChangeEvent, OnParticipantChangeParticipantType, OnReactionEvent, OnRenderedAppOpenedEvent, OnRunningContextChangeEvent, OnSendAppInvitationEvent, OnShareAppEvent, OpenUrlOptions, Participant, ParticipantCutoutShape, PixelValue, RenameBreakoutRoomOptions, RenderingContextView, RunRenderingContextOptions, RunningContextResponse, SdkOptions, SendAppInvitationOptions, SetAudioStateOptions, SetCameraOptions, SetVideoMirrorEffectOptions, SetVideoStateOptions, ShareAppOptions, StartCollaborateOptions, ToggleParticipantMediaAudioOptions, Uuid, VirtualBackgroundOptions, VirtualForegroundOptions, _default as default, onMeetingConfigChangedEvent };
+export { AddBreakoutRoomOptions, AllowParticipantToRecordOptions, Apis, AppInvitationResponse, AssignParticipantToBreakoutRoomOptions, AuthObject, AuthorizeOptions, BlurVirtualBackground, BreakOutRoom, BreakOutRoomParticipant, BreakoutRoomAssignmentMethods, BreakoutRoomsCreated, BreakoutRoomsParticipantsAssigned, BreakoutRoomsParticipantsJoined, BreakoutRoomsParticipantsLeft, BreakoutRoomsResponse, BreakoutRoomsUpdated, Camera, ChangeBreakoutRoomJoinOption, ChangeBreakoutRoomOptions, ChangeBreakoutRoomOtherOptions, ClearImageOptions, ClearParticipantOptions, ClearWebViewOptions, CloudRecordingOptions, ConfigOptions, ConfigResponse, ConfigSize, ConfigureBreakoutRoomsOptions, ConfigureBreakoutRoomsResponse, CreateBreakoutRoomsOptions, DecryptedAppContextResponse, DrawImageOptions, DrawImageResponse, DrawParticipantOptions, DrawWebViewOptions, ExpandAppOptions, FileUrlVirtualBackground, GenericEventHandler, GetAppContextResponse, GetAudioStateResponse, GetMeetingContextResponse, GetMeetingJoinUrlResponse, GetMeetingParticipantsResponse, GetMeetingUUIDResponse, GetRecordingContextResponse, GetSupportedJsApisResponse, GetUserContextResponse, GetVideoStateResponse, ImageDataVirtualBackground, JSONValue, LaunchAppInMeetingOptions, ListCamerasResponse, MediaObject, NotificationOptions, OnActiveSpeakerChangeEvent, OnActiveSpeakerChangeUserType, OnAppPopoutEvent, OnAuthorizedEvent, OnBreakoutRoomChangeEvent, OnCloudRecordingEvent, OnCollaborateChangeEvent, OnConnectEvent, OnExpandAppEvent, OnMeetingEvent, OnMessageEvent, OnMyActiveSpeakerChangeEvent, OnMyMediaChangeAudioType, OnMyMediaChangeEvent, OnMyMediaChangeVideoType, OnMyReactionEvent, OnMyUserContextChangeEvent, OnParticipantChangeEvent, OnParticipantChangeParticipantType, OnReactionEvent, OnRenderedAppOpenedEvent, OnRunningContextChangeEvent, OnSendAppInvitationEvent, OnShareAppEvent, OpenUrlOptions, Participant, ParticipantCutoutShape, PixelValue, RenameBreakoutRoomOptions, RenderingContextView, RunRenderingContextOptions, RunningContextResponse, SdkOptions, SendAppInvitationOptions, SetAudioStateOptions, SetCameraOptions, SetVideoMirrorEffectOptions, SetVideoStateOptions, ShareAppOptions, StartCollaborateOptions, ToggleParticipantMediaAudioOptions, Uuid, VirtualBackgroundOptions, VirtualForegroundOptions, _default as default, onMeetingConfigChangedEvent };

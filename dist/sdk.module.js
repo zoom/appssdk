@@ -1,4 +1,4 @@
-/* Zoom Apps SDK v0.16.5  */
+/* Zoom Apps SDK v0.16.6  */
 /**
  * Copyright (c) 2022 Zoom Video Communications, Inc.
  * 
@@ -23,7 +23,7 @@
 
 'use strict';
 
-var version = "0.16.5";
+var version = "0.16.6";
 
 var extendStatics = function(d, b) {
     extendStatics = Object.setPrototypeOf ||

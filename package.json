@@ -1,6 +1,6 @@
 {
   "name": "@zoom/appssdk",
-  "version": "0.16.5",
+  "version": "0.16.6",
   "description": "Zoom Apps SDK",
   "license": "MIT",
   "files": [
@@ -15,6 +15,7 @@
   "types": "dist/sdk.d.ts",
   "module": "dist/sdk.es.js",
   "scripts": {
+    "prepublishOnly": "npm run build",
     "clean": "rm -rf dist/dts",
     "coverage": "jest --env=jsdom --coverage --watchAll=false",
     "docs:plugin": "npm run build --prefix typedocplugins",
@@ -24,7 +25,7 @@
     "lint": "eslint . --ext .ts,.js",
     "lint:fix": "npm run lint -- --fix",
     "prepare": "husky install",
-    "build": "node ./scripts/license.js && npm run clean && rollup -c",
+    "build": "node ./scripts/license.js && npm run clean && rollup -c && rollup -c rollup.config.dts.js",
     "test": "jest --env=jsdom"
   },
   "lint-staged": {
