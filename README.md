@@ -35,7 +35,7 @@ If you installed Zoom Apps SDK from NPM, import `zoomSdk` into the component whe
 ```
 import zoomSdk from "@zoom/appssdk"
 
-async function configureApp {
+async function configureApp() {
   const configResponse = await zoomSdk.config({
     popoutSize: {width: 480, height: 360},
     capabilities: ["shareApp"]
@@ -48,7 +48,7 @@ When you load the SDK using a script tag, zoomSDK is served as a global object a
 ```
 <script src="https://appssdk.zoom.us/sdk.js"></script>
 
-async function configureApp {
+async function configureApp() {
   const configResponse = await zoomSdk.config({
     version: "0.16",
     popoutSize: {width: 480, height: 360},
