@@ -1,6 +1,6 @@
 {
   "name": "@zoom/appssdk",
-  "version": "0.16.7",
+  "version": "0.16.8",
   "description": "Zoom Apps SDK",
   "license": "MIT",
   "files": [

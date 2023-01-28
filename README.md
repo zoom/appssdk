@@ -1,6 +1,6 @@
 # Zoom Apps SDK
 
-The Zoom Apps SDK is a JavaScript library that faciliates communication between your Zoom App and the Zoom client. The SDK allows you to take advantage of the many APIs and events Zoom exposes in its embedded browser.
+The Zoom Apps SDK is a JavaScript library that facilitates communication between your Zoom App and the Zoom client. The SDK allows you to take advantage of the many APIs and events Zoom exposes in its embedded browser.
 
 ## Installation
 

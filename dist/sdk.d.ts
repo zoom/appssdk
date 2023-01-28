@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2022 Zoom Video Communications, Inc.
+ * Copyright (c) 2023 Zoom Video Communications, Inc.
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -19,44 +19,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
-/**
- * @deprecated
- */
-declare const ZERO_SIXTEEN_ZERO = "0.16.0";
-declare const ZERO_SIXTEEN = "0.16";
-/**
- * @deprecated
- */
-declare const ZERO_FOURTEEN_ZERO = "0.14.0";
-declare const ZERO_FOURTEEN = "0.14";
-
-declare type SdkVersion = typeof ZERO_FOURTEEN | typeof ZERO_FOURTEEN_ZERO | typeof ZERO_SIXTEEN | typeof ZERO_SIXTEEN_ZERO;
-declare type GeneralMessage = 'Success' | 'Failure';
-/**
- * @returns {string} Success, if no error
- *
- * @category Core Endpoints
- */
-declare type GeneralMessageResponse = {
-    message: GeneralMessage;
-};
-/**
- * _inMeeting_	The app is running in the right side panel of a meeting.
- *
- * _inImmersive_	The app is running in immersive mode, occupying the main meeting window.
- *
- * _inWebinar_	The app is running is in a webinar.
- *
- * _inMainClient_	The app is running is in the main client.
- *
- * _inPhone_	The app is running in the right side panel of Zoom Phone Client.
- *
- * _inCollaborate_	The app is running in Collaborate mode.
- *
- * @category Core Endpoints
- */
-declare type RunningContext = 'inMeeting' | 'inImmersive' | 'inWebinar' | 'inMainClient' | 'inPhone' | 'inCollaborate' | 'inCamera';
 
 declare enum NativeEvents {
     ON_ACTIVE_SPEAKER_CHANGE = "onActiveSpeakerChange",
@@ -83,9 +45,69 @@ declare enum NativeEvents {
     ON_CLOSE_APP_FOR_PARTICIPANTS = "onCloseAppForParticipants",
     ON_RENDERED_APP_OPENED = "onRenderedAppOpened",
     ON_FEEDBACK_REACTION_EVENT = "onFeedbackReaction",
-    ON_REMOVE_FEEDBACK_REACTION_EVENT = "onRemoveFeedbackReaction"
+    ON_REMOVE_FEEDBACK_REACTION_EVENT = "onRemoveFeedbackReaction",
+    ON_INCOMING_PARTICIPANT_AUDIO_CHANGE = "onIncomingParticipantAudioChange",
+    ON_SHARE_SCREEN = "onShareScreen",
+    ON_SHARE_COMPUTER_AUDIO = "onShareComputerAudio"
 }
 
+/**
+ * @deprecated
+ */
+declare const ZERO_SIXTEEN_ZERO = "0.16.0";
+declare const ZERO_SIXTEEN = "0.16";
+/**
+ * @deprecated
+ */
+declare const ZERO_FOURTEEN_ZERO = "0.14.0";
+declare const ZERO_FOURTEEN = "0.14";
+
+/** @ignore */
+declare type NativeApiRequest = {
+    jsCallId: string;
+    apiName: string;
+    token?: string;
+    appId?: string;
+    data?: any;
+};
+/**
+ * @category Core
+ */
+declare type SdkVersion = typeof ZERO_FOURTEEN | typeof ZERO_FOURTEEN_ZERO | typeof ZERO_SIXTEEN | typeof ZERO_SIXTEEN_ZERO;
+/**
+ * @category Core
+ */
+declare type GeneralMessage = 'Success' | 'Failure';
+/**
+ * @returns {string} Success, if no error
+ *
+ * @category Core
+ */
+declare type GeneralMessageResponse = {
+    message: GeneralMessage;
+};
+/**
+ * _inMeeting_	The app is running in the right side panel of a meeting.
+ *
+ * _inImmersive_	The app is running in immersive mode, occupying the main meeting window.
+ *
+ * _inWebinar_	The app is running is in a webinar.
+ *
+ * _inMainClient_	The app is running is in the main client.
+ *
+ * _inPhone_	The app is running in the right side panel of Zoom Phone Client.
+ *
+ * _inCollaborate_	The app is running in Collaborate mode.
+ *
+ * @category Core Endpoints
+ */
+/**
+ * @category Core
+ */
+declare type RunningContext = 'inMeeting' | 'inImmersive' | 'inWebinar' | 'inMainClient' | 'inPhone' | 'inCollaborate' | 'inCamera';
+/**
+ * @category Utility
+ */
 declare type GenericEventHandler<T> = (data: T) => void;
 /**
  *
@@ -107,7 +129,7 @@ declare type GenericEventHandler<T> = (data: T) => void;
  * - `"start"` if Screenshare started.
  * - `"stop"` if Screenshare stopped.
  *
- * @category Events Core
+ * @category Sharing
  */
 declare type OnShareAppEvent = 'start' | 'stop';
 /**
@@ -128,7 +150,7 @@ declare type OnShareAppEvent = 'start' | 'stop';
  *   "invitedUserCount": 100
  * }
  * ```
- * @category Events Core
+ * @category Invitations & Notifications
  */
 declare type OnSendAppInvitationEvent = {
     /** In epoch format, time when sendAppInvitation was called. */
@@ -155,7 +177,7 @@ declare type OnSendAppInvitationEvent = {
  *   console.log(event)
  * }
  * ```
- * @category Events Core
+ * @category Recording
  */
 declare type OnCloudRecordingEvent = {
     /** Timestamp */
@@ -181,7 +203,7 @@ declare type OnCloudRecordingEvent = {
  * }
  * ```
  *
- * @category Events Core
+ * @category Reactions
  */
 declare type OnReactionEvent = {
     /** Participant ID of the user who sent the reaction
@@ -194,11 +216,14 @@ declare type OnReactionEvent = {
     screenName: string;
     /** Timestamp at which the reaction was sent */
     timestamp: number;
-    /** Type of reaction. Zoom Apps use system emojis (Mac OS & Windows) along with a few custom reactions including "yes", "no", "speed up", and "slow down" */
+    /** Type of reaction. Zoom Apps use system emojis (macOS & Windows) along with a few custom reactions including "yes", "no", "speed up", and "slow down" */
     type: string;
     /** Unicode representation of the reaction */
     unicode: string;
 };
+/**
+ * @category Meeting Actions
+ */
 declare type OnParticipantChangeParticipantType = {
     /** join or leave */
     status: 'join' | 'leave';
@@ -237,12 +262,15 @@ declare type OnParticipantChangeParticipantType = {
  * }
  * ```
  *
- * @category Events Core
+ * @category Meeting Actions
  */
 declare type OnParticipantChangeEvent = {
     timestamp: number;
     participants: OnParticipantChangeParticipantType[];
 };
+/**
+ * @category Meeting Actions
+ */
 declare type OnActiveSpeakerChangeUserType = {
     /**
      * @deprecated use participantUUID instead of participantId
@@ -288,7 +316,7 @@ declare type OnActiveSpeakerChangeUserType = {
  * }
  * ```
  *
- * @category Events Core
+ * @category Meeting Actions
  */
 declare type OnActiveSpeakerChangeEvent = {
     /**
@@ -310,12 +338,11 @@ declare type OnActiveSpeakerChangeEvent = {
  * {
  *   "timestamp": 1614831950,
  *   "status": "started"
- *
  * }
  * ```
  *
  *
- * @category Events Core
+ * @category Meeting Actions
  */
 declare type OnMyActiveSpeakerChangeEvent = {
     /**
@@ -347,7 +374,7 @@ declare type OnMyActiveSpeakerChangeEvent = {
  * ```
  *
  *
- * @category Events Core
+ * @category App Window
  */
 declare type OnAppPopoutEvent = {
     /** Timestamp at which popout/pop-in button is clicked */
@@ -377,7 +404,7 @@ declare type OnAppPopoutEvent = {
  *   "action": "expand"
  * }
  * ```
- * @category Events Core
+ * @category App Window
  */
 declare type OnExpandAppEvent = {
     timestamp: number;
@@ -398,7 +425,7 @@ declare type OnExpandAppEvent = {
  *   "action": "success"
  * }
  * ```
- * @category Events maintaining state outside of a meeting
+ * @category App Instances Communication
  */
 declare type OnConnectEvent = {
     timestamp: number;
@@ -419,7 +446,7 @@ declare type OnConnectEvent = {
  *   "payload": [json object]
  * }
  * ```
- * @category Events maintaining state outside of a meeting
+ * @category App Instances Communication
  */
 declare type OnMessageEvent = {
     timestamp: number;
@@ -440,26 +467,35 @@ declare type OnMessageEvent = {
  *   "action": "ended"
  * }
  * ```
- * @category Events maintaining state outside of a meeting
+ * @category App Instances Communication
  */
 declare type OnMeetingEvent = {
     timestamp: number;
     action: string;
 };
-/** Breakout rooms are created in UX or by `createBreakoutRooms`. */
+/** Breakout rooms are created in UX or by `createBreakoutRooms`.
+ *
+ * @category Breakout Rooms
+ */
 declare type BreakoutRoomsCreated = {
     timestamp: number;
     change: 'breakoutRoomsCreated';
     breakoutRoomUUIDs: string[];
 };
-/** There are changes in the rooms list by UX or by methods `addBreakoutRoom`, `deleteBreakoutRoom`, `renameBreakoutRoom`. */
+/** There are changes in the rooms list by UX or by methods `addBreakoutRoom`, `deleteBreakoutRoom`, `renameBreakoutRoom`.
+ *
+ * @category Breakout Rooms
+ */
 declare type BreakoutRoomsUpdated = {
     timestamp: number;
     change: 'breakoutRoomsUpdated';
     breakoutRoomUUIDs: string[];
     changeType: 'deleted' | 'added' | 'renamed';
 };
-/** By UX or by method `assignParticipantToBreakoutRoom`. */
+/** By UX or by method `assignParticipantToBreakoutRoom`.
+ *
+ * @category Breakout Rooms
+ */
 declare type BreakoutRoomsParticipantsAssigned = {
     timestamp: number;
     change: 'breakoutRoomParticipantsAssigned';
@@ -467,7 +503,10 @@ declare type BreakoutRoomsParticipantsAssigned = {
     /** host / co-host only */
     participantUUIDs?: string[];
 };
-/** Participants joined a breakout room, or by method `changeBreakoutRoom`. */
+/** Participants joined a breakout room, or by method `changeBreakoutRoom`.
+ *
+ * @category Breakout Rooms
+ */
 declare type BreakoutRoomsParticipantsJoined = {
     timestamp: number;
     change: 'breakoutRoomParticipantsJoined';
@@ -475,7 +514,10 @@ declare type BreakoutRoomsParticipantsJoined = {
     /** host / co-host only */
     participantUUIDs?: string[];
 };
-/** Participants left a breakout room, or by method `changeBreakoutRoom`. */
+/** Participants left a breakout room, or by method `changeBreakoutRoom`.
+ *
+ * @category Breakout Rooms
+ */
 declare type BreakoutRoomsParticipantsLeft = {
     timestamp: number;
     change: 'breakoutRoomParticipantsLeft';
@@ -484,6 +526,12 @@ declare type BreakoutRoomsParticipantsLeft = {
     participantUUIDs?: string[];
 };
 /**
+ *
+ *  `change` The modification which triggered the event
+ * - `breakoutRoomsConfigured` Breakout rooms configurations are changed in UX or by method `configureBreakoutRoom`.
+ * - `breakoutRoomOpened | breakoutRoomClosed` Opening or Closing breakout rooms using UX or by method `openBreakoutRooms` or method `closeBreakoutRooms`. Deprecated in client version 5.11.0
+ * - `breakoutRoomOpened` Opening breakout rooms using UX or by method `openBreakoutRooms`
+ * - `breakoutRoomClosed` Closing breakout rooms using UX or by method `closeBreakoutRooms`.
  * Usage:
  * ```
  * zoomSdk.onMeetingConfigChanged((event) => {
@@ -499,17 +547,11 @@ declare type BreakoutRoomsParticipantsLeft = {
  * | >= 5.11.0 | `breakoutRoomOpened \| breakoutRoomClosed` | `breakoutRoomOpened` or `breakoutRoomClosed` |
  *
  *
- * @category Events Managing Breakout Rooms
+ * @category Breakout Rooms
  */
 declare type onMeetingConfigChangedEvent = {
     timestamp: number;
-    change: 'breakoutRoomsConfigured'
-    /** Opening or Closing breakout rooms using UX or by method `openBreakoutRooms` or method `closeBreakoutRooms`. Deprecated in client version 5.11.0 */
-     | 'breakoutRoomOpened | breakoutRoomClosed'
-    /** Opening breakout rooms using UX or by method `openBreakoutRooms` */
-     | 'breakoutRoomOpened'
-    /** Closing breakout rooms using UX or by method `closeBreakoutRooms`. */
-     | 'breakoutRoomClosed';
+    change: 'breakoutRoomsConfigured' | 'breakoutRoomOpened | breakoutRoomClosed' | 'breakoutRoomOpened' | 'breakoutRoomClosed';
 } | BreakoutRoomsCreated | BreakoutRoomsUpdated | BreakoutRoomsParticipantsAssigned | BreakoutRoomsParticipantsJoined | BreakoutRoomsParticipantsLeft;
 /**
  * Usage:
@@ -527,7 +569,7 @@ declare type onMeetingConfigChangedEvent = {
  *    timestamp: 1614831950
  * }
  * ```
- * @category Events Managing Breakout Rooms
+ * @category Breakout Rooms
  */
 declare type OnBreakoutRoomChangeEvent = {
     action: 'join' | 'leave';
@@ -551,7 +593,7 @@ declare type OnBreakoutRoomChangeEvent = {
  *   {"action": "join", "timestamp": 1646302251} //the User who call collaborate API:leave
  * }
  * ```
- * @category Events Managing Collaborations
+ * @category Collaborate
  */
 declare type OnCollaborateChangeEvent = {
     action: string;
@@ -573,7 +615,7 @@ declare type OnCollaborateChangeEvent = {
  *    timestamp: 1646302251
  * }
  * ```
- * @category Events Managing Collaborations
+ * @category Collaborate
  */
 declare type OnRunningContextChangeEvent = {
     runningContext: RunningContext;
@@ -595,7 +637,7 @@ declare type OnRunningContextChangeEvent = {
  *   "unicode": "👏"
  * }
  * ```
- * @category Events Core
+ * @category Reactions
  */
 declare type OnMyReactionEvent = {
     type: string;
@@ -619,7 +661,7 @@ declare type OnMyReactionEvent = {
  *   "screenName": "Happier Zoomineer"
  * }
  * ```
- * @category Events Core
+ * @category Meeting Actions
  */
 declare type OnMyUserContextChangeEvent = {
     /** Timestamp at which the user's context change */
@@ -629,14 +671,20 @@ declare type OnMyUserContextChangeEvent = {
     /** Screen name of the user */
     screenName: string;
 };
-declare type OnMyMediaChangeVideoType = {
+/**
+ * @category Meeting Actions
+ */
+declare type VideoMedia = {
     video?: {
         state?: boolean;
         width?: number;
         height?: number;
     };
 };
-declare type OnMyMediaChangeAudioType = {
+/**
+ * @category Meeting Actions
+ */
+declare type AudioMedia = {
     audio?: {
         state: boolean;
     };
@@ -673,10 +721,10 @@ declare type OnMyMediaChangeAudioType = {
  *   "timestamp": 1635541516
  * }
  * ```
- * @category Events Core
+ * @category Meeting Actions
  */
 declare type OnMyMediaChangeEvent = {
-    media: OnMyMediaChangeVideoType & OnMyMediaChangeAudioType;
+    media: VideoMedia | AudioMedia;
     /** Timestamp at which the user's media change */
     timestamp: number;
 };
@@ -697,11 +745,10 @@ declare type OnMyMediaChangeEvent = {
  *   "result": true
  *   "state": "UHbCftHDhjCAjI4FQ..."
  *   "timestamp": 1655142791
- *
  * }
  * ```
  *
- * @category Events Core
+ * @category Auth
  */
 declare type OnAuthorizedEvent = {
     /**  OAuth code only when succeed */
@@ -714,23 +761,88 @@ declare type OnAuthorizedEvent = {
     state?: string;
     timestamp: number;
 };
+/**
+ *
+ * Usage:
+ * ```
+ * zoomSdk.onShareScreen((event) => {
+ *   console.log(event)
+ * });
+ * ```
+ *
+ * Console log:
+ * ```
+ * {
+ *   "participantUUID": "xxxxxx"
+ *   "timestamp": 1655142791,
+ *   "action": "start",
+ *   "withSound": false,
+ * }
+ * ```
+ *
+ * @category Meeting Actions
+ */
+declare type OnShareScreenEvent = {
+    /** participant id of user sharing screen */
+    participantUUID: string;
+    /** Timestamp at which the user started or stopped screen share */
+    timestamp: number;
+    /**  Action describing whether user started or stopped */
+    action: 'start' | 'stop';
+    /**  Is user sharing audio with screen */
+    withSound: boolean;
+};
+/**
+ *
+ * Usage:
+ * ```
+ * zoomSdk.onShareComputerAudio((event) => {
+ *   console.log(event)
+ * });
+ * ```
+ *
+ * Console log:
+ * ```
+ * {
+ *   "participantUUID": "xxxxxx"
+ *   "timestamp": 1655142791,
+ *   "action": "start",
+ * }
+ * ```
+ *
+ * @category Meeting Actions
+ */
+declare type OnShareComputerAudioEvent = {
+    /** participant id of user sharing audio */
+    participantUUID: string;
+    /** Timestamp at which the user started or stopped audio share */
+    timestamp: number;
+    /**  Action describing whether user started or stopped */
+    action: 'start' | 'stop';
+};
+/**
+ * @category Core
+ */
 declare type SdkOptions = {
     version?: SdkVersion;
 };
+/**
+ * @category Core
+ */
 declare type ConfigSize = {
     height: number;
     width: number;
 };
 /**
- * @category Core Endpoints
+ * @category Core
  */
 declare type ConfigOptions = {
     /** list of APIs and events you plan to use in your app */
     capabilities: Apis[];
     /** optional. Object that takes width and height of your desired app window size upon pop-out (in pixels as a number). The size property has the following constraints:
-      - Max: 75% of screen size
-      - Min: Windows - 336 x 342, Mac - 320 x 760
-      - Default: current side-panel size */
+     - Max: 75% of screen size
+     - Min: Windows - 336 x 342, Mac - 320 x 760
+     - Default: current side-panel size */
     popoutSize?: ConfigSize;
     /** target SDK version, required if loading SDK from Zoom Apps CDN
      * ```
@@ -741,28 +853,21 @@ declare type ConfigOptions = {
     /** @hidden */
     size?: ConfigSize;
 };
+/** @ignore */
+declare type NativeConfigOptions = {
+    js_api_lists: Apis[];
+    size?: ConfigSize;
+    version?: SdkVersion;
+};
+/**
+ * @category Core
+ */
 declare type AuthObject = {
     status: 'authorized' | 'unauthorized';
     upgradable: boolean;
 };
-declare type MediaObject = {
-    audio?: {
-        state: boolean;
-    };
-    video?: {
-        state?: boolean;
-        width: number;
-        height: number;
-    };
-    /** Introduced in client version 5.10.6, works with Camera Mode. */
-    renderTarget?: {
-        width: number;
-        height: number;
-    };
-    defaultCutout?: ParticipantCutoutShape;
-};
 /**
- * @category Core Endpoints
+ * @category Core
  */
 declare type ConfigResponse = {
     /** The context in which the Zoom App is launched: inMeeting, inWebinar, inMainClient, inPhone. */
@@ -776,7 +881,14 @@ declare type ConfigResponse = {
     /** 'authorized' or 'unauthorized' */
     auth: AuthObject;
     /** only available in meetings. Provides the specifications of audio and video */
-    media?: MediaObject;
+    media?: {
+        /** Introduced in client version 5.10.6, works with Camera Mode. */
+        renderTarget?: {
+            width: number;
+            height: number;
+        };
+        defaultCutout?: ParticipantCutoutShape;
+    } & VideoMedia & AudioMedia;
     /** provides the browser userAgent*/
     userAgent: string;
     /**
@@ -789,13 +901,13 @@ declare type ConfigResponse = {
 /**
  * URL of the endpoint
  *
- * @category Core Endpoints
+ * @category Core
  */
 declare type OpenUrlOptions = {
     url: string;
 };
 /**
- * @category Core Endpoints
+ * @category Core
  */
 declare type RunningContextResponse = {
     context: RunningContext;
@@ -813,13 +925,17 @@ declare type RunningContextResponse = {
  *
  * **meetingID**	The ID of the meeting
  *
- * @category Core Endpoints
+ * @category Meeting Actions
  */
 declare type GetMeetingContextResponse = {
     meetingTopic: string;
     meetingID: string;
 };
-declare type Apis = 'addBreakoutRoom' | 'allowParticipantToRecord' | 'assignParticipantsToBreakoutRoom' | 'assignParticipantToBreakoutRoom' | 'authorize' | 'changeBreakoutRoom' | 'clearImage' | 'clearParticipant' | 'clearWebView' | 'closeBreakoutRooms' | 'closeChannel' | 'closeLobby' | 'closeRenderingContext' | 'cloudRecording' | 'configureBreakoutRooms' | 'connect' | 'createBreakoutRooms' | 'deleteBreakoutRoom' | 'drawImage' | 'drawParticipant' | 'drawWebView' | 'endCollaborate' | 'endSyncData' | 'executeOnZoomAction' | 'expandApp' | 'getBreakoutRoomList' | 'getImmersiveViewContext' | 'getMeetingContext' | 'getMeetingJoinUrl' | 'getMeetingParticipants' | 'getMeetingUUID' | 'getOnZoomProperties' | 'getPairingStatus' | 'getRecordingContext' | 'getRunningContext' | 'getScreenshot' | 'getSupportedJsApis' | 'getUserContext' | 'getUserMediaAudio' | 'getUserMediaVideo' | 'joinCollaborate' | 'joinOnZoomEvent' | 'joinZoomRoom' | 'launchAppInMeeting' | 'leaveCollaborate' | 'listCameras' | 'onActiveSpeakerChange' | 'onAppPopout' | 'onAuthenticate' | 'onAuthorized' | 'onBreakoutRoomChange' | 'onCloseAppForParticipants' | 'onCloudRecording' | 'onCollaborateChange' | 'onConnect' | 'onExpandApp' | 'onExtendedProcessing' | 'onImmersiveViewChange' | 'onMeeting' | 'onMeetingConfigChanged' | 'onMessage' | 'onMyActiveSpeakerChange' | 'onMyMediaChange' | 'onMyReaction' | 'onMyUserContextChange' | 'onOnZoomJoinStatusChange' | 'onPairingStatusChange' | 'onParticipantChange' | 'onReaction' | 'onRunningContextChange' | 'onSendAppInvitation' | 'onShareApp' | 'onThemeModeChange' | 'openBreakoutRooms' | 'openChannel' | 'openDM' | 'openUrl' | 'postMessage' | 'promptAuthorize' | 'pushState' | 'removeImmersiveView' | 'removeVirtualBackground' | 'removeVirtualForeground' | 'renameBreakoutRoom' | 'runRenderingContext' | 'sendAppInvitation' | 'sendAppInvitationToAllParticipants' | 'sendAppInvitationToMeetingOwner' | 'setCamera' | 'setImmersiveView' | 'setUserMediaAudio' | 'setUserMediaVideo' | 'setVideoMirrorEffect' | 'setVirtualBackground' | 'setVirtualForeground' | 'shareApp' | 'shareComputerAudio' | 'showAppInvitationDialog' | 'showNotification' | 'startCollaborate' | 'toggleParticipantMediaAudio' | 'onInviteCollaboration' | 'getAppContext' | 'getAudioState' | 'setAudioState' | 'getVideoState' | 'setVideoState' | 'addParticipantSpotlight' | 'removeParticipantSpotlights' | 'getParticipantSpotlights' | 'addParticipantPins' | 'removeParticipantPins' | 'setFeedbackReaction' | 'removeFeedbackReaction' | 'removeAllFeedbackReaction' | 'allowAttendeesToSpeak' | 'disallowAttendeesToSpeak' | 'removeWebinarAttendees';
+/**
+ * All the available JS APIs and events
+ * @category Core
+ * */
+declare type Apis = 'addBreakoutRoom' | 'allowParticipantToRecord' | 'assignParticipantsToBreakoutRoom' | 'assignParticipantToBreakoutRoom' | 'authorize' | 'changeBreakoutRoom' | 'clearImage' | 'clearParticipant' | 'clearWebView' | 'closeBreakoutRooms' | 'closeChannel' | 'closeLobby' | 'closeRenderingContext' | 'cloudRecording' | 'configureBreakoutRooms' | 'connect' | 'createBreakoutRooms' | 'deleteBreakoutRoom' | 'drawImage' | 'drawParticipant' | 'drawWebView' | 'endCollaborate' | 'endSyncData' | 'executeOnZoomAction' | 'expandApp' | 'getBreakoutRoomList' | 'getImmersiveViewContext' | 'getMeetingContext' | 'getMeetingJoinUrl' | 'getMeetingParticipants' | 'getMeetingUUID' | 'getOnZoomProperties' | 'getPairingStatus' | 'getRecordingContext' | 'getRunningContext' | 'getScreenshot' | 'getSupportedJsApis' | 'getUserContext' | 'getUserMediaAudio' | 'getUserMediaVideo' | 'joinCollaborate' | 'joinOnZoomEvent' | 'joinZoomRoom' | 'launchAppInMeeting' | 'leaveCollaborate' | 'listCameras' | 'onActiveSpeakerChange' | 'onAppPopout' | 'onAuthenticate' | 'onAuthorized' | 'onShareScreen' | 'onShareComputerAudio' | 'onBreakoutRoomChange' | 'onCloseAppForParticipants' | 'onCloudRecording' | 'onCollaborateChange' | 'onConnect' | 'onExpandApp' | 'onExtendedProcessing' | 'onFeedbackReaction' | 'onImmersiveViewChange' | 'onMeeting' | 'onMeetingConfigChanged' | 'onMessage' | 'onMyActiveSpeakerChange' | 'onMyMediaChange' | 'onMyReaction' | 'onMyUserContextChange' | 'onOnZoomJoinStatusChange' | 'onPairingStatusChange' | 'onParticipantChange' | 'onReaction' | 'onRemoveFeedbackReaction' | 'onRunningContextChange' | 'onSendAppInvitation' | 'onShareApp' | 'openBreakoutRooms' | 'openChannel' | 'openDM' | 'openUrl' | 'postMessage' | 'promptAuthorize' | 'pushState' | 'removeImmersiveView' | 'removeVirtualBackground' | 'removeVirtualForeground' | 'renameBreakoutRoom' | 'runRenderingContext' | 'sendAppInvitation' | 'sendAppInvitationToAllParticipants' | 'sendAppInvitationToMeetingOwner' | 'setCamera' | 'setImmersiveView' | 'setUserMediaAudio' | 'setUserMediaVideo' | 'setVideoMirrorEffect' | 'setVirtualBackground' | 'setVirtualForeground' | 'shareApp' | 'shareComputerAudio' | 'showAppInvitationDialog' | 'showNotification' | 'startCollaborate' | 'toggleParticipantMediaAudio' | 'onInviteCollaboration' | 'getAppContext' | 'getAudioState' | 'setAudioState' | 'getVideoState' | 'setVideoState' | 'addParticipantSpotlight' | 'removeParticipantSpotlights' | 'getParticipantSpotlights' | 'addParticipantPins' | 'removeParticipantPins' | 'setFeedbackReaction' | 'removeFeedbackReaction' | 'removeAllFeedbackReaction' | 'allowAttendeesToSpeak' | 'disallowAttendeesToSpeak' | 'removeWebinarAttendees' | 'setAudioSettings' | 'getAudioSettings' | 'getIncomingParticipantAudioState' | 'setIncomingParticipantAudioState' | 'onIncomingParticipantAudioChange' | 'setVideoSettings' | 'getVideoSettings' | 'promptShareScreen';
 /**
  * Example:
  * ```
@@ -831,7 +947,7 @@ declare type Apis = 'addBreakoutRoom' | 'allowParticipantToRecord' | 'assignPart
  * }
  * ```
  *
- * @category Core Endpoints
+ * @category Meeting Actions
  */
 declare type GetUserContextResponse = {
     /**
@@ -862,7 +978,7 @@ declare type GetUserContextResponse = {
  * }
  * ```
  *
- * @category Core Endpoints
+ * @category Recording
  */
 declare type GetRecordingContextResponse = {
     /** The current status of a cloud meeting recording */
@@ -876,7 +992,7 @@ declare type GetRecordingContextResponse = {
  * }
  * ```
  *
- * @category Core Endpoints
+ * @category Meeting Actions
  */
 declare type GetMeetingJoinUrlResponse = {
     /**
@@ -894,7 +1010,7 @@ declare type GetMeetingJoinUrlResponse = {
  * }
  * ```
  *
- * @category Core Endpoints
+ * @category Meeting Actions
  */
 declare type GetMeetingUUIDResponse = {
     /** The UUID of the meeting instance */
@@ -932,42 +1048,26 @@ declare type GetMeetingUUIDResponse = {
  * }
  * ```
  *
- * @category Core Endpoints
+ * @category Core
  * */
 declare type GetSupportedJsApisResponse = {
     supportedApis: Apis[];
 };
-declare type BlurVirtualBackground = {
-    /** `True` or `False`; blur user's native background. Using `blur=true` will trigger a user-facing pop-up confirmation dialog in the client to let the user allow or deny the action. The function will either be executed if allowed, or the app will receive an error with code 10017 if denied. Best practice is to show the corresponding error message. */
-    blur: true;
-    fileUrl?: string;
-    imageData?: ImageData;
-};
-declare type FileUrlVirtualBackground = {
-    /** URL of the virtual background image. Ignored if `blur` is true */
-    fileUrl: string;
-    blur?: false;
-    imageData?: ImageData;
-};
 /**
- * @category Core Endpoints
- */
-declare type Camera = {
-    /** The id of the camera */
-    id: string;
-    /** The name of the camera */
-    name: string;
-};
-/**
+ * @category Client Settings
  * @zoomClientVersion 5.6.7
- * @category Core Endpoints
  */
 declare type ListCamerasResponse = {
     /** An array containing the id and names of cameras */
-    cameras: Camera[];
+    cameras: {
+        /** The id of the camera */
+        id: string;
+        /** The name of the camera */
+        name: string;
+    }[];
 };
 /**
- * @category Core Endpoints
+ * @category Meeting Actions
  */
 declare type Participant = {
     /** The user's screen name */
@@ -982,26 +1082,43 @@ declare type Participant = {
     role: string;
 };
 /**
- * @category Core Endpoints
+ * @category Meeting Actions
  */
 declare type GetMeetingParticipantsResponse = {
     /** An array containing information about meeting participants */
     participants: Participant[];
 };
-declare type ImageDataVirtualBackground = {
+/**
+ *
+ * At least one param is required. `blur: true` supersedes `imageData` or `fileUrl` params
+ *
+ * `blur` blur user's native background. Using `blur: true` will trigger a user-facing pop-up confirmation dialog in the client to let the user allow or deny the action. The function will either be executed if allowed, or the app will receive an error with code `10017` if denied. Best practice is to show the corresponding error message.
+ *
+ * `imageData` limited to 15MB after encoding
+ *
+ * `fileUrl` URL of the virtual background image. Ignored if `blur` is true
+ * @See {@link https://developer.mozilla.org/en-US/docs/Web/API/ImageData|imageData}
+ *
+ * @category Layers
+ */
+declare type VirtualBackgroundOptions = {
     /** imageData, limited to 15MB after encoding. */
     imageData: ImageData;
     blur?: false;
     fileUrl?: string;
+} | {
+    /** URL of the virtual background image. Ignored if `blur` is true */
+    fileUrl: string;
+    blur?: false;
+    imageData?: ImageData;
+} | {
+    /** `True` or `False`; blur user's native background. Using `blur=true` will trigger a user-facing pop-up confirmation dialog in the client to let the user allow or deny the action. The function will either be executed if allowed, or the app will receive an error with code 10017 if denied. Best practice is to show the corresponding error message. */
+    blur: true;
+    fileUrl?: string;
+    imageData?: ImageData;
 };
 /**
- * @See {@link https://developer.mozilla.org/en-US/docs/Web/API/ImageData|imageData}
- *
- * @category Core Endpoints
- */
-declare type VirtualBackgroundOptions = BlurVirtualBackground | FileUrlVirtualBackground | ImageDataVirtualBackground;
-/**
- * @category Core Endpoints
+ * @category Layers
  */
 declare type VirtualForegroundOptions = {
     /** ImageData object, limited to 15MB after encoding. We recommend using the resolution of your camera reported by onMyMediaChange */
@@ -1020,9 +1137,9 @@ declare type VirtualForegroundOptions = {
     persistence?: 'save' | 'app' | 'meeting';
 };
 /**
- * @category Core Endpoints
+ * @category Invitations & Notifications
  */
-declare type NotificationOptions = {
+declare type NotificationOptions$1 = {
     /** 'info', 'warning', or 'error'. Required */
     type: 'info' | 'warning' | 'error';
     /** The title of the push notification. Required */
@@ -1031,14 +1148,14 @@ declare type NotificationOptions = {
     message: string;
 };
 /**
- * @category Core Endpoints
+ * @category Recording
  */
 declare type CloudRecordingOptions = {
     /** 'start', 'stop', 'pause', or 'resume'. Required */
     action: 'start' | 'stop' | 'pause' | 'resume';
 };
 /**
- * @category Core Endpoints
+ * @category Sharing
  */
 declare type ShareAppOptions = {
     action: 'start' | 'stop';
@@ -1047,7 +1164,7 @@ declare type ShareAppOptions = {
 };
 /**
  * @zoomClientVersion 5.6.7
- * @category Core Endpoints
+ * @category Client Settings
  */
 declare type SetCameraOptions = {
     /** ID of camera (from listCameras). Required. */
@@ -1057,18 +1174,18 @@ declare type SetCameraOptions = {
 };
 /**
  * @zoomClientVersion 5.6.7
- * @category Core Endpoints
+ * @category Meeting Actions
  */
 declare type SetVideoMirrorEffectOptions = {
     /** True or False. Required. */
     mirrorMyVideo: boolean;
 };
 /**
- * @category Core Endpoints
+ * @category Invitations & Notifications
  */
 declare type SendAppInvitationOptions = {
     /**
-     * @deprecated use pariticipantUUIDs instead of participantIds
+     * @deprecated use participantUUIDs instead of participantIds
      */
     participants?: Array<string>;
     /** List of participantUUID of the participants to send this app to (same as participantUUID defined in getMeetingParticipants()). A maximum of 10 participants can be listed. */
@@ -1076,14 +1193,14 @@ declare type SendAppInvitationOptions = {
 };
 /**
  *
- * @category Core Endpoints
+ * @category App Window
  */
 declare type ExpandAppOptions = {
     /** 'expand' or 'collapse'. Required. */
     action: 'expand' | 'collapse';
 };
 /**
- * @category Core Endpoints
+ * @category Recording
  */
 declare type AllowParticipantToRecordOptions = {
     /**
@@ -1096,14 +1213,17 @@ declare type AllowParticipantToRecordOptions = {
     /** Allow recording action type */
     action: 'grant' | 'revoke';
 };
+/**
+ * @category Core
+ */
 declare type LaunchAppInMeetingOptions = {
     /** URL of the meeting to join. */
     joinURL?: string;
 };
-/**
- * @category Core Endpoints
+/** `"immersive"` to fill the entire meeting canvas, or `"camera"` to affect only the user's video stream.
+ *
+ *  @category Layers
  */
-/** `"immersive"` to fill the entire meeting canvas, or `"camera"` to affect only the user's video stream. */
 declare type RenderingContextView = 'immersive' | 'camera';
 /** The cutout behavior of `drawParticipant()`:
  *
@@ -1118,14 +1238,16 @@ declare type RenderingContextView = 'immersive' | 'camera';
  *   - `"circle"`: Crop the participant's video into a circle
  *   - `"square"`: Crop the participant's video into a square with rounded corners
  *   - `"verticalRectangle"`: Crop the participant's video into a vertical rectangle with rounded corners
+ *
+ * @category Layers
  */
 declare type ParticipantCutoutShape = 'person' | 'standard' | 'rectangle' | 'circle' | 'square' | 'verticalRectangle';
 /**
- * @category Core Endpoints
+ * @category Layers
  */
 declare type RunRenderingContextOptions = {
     /** `"immersive"` to fill the entire meeting canvas, or `"camera"` to affect only the user's video stream. */
-    view?: RenderingContextView;
+    view: RenderingContextView;
     /** The default cutout behavior of `drawParticipant()`: `"person"` means cut out the background; other shapes mean crop the participant's video into the named shape */
     defaultCutout?: ParticipantCutoutShape;
 };
@@ -1136,11 +1258,11 @@ declare type RunRenderingContextOptions = {
  * - "N%" : A Percentage of the container/view
  * - number : A raw physical pixel value
  *
- * @category Core Endpoints
+ * @category Layers
  */
 declare type PixelValue = `${string}px` | `${string}%` | number;
 /**
- * @category Core Endpoints
+ * @category Layers
  */
 declare type DrawParticipantOptions = {
     /**
@@ -1164,9 +1286,13 @@ declare type DrawParticipantOptions = {
      * Introduced in client version 5.9.3. Additional shapes added in client version 5.11.3.
      */
     cutout?: ParticipantCutoutShape;
+    /**
+     * supported from client version 5.13.5, defaults to false
+     */
+    cameraModeMirroring?: boolean;
 };
 /**
- * @category Core Endpoints
+ * @category Layers
  */
 declare type DrawImageOptions = {
     /** A standard JavaScript imageData object, containing width, height, and pixel bytes. The image width and height should be in device pixels (scaled by window.devicePixelRatio) to accommodate HiDPI devices. */
@@ -1179,14 +1305,14 @@ declare type DrawImageOptions = {
     zIndex?: number;
 };
 /**
- * @category Core Endpoints
+ * @category Layers
  */
 declare type DrawImageResponse = {
     /** an ‘imageId’ field that uniquely identifies the image */
     imageId: string;
 };
 /**
- * @category Core Endpoints
+ * @category Layers
  */
 declare type DrawWebViewOptions = {
     /**
@@ -1205,7 +1331,7 @@ declare type DrawWebViewOptions = {
     zIndex?: number;
 };
 /**
- * @category Core Endpoints
+ * @category Layers
  */
 declare type ClearParticipantOptions = {
     /**
@@ -1217,7 +1343,7 @@ declare type ClearParticipantOptions = {
     participantUUID?: string;
 };
 /**
- * @category Core Endpoints
+ * @category Layers
  */
 declare type ClearImageOptions = {
     /** The identifier returned by drawImage. */
@@ -1225,7 +1351,7 @@ declare type ClearImageOptions = {
 };
 /**
  * @hidden // hiding all the options for now
- * @category Core Endpoints
+ * @category Layers
  */
 declare type ClearWebViewOptions = {
     /**
@@ -1252,7 +1378,7 @@ declare type ClearWebViewOptions = {
  * }
  * ```
  *
- * @category Events Core
+ * @category Utility
  */
 declare type OnRenderedAppOpenedEvent = {
     /** Timestamp at which the onRenderedAppOpenedEvent was sent */
@@ -1268,16 +1394,15 @@ declare type OnRenderedAppOpenedEvent = {
 };
 /**
  *
- * @category In-client Auth
+ * @category Auth
  */
 declare type AuthorizeOptions = {
     /** an optional OAuth 2.0 state parameter */
     state?: string;
-    /** A PKCE codeChallenge based on code verifier the application has generated. The application has to remember the code verifier. Only S256 encryption PKCE values are supported */
+    /** A PKCE codeChallenge based on code verifier the application has generated. The application has to remember the code verifier. */
     codeChallenge: string;
 };
 /**
- * @hidden
  * Usage:
  * ```
  * zoomSdk.onFeedbackReaction((event) => {
@@ -1288,22 +1413,80 @@ declare type AuthorizeOptions = {
  * Console log:
  * ```
  * {
+ *   "participantUUID": "participantUUID1",
  *   "timestamp": 1614831950,
- *   "feedback": "raiseHand"
+ *   "feedback": "raiseHand",
  * }
  * ```
  *
  *
- * @category Events Managing Meeting Actions
+ * @category Reactions
  */
 declare type OnFeedbackReactionEvent = {
+    /** Participant UUID of the user who sent the feedback */
+    participantUUID: string;
     /** Timestamp at which the feedback was sent */
     timestamp: number;
     /** Type of feedback triggered */
     feedback: FeedbackReactions;
 };
+/**
+ * Usage:
+ * ```
+ * zoomSdk.onRemoveFeedbackReaction((event) => {
+ *   console.log(event)
+ * });
+ * ```
+ *
+ * Console log:
+ * ```
+ * {
+ *   "participantUUID": "participantUUID1",
+ *   "timestamp": 1614831950,
+ * }
+ * ```
+ *
+ *
+ * @category Reactions
+ */
+declare type OnRemoveFeedbackReactionEvent = {
+    /** Participant UUID of the user who removed the feedback */
+    participantUUID: string;
+    /** Timestamp at which the feedback was removed */
+    timestamp: number;
+};
+/**
+ * Usage:
+ * ```
+ * zoomSdk.onIncomingParticipantAudioChange((event) => {
+ *   console.log(event)
+ * });
+ * ```
+ *
+ * Console log:
+ * ```
+ * {“participants": [{"participantUUID": "participantUUID1", "audio": "true"},...]}
+ * ```
+ * @category Meeting Actions
+ */
+declare type OnIncomingParticipantAudioChangeEvent = {
+    /** Target participants with specified participantUUID and their respective audio state.*/
+    participants: {
+        participantUUID: string;
+        audio: boolean;
+    }[];
+    /** TimeStamp when the Incoming Participant Audio Changes.*/
+    timestamp: number;
+};
 /** @ignore */
 declare type NativeApiRequestData = any;
+/** @ignore */
+declare type NativeApiResponseData = {
+    jsCallId: string;
+    errorCode?: string;
+    errorMessage?: string;
+    result?: any;
+};
 /** @ignore */
 declare type NativeMessage = {
     data?: NativeMessageData;
@@ -1315,34 +1498,40 @@ declare type NativeMessageData = {
     name?: string;
     data?: any;
 };
+/**
+ * @category App Instances Communication
+ */
 declare type JSONValue = string | number | boolean | null | JSONValue[] | {
     [key: string]: JSONValue;
 };
 interface JSONObject {
     [k: string]: JSONValue;
 }
+/**
+ * @category Breakout Rooms
+ */
 declare type BreakoutRoomAssignmentMethods = 'automatically' | 'manually' | 'participantsChoose';
 /**
- * @category Breakout Room Endpoints
+ * @category Breakout Rooms
  */
 declare type CreateBreakoutRoomsOptions = {
     /** Amount of breakout rooms to create. Between 1 and 50. Optional if `names` is present */
     numberOfRooms: number;
     /** Method to assign participants to rooms. (automatically, manually, participantsChoose) */
     assign: BreakoutRoomAssignmentMethods;
-    /** List of names to give breakoutrooms upon creation. Between 1 and 50. If `numberOfRooms` is present, must match the length of this list. Added in client version 5.12.6*/
+    /** List of names to give breakout rooms upon creation. Between 1 and 50. If `numberOfRooms` is present, must match the length of this list. Added in client version 5.12.6*/
     names?: string[];
 };
 /**
  *
- * @category Breakout Room Endpoints
+ * @category Breakout Rooms
  */
 declare type ConfigureBreakoutRoomsOptions = {
     /** Allow participants to choose which breakout room to join. */
     allowParticipantsChooseRoom?: boolean;
     /** Allow participants to return to the main meeting room. */
     allowParticipantsReturnToMainSession?: boolean;
-    /** Automically move participants into their assigned breakout rooms. */
+    /** Automatically move participants into their assigned breakout rooms. */
     automaticallyMoveParticipantsIntoRooms?: boolean;
     /** Automatically close breakout rooms after that many minutes. Enter 0 if there is no timeout. */
     closeAfter?: number;
@@ -1351,20 +1540,23 @@ declare type ConfigureBreakoutRoomsOptions = {
 };
 /**
  *
- * @category Breakout Room Endpoints
+ * @category Breakout Rooms
  */
 declare type ConfigureBreakoutRoomsResponse = {
     /** 0 (false) | 1 (true). Allow participants to choose which breakout room to join. */
     allowParticipantsChooseRoom: 0 | 1;
     /** 0 (false) | 1 (true). Allow participants to return to the main meeting room. */
     allowParticipantsReturnToMainSession: 0 | 1;
-    /** 0 (false) | 1 (true). Automically move participants into their assigned breakout rooms. */
+    /** 0 (false) | 1 (true). Automatically move participants into their assigned breakout rooms. */
     automaticallyMoveParticipantsIntoRooms: 0 | 1;
     /** Automatically close breakout rooms in seconds. 0 means no timeout. */
     closeAfter: number;
     /** Shows countdown after breakout rooms are closed for that many seconds. 0 means no countdown. */
     countDown: number;
 };
+/**
+ * @category Breakout Rooms
+ */
 declare type BreakOutRoomParticipant = {
     /**
      * @deprecated use participantUUID instead of participantId
@@ -1373,49 +1565,46 @@ declare type BreakOutRoomParticipant = {
     displayName: string;
     participantUUID: string;
 };
-interface BreakOutRoomParticipantWithStatus extends BreakOutRoomParticipant {
-    participantStatus: 'assigned' | 'joined';
-}
 /**
- * @category Breakout Room Endpoints
- */
-declare type BreakOutRoom = {
-    breakoutRoomId: string;
-    name: string;
-    /** Only meeting owners receive. An array of participants in breakout rooms. Includes their displayNames, participantUUID, and participantStatus. */
-    participants?: BreakOutRoomParticipantWithStatus[];
-};
-/**
- *
- * @category Breakout Room Endpoints
+ * @category Breakout Rooms
  */
 declare type BreakoutRoomsResponse = {
     /** An array of breakout rooms with their names, UUID, and an array of participant ids. Owners get list of rooms and participants for each breakout room. Co-hosts and participants get only list of rooms. */
-    rooms: BreakOutRoom[];
+    rooms: {
+        breakoutRoomId: string;
+        name: string;
+        /** Only meeting owners receive. An array of participants in breakout rooms. Includes their displayNames, participantUUID, and participantStatus. */
+        participants?: ({
+            participantStatus: 'assigned' | 'joined';
+        } & BreakOutRoomParticipant)[];
+    }[];
     /** Whether the breakout rooms are active or not */
     state: 'open' | 'closed';
     /** Only meeting owners receive. An array of participants not in breakout rooms. Includes their displayNames and participantUUID. */
     unassigned?: BreakOutRoomParticipant[];
 };
 /**
- * @category Breakout Room Endpoints
+ * @category Breakout Rooms
  */
 declare type RenameBreakoutRoomOptions = {
     name: string;
     uuid: string;
 };
 /**
- * @category Breakout Room Endpoints
+ * @category Breakout Rooms
  */
 declare type AddBreakoutRoomOptions = {
     name: string;
 };
+/**
+ * @category Breakout Rooms
+ */
 declare type Uuid = {
     uuid: string;
 };
 /**
  *
- * @category Breakout Room Endpoints
+ * @category Breakout Rooms
  */
 declare type AssignParticipantToBreakoutRoomOptions = {
     /** (optional) ID of a room (string). If you do not specify a UUID, the method removes the participant from their specific breakout rooms and puts them in the main room, if configuration of the rooms allows */
@@ -1428,65 +1617,67 @@ declare type AssignParticipantToBreakoutRoomOptions = {
     /** Meeting-specific participant identifier. */
     participantUUID?: string;
 };
-declare type ChangeBreakoutRoomJoinOption = {
-    /** This option requires a participant uuid. "join" - Join breakout room specified by uuid. */
+/**
+ * `uuid` breakout room id
+ *
+ * `action: join` This option requires a participant uuid. Join breakout room specified by uuid.
+ *
+ * These two options do not require a breakout room uuid: `leave` | `joinAssigned`. An error will be thrown if a uuid param is added with these two options.
+ * - `action: leave` Participant leaves breakout room and is sent to the main room.
+ * - `action: joinAssigned` Participant joins their default assigned breakout room.
+ *
+ * @category Breakout Rooms
+ */
+declare type ChangeBreakoutRoomOptions = {
     action: 'join';
-    /** uuid of breakout room. */
     uuid: string;
-};
-declare type ChangeBreakoutRoomOtherOptions = {
-    /** These two options do not require a breakout room uuid: "leave" | "joinAssigned". "leave" - Participant leaves breakout room and is sent to the main room. "joinAssigned" - Participant joins their default assigned breakout room. An error will be thrown if a uuid param is added with these two options. */
+} | {
     action: 'leave' | 'joinAssigned';
 };
 /**
- *
- * @category Breakout Room Endpoints
- */
-declare type ChangeBreakoutRoomOptions = ChangeBreakoutRoomJoinOption | ChangeBreakoutRoomOtherOptions;
-/**
- * @category Collaborate Mode Endpoints
+ * @category Collaborate
  */
 declare type StartCollaborateOptions = {
     /** Default true. False will opt out of sharing the host’s app screen with participants as a preview or when participants ignore the Collaborate invite. */
     shareScreen?: boolean;
 };
 /**
- * @category Core Endpoints
+ * @category Invitations & Notifications
  */
 declare type AppInvitationResponse = {
     /** A unique identifier for the invitation */
     invitationUUID: string;
 };
 /**
- * @category User Media Endpoints
+ * @category Meeting Actions
  */
 declare type SetVideoStateOptions = {
     /** Default false for setting participant video off */
     video: boolean;
 };
 /**
- * @category User Media Endpoints
+ * @category Meeting Actions
  */
 declare type GetVideoStateResponse = {
     /** boolean denoting the status of video. False means off, true means on. */
     video: boolean;
 };
 /**
- * @category User Media Endpoints
+ * @category Meeting Actions
  */
 declare type SetAudioStateOptions = {
     /** Default false for setting participant audio off */
     audio: boolean;
 };
 /**
- * @category User Media Endpoints
+ * @category Meeting Actions
  */
 declare type GetAudioStateResponse = {
     /** boolean denoting the status of audio. False means muted, true means unmuted. */
     audio: boolean;
 };
 /**
- * @category User Media Endpoints
+ * @category Meeting Actions
  */
 declare type ToggleParticipantMediaAudioOptions = {
     /** mute or unmute participants. true = unmute, false = mute */
@@ -1499,7 +1690,7 @@ declare type ToggleParticipantMediaAudioOptions = {
     participantUUIDs?: string[];
 };
 /**
- * @category Core Endpoints
+ * @category Core
  */
 declare type GetAppContextResponse = {
     /** Signed app context data */
@@ -1507,7 +1698,7 @@ declare type GetAppContextResponse = {
     context: string;
 };
 /**
- * @category Core Endpoints
+ * @category Meeting Actions
  */
 declare type ParticipantPinOptions = {
     /** Target participants with specified participantUUIDs. If an empty list is submitted, all participants are ejected. Empty lists are not allowed for adding pins. */
@@ -1516,21 +1707,47 @@ declare type ParticipantPinOptions = {
     secondaryDisplay?: boolean;
 };
 /**
- * @category Core Endpoints
+ * @category Webinar-only Actions
  */
 declare type AttendeeSpeakingOptions = {
     /** Target participants with specified participantUUIDs. If list is empty or not specified, all participants are allowed/ disallowed to speak based on the action specified. */
     participantUUIDs?: string[];
 };
 /**
- * @category Core Endpoints
+ * @category Webinar-only Actions
  */
 declare type RemoveWebinarAttendeeOptions = {
     /** Target participants with specified participantUUIDs. If list is empty or not specified, all participants are ejected from the Webinar.*/
     participantUUIDs?: string[];
 };
 /**
- * @category Core Endpoints
+ * @category Meeting Actions
+ */
+declare type SetIncomingParticipantAudioStateOptions = {
+    /** Target participants with specified participantUUIDs. If list is empty incoming speaker audio will be turned off/on for all the participants.*/
+    participantUUIDs: string[];
+    /**Turn on/off incoming speaker audio for the participants among the participantUUIDs */
+    audio: boolean;
+};
+/**
+ * @category Meeting Actions
+ */
+declare type GetIncomingParticipantAudioStateOptions = {
+    /** Target participants with specified participantUUIDs. If list is empty the incoming speaker audio status for all the participants will be returned as a status list.*/
+    participantUUIDs: string[];
+};
+/**
+ * @category Meeting Actions
+ */
+declare type GetIncomingParticipantAudioStateResponse = {
+    /** Target participants with specified participantUUID and their respective audio state.*/
+    participants: {
+        participantUUID: string;
+        audio: boolean;
+    }[];
+};
+/**
+ * @category Core
  */
 declare type DecryptedAppContextResponse = {
     /** decrypted app context data */
@@ -1546,7 +1763,7 @@ declare type DecryptedAppContextResponse = {
     attendrole?: 'host' | 'co-host' | 'participant' | 'panelist' | 'attendee';
     /** breakout room UUID as returned by getBreakoutRoomList */
     bmid?: string;
-    /** collaborateId session identifier is passed when app is opened through inivitation to collaborate, expires in 5 minutes */
+    /** collaborateId session identifier is passed when app is opened through invitation to collaborate, expires in 5 minutes */
     cid?: string;
     /** invitation id is passed when app is open through invitation, expires is 5 minutes */
     iid?: string;
@@ -1554,20 +1771,29 @@ declare type DecryptedAppContextResponse = {
     act?: string;
     /** string, "marketplace.zoom.us" the issuer claim will always be present */
     iss: 'marketplace.zoom.us';
-    /** string, the audience is a string containing the CLIENT ID of the zoom app. */
+    /** string, the audience is a string containing the CLIENT ID of the Zoom App. */
     aud: string;
 };
+/**
+ * @category Meeting Actions
+ */
 declare type AddParticipantSpotlightOptions = {
     participantUUID: string;
 };
+/**
+ * @category Meeting Actions
+ */
 declare type RemoveParticipantSpotlightsOptions = {
     participantUUIDs: string[];
 };
+/**
+ *  @category Meeting Actions
+ */
 declare type GetParticipantSpotlightsResponse = {
     participantUUIDs: string[];
 };
 /**
- * @category Core Endpoints
+ * @category Sharing
  */
 declare type ShareComputerAudioOptions = {
     /** begins or ends sharing audio */
@@ -1576,19 +1802,73 @@ declare type ShareComputerAudioOptions = {
     mode?: 'stereo' | 'mono';
 };
 /**
- * @category Meeting Action Endpoints
+ * @category Reactions
  */
 declare type FeedbackReactions = 'yes' | 'no' | 'slowDown' | 'speedUp' | 'away' | 'raiseHand';
 /**
- * @category Meeting Action Endpoints
+ * @category Reactions
  */
 declare type FeedbackReactionOptions = {
     feedback: FeedbackReactions;
 };
 /**
+ * At least one property of this type is required to exist
+ *
+ * @category Meeting Actions
+ */
+declare type SetAudioSettingsOptions = {
+    speakerDeviceId?: string;
+    outputVolume?: number;
+    microphoneDeviceId?: string;
+    audioProfile?: 'zoomOptimizedAudio' | 'originalSound';
+    originalSound?: boolean;
+    backgroundNoiseSuppression?: 'auto' | 'low' | 'medium' | 'high';
+};
+/**
+ * At least one property of this type is required to exist
+ *
+ * @category Meeting Actions
+ */
+declare type SetVideoSettingsOptions = {
+    hdVideo?: boolean;
+    displayParticipantNames?: boolean;
+    hideNonVideoParticipants?: boolean;
+};
+/**
+ *
+ * @category Meeting Actions
+ */
+declare type GetAudioSettingsResponse = {
+    microphoneDevices: {
+        microphoneDeviceId: string;
+        microphoneDeviceName: string;
+        isSelected: boolean;
+        sameAsSystem: boolean;
+    }[];
+    speakerDevices: {
+        speakerDeviceId: string;
+        speakerDeviceName: string;
+        isSelected: boolean;
+        sameAsSystem: boolean;
+    }[];
+    outputVolume: number;
+    audioProfile: 'zoomOptimizedAudio' | 'originalSound';
+    originalSound: boolean;
+    backgroundNoiseSuppression: 'auto' | 'low' | 'medium' | 'high';
+};
+/**
+ * @category Meeting Actions
+ */
+declare type GetVideoSettingsResponse = {
+    hdVideo: boolean;
+    displayParticipantNames: boolean;
+    hideNonVideoParticipants: boolean;
+};
+
+/**
  * # Zoom Apps SDK
  *
- * The Zoom Apps SDK is a JavaScript library that faciliates communication between your Zoom App and the Zoom client. The SDK allows you to take advantage of the many APIs and events Zoom exposes in its embedded browser.
+ * The Zoom Apps SDK is a JavaScript library that facilitates communication between your Zoom App and the Zoom client. The SDK allows you to take advantage of the many APIs and events Zoom exposes in its embedded browser.
  *
  * ## Installation
  *
@@ -1750,7 +2030,7 @@ declare class ZoomSdk {
      *
      * To initialize and start using the SDK, you must first call `zoomSdk.config` to verify your application with Zoom. Without completing this step, your application won’t be able to use any of the APIs or event listeners provided by the SDK. In the request body of this API call, specify the list of APIs and event listeners that you plan to use in your app as shown below. Ensure that the list of capabilities provided in this request corresponds to the list of APIs and events that you have added in your app build flow on Marketplace (Zoom App > Feature > Zoom App SDK).
      *
-     * The Zoom Apps SDK relies on a token that is generated and used internally by the Zoom client to authorize API calls on behalf of the app. This token is bound to the openURL that you provide when you call `zoomSdk.config`. If your URL changes, your configuration will be invalidated and you will need to call `zoomSdk.config` with the new URL again.
+     * The Zoom Apps SDK relies on a token that is generated and used internally by the Zoom client to authorize API calls on behalf of the app. This token is bound to the openURL that you provide when you call `zoomSdk.config`. If your URL changes, your configuration will be invalidated, and you will need to call `zoomSdk.config` with the new URL again.
      *
      * If your Zoom App is a single page app, we suggest modifying your navigation methods to automate this.
      * ```
@@ -1803,7 +2083,7 @@ declare class ZoomSdk {
      * });
      * ```
      *
-     * @category Core Endpoints
+     * @category Core
      */
     config({ capabilities, popoutSize, size, version, }: ConfigOptions): Promise<ConfigResponse>;
     /**
@@ -1818,7 +2098,7 @@ declare class ZoomSdk {
      * await zoomSdk.getSupportedJsApis();
      * ```
      *
-     * @category Core Endpoints
+     * @category Core
      */
     getSupportedJsApis(): Promise<GetSupportedJsApisResponse>;
     /**
@@ -1833,9 +2113,9 @@ declare class ZoomSdk {
      * await zoomSdk.openUrl({ url: "https://awesome-zoom-app.com/login" });
      * ```
      *
-     * *You must whitelist the URL's domain in your Marketplace app configuration, otherwise the browser will show a warning "Accessing Untrusted Web Site". And the user has to manually click the link to trigger marketplace to redirect them to the specified url.*
+     * *You must whitelist the URL domain in your Marketplace app configuration, otherwise the browser will show a warning "Accessing Untrusted Website". And the user has to manually click the link to trigger marketplace to redirect them to the specified url.*
      *
-     * @category Core Endpoints
+     * @category Core
      */
     openUrl(options: OpenUrlOptions): Promise<GeneralMessageResponse>;
     /**
@@ -1849,7 +2129,7 @@ declare class ZoomSdk {
      * await zoomSdk.getRunningContext();
      * ```
      *
-     * @category Core Endpoints
+     * @category Core
      */
     getRunningContext(): Promise<RunningContextResponse>;
     /**
@@ -1865,7 +2145,7 @@ declare class ZoomSdk {
      * await zoomSdk.getMeetingContext();
      * ```
      *
-     * @category Core Endpoints
+     * @category Meeting Actions
      */
     getMeetingContext(): Promise<GetMeetingContextResponse>;
     /**
@@ -1873,6 +2153,10 @@ declare class ZoomSdk {
      * This sets a virtual background or blur the user's native background.
      *
      * When setVirtualBackground is invoked in a context where the smart virtual background package is not yet installed, a dialog prompts the user to download the package. When the user clicks "Install" in the dialog box, the package is downloaded. The client will subsequently show the consent dialog for setting the background.
+     *
+     * The API is available in `inMainClient` running context from client version 5.13.5
+     *
+     * *Running context*: inMeeting, inWebinar, inImmersive, inCamera, inMainClient, inCollaborate
      *
      * *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
      *
@@ -1884,8 +2168,7 @@ declare class ZoomSdk {
      *
      * await zoomSdk.setVirtualBackground(myOptions);
      * ```
-     *
-     * @category Core Endpoints
+     * @category Layers
      */
     setVirtualBackground(options: VirtualBackgroundOptions): Promise<GeneralMessageResponse>;
     /**
@@ -1893,6 +2176,10 @@ declare class ZoomSdk {
      * Removes current virtual background and resets to use the camera.
      *
      * Note that when calling removeVirtualBackground, the client will pop up a confirmation dialog to let the user allow or disallow. If the user does not allow the action, the client will return an error code of 10017 to the app.
+     *
+     * The API is available in `inMainClient` running context from client version 5.13.5
+     *
+     * *Running context*: inMeeting, inWebinar, inImmersive, inCamera, inMainClient, inCollaborate
      *
      * *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
      *
@@ -1907,7 +2194,7 @@ declare class ZoomSdk {
      * })
      * ```
      *
-     * @category Core Endpoints
+     * @category Layers
      */
     removeVirtualBackground(): Promise<GeneralMessageResponse>;
     /**
@@ -1934,7 +2221,7 @@ declare class ZoomSdk {
      *
      * On success, this returns an object with an imageId field (string/UUID) that uniquely identifies the image.
      *
-     * @category Core Endpoints
+     * @category Layers
      */
     setVirtualForeground(options: VirtualForegroundOptions): Promise<GeneralMessageResponse>;
     /**
@@ -1952,7 +2239,7 @@ declare class ZoomSdk {
      * });
      * ```
      *
-     * @category Core Endpoints
+     * @category Layers
      */
     removeVirtualForeground(): Promise<GeneralMessageResponse>;
     /**
@@ -1971,7 +2258,7 @@ declare class ZoomSdk {
      * });
      * ```
      *
-     * @category Core Endpoints
+     * @category Invitations & Notifications
      */
     showNotification(options: NotificationOptions): Promise<GeneralMessageResponse>;
     /**
@@ -1986,7 +2273,7 @@ declare class ZoomSdk {
      * await zoomSdk.cloudRecording({ action: "start" });
      * ```
      *
-     * @category Core Endpoints
+     * @category Recording
      */
     cloudRecording(options: CloudRecordingOptions): Promise<GeneralMessageResponse>;
     /**
@@ -2001,7 +2288,7 @@ declare class ZoomSdk {
      * await zoomSdk.shareApp({ action: "start", withSound: true });
      * ```
      *
-     * @category Core Endpoints
+     * @category Sharing
      */
     shareApp(options: ShareAppOptions): Promise<GeneralMessageResponse>;
     /**
@@ -2027,7 +2314,7 @@ declare class ZoomSdk {
      * }
      * ```
      *
-     * @category Core Endpoints
+     * @category Client Settings
      */
     listCameras(): Promise<ListCamerasResponse>;
     /**
@@ -2045,7 +2332,7 @@ declare class ZoomSdk {
      * });
      * ```
      *
-     * @category Core Endpoints
+     * @category Client Settings
      */
     setCamera(options: SetCameraOptions): Promise<GeneralMessageResponse>;
     /**
@@ -2062,7 +2349,7 @@ declare class ZoomSdk {
      * });
      * ```
      *
-     * @category Core Endpoints
+     * @category Meeting Actions
      */
     setVideoMirrorEffect(options: SetVideoMirrorEffectOptions): Promise<GeneralMessageResponse>;
     /**
@@ -2077,7 +2364,7 @@ declare class ZoomSdk {
      * await zoomSdk.getMeetingParticipants();
      * ```
      *
-     * @category Core Endpoints
+     * @category Meeting Actions
      */
     getMeetingParticipants(): Promise<GetMeetingParticipantsResponse>;
     /**
@@ -2101,7 +2388,7 @@ declare class ZoomSdk {
      * ```
      *
      *
-     * @category Core Endpoints
+     * @category Invitations & Notifications
      */
     sendAppInvitation(options: SendAppInvitationOptions): Promise<AppInvitationResponse>;
     /**
@@ -2121,7 +2408,7 @@ declare class ZoomSdk {
      *  })
      * ```
      *
-     * @category Core Endpoints
+     * @category Meeting Actions
      */
     getUserContext(): Promise<GetUserContextResponse>;
     /**
@@ -2141,7 +2428,7 @@ declare class ZoomSdk {
      *  })
      * ```
      *
-     * @category Core Endpoints
+     * @category Recording
      */
     getRecordingContext(): Promise<GetRecordingContextResponse>;
     /**
@@ -2162,7 +2449,7 @@ declare class ZoomSdk {
      *   })
      * ```
      *
-     * @category Core Endpoints
+     * @category Meeting Actions
      */
     getMeetingJoinUrl(): Promise<GetMeetingJoinUrlResponse>;
     /**
@@ -2185,7 +2472,7 @@ declare class ZoomSdk {
      *  })
      * ```
      *
-     * @category Core Endpoints
+     * @category Meeting Actions
      */
     getMeetingUUID(): Promise<GetMeetingUUIDResponse>;
     /**
@@ -2203,7 +2490,7 @@ declare class ZoomSdk {
      * ```
      *
      *
-     * @category Core Endpoints
+     * @category App Window
      */
     expandApp(options: ExpandAppOptions): Promise<GeneralMessageResponse>;
     /**
@@ -2217,7 +2504,7 @@ declare class ZoomSdk {
      * ```
      * await zoomSdk.connect()
      * ```
-     * @category Maintaining State Outside of a Meeting
+     * @category App Instances Communication
      */
     connect(): Promise<GeneralMessageResponse>;
     /**
@@ -2231,12 +2518,12 @@ declare class ZoomSdk {
      * ```
      * await zoomSdk.postMessage({ JSON })
      * ```
-     * @category Maintaining State Outside of a Meeting
+     * @category App Instances Communication
      */
     postMessage(options: JSONObject): Promise<GeneralMessageResponse>;
     /**
      * @zoomClientVersion 5.7.3
-     * Tells the client to end the data communication between connected apps. Note that the client will close the connection between the apps when endSyncData is called or 10 seconds after the onMeeting event with event.action == 'ended' is recieved, whichever comes first.
+     * Tells the client to end the data communication between connected apps. Note that the client will close the connection between the apps when endSyncData is called or 10 seconds after the onMeeting event with event.action == 'ended' is received, whichever comes first.
      *
      *  *Supported roles*: Host, Co-Host, Participant, Panelist
      *
@@ -2245,7 +2532,7 @@ declare class ZoomSdk {
      * ```
      * await zoomSdk.endSyncData()
      * ```
-     * @category Maintaining State Outside of a Meeting
+     * @category App Instances Communication
      */
     endSyncData(): Promise<void>;
     /**
@@ -2266,7 +2553,7 @@ declare class ZoomSdk {
      *
      * This API requires `participantUUID`
      *
-     * @category Core Endpoints
+     * @category Recording
      */
     allowParticipantToRecord(options: AllowParticipantToRecordOptions): Promise<GeneralMessageResponse>;
     /**
@@ -2285,7 +2572,7 @@ declare class ZoomSdk {
      * | -------------------- | ------------- | -------- |
      * | inMainClient |	Joins meeting associated with the `joinURL` and launches app in it | Starts a new meeting and launches app in it |
      *
-     * @category Core Endpoints
+     * @category Core
      */
     launchAppInMeeting(options?: LaunchAppInMeetingOptions): Promise<GeneralMessageResponse>;
     /**
@@ -2302,7 +2589,7 @@ declare class ZoomSdk {
      * await zoomSdk.showAppInvitationDialog();
      * ```
      *
-     * @category Core Endpoints
+     * @category Invitations & Notifications
      */
     showAppInvitationDialog(): Promise<GeneralMessageResponse>;
     /**
@@ -2319,7 +2606,7 @@ declare class ZoomSdk {
      * await zoomSdk.sendAppInvitationToMeetingOwner();
      * ```
      *
-     * @category Core Endpoints
+     * @category Invitations & Notifications
      */
     sendAppInvitationToMeetingOwner(): Promise<AppInvitationResponse>;
     /**
@@ -2328,7 +2615,7 @@ declare class ZoomSdk {
      *
      * In breakout rooms, this will only send invitations to participants within the current room.
      *
-     * This API may behave differently depending on the in-meeting chat setting enabled by the host for the meeting participants. The meeting host can determine whether meeting participants can chat with: No one, Hosts and Cohosts, Everyone, Everyone and Anyone directly.
+     * This API may behave differently depending on the in-meeting chat setting enabled by the host for the meeting participants. The meeting host can determine whether meeting participants can chat with: No one, Hosts and Co-Hosts, Everyone, Everyone and Anyone directly.
      *
      *  *Supported roles*: Host, Co-Host, Participant
      *
@@ -2344,7 +2631,7 @@ declare class ZoomSdk {
      * })
      * ```
      *
-     * @category Core Endpoints
+     * @category Invitations & Notifications
      */
     sendAppInvitationToAllParticipants(): Promise<AppInvitationResponse>;
     /**
@@ -2364,7 +2651,7 @@ declare class ZoomSdk {
      * })
      * ```
      *
-     * @category Core Endpoints
+     * @category Layers
      */
     runRenderingContext(options: RunRenderingContextOptions): Promise<GeneralMessageResponse>;
     /**
@@ -2385,14 +2672,17 @@ declare class ZoomSdk {
      *    });
      * ```
      *
-     * @category Core Endpoints
+     * @category Layers
      */
     closeRenderingContext(): Promise<GeneralMessageResponse>;
     /**
      * @zoomClientVersion 5.9.0
-     * Draws participant videos and static images on top of the background.
+     * The `drawParticipant` method can be used to specify the position and size of a partipant on the screen when in `camera` or `immersive` rendering context. The `participantUUID` option can be filled with the value from `getMeetingParticipants` or `getUserContext`.
      *
-     * The getMeetingParticipants method provides a list of meeting participants. For each of these, the app can specify a position, size and z-index with using drawParticipant. This method is available when using the "immersive" rendering context. All visible meeting participants are shown using a video cutout, removing their background.
+     * When `cameraModeMirroring` option is set to true, the participant will be streamed as mirrored in both the `local` client `and` to `other` participants. This option is only available in `camer mode`. Furthermore, none of the layers except of the participant layer can be mirrored in camera mode.
+     *
+     *  added in desktop client version 5.13.5
+     * `cameraModeMirroring` defaults to false.
      *
      *  *Supported roles*: Host, Co-Host
      *
@@ -2401,7 +2691,8 @@ declare class ZoomSdk {
      * ```
      * zoomSdk.drawParticipant({
      *     participantUUID: 'xxx',
-     *     x: 0, y: 0, width: 1280, height: 720, zIndex: 1
+     *     x: 0, y: 0, width: 1280, height: 720, zIndex: 1,
+     *     cameraModeMirroring: true;
      * })
      * .then((ctx) => {
      *     console.log("drawParticipant returned", ctx);
@@ -2414,9 +2705,9 @@ declare class ZoomSdk {
      * **Notes**
      * - The `getMeetingParticipants()` API is only available to the meeting host. When multiple participants are each using the same Layers app for a meeting, app-specific messaging may be used to communicate the participants list to other meeting attendees.
      * - Drawing a participant’s video that is already being drawn moves it to the new location.
-     * - If the participant isn’t sending video, the a fallback will be used. Fallbacks are tried in the following order: user avatar, telephone icon (if applicable), CRC icon (if applicable), user name.
+     * - If the participant isn’t sending video, a fallback will be used. Fallbacks are tried in the following order: user avatar, telephone icon (if applicable), CRC icon (if applicable), user name.
      *
-     * @category Core Endpoints
+     * @category Layers
      */
     drawParticipant(options: DrawParticipantOptions): Promise<GeneralMessageResponse>;
     /**
@@ -2436,7 +2727,7 @@ declare class ZoomSdk {
      * });
      * ```
      *
-     * @category Core Endpoints
+     * @category Layers
      */
     clearParticipant(options: ClearParticipantOptions): Promise<GeneralMessageResponse>;
     /**
@@ -2466,7 +2757,7 @@ declare class ZoomSdk {
      *
      * In order to move an image, use `clearImage` first, and then redraw the image in the intended position.
      *
-     * @category Core Endpoints
+     * @category Layers
      */
     drawImage(options: DrawImageOptions): Promise<DrawImageResponse>;
     /**
@@ -2486,7 +2777,7 @@ declare class ZoomSdk {
      * });
      * ```
      *
-     * @category Core Endpoints
+     * @category Layers
      */
     clearImage(options: ClearImageOptions): Promise<GeneralMessageResponse>;
     /**
@@ -2510,7 +2801,7 @@ declare class ZoomSdk {
      * });
      * ```
      *
-     * @category Core Endpoints
+     * @category Layers
      */
     drawWebView(options: DrawWebViewOptions): Promise<GeneralMessageResponse>;
     /**
@@ -2528,7 +2819,7 @@ declare class ZoomSdk {
      * });
      * ```
      *
-     * @category Core Endpoints
+     * @category Layers
      */
     clearWebView(): Promise<GeneralMessageResponse>;
     /**
@@ -2539,7 +2830,7 @@ declare class ZoomSdk {
      *
      *  *Supports Guest Mode*: Yes
      *
-     * @category Events Core
+     * @category Sharing
      */
     onShareApp(handler: GenericEventHandler<OnShareAppEvent>): void;
     /**
@@ -2550,7 +2841,7 @@ declare class ZoomSdk {
      *
      *  *Supports Guest Mode*: No
      *
-     * @category Events Core
+     * @category Invitations & Notifications
      */
     onSendAppInvitation(handler: GenericEventHandler<OnSendAppInvitationEvent>): void;
     /**
@@ -2561,7 +2852,7 @@ declare class ZoomSdk {
      *
      *  *Supports Guest Mode*: No
      *
-     * @category Events Core
+     * @category Recording
      */
     onCloudRecording(handler: GenericEventHandler<OnCloudRecordingEvent>): void;
     /**
@@ -2572,7 +2863,7 @@ declare class ZoomSdk {
      *
      *  *Supports Guest Mode*: No
      *
-     * @category Events Core
+     * @category Reactions
      */
     onReaction(handler: GenericEventHandler<OnReactionEvent>): void;
     /**
@@ -2585,7 +2876,7 @@ declare class ZoomSdk {
      *
      *  *Supports Guest Mode*: No
      *
-     * @category Events Core
+     * @category Meeting Actions
      */
     onParticipantChange(handler: GenericEventHandler<OnParticipantChangeEvent>): void;
     /**
@@ -2596,7 +2887,7 @@ declare class ZoomSdk {
      *
      *  *Supports Guest Mode*: No
      *
-     * @category Events Core
+     * @category Meeting Actions
      */
     onActiveSpeakerChange(handler: GenericEventHandler<OnActiveSpeakerChangeEvent>): void;
     /**
@@ -2607,7 +2898,7 @@ declare class ZoomSdk {
      *
      *  *Supports Guest Mode*: Yes
      *
-     * @category Events Core
+     * @category App Window
      */
     onAppPopout(handler: GenericEventHandler<OnAppPopoutEvent>): void;
     /**
@@ -2618,7 +2909,7 @@ declare class ZoomSdk {
      *
      *  *Supports Guest Mode*: Yes
      *
-     * @category Events Core
+     * @category App Window
      */
     onExpandApp(handler: GenericEventHandler<OnExpandAppEvent>): void;
     /**
@@ -2631,7 +2922,7 @@ declare class ZoomSdk {
      *
      *  *Supports Guest Mode*: Yes
      *
-     * @category Events maintaining state outside of a meeting
+     * @category App Instances Communication
      */
     onConnect(handler: GenericEventHandler<OnConnectEvent>): void;
     /**
@@ -2644,7 +2935,7 @@ declare class ZoomSdk {
      *
      *  *Supports Guest Mode*: Yes
      *
-     * @category Events maintaining state outside of a meeting
+     * @category App Instances Communication
      */
     onMessage(handler: GenericEventHandler<OnMessageEvent>): void;
     /**
@@ -2657,7 +2948,7 @@ declare class ZoomSdk {
      *
      *  *Supports Guest Mode*: No
      *
-     * @category Events maintaining state outside of a meeting
+     * @category App Instances Communication
      */
     onMeeting(handler: GenericEventHandler<OnMeetingEvent>): void;
     /**
@@ -2670,7 +2961,7 @@ declare class ZoomSdk {
      *
      *  *Supports Guest Mode* = Yes
      *
-     * @category Events Managing Breakout Rooms
+     * @category Breakout Rooms
      */
     onMeetingConfigChanged(handler: GenericEventHandler<onMeetingConfigChangedEvent>): void;
     /**
@@ -2681,7 +2972,7 @@ declare class ZoomSdk {
      *
      *  *Supports Guest Mode*: Yes
      *
-     * @category Events Managing Breakout Rooms
+     * @category Breakout Rooms
      */
     onBreakoutRoomChange(handler: GenericEventHandler<OnBreakoutRoomChangeEvent>): void;
     /**
@@ -2694,7 +2985,7 @@ declare class ZoomSdk {
      *
      *  *Supports Guest Mode*: No
      *
-     * @category Events Managing Collaborations
+     * @category Collaborate
      */
     onCollaborateChange(handler: GenericEventHandler<OnCollaborateChangeEvent>): void;
     /**
@@ -2703,7 +2994,7 @@ declare class ZoomSdk {
      *
      *  *Supports Guest Mode*: No
      *
-     * @category Events Managing Collaborations
+     * @category Collaborate
      */
     onRunningContextChange(handler: GenericEventHandler<OnRunningContextChangeEvent>): void;
     /**
@@ -2714,7 +3005,7 @@ declare class ZoomSdk {
      *
      *  *Supports Guest Mode*: No
      *
-     * @category Events Core
+     * @category Reactions
      */
     onMyReaction(handler: GenericEventHandler<OnMyReactionEvent>): void;
     /**
@@ -2725,14 +3016,14 @@ declare class ZoomSdk {
      *
      *  *Supports Guest Mode*: No
      *
-     * @category Events Core
+     * @category Meeting Actions
      */
     onMyActiveSpeakerChange(handler: GenericEventHandler<OnMyActiveSpeakerChangeEvent>): void;
     /**
      * @zoomClientVersion 5.7.3
      * This event is triggered when the current user’s role changes.
      *
-     * `onMyUserContextChange` is be available to apps regardless of whether the app user is an owner, host or attendee in a meeting, but would only provide data for the user that’s running the app (and not the other participants in the meeting).
+     * `onMyUserContextChange` will be available to apps regardless of whether the app user is an owner, host or attendee in a meeting, but would only provide data for the user that’s running the app (and not the other participants in the meeting).
      *
      * IMPORTANT: Some changes to user context (for example, change to status following `onMyUserContextChange`), will require the application to configure again, by invoking `config` once more.
      *
@@ -2740,7 +3031,7 @@ declare class ZoomSdk {
      *
      *  *Supports Guest Mode*: Yes
      *
-     * @category Events Core
+     * @category Meeting Actions
      */
     onMyUserContextChange(handler: GenericEventHandler<OnMyUserContextChangeEvent>): void;
     /**
@@ -2753,7 +3044,7 @@ declare class ZoomSdk {
      *
      * *Supports Guest Mode*: Yes
      *
-     * @category Events Core
+     * @category Meeting Actions
      */
     onMyMediaChange(handler: GenericEventHandler<OnMyMediaChangeEvent>): void;
     /**
@@ -2764,9 +3055,47 @@ declare class ZoomSdk {
      *
      * *Supports Guest Mode*: No
      *
-     * @category In-client Auth
+     * @category Auth
      */
     onAuthorized(handler: GenericEventHandler<OnAuthorizedEvent>): void;
+    /**
+     * @zoomClientVersion 5.13.5
+     * This event triggers when a user in the meeting starts or stops sharing their screen.
+     *
+     *  *Supported roles*: Host, Co-Host, Panelist, Participant, and Attendee
+     *
+     * *Running context*: inMeeting, inWebinar
+     *
+     * *Scope label*: Product Usage
+     *
+     * *Product*: desktop, zoomRoomController
+     *
+     * *Supports Guest Mode*: Yes
+     *
+     * *Scope hierarchy*: zoomapp:inmeeting
+     *
+     * @category Meeting Actions
+     */
+    onShareScreen(handler: GenericEventHandler<OnShareScreenEvent>): void;
+    /**
+     * @zoomClientVersion 5.13.5
+     * This event triggers when a user in the meeting starts or stops sharing their computer audio or screen with audio.
+     *
+     *  *Supported roles*: Host, Co-Host, Panelist, Participant, and Attendee
+     *
+     * *Running context*: inMeeting, inWebinar
+     *
+     * *Scope label*: Product Usage
+     *
+     * *Product*: desktop, zoomRoomController
+     *
+     * *Supports Guest Mode*: Yes
+     *
+     * *Scope hierarchy*: zoomapp:inmeeting
+     *
+     * @category Meeting Actions
+     */
+    onShareComputerAudio(handler: GenericEventHandler<OnShareComputerAudioEvent>): void;
     /**
      * @zoomClientVersion 5.9.3
      * The event triggers when the user closes the app for participants. It is only triggered for the user who performed the action. Example: The host uses an app to poll participants. When the host closes the app for participants, the app displays the results.
@@ -2786,9 +3115,9 @@ declare class ZoomSdk {
      * - `attendees`: App closes for only attendees.
      * - `everyoneButMe`: App closes for everyone except the current user.
      *
-     * @category Events Core
+     * @category Meeting Actions
      */
-    onCloseAppForParticipants(handler: GenericEventHandler<any>): void;
+    onCloseAppForParticipants(handler: GenericEventHandler<'everyone' | 'attendees' | 'everyoneButMe'>): void;
     /**
      * @zoomClientVersion 5.11.0
      * @hidden
@@ -2799,12 +3128,11 @@ declare class ZoomSdk {
      *
      *  *Supports Guest Mode*: Yes
      *
-     * @category Events Core
+     * @category Utility
      */
     onRenderedAppOpened(handler: GenericEventHandler<OnRenderedAppOpenedEvent>): void;
     /**
-     * @hidden
-     * @zoomClientVersion 5.12.6
+     * @zoomClientVersion 5.13.5
      *
      * Event triggered when a participant triggers a feedback
      *
@@ -2818,12 +3146,11 @@ declare class ZoomSdk {
      *
      * *Scope hierarchy*: zoomapps.meetings / zoomapps.meetings.content
      *
-     * @category Events Managing Meeting Actions
+     * @category Reactions
      */
     onFeedbackReaction(handler: GenericEventHandler<OnFeedbackReactionEvent>): void;
     /**
-     * @hidden
-     * @zoomClientVersion 5.12.6
+     * @zoomClientVersion 5.13.5
      *
      * Event triggered when subscribed participant removes a feedback
      *
@@ -2837,12 +3164,30 @@ declare class ZoomSdk {
      *
      * *Scope hierarchy*: zoomapps.meetings / zoomapps.meetings.content
      *
-     * @category Events Managing Meeting Actions
+     * @category Reactions
      */
-    onRemoveFeedbackReaction(handler: GenericEventHandler<OnFeedbackReactionEvent>): void;
+    onRemoveFeedbackReaction(handler: GenericEventHandler<OnRemoveFeedbackReactionEvent>): void;
+    /**
+     * @zoomClientVersion 5.12.6
+     * Notifies the app about the incoming audio status change for the participants.
+     *
+     * *Supported roles*: Host, Co-Host, Participant
+     *
+     * *Running context*: inMeeting
+     *
+     * *Scope label*: Read Scopes: Device Information
+     *
+     * *Supports Guest Mode*: Yes
+     *
+     * *Scope hierarchy*: zoomapps.client
+     *
+     * @category Meeting Actions
+     */
+    onIncomingParticipantAudioChange(handler: GenericEventHandler<OnIncomingParticipantAudioChangeEvent>): void;
     /**
      * Low-level method used to register event handlers in the SDK. This is useful because it allows you to use new events in the client without needing to update the JS SDK. You can register multiple listeners per event.
      *
+     * @category Utility
      */
     addEventListener(event: `${NativeEvents}`, handler: (data: any) => any): void;
     /**
@@ -2850,16 +3195,19 @@ declare class ZoomSdk {
      *
      * Note that the removeEventListener method requires that you registered a named listener function. If you use an anonymous function, you will not be able to remove it using this method.
      *
+     * @category Utility
      */
     removeEventListener(event: `${NativeEvents}`, handler: (data: any) => any): void;
     /**
      * Alias for {@link ZoomSdk.addEventListener}
      *
+     * @category Utility
      */
     on(event: `${NativeEvents}`, handler: (data: any) => any): void;
     /**
      * Alias for {@link ZoomSdk.removeEventListener}
      *
+     * @category Utility
      */
     off(event: `${NativeEvents}`, handler: (data: any) => any): void;
     /**
@@ -2870,7 +3218,7 @@ declare class ZoomSdk {
      *
      *  *Supports Guest Mode*: No
      *
-     * @category Managing Breakout Rooms
+     * @category Breakout Rooms
      */
     createBreakoutRooms(options: CreateBreakoutRoomsOptions): Promise<BreakoutRoomsResponse>;
     /**
@@ -2895,7 +3243,7 @@ declare class ZoomSdk {
      *  "countDown": 60
      * }
      * ```
-     * @category Managing Breakout Rooms
+     * @category Breakout Rooms
      */
     configureBreakoutRooms(options: ConfigureBreakoutRoomsOptions): Promise<ConfigureBreakoutRoomsResponse>;
     /**
@@ -2906,7 +3254,7 @@ declare class ZoomSdk {
      *
      * *Supports Guest Mode*: No
      *
-     * @category Managing Breakout Rooms
+     * @category Breakout Rooms
      */
     openBreakoutRooms(): Promise<GeneralMessageResponse>;
     /**
@@ -2917,7 +3265,7 @@ declare class ZoomSdk {
      *
      * *Supports Guest Mode*: No
      *
-     * @category Managing Breakout Rooms
+     * @category Breakout Rooms
      */
     closeBreakoutRooms(): Promise<GeneralMessageResponse>;
     /**
@@ -2948,7 +3296,7 @@ declare class ZoomSdk {
      * }
      * ```
      * Returns an array of breakout rooms with their names, UUID, and an array of participant id's.
-     * @category Managing Breakout Rooms
+     * @category Breakout Rooms
      */
     getBreakoutRoomList(): Promise<BreakoutRoomsResponse>;
     /**
@@ -2959,7 +3307,7 @@ declare class ZoomSdk {
      *
      * *Supports Guest Mode*: No
      *
-     * @category Managing Breakout Rooms
+     * @category Breakout Rooms
      */
     addBreakoutRoom(options: AddBreakoutRoomOptions): Promise<Uuid>;
     /**
@@ -2970,7 +3318,7 @@ declare class ZoomSdk {
      *
      *  *Supports Guest Mode*: No
      *
-     * @category Managing Breakout Rooms
+     * @category Breakout Rooms
      */
     deleteBreakoutRoom(options: Uuid): Promise<GeneralMessageResponse>;
     /**
@@ -2981,7 +3329,7 @@ declare class ZoomSdk {
      *
      *  *Supports Guest Mode*: No
      *
-     * @category Managing Breakout Rooms
+     * @category Breakout Rooms
      */
     renameBreakoutRoom(options: RenameBreakoutRoomOptions): Promise<GeneralMessageResponse>;
     /**
@@ -2997,7 +3345,7 @@ declare class ZoomSdk {
      * - assignParticipantToBreakoutRoom cannot be executed while the current user is changing rooms.
      * - To assign yourself (as host / co-host) to a breakout room, use method changeBreakoutRoom.
      *
-     * @category Managing Breakout Rooms
+     * @category Breakout Rooms
      */
     assignParticipantToBreakoutRoom(options: AssignParticipantToBreakoutRoomOptions): Promise<GeneralMessageResponse>;
     /**
@@ -3013,12 +3361,12 @@ declare class ZoomSdk {
      * 2. To use this method, rooms must be configured to allow participant to choose rooms (`allowParticipantsToChooseRoom=true` when using `configureBreakoutRooms`)
      * 3. This method returns `success` when changing breakout rooms is initiated, but the transition for the user might not be completed in some scenarios. Use `onBreakoutRoomChange` to confirm successful transition. If the event doesn’t fire, repeat `changeBreakoutRoom` call
      *
-     * @category Managing Breakout Rooms
+     * @category Breakout Rooms
      */
     changeBreakoutRoom(options: ChangeBreakoutRoomOptions): Promise<GeneralMessageResponse>;
     /**
      * @zoomClientVersion 5.10.0
-     * Starts Collaborate mode in a meeting. Can be initiated by hosts or co-hosts. Use the optional shareScreen parameter to opt out of sharing the host’s app screen with participants as a preview or when participants ignore the Collaborate invite.
+     * Starts Collaborate mode in a meeting. Can be initiated by Hosts or Co-Hosts. Use the optional shareScreen parameter to opt out of sharing the Host’s app screen with participants as a preview or when participants ignore the Collaborate invite.
      *
      *  *Supported roles*: Host, Co-Host
      *
@@ -3026,14 +3374,14 @@ declare class ZoomSdk {
      *
      * ```
      * zoomSdk.startCollaborate(
-     *   { "shareScreen": true || false }   // default true}(host/cohost)
+     *   { "shareScreen": true || false }   // default true}(Host / Co-Host)
      * ).then(function(response) {})
      *  .catch(function(error) {
      *     // handle error
      *   })
      * ```
      *
-     * @category Collaborate Mode
+     * @category Collaborate
      */
     startCollaborate(options: StartCollaborateOptions): Promise<GeneralMessageResponse>;
     /**
@@ -3046,13 +3394,13 @@ declare class ZoomSdk {
      *
      * ```
      * zoomSdk.endCollaborate()
-     *  .then(function(response) {}) // (host/cohost)
+     *  .then(function(response) {}) // (Host / Co-Host)
      *  .catch(function(error) {
      *     // handle error
      *  })
      * ```
      *
-     * @category Collaborate Mode
+     * @category Collaborate
      */
     endCollaborate(): Promise<GeneralMessageResponse>;
     /**
@@ -3071,7 +3419,7 @@ declare class ZoomSdk {
      *  })
      * ```
      *
-     * @category Collaborate Mode
+     * @category Collaborate
      */
     leaveCollaborate(): Promise<GeneralMessageResponse>;
     /**
@@ -3090,7 +3438,7 @@ declare class ZoomSdk {
      *  })
      * ```
      *
-     * @category Collaborate Mode
+     * @category Collaborate
      */
     joinCollaborate(): Promise<GeneralMessageResponse>;
     /**
@@ -3103,7 +3451,7 @@ declare class ZoomSdk {
      * * If the app's scopes have changed or added, it goes to the in-client consent screen, and the user is prompted to reauthorize the app's scope.
      *
      * **Notes**
-     * The application must create a crypographically secure string for OAuth2.0 code verifier, which is used to generate the challenge.
+     * The application must create a cryptographically secure string for OAuth2.0 code verifier, which is used to generate the challenge.
      *
      * Upon user authorization, an `onAuthorized` event is triggered with an authorization code. You have to add an event listener for this event to get authorization code.
      *
@@ -3121,7 +3469,7 @@ declare class ZoomSdk {
      *    console.log(e);
      * })
      * ```
-     * @category In-client Auth
+     * @category Auth
      */
     authorize(options: AuthorizeOptions): Promise<GeneralMessageResponse>;
     /**
@@ -3144,7 +3492,7 @@ declare class ZoomSdk {
      * .catch((err) => console.log(err))
      *
      * ```
-     * @category In-client Auth
+     * @category Auth
      */
     promptAuthorize(): Promise<GeneralMessageResponse>;
     /**
@@ -3155,7 +3503,7 @@ declare class ZoomSdk {
      *
      *  *Supports Guest Mode*: No
      *
-     * @category User Media
+     * @category Meeting Actions
      */
     setVideoState(options: SetVideoStateOptions): Promise<GeneralMessageResponse>;
     /**
@@ -3166,7 +3514,7 @@ declare class ZoomSdk {
      *
      *  *Supports Guest Mode*: No
      *
-     * @category User Media
+     * @category Meeting Actions
      */
     setAudioState(options: SetAudioStateOptions): Promise<GeneralMessageResponse>;
     /**
@@ -3177,7 +3525,7 @@ declare class ZoomSdk {
      *
      *  *Supports Guest Mode*: No
      *
-     * @category User Media
+     * @category Meeting Actions
      */
     getVideoState(): Promise<GetVideoStateResponse>;
     /**
@@ -3188,12 +3536,12 @@ declare class ZoomSdk {
      *
      *  *Supports Guest Mode*: No
      *
-     * @category User Media
+     * @category Meeting Actions
      */
     getAudioState(): Promise<GetAudioStateResponse>;
     /**
      * @zoomClientVersion 5.10.3
-     * Allows hosts and co-hosts to mute and unmute all, or specific, meeting participants. The action doesn’t affect the person initiating the request.
+     * Allows hosts and co-hosts to mute and unmute all, or specific, meeting participants. The action doesn't affect the person initiating the request.
      *
      * *Running context*: inMeeting, inWebinar
      *
@@ -3224,7 +3572,7 @@ declare class ZoomSdk {
      * .then((response) => { console.log(response); })
      * .catch((e) => { console.log(e); })
      * ```
-     * @category User Media
+     * @category Meeting Actions
      */
     toggleParticipantMediaAudio(options: ToggleParticipantMediaAudioOptions): Promise<GeneralMessageResponse>;
     /**
@@ -3248,7 +3596,7 @@ declare class ZoomSdk {
      * .catch((err) => console.log(err))
      * ```
      *
-     * @category Core Endpoints
+     * @category Core
      */
     getAppContext(): Promise<GetAppContextResponse>;
     /**
@@ -3256,7 +3604,7 @@ declare class ZoomSdk {
      *
      * Shares audio from my computer. Pass in an action to `start` or `stop` the share. Does not share the screen or app. `stereo`  is default `mode` option, optionally pass parameter to change to `mono`
      *
-     * *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     * *Supported roles*: Host, Co-Host, Participant, Panelist
      *
      * *Running context*: inMeeting, inWebinar
      *
@@ -3270,7 +3618,7 @@ declare class ZoomSdk {
      * .catch((err) => console.log(err))
      * ```
      *
-     * @category Core Endpoints
+     * @category Sharing
      */
     shareComputerAudio(options: ShareComputerAudioOptions): Promise<GeneralMessageResponse>;
     /**
@@ -3299,7 +3647,7 @@ declare class ZoomSdk {
      *
      * ```
      *
-     * @category Meeting
+     * @category Meeting Actions
      */
     addParticipantSpotlight(options: AddParticipantSpotlightOptions): Promise<GeneralMessageResponse>;
     /**
@@ -3329,7 +3677,7 @@ declare class ZoomSdk {
      * .catch((e) => { console.log(e); })
      *
      * ```
-     * @category Meeting
+     * @category Meeting Actions
      */
     removeParticipantSpotlights(options: RemoveParticipantSpotlightsOptions): Promise<GeneralMessageResponse>;
     /**
@@ -3356,7 +3704,7 @@ declare class ZoomSdk {
      *
      * ```
      *
-     * @category Meeting
+     * @category Meeting Actions
      */
     getParticipantSpotlights(): Promise<GetParticipantSpotlightsResponse>;
     /**
@@ -3379,7 +3727,7 @@ declare class ZoomSdk {
      * .then((response) => console.log(response))
      * .catch((err) => console.log(err))
      * ```
-     * @category Core Endpoints
+     * @category Meeting Actions
      */
     addParticipantPins(options: ParticipantPinOptions): Promise<GeneralMessageResponse>;
     /**
@@ -3402,7 +3750,7 @@ declare class ZoomSdk {
      * .then((response) => console.log(response))
      * .catch((err) => console.log(err))
      * ```
-     * @category Core Endpoints
+     * @category Meeting Actions
      */
     removeParticipantPins(options: ParticipantPinOptions): Promise<GeneralMessageResponse>;
     /**
@@ -3426,7 +3774,7 @@ declare class ZoomSdk {
      * .catch((err) => console.log(err))
      * ```
      *
-     * @category Meeting Action Endpoints
+     * @category Reactions
      */
     setFeedbackReaction(options: FeedbackReactionOptions): Promise<GeneralMessageResponse>;
     /**
@@ -3450,7 +3798,7 @@ declare class ZoomSdk {
      * .catch((err) => console.log(err))
      * ```
      *
-     * @category Meeting Action Endpoints
+     * @category Reactions
      */
     removeFeedbackReaction(): Promise<GeneralMessageResponse>;
     /**
@@ -3474,7 +3822,7 @@ declare class ZoomSdk {
      * .catch((err) => console.log(err))
      * ```
      *
-     * @category Meeting Action Endpoints
+     * @category Reactions
      */
     removeAllFeedbackReaction(): Promise<GeneralMessageResponse>;
     /**
@@ -3497,7 +3845,7 @@ declare class ZoomSdk {
      * .then((response) => console.log(response))
      * .catch((err) => console.log(err))
      * ```
-     * @category Core Endpoints
+     * @category Webinar-only Actions
      */
     allowAttendeesToSpeak(options: AttendeeSpeakingOptions): Promise<GeneralMessageResponse>;
     /**
@@ -3520,7 +3868,7 @@ declare class ZoomSdk {
      * .then((response) => console.log(response))
      * .catch((err) => console.log(err))
      * ```
-     * @category Core Endpoints
+     * @category Webinar-only Actions
      */
     disallowAttendeesToSpeak(options: AttendeeSpeakingOptions): Promise<GeneralMessageResponse>;
     /**
@@ -3543,11 +3891,184 @@ declare class ZoomSdk {
      * .then((response) => console.log(response))
      * .catch((err) => console.log(err))
      * ```
-     * @category Core Endpoints
+     * @category Webinar-only Actions
      */
     removeWebinarAttendees(options: RemoveWebinarAttendeeOptions): Promise<GeneralMessageResponse>;
+    /**
+     * @zoomClientVersion 5.12.6
+     *
+     * The functionality of this API is to retrieve incoming speaker audio status for all or selected participants.
+     *
+     * *Supported roles*: Host, Co-Host, Participant
+     *
+     * *Running context*: inMeeting
+     *
+     * *Scope label*: Read Scopes: Device Information
+     *
+     * *Supports Guest Mode*: Yes
+     *
+     * *Scope hierarchy*: zoomapps.client
+     *
+     * ```
+     * zoomSdk.getIncomingParticipantAudioState({participantUUIDs: [ participantUUID1, ... ]})
+     * .then((response) => console.log(response))
+     * .catch((err) => console.log(err))
+     * ```
+     * Response is an array of participantUUIDs and their respective audio state.
+     * Example:
+     *```
+     * {“participants": [{"participantUUID": "participantUUID1", "audio": "true"},...]}
+     * ```
+     *
+     * @category Meeting Actions
+     */
+    getIncomingParticipantAudioState(options: GetIncomingParticipantAudioStateOptions): Promise<GetIncomingParticipantAudioStateResponse>;
+    /**
+     * @zoomClientVersion 5.12.6
+     *
+     * The functionality of this API is to toggle on/off incoming speaker audio for all or selected participants.
+     *
+     * *Supported roles*: Host, Co-Host, Participant
+     *
+     * *Running context*: inMeeting
+     *
+     * *Scope label*: Write Scopes: Manage Devices
+     *
+     * *Supports Guest Mode*: Yes
+     *
+     * *Scope hierarchy*: zoomapps.client
+     *
+     * ```
+     * zoomSdk.setIncomingParticipantAudioState({participantUUIDs: [ participantUUID1, ... ], audio: true|false})
+     * .then((response) => console.log(response))
+     * .catch((err) => console.log(err))
+     * ```
+     * @category Meeting Actions
+     */
+    setIncomingParticipantAudioState(options: SetIncomingParticipantAudioStateOptions): Promise<GeneralMessageResponse>;
+    /**
+     * @zoomClientVersion 5.13.0
+     *
+     * Change user's video settings
+     *
+     * The API is available in inMainClient running context from client version 5.13.5
+     *
+     * **Note:** At least one parameter is required. The API only changes the values that are passed in
+     *
+     * *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     *
+     * *Running context*: inMainClient, inMeeting, inImmersive, inWebinar, inCollaborate, inCamera
+     *
+     * *Scope label*: Write Scope: Manage Settings
+     *
+     * *Supports Guest Mode*: Yes
+     *
+     * *Scope hierarchy*: zoomapps.meetings / zoomapps.meetings.content
+     *
+     * ```
+     * await zoomSdk.setVideoSettings({hdVideo: true})
+     * ```
+     *
+     * @category Meeting Actions
+     */
+    setVideoSettings(options: SetVideoSettingsOptions): Promise<GeneralMessageResponse>;
+    /**
+     * @zoomClientVersion 5.13.0
+     *
+     * Retrieves the user’s current video settings . The API retrieves only the video settings that can be changed by setVideoSettings
+     *
+     * The API is available in inMainClient running context from client version 5.13.5
+     *
+     * *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     *
+     * *Running context*: inMainClient, inMeeting, inImmersive, inWebinar, inCollaborate, inCamera
+     *
+     * *Scope label*: Read Scopes: Settings
+     *
+     * *Supports Guest Mode*: Yes
+     *
+     * *Scope hierarchy*: zoomapps.meetings / zoomapps.meetings.content
+     *
+     * ```
+     *  await zoomSdk.getVideoSettings()
+     * ```
+     * @category Meeting Actions
+     */
+    getVideoSettings(): Promise<GetVideoSettingsResponse>;
+    /**
+     * @zoomClientVersion 5.13.0
+     *
+     * Changing a user’s audio settings
+     *
+     * The API is available in inMainClient running context from client version 5.13.5
+     *
+     * **Note:** At least one parameter is required. The API only changes the values that are passed in
+     *
+     * *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     *
+     * *Running context*: inMainClient, inMeeting, inImmersive, inCollaborate, inCamera, inWebinar
+     *
+     * *Scope label*: Write Scopes: Manage Settings
+     *
+     * *Supports Guest Mode*: Yes
+     *
+     * *Scope hierarchy*: zoomapps.meetings / zoomapps.meetings.content
+     *
+     * ```
+     * await zoomSdk.setAudioSettings({originalSound: true})
+     * ```
+     *
+     * @category Meeting Actions
+     */
+    setAudioSettings(options: SetAudioSettingsOptions): Promise<GeneralMessageResponse>;
+    /**
+     * @zoomClientVersion 5.13.0
+     *
+     * Retrieves the current audio settings of the user. It retrieves only the audio settings that can be changed by setAudioSettings
+     *
+     * The API is available in inMainClient running context from client version 5.13.5
+     *
+     * *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     *
+     * *Running context*: inMainClient, inMeeting, inImmersive, inCollaborate, inCamera, inWebinar
+     *
+     * *Scope label*: Read Scopes: Settings
+     *
+     * *Supports Guest Mode*: Yes
+     *
+     * *Scope hierarchy*: zoomapps.meetings / zoomapps.meetings.content
+     *
+     * ```
+     * await zoomSdk.getAudioSettings()
+     * ```
+     * @category Meeting Actions
+     */
+    getAudioSettings(): Promise<GetAudioSettingsResponse>;
+    /**
+     * @zoomClientVersion 5.13.5
+     *
+     * Called by any participant to open the share screen modal.
+     *
+     * *Running context*: inMeeting, inWebinar
+     *
+     * *Supported roles*: Host, Co-host, Panelist, Participant
+     *
+     * *Supports Guest Mode*: Yes
+     *
+     * *Scope label*: Read Scopes: Product Usage
+     *
+     * *Scope hierarchy*: zoomapps.meetings / zoomapps.meetings.content
+     *
+     * *Product*: Desktop
+     *
+     * ```
+     * await zoomSdk.promptShareScreen()
+     * ```
+     * @category Sharing
+     */
+    promptShareScreen(): Promise<GeneralMessageResponse>;
 }
 
 declare const _default: ZoomSdk;
 
-export { AddBreakoutRoomOptions, AddParticipantSpotlightOptions, AllowParticipantToRecordOptions, Apis, AppInvitationResponse, AssignParticipantToBreakoutRoomOptions, AttendeeSpeakingOptions, AuthObject, AuthorizeOptions, BlurVirtualBackground, BreakOutRoom, BreakOutRoomParticipant, BreakoutRoomAssignmentMethods, BreakoutRoomsCreated, BreakoutRoomsParticipantsAssigned, BreakoutRoomsParticipantsJoined, BreakoutRoomsParticipantsLeft, BreakoutRoomsResponse, BreakoutRoomsUpdated, Camera, ChangeBreakoutRoomJoinOption, ChangeBreakoutRoomOptions, ChangeBreakoutRoomOtherOptions, ClearImageOptions, ClearParticipantOptions, ClearWebViewOptions, CloudRecordingOptions, ConfigOptions, ConfigResponse, ConfigSize, ConfigureBreakoutRoomsOptions, ConfigureBreakoutRoomsResponse, CreateBreakoutRoomsOptions, DecryptedAppContextResponse, DrawImageOptions, DrawImageResponse, DrawParticipantOptions, DrawWebViewOptions, ExpandAppOptions, FeedbackReactionOptions, FeedbackReactions, FileUrlVirtualBackground, GenericEventHandler, GetAppContextResponse, GetAudioStateResponse, GetMeetingContextResponse, GetMeetingJoinUrlResponse, GetMeetingParticipantsResponse, GetMeetingUUIDResponse, GetParticipantSpotlightsResponse, GetRecordingContextResponse, GetSupportedJsApisResponse, GetUserContextResponse, GetVideoStateResponse, ImageDataVirtualBackground, JSONValue, LaunchAppInMeetingOptions, ListCamerasResponse, MediaObject, NotificationOptions, OnActiveSpeakerChangeEvent, OnActiveSpeakerChangeUserType, OnAppPopoutEvent, OnAuthorizedEvent, OnBreakoutRoomChangeEvent, OnCloudRecordingEvent, OnCollaborateChangeEvent, OnConnectEvent, OnExpandAppEvent, OnFeedbackReactionEvent, OnMeetingEvent, OnMessageEvent, OnMyActiveSpeakerChangeEvent, OnMyMediaChangeAudioType, OnMyMediaChangeEvent, OnMyMediaChangeVideoType, OnMyReactionEvent, OnMyUserContextChangeEvent, OnParticipantChangeEvent, OnParticipantChangeParticipantType, OnReactionEvent, OnRenderedAppOpenedEvent, OnRunningContextChangeEvent, OnSendAppInvitationEvent, OnShareAppEvent, OpenUrlOptions, Participant, ParticipantCutoutShape, ParticipantPinOptions, PixelValue, RemoveParticipantSpotlightsOptions, RemoveWebinarAttendeeOptions, RenameBreakoutRoomOptions, RenderingContextView, RunRenderingContextOptions, RunningContextResponse, SdkOptions, SendAppInvitationOptions, SetAudioStateOptions, SetCameraOptions, SetVideoMirrorEffectOptions, SetVideoStateOptions, ShareAppOptions, ShareComputerAudioOptions, StartCollaborateOptions, ToggleParticipantMediaAudioOptions, Uuid, VirtualBackgroundOptions, VirtualForegroundOptions, _default as default, onMeetingConfigChangedEvent };
+export { AddBreakoutRoomOptions, AddParticipantSpotlightOptions, AllowParticipantToRecordOptions, Apis, AppInvitationResponse, AssignParticipantToBreakoutRoomOptions, AttendeeSpeakingOptions, AudioMedia, AuthObject, AuthorizeOptions, BreakOutRoomParticipant, BreakoutRoomAssignmentMethods, BreakoutRoomsCreated, BreakoutRoomsParticipantsAssigned, BreakoutRoomsParticipantsJoined, BreakoutRoomsParticipantsLeft, BreakoutRoomsResponse, BreakoutRoomsUpdated, ChangeBreakoutRoomOptions, ClearImageOptions, ClearParticipantOptions, ClearWebViewOptions, CloudRecordingOptions, ConfigOptions, ConfigResponse, ConfigSize, ConfigureBreakoutRoomsOptions, ConfigureBreakoutRoomsResponse, CreateBreakoutRoomsOptions, DecryptedAppContextResponse, DrawImageOptions, DrawImageResponse, DrawParticipantOptions, DrawWebViewOptions, ExpandAppOptions, FeedbackReactionOptions, FeedbackReactions, GeneralMessage, GeneralMessageResponse, GenericEventHandler, GetAppContextResponse, GetAudioSettingsResponse, GetAudioStateResponse, GetIncomingParticipantAudioStateOptions, GetIncomingParticipantAudioStateResponse, GetMeetingContextResponse, GetMeetingJoinUrlResponse, GetMeetingParticipantsResponse, GetMeetingUUIDResponse, GetParticipantSpotlightsResponse, GetRecordingContextResponse, GetSupportedJsApisResponse, GetUserContextResponse, GetVideoSettingsResponse, GetVideoStateResponse, JSONObject, JSONValue, LaunchAppInMeetingOptions, ListCamerasResponse, NativeApiRequest, NativeApiRequestData, NativeApiResponseData, NativeConfigOptions, NativeMessage, NativeMessageData, NotificationOptions$1 as NotificationOptions, OnActiveSpeakerChangeEvent, OnActiveSpeakerChangeUserType, OnAppPopoutEvent, OnAuthorizedEvent, OnBreakoutRoomChangeEvent, OnCloudRecordingEvent, OnCollaborateChangeEvent, OnConnectEvent, OnExpandAppEvent, OnFeedbackReactionEvent, OnIncomingParticipantAudioChangeEvent, OnMeetingEvent, OnMessageEvent, OnMyActiveSpeakerChangeEvent, OnMyMediaChangeEvent, OnMyReactionEvent, OnMyUserContextChangeEvent, OnParticipantChangeEvent, OnParticipantChangeParticipantType, OnReactionEvent, OnRemoveFeedbackReactionEvent, OnRenderedAppOpenedEvent, OnRunningContextChangeEvent, OnSendAppInvitationEvent, OnShareAppEvent, OnShareComputerAudioEvent, OnShareScreenEvent, OpenUrlOptions, Participant, ParticipantCutoutShape, ParticipantPinOptions, PixelValue, RemoveParticipantSpotlightsOptions, RemoveWebinarAttendeeOptions, RenameBreakoutRoomOptions, RenderingContextView, RunRenderingContextOptions, RunningContext, RunningContextResponse, SdkOptions, SdkVersion, SendAppInvitationOptions, SetAudioSettingsOptions, SetAudioStateOptions, SetCameraOptions, SetIncomingParticipantAudioStateOptions, SetVideoMirrorEffectOptions, SetVideoSettingsOptions, SetVideoStateOptions, ShareAppOptions, ShareComputerAudioOptions, StartCollaborateOptions, ToggleParticipantMediaAudioOptions, Uuid, VideoMedia, VirtualBackgroundOptions, VirtualForegroundOptions, _default as default, onMeetingConfigChangedEvent };

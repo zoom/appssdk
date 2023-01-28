@@ -1,6 +1,6 @@
-/* Zoom Apps SDK v0.16.7  */
+/* Zoom Apps SDK v0.16.8  */
 /**
- * Copyright (c) 2022 Zoom Video Communications, Inc.
+ * Copyright (c) 2023 Zoom Video Communications, Inc.
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,7 +21,7 @@
  * SOFTWARE.
  */
 
-var version = "0.16.7";
+var version = "0.16.8";
 
 var extendStatics = function(d, b) {
     extendStatics = Object.setPrototypeOf ||
@@ -212,6 +212,13 @@ var NativeApis;
     NativeApis["ALLOW_ATTENDEES_TO_SPEAK"] = "allowAttendeesToSpeak";
     NativeApis["DISALLOW_ATTENDEES_TO_SPEAK"] = "disallowAttendeesToSpeak";
     NativeApis["REMOVE_WEBINAR_ATTENDEES"] = "removeWebinarAttendees";
+    NativeApis["SET_AUDIO_SETTINGS"] = "setAudioSettings";
+    NativeApis["GET_AUDIO_SETTINGS"] = "getAudioSettings";
+    NativeApis["GET_INCOMING_PARTICIPANT_AUDIO_STATE"] = "getIncomingParticipantAudioState";
+    NativeApis["SET_INCOMING_PARTICIPANT_AUDIO_STATE"] = "setIncomingParticipantAudioState";
+    NativeApis["SET_VIDEO_SETTINGS"] = "setVideoSettings";
+    NativeApis["GET_VIDEO_SETTINGS"] = "getVideoSettings";
+    NativeApis["PROMPT_SHARE_SCREEN"] = "promptShareScreen";
 })(NativeApis || (NativeApis = {}));
 var NativeEvents;
 (function (NativeEvents) {
@@ -240,6 +247,9 @@ var NativeEvents;
     NativeEvents["ON_RENDERED_APP_OPENED"] = "onRenderedAppOpened";
     NativeEvents["ON_FEEDBACK_REACTION_EVENT"] = "onFeedbackReaction";
     NativeEvents["ON_REMOVE_FEEDBACK_REACTION_EVENT"] = "onRemoveFeedbackReaction";
+    NativeEvents["ON_INCOMING_PARTICIPANT_AUDIO_CHANGE"] = "onIncomingParticipantAudioChange";
+    NativeEvents["ON_SHARE_SCREEN"] = "onShareScreen";
+    NativeEvents["ON_SHARE_COMPUTER_AUDIO"] = "onShareComputerAudio";
 })(NativeEvents || (NativeEvents = {}));
 var Timeouts;
 (function (Timeouts) {
@@ -402,7 +412,7 @@ function wrapInMessageObject(value) {
     return value;
 }
 
-var _a$2, _b$1, _c$1, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28, _29, _30, _31, _32, _33, _34, _35, _36, _37, _38, _39, _40, _41, _42, _43, _44, _45, _46, _47, _48, _49, _50, _51, _52, _53, _54, _55, _56, _57, _58, _59, _60, _61, _62, _63, _64, _65, _66, _67, _68, _69, _70, _71, _72, _73, _74, _75, _76, _77, _78, _79;
+var _a$2, _b$1, _c$1, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28, _29, _30, _31, _32, _33, _34, _35, _36, _37, _38, _39, _40, _41, _42, _43, _44, _45, _46, _47, _48, _49, _50, _51, _52, _53, _54, _55, _56, _57, _58, _59, _60, _61, _62, _63, _64, _65, _66, _67, _68, _69, _70, _71, _72, _73, _74, _75, _76, _77, _78, _79, _80, _81, _82, _83, _84, _85, _86, _87;
 var compatibilityFnsApis = (_a$2 = {},
     _a$2[NativeApis.SEND_APP_INVITATION] = (_b$1 = {},
         _b$1[ZERO_SIXTEEN] = (_c$1 = {},
@@ -785,6 +795,42 @@ var compatibilityFnsApis = (_a$2 = {},
             },
             _79),
         _78),
+    _a$2[NativeApis.SET_INCOMING_PARTICIPANT_AUDIO_STATE] = (_80 = {},
+        _80[ZERO_SIXTEEN] = (_81 = {},
+            _81[BASE_VERSION] = {
+                mapOutput: function (value) {
+                    return wrapInObject({ key: 'message', value: value });
+                },
+            },
+            _81),
+        _80),
+    _a$2[NativeApis.SET_VIDEO_SETTINGS] = (_82 = {},
+        _82[ZERO_SIXTEEN] = (_83 = {},
+            _83[BASE_VERSION] = {
+                mapOutput: function (value) {
+                    return wrapInObject({ key: 'message', value: value });
+                },
+            },
+            _83),
+        _82),
+    _a$2[NativeApis.SET_AUDIO_SETTINGS] = (_84 = {},
+        _84[ZERO_SIXTEEN] = (_85 = {},
+            _85[BASE_VERSION] = {
+                mapOutput: function (value) {
+                    return wrapInObject({ key: 'message', value: value });
+                },
+            },
+            _85),
+        _84),
+    _a$2[NativeApis.PROMPT_SHARE_SCREEN] = (_86 = {},
+        _86[ZERO_SIXTEEN] = (_87 = {},
+            _87[BASE_VERSION] = {
+                mapOutput: function (value) {
+                    return wrapInObject({ key: 'message', value: value });
+                },
+            },
+            _87),
+        _86),
     _a$2);
 
 var _a$1, _b, _c;
@@ -1370,6 +1416,12 @@ var ZoomSdk =  (function () {
     ZoomSdk.prototype.onAuthorized = function (handler) {
         this.addEventListener(NativeEvents.ON_AUTHORIZED, handler);
     };
+    ZoomSdk.prototype.onShareScreen = function (handler) {
+        this.addEventListener(NativeEvents.ON_SHARE_SCREEN, handler);
+    };
+    ZoomSdk.prototype.onShareComputerAudio = function (handler) {
+        this.addEventListener(NativeEvents.ON_SHARE_COMPUTER_AUDIO, handler);
+    };
     ZoomSdk.prototype.onCloseAppForParticipants = function (handler) {
         this.addEventListener(NativeEvents.ON_CLOSE_APP_FOR_PARTICIPANTS, handler);
     };
@@ -1381,6 +1433,9 @@ var ZoomSdk =  (function () {
     };
     ZoomSdk.prototype.onRemoveFeedbackReaction = function (handler) {
         this.addEventListener(NativeEvents.ON_REMOVE_FEEDBACK_REACTION_EVENT, handler);
+    };
+    ZoomSdk.prototype.onIncomingParticipantAudioChange = function (handler) {
+        this.addEventListener(NativeEvents.ON_INCOMING_PARTICIPANT_AUDIO_CHANGE, handler);
     };
     ZoomSdk.prototype.addEventListener = function (event, handler) {
         nativeEventHandlers[event]
@@ -1633,6 +1688,55 @@ var ZoomSdk =  (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 return [2 , this.callZoomApi(NativeApis.REMOVE_WEBINAR_ATTENDEES, options)];
+            });
+        });
+    };
+    ZoomSdk.prototype.getIncomingParticipantAudioState = function (options) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 , this.callZoomApi(NativeApis.GET_INCOMING_PARTICIPANT_AUDIO_STATE, options)];
+            });
+        });
+    };
+    ZoomSdk.prototype.setIncomingParticipantAudioState = function (options) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 , this.callZoomApi(NativeApis.SET_INCOMING_PARTICIPANT_AUDIO_STATE, options)];
+            });
+        });
+    };
+    ZoomSdk.prototype.setVideoSettings = function (options) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 , this.callZoomApi(NativeApis.SET_VIDEO_SETTINGS, options)];
+            });
+        });
+    };
+    ZoomSdk.prototype.getVideoSettings = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 , this.callZoomApi(NativeApis.GET_VIDEO_SETTINGS)];
+            });
+        });
+    };
+    ZoomSdk.prototype.setAudioSettings = function (options) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 , this.callZoomApi(NativeApis.SET_AUDIO_SETTINGS, options)];
+            });
+        });
+    };
+    ZoomSdk.prototype.getAudioSettings = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 , this.callZoomApi(NativeApis.GET_AUDIO_SETTINGS)];
+            });
+        });
+    };
+    ZoomSdk.prototype.promptShareScreen = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 , this.callZoomApi(NativeApis.PROMPT_SHARE_SCREEN)];
             });
         });
     };
