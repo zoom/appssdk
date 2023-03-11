@@ -1,4 +1,4 @@
-/* Zoom Apps SDK v0.16.8  */
+/* Zoom Apps SDK v0.16.9  */
 /**
  * Copyright (c) 2023 Zoom Video Communications, Inc.
  * 
@@ -21,7 +21,7 @@
  * SOFTWARE.
  */
 
-var version = "0.16.8";
+var version = "0.16.9";
 
 var extendStatics = function(d, b) {
     extendStatics = Object.setPrototypeOf ||
@@ -168,6 +168,8 @@ var NativeApis;
     NativeApis["DRAW_WEBVIEW"] = "drawWebView";
     NativeApis["END_SYNC_DATA"] = "endSyncData";
     NativeApis["EXPAND_APP"] = "expandApp";
+    NativeApis["GALLERY_PAGE_SET"] = "setGalleryPage";
+    NativeApis["GALLERY_PAGE_GET"] = "getGalleryPage";
     NativeApis["GET_MEETING_CONTEXT"] = "getMeetingContext";
     NativeApis["GET_MEETING_JOIN_URL"] = "getMeetingJoinUrl";
     NativeApis["GET_MEETING_PARTICIPANTS"] = "getMeetingParticipants";
@@ -219,6 +221,7 @@ var NativeApis;
     NativeApis["SET_VIDEO_SETTINGS"] = "setVideoSettings";
     NativeApis["GET_VIDEO_SETTINGS"] = "getVideoSettings";
     NativeApis["PROMPT_SHARE_SCREEN"] = "promptShareScreen";
+    NativeApis["SHOW_MEETING_INVITATION_DIALOG"] = "showMeetingInvitationDialog";
 })(NativeApis || (NativeApis = {}));
 var NativeEvents;
 (function (NativeEvents) {
@@ -241,6 +244,7 @@ var NativeEvents;
     NativeEvents["ON_BREAKOUT_ROOM_CHANGE"] = "onBreakoutRoomChange";
     NativeEvents["ON_INVITE_COLLABORATION"] = "onInviteCollaboration";
     NativeEvents["ON_COLLABORATE_CHANGE"] = "onCollaborateChange";
+    NativeEvents["ON_GALLERY_PAGE_CHANGE"] = "onGalleryPageChange";
     NativeEvents["ON_RUNNING_CONTEXT_CHANGE"] = "onRunningContextChange";
     NativeEvents["ON_AUTHORIZED"] = "onAuthorized";
     NativeEvents["ON_CLOSE_APP_FOR_PARTICIPANTS"] = "onCloseAppForParticipants";
@@ -318,6 +322,8 @@ function serializeImageData(imageData) {
 
 var getWindow = (function () { return window; });
 
+var addedNativeInterfaceEventListener = false;
+var addedWebClientEventListener = false;
 function detectBrowser(window) {
     var _a, _b, _c;
     if (window.android) {
@@ -338,6 +344,12 @@ function detectBrowser(window) {
             nativeInterface: window.webkit.messageHandlers.jsOCHelper,
         };
     }
+    else if (inIframe()) {
+        return {
+            type: 'webClient',
+            nativeInterface: window.parent,
+        };
+    }
 }
 function setPostMessage() {
     var win = getWindow();
@@ -346,7 +358,16 @@ function setPostMessage() {
         throw new Error('The Zoom Apps SDK is not supported by this browser');
     }
     if (browser.type === 'chrome') {
-        browser.nativeInterface.addEventListener('message', this.native2js.bind(this));
+        if (!addedNativeInterfaceEventListener) {
+            browser.nativeInterface.addEventListener('message', this.native2js.bind(this));
+            addedNativeInterfaceEventListener = true;
+        }
+    }
+    if (browser.type === 'webClient') {
+        if (!addedWebClientEventListener) {
+            window.addEventListener('message', this.native2js.bind(this));
+            addedWebClientEventListener = true;
+        }
     }
     if (!win.zoomSdk) {
         win.zoomSdk = this;
@@ -354,12 +375,22 @@ function setPostMessage() {
     return function (message) {
         try {
             var json = serialize(message);
-            browser.nativeInterface.postMessage(json);
+            browser.type === 'webClient'
+                ? browser.nativeInterface.postMessage(json, '*')
+                : browser.nativeInterface.postMessage(json);
         }
         catch (error) {
             throw new Error('Failed to serialize NativeApiRequest');
         }
     };
+}
+function inIframe() {
+    try {
+        return window.self !== window.top;
+    }
+    catch (e) {
+        return true;
+    }
 }
 
 var FIXED_WIDTH = 1280;
@@ -412,7 +443,7 @@ function wrapInMessageObject(value) {
     return value;
 }
 
-var _a$2, _b$1, _c$1, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28, _29, _30, _31, _32, _33, _34, _35, _36, _37, _38, _39, _40, _41, _42, _43, _44, _45, _46, _47, _48, _49, _50, _51, _52, _53, _54, _55, _56, _57, _58, _59, _60, _61, _62, _63, _64, _65, _66, _67, _68, _69, _70, _71, _72, _73, _74, _75, _76, _77, _78, _79, _80, _81, _82, _83, _84, _85, _86, _87;
+var _a$2, _b$1, _c$1, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28, _29, _30, _31, _32, _33, _34, _35, _36, _37, _38, _39, _40, _41, _42, _43, _44, _45, _46, _47, _48, _49, _50, _51, _52, _53, _54, _55, _56, _57, _58, _59, _60, _61, _62, _63, _64, _65, _66, _67, _68, _69, _70, _71, _72, _73, _74, _75, _76, _77, _78, _79, _80, _81, _82, _83, _84, _85, _86, _87, _88, _89, _90, _91;
 var compatibilityFnsApis = (_a$2 = {},
     _a$2[NativeApis.SEND_APP_INVITATION] = (_b$1 = {},
         _b$1[ZERO_SIXTEEN] = (_c$1 = {},
@@ -831,6 +862,24 @@ var compatibilityFnsApis = (_a$2 = {},
             },
             _87),
         _86),
+    _a$2[NativeApis.GALLERY_PAGE_SET] = (_88 = {},
+        _88[ZERO_SIXTEEN] = (_89 = {},
+            _89[BASE_VERSION] = {
+                mapOutput: function (value) {
+                    return wrapInObject({ key: 'message', value: value });
+                },
+            },
+            _89),
+        _88),
+    _a$2[NativeApis.SHOW_MEETING_INVITATION_DIALOG] = (_90 = {},
+        _90[ZERO_SIXTEEN] = (_91 = {},
+            _91[BASE_VERSION] = {
+                mapOutput: function (value) {
+                    return wrapInObject({ key: 'message', value: value });
+                },
+            },
+            _91),
+        _90),
     _a$2);
 
 var _a$1, _b, _c;
@@ -1437,12 +1486,21 @@ var ZoomSdk =  (function () {
     ZoomSdk.prototype.onIncomingParticipantAudioChange = function (handler) {
         this.addEventListener(NativeEvents.ON_INCOMING_PARTICIPANT_AUDIO_CHANGE, handler);
     };
+    ZoomSdk.prototype.onGalleryPageChange = function (handler) {
+        this.addEventListener(NativeEvents.ON_GALLERY_PAGE_CHANGE, handler);
+    };
     ZoomSdk.prototype.addEventListener = function (event, handler) {
+        if (!this._clientVersion || !this._version) {
+            console.warn('Must call zoomSdk.config before adding an event listener. This will become a thrown error in a future version of the sdk');
+        }
         nativeEventHandlers[event]
             ? nativeEventHandlers[event].push(handler)
             : (nativeEventHandlers[event] = [handler]);
     };
     ZoomSdk.prototype.removeEventListener = function (event, handler) {
+        if (!this._clientVersion || !this._version) {
+            console.warn('Must call zoomSdk.config before adding an event listener. This will become a thrown error in a future version of the sdk');
+        }
         if (!nativeEventHandlers[event])
             return;
         nativeEventHandlers[event] = nativeEventHandlers[event].filter(function (fn) { return fn !== handler; });
@@ -1733,10 +1791,31 @@ var ZoomSdk =  (function () {
             });
         });
     };
-    ZoomSdk.prototype.promptShareScreen = function () {
+    ZoomSdk.prototype.promptShareScreen = function (options) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 , this.callZoomApi(NativeApis.PROMPT_SHARE_SCREEN)];
+                return [2 , this.callZoomApi(NativeApis.PROMPT_SHARE_SCREEN, options)];
+            });
+        });
+    };
+    ZoomSdk.prototype.showMeetingInvitationDialog = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 , this.callZoomApi(NativeApis.SHOW_MEETING_INVITATION_DIALOG)];
+            });
+        });
+    };
+    ZoomSdk.prototype.setGalleryPage = function (options) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 , this.callZoomApi(NativeApis.GALLERY_PAGE_SET, options)];
+            });
+        });
+    };
+    ZoomSdk.prototype.getGalleryPage = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 , this.callZoomApi(NativeApis.GALLERY_PAGE_GET)];
             });
         });
     };
