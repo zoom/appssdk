@@ -88,6 +88,8 @@ declare type GeneralMessageResponse = {
     message: GeneralMessage;
 };
 /**
+ * _inChat_	The app is running in Chat app.
+ *
  * _inMeeting_	The app is running in the right side panel of a meeting.
  *
  * _inImmersive_	The app is running in immersive mode, occupying the main meeting window.
@@ -104,7 +106,7 @@ declare type GeneralMessageResponse = {
  *
  * @category Core
  */
-declare type RunningContext = 'inMeeting' | 'inImmersive' | 'inWebinar' | 'inMainClient' | 'inPhone' | 'inCollaborate' | 'inCamera' | 'inDigitalSignage';
+declare type RunningContext = 'inChat' | 'inMeeting' | 'inImmersive' | 'inWebinar' | 'inMainClient' | 'inPhone' | 'inCollaborate' | 'inCamera' | 'inDigitalSignage';
 /**
  * @category Utility
  */
@@ -935,7 +937,7 @@ declare type GetMeetingContextResponse = {
  * All the available JS APIs and events
  * @category Core
  * */
-declare type Apis = 'addBreakoutRoom' | 'allowParticipantToRecord' | 'assignParticipantsToBreakoutRoom' | 'assignParticipantToBreakoutRoom' | 'authorize' | 'changeBreakoutRoom' | 'clearImage' | 'clearParticipant' | 'clearWebView' | 'closeBreakoutRooms' | 'closeChannel' | 'closeLobby' | 'closeRenderingContext' | 'cloudRecording' | 'configureBreakoutRooms' | 'connect' | 'createBreakoutRooms' | 'deleteBreakoutRoom' | 'drawImage' | 'drawParticipant' | 'drawWebView' | 'endCollaborate' | 'endSyncData' | 'executeOnZoomAction' | 'expandApp' | 'getBreakoutRoomList' | 'getImmersiveViewContext' | 'getMeetingContext' | 'getMeetingJoinUrl' | 'getMeetingParticipants' | 'getMeetingUUID' | 'getOnZoomProperties' | 'getPairingStatus' | 'getRecordingContext' | 'getRunningContext' | 'getScreenshot' | 'getSupportedJsApis' | 'getUserContext' | 'getUserMediaAudio' | 'getUserMediaVideo' | 'joinCollaborate' | 'joinOnZoomEvent' | 'joinZoomRoom' | 'launchAppInMeeting' | 'leaveCollaborate' | 'listCameras' | 'onActiveSpeakerChange' | 'onAppPopout' | 'onAuthenticate' | 'onAuthorized' | 'onShareScreen' | 'onShareComputerAudio' | 'onBreakoutRoomChange' | 'onCloseAppForParticipants' | 'onCloudRecording' | 'onCollaborateChange' | 'onConnect' | 'onExpandApp' | 'onExtendedProcessing' | 'onFeedbackReaction' | 'onImmersiveViewChange' | 'onMeeting' | 'onMeetingConfigChanged' | 'onMessage' | 'onMyActiveSpeakerChange' | 'onMyMediaChange' | 'onMyReaction' | 'onMyUserContextChange' | 'onOnZoomJoinStatusChange' | 'onPairingStatusChange' | 'onParticipantChange' | 'onReaction' | 'onRemoveFeedbackReaction' | 'onRunningContextChange' | 'onSendAppInvitation' | 'onShareApp' | 'openBreakoutRooms' | 'openChannel' | 'openDM' | 'openUrl' | 'postMessage' | 'promptAuthorize' | 'pushState' | 'removeImmersiveView' | 'removeVirtualBackground' | 'removeVirtualForeground' | 'renameBreakoutRoom' | 'runRenderingContext' | 'sendAppInvitation' | 'sendAppInvitationToAllParticipants' | 'sendAppInvitationToMeetingOwner' | 'setCamera' | 'setImmersiveView' | 'setUserMediaAudio' | 'setUserMediaVideo' | 'setVideoMirrorEffect' | 'setVirtualBackground' | 'setVirtualForeground' | 'shareApp' | 'shareComputerAudio' | 'showAppInvitationDialog' | 'showNotification' | 'startCollaborate' | 'toggleParticipantMediaAudio' | 'onInviteCollaboration' | 'getAppContext' | 'getAudioState' | 'setAudioState' | 'getVideoState' | 'setVideoState' | 'addParticipantSpotlight' | 'removeParticipantSpotlights' | 'getParticipantSpotlights' | 'addParticipantPins' | 'removeParticipantPins' | 'setFeedbackReaction' | 'removeFeedbackReaction' | 'removeAllFeedbackReaction' | 'allowAttendeesToSpeak' | 'disallowAttendeesToSpeak' | 'removeWebinarAttendees' | 'setAudioSettings' | 'getAudioSettings' | 'getIncomingParticipantAudioState' | 'setIncomingParticipantAudioState' | 'onIncomingParticipantAudioChange' | 'setVideoSettings' | 'getVideoSettings' | 'promptShareScreen' | 'showMeetingInvitationDialog' | 'onGalleryPageChange' | 'setGalleryPage' | 'getGalleryPage';
+declare type Apis = 'addBreakoutRoom' | 'allowParticipantToRecord' | 'assignParticipantsToBreakoutRoom' | 'assignParticipantToBreakoutRoom' | 'authorize' | 'changeBreakoutRoom' | 'clearImage' | 'clearParticipant' | 'clearWebView' | 'closeBreakoutRooms' | 'closeChannel' | 'closeLobby' | 'closeRenderingContext' | 'cloudRecording' | 'configureBreakoutRooms' | 'connect' | 'createBreakoutRooms' | 'deleteBreakoutRoom' | 'drawImage' | 'drawParticipant' | 'drawWebView' | 'endCollaborate' | 'endSyncData' | 'executeOnZoomAction' | 'expandApp' | 'getBreakoutRoomList' | 'getImmersiveViewContext' | 'getMeetingContext' | 'getMeetingJoinUrl' | 'getMeetingParticipants' | 'getMeetingUUID' | 'getOnZoomProperties' | 'getPairingStatus' | 'getRecordingContext' | 'getRunningContext' | 'getScreenshot' | 'getSupportedJsApis' | 'getUserContext' | 'getUserMediaAudio' | 'getUserMediaVideo' | 'joinCollaborate' | 'joinOnZoomEvent' | 'joinZoomRoom' | 'launchAppInMeeting' | 'leaveCollaborate' | 'listCameras' | 'onActiveSpeakerChange' | 'onAppPopout' | 'onAuthenticate' | 'onAuthorized' | 'onShareScreen' | 'onShareComputerAudio' | 'onBreakoutRoomChange' | 'onCloseAppForParticipants' | 'onCloudRecording' | 'onCollaborateChange' | 'onConnect' | 'onExpandApp' | 'onExtendedProcessing' | 'onFeedbackReaction' | 'onImmersiveViewChange' | 'onMeeting' | 'onMeetingConfigChanged' | 'onMessage' | 'onMyActiveSpeakerChange' | 'onMyMediaChange' | 'onMyReaction' | 'onMyUserContextChange' | 'onOnZoomJoinStatusChange' | 'onPairingStatusChange' | 'onParticipantChange' | 'onReaction' | 'onRemoveFeedbackReaction' | 'onRunningContextChange' | 'onSendAppInvitation' | 'onShareApp' | 'openBreakoutRooms' | 'openChannel' | 'openDM' | 'openUrl' | 'postMessage' | 'promptAuthorize' | 'pushState' | 'removeImmersiveView' | 'removeVirtualBackground' | 'removeVirtualForeground' | 'renameBreakoutRoom' | 'runRenderingContext' | 'sendAppInvitation' | 'sendAppInvitationToAllParticipants' | 'sendAppInvitationToMeetingOwner' | 'setCamera' | 'setImmersiveView' | 'setUserMediaAudio' | 'setUserMediaVideo' | 'setVideoMirrorEffect' | 'setVirtualBackground' | 'setVirtualForeground' | 'shareApp' | 'shareComputerAudio' | 'showAppInvitationDialog' | 'showNotification' | 'startCollaborate' | 'toggleParticipantMediaAudio' | 'onInviteCollaboration' | 'getAppContext' | 'getAudioState' | 'setAudioState' | 'getVideoState' | 'setVideoState' | 'addParticipantSpotlight' | 'removeParticipantSpotlights' | 'getParticipantSpotlights' | 'addParticipantPins' | 'removeParticipantPins' | 'setFeedbackReaction' | 'removeFeedbackReaction' | 'removeAllFeedbackReaction' | 'allowAttendeesToSpeak' | 'disallowAttendeesToSpeak' | 'removeWebinarAttendees' | 'setAudioSettings' | 'getAudioSettings' | 'getIncomingParticipantAudioState' | 'setIncomingParticipantAudioState' | 'onIncomingParticipantAudioChange' | 'setVideoSettings' | 'getVideoSettings' | 'promptShareScreen' | 'showMeetingInvitationDialog' | 'onGalleryPageChange' | 'setGalleryPage' | 'getGalleryPage' | 'getChatContext' | 'composeCard';
 /**
  * Example:
  * ```
@@ -1768,10 +1770,41 @@ declare type GetIncomingParticipantAudioStateResponse = {
  * @category Core
  */
 declare type DecryptedAppContextResponse = {
-    /** decrypted app context data */
-    /** the context type where the app is opened, could be 'panel', 'meeting', or 'webinar' */
+    /**
+     * decrypted app context data
+     *
+     * the context type where the app is opened, could be 'panel', 'meeting', or 'webinar'
+     *
+     *  New value for “typ” i.e. “chat” for chat apps. Introduced in v5.13.0
+     */
     typ: string;
-    /** string, the Zoom user id who opens the app */
+    /**
+     * New field “aid” Action Command ID configured in build flow of the shortcut or the Button Action ID in the Interactive card. Introduced in v5.13.0
+     */
+    aid: string;
+    /**
+     * New field “chid” Chat Session ID. 'channel id' of channel or group chat or 'to user jid' of direct message chat". Introduced in v5.13.0
+     */
+    chid: string;
+    /**
+     * New field “msgid” Message ID of the message from which app is launched. The developer can use it to retrieve the files/text/reactions from the Web API. Introduced in v5.13.0
+     */
+    msgid: string;
+    /**
+     * New field "tid” the thread id identifies the thread in a chat. Introduced in v5.13.0
+     */
+    tid: string;
+    /**
+     * New field “of” The feature from where app is opened/launched messageShortcut|interactiveCard|composeShortcut. Introduced in v5.13.0
+     */
+    of: string;
+    /**
+     * New field trid i.e. triggerId, It is a unique identifier generated by zoom platform for every user interaction with chat app. triggerId is sent in the event payload sent to chat apps. Introduced in v5.13.0
+     */
+    trid: string;
+    /**
+     * string, the Zoom user id who opens the app.
+     */
     uid: string;
     /** string, the Zoom meeting uuid identifies the meeting in which this app is opened, only returned when value of 'typ' is 'meeting' */
     mid?: string;
@@ -1920,6 +1953,46 @@ declare type PromptShareScreenOptions = {
      * Introduced in client v5.13.10. Defaults to false.
      */
     optimizeForVideoClip?: boolean;
+};
+/**
+ * @category Chat
+ */
+declare type GetChatContextResponse = {
+    content: string;
+};
+/**
+ * @category Chat
+ */
+declare type ComposeCardOptions = {
+    /**
+     *interactiveCard. “interactiveCard” type are json format messages from chat apps
+     */
+    type: string;
+    /**
+     * content of the message that will be posted into conversation
+     */
+    message: string;
+    /**
+     * Zoom uses this to validate the integrity of interactive message before launching actions in interactive message. HMAC of the message (with the signing secret)
+     */
+    signature: string;
+    /**
+     * timestamp used to generate signature
+     */
+    timestamp: string;
+    /**
+     * Content of the preview
+     */
+    previewCard: {
+        /**
+         * title of the preview card
+         */
+        title: string;
+        /**
+         * description to be displayed in the card
+         */
+        description: string;
+    };
 };
 
 /**
@@ -3123,13 +3196,9 @@ declare class ZoomSdk {
      *
      * *Running context*: inMeeting, inWebinar
      *
-     * *Scope label*: Product Usage
-     *
      * *Product*: desktop, zoomRoomController
      *
      * *Supports Guest Mode*: Yes
-     *
-     * *Scope hierarchy*: zoomapp:inmeeting
      *
      * @category Meeting Actions
      */
@@ -3142,13 +3211,9 @@ declare class ZoomSdk {
      *
      * *Running context*: inMeeting, inWebinar
      *
-     * *Scope label*: Product Usage
-     *
      * *Product*: desktop, zoomRoomController
      *
      * *Supports Guest Mode*: Yes
-     *
-     * *Scope hierarchy*: zoomapp:inmeeting
      *
      * @category Meeting Actions
      */
@@ -3199,10 +3264,6 @@ declare class ZoomSdk {
      *
      * *Supports Guest Mode*: Yes
      *
-     * *Scope label*: Participant Profile & Contact Information
-     *
-     * *Scope hierarchy*: zoomapps.meetings / zoomapps.meetings.content
-     *
      * @category Reactions
      */
     onFeedbackReaction(handler: GenericEventHandler<OnFeedbackReactionEvent>): void;
@@ -3217,10 +3278,6 @@ declare class ZoomSdk {
      *
      * *Supports Guest Mode*: Yes
      *
-     * *Scope label*: Participant Profile & Contact Information
-     *
-     * *Scope hierarchy*: zoomapps.meetings / zoomapps.meetings.content
-     *
      * @category Reactions
      */
     onRemoveFeedbackReaction(handler: GenericEventHandler<OnRemoveFeedbackReactionEvent>): void;
@@ -3233,10 +3290,6 @@ declare class ZoomSdk {
      * *Supported roles*: Host, Co-Host, Participant
      *
      * *Supports Guest Mode*: Yes
-     *
-     * *Scope label*: Read Scopes: Device Information
-     *
-     * *Scope hierarchy*: zoomapps.client
      *
      * @category Meeting Actions
      */
@@ -3252,11 +3305,7 @@ declare class ZoomSdk {
      *
      * *Supports Guest Mode*: Yes
      *
-     * *Scope label*: Read Scopes: functional
-     *
      * *Product*: desktop
-     *
-     * *Scope hierarchy*: zoomapps.meetings / zoomapps.meetings.content
      *
      * @category Meeting Views
      */
@@ -3627,10 +3676,6 @@ declare class ZoomSdk {
      *
      * *Supports Guest Mode*: No
      *
-     * *Scope label*: Manage Devices
-     *
-     * *Scope hierarchy*: zoomapps.meetings / zoomapps.webinar
-     *
      * *Confirmation / Consent moments*
      *
      * - ###### All participants
@@ -3666,8 +3711,6 @@ declare class ZoomSdk {
      *
      * *Supports Guest Mode*: Yes
      *
-     * *Scope hierarchy*: zoomapps.meetings /  zoomapps.meetings.content
-     *
      * ```
      * zoomSdk.getAppContext()
      * .then((appContext) => console.log(appContext))
@@ -3690,8 +3733,6 @@ declare class ZoomSdk {
      *
      * *Supports Guest Mode*: Yes
      *
-     * *Scope hierarchy*: zoomapps.meetings /  zoomapps.meetings.content
-     *
      * ```
      * zoomSdk.shareComputerAudio({ action: start })
      * .then((response) => console.log(response)) // { message: success }
@@ -3711,10 +3752,6 @@ declare class ZoomSdk {
      * *Supported roles*: Host, Co-Host
      *
      * *Supports Guest Mode*: No
-     *
-     * *Scope label*: Write: Manage Content
-     *
-     * *Scope hierarchy*: zoomapps.meetings / zoomapps.meetings.content
      *
      * *Confirmation / Consent moments*: none
      *
@@ -3743,10 +3780,6 @@ declare class ZoomSdk {
      *
      * *Supports Guest Mode*: No
      *
-     * *Scope label*: Write: Manage Content
-     *
-     * *Scope hierarchy*: zoomapps.meetings / zoomapps.meetings.content
-     *
      * *Confirmation / Consent moments*: none
      *
      * ```
@@ -3771,10 +3804,6 @@ declare class ZoomSdk {
      *
      * *Supports Guest Mode*: Yes
      *
-     * *Scope label*: Content
-     *
-     * *Scope hierarchy*: zoomapps.meetings / zoomapps.meetings.content
-     *
      * *Confirmation / Consent moments*: none
      *
      *  ```
@@ -3798,10 +3827,6 @@ declare class ZoomSdk {
      *
      * *Supports Guest Mode*: Yes
      *
-     * *Scope label*: Read Scopes: Content
-     *
-     * *Scope hierarchy*: zoomapps.meetings /  zoomapps.meetings.content
-     *
      * ```
      * zoomSdk.addParticipantPins( {participantUUIDs: [ participantUUID1, ... ], secondaryDisplay: true|false })
      * .then((response) => console.log(response))
@@ -3821,10 +3846,6 @@ declare class ZoomSdk {
      *
      * *Supports Guest Mode*: Yes
      *
-     * *Scope label*: Read Scopes: Content
-     *
-     * *Scope hierarchy*: zoomapps.meetings /  zoomapps.meetings.content
-     *
      * ```
      * zoomSdk.removeParticipantPins( {participantUUIDs: [ participantUUID1, ... ], secondaryDisplay: true|false })
      * .then((response) => console.log(response))
@@ -3843,10 +3864,6 @@ declare class ZoomSdk {
      * *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
      *
      * *Supports Guest Mode*: Yes
-     *
-     * *Scope label*: Write Scopes: Manage Content
-     *
-     * *Scope hierarchy*: zoomapps.meetings /  zoomapps.meetings.content
      *
      * ```
      * zoomSdk.setFeedbackReaction( { feedback: 'yes' } )
@@ -3868,10 +3885,6 @@ declare class ZoomSdk {
      *
      * *Supports Guest Mode*: Yes
      *
-     * *Scope label*: Write Scopes: Manage Content
-     *
-     * *Scope hierarchy*: zoomapps.meetings /  zoomapps.meetings.content
-     *
      * ```
      * zoomSdk.removeFeedbackReaction()
      * .then((response) => console.log(response))
@@ -3891,10 +3904,6 @@ declare class ZoomSdk {
      * *Supported roles*: Host, Co-Host
      *
      * *Supports Guest Mode*: No
-     *
-     * *Scope label*: Write Scopes: Manage Content, Manage Participants
-     *
-     * *Scope hierarchy*: zoomapps.webinar / zoomapps.webinar.content
      *
      * ```
      * zoomSdk.removeAllFeedbackReaction()
@@ -3916,10 +3925,6 @@ declare class ZoomSdk {
      *
      * *Supports Guest Mode*: No
      *
-     * *Scope label*: Write Scopes: Manage Content, Manage Participants
-     *
-     * *Scope hierarchy*: zoomapps.meetings / zoomapps.meetings.content
-     *
      * ```
      * zoomSdk.allowAttendeesToSpeak( {participantUUIDs: [ participantUUID1, ... ]})
      * .then((response) => console.log(response))
@@ -3938,10 +3943,6 @@ declare class ZoomSdk {
      * *Supported roles*: Host, Co-Host
      *
      * *Supports Guest Mode*: No
-     *
-     * *Scope label*: Write Scopes: Manage Content, Manage Participants
-     *
-     * *Scope hierarchy*: zoomapps.meetings / zoomapps.meetings.content
      *
      * ```
      * zoomSdk.disallowAttendeesToSpeak( {participantUUIDs: [ participantUUID1, ... ]})
@@ -3962,10 +3963,6 @@ declare class ZoomSdk {
      *
      * *Supports Guest Mode*: No
      *
-     * *Scope label*: Write Scopes: Manage Participants
-     *
-     * *Scope hierarchy*: zoomapps.meetings / zoomapps.meetings.content
-     *
      * ```
      * zoomSdk.removeWebinarAttendees( {participantUUIDs: [ participantUUID1, ... ]})
      * .then((response) => console.log(response))
@@ -3974,6 +3971,54 @@ declare class ZoomSdk {
      * @category Webinar-only Actions
      */
     removeWebinarAttendees(options: RemoveWebinarAttendeeOptions): Promise<GeneralMessageResponse>;
+    /**
+     * @zoomClientVersion 5.13.0
+     *
+     * Get Contextual Chat Context. If App is launched from Message ellipsis, method should return the message from where it is launched.
+     *
+     * *Supported roles*: N/A
+     *
+     * *Running context*: inChat
+     *
+     * *Supports Guest Mode*: No
+     *
+     * ```
+     * await zoomSdk.getChatContext()
+     * ```
+     * @category Chat
+     *
+     * @experimental
+     */
+    getChatContext(): Promise<GetChatContextResponse>;
+    /**
+     * @zoomClientVersion 5.13.0
+     *
+     * Sends Interactive message and its preview to user’s compose box in chat context. When user posts the card, actual content of the message will be rendered as interactive message
+     *
+     * *Supported roles*: N/A
+     *
+     * *Running context*: inChat
+     *
+     * *Supports Guest Mode*: No
+     *
+     * ```
+     * await zoomSdk.composeCard({
+     *  "type": "interactiveCard",
+     *  "message": "some message",
+     *  "signature": "some signature",
+     *  "timestamp": "some timestamp",
+     *  "previewCard": {
+     *    "title": "some title",
+     *    "description":"some description"
+     *  }
+     * })
+     * ```
+     *
+     * @category Chat
+     *
+     * @experimental
+     */
+    composeCard(options: ComposeCardOptions): Promise<GeneralMessageResponse>;
     /**
      * @zoomClientVersion 5.12.6
      *
@@ -3984,10 +4029,6 @@ declare class ZoomSdk {
      * *Supported roles*: Host, Co-Host, Participant
      *
      * *Supports Guest Mode*: Yes
-     *
-     * *Scope label*: Read Scopes: Device Information
-     *
-     * *Scope hierarchy*: zoomapps.client
      *
      * ```
      * zoomSdk.getIncomingParticipantAudioState({participantUUIDs: [ participantUUID1, ... ]})
@@ -4014,10 +4055,6 @@ declare class ZoomSdk {
      *
      * *Supports Guest Mode*: Yes
      *
-     * *Scope label*: Write Scopes: Manage Devices
-     *
-     * *Scope hierarchy*: zoomapps.client
-     *
      * ```
      * zoomSdk.setIncomingParticipantAudioState({participantUUIDs: [ participantUUID1, ... ], audio: true|false})
      * .then((response) => console.log(response))
@@ -4039,11 +4076,7 @@ declare class ZoomSdk {
      *
      * *Running context*: inMainClient, inMeeting, inImmersive, inWebinar, inCollaborate, inCamera
      *
-     * *Scope label*: Write Scope: Manage Settings
-     *
      * *Supports Guest Mode*: Yes
-     *
-     * *Scope hierarchy*: zoomapps.meetings / zoomapps.meetings.content
      *
      * ```
      * await zoomSdk.setVideoSettings({hdVideo: true})
@@ -4063,11 +4096,7 @@ declare class ZoomSdk {
      *
      * *Running context*: inMainClient, inMeeting, inImmersive, inWebinar, inCollaborate, inCamera
      *
-     * *Scope label*: Read Scopes: Settings
-     *
      * *Supports Guest Mode*: Yes
-     *
-     * *Scope hierarchy*: zoomapps.meetings / zoomapps.meetings.content
      *
      * ```
      *  await zoomSdk.getVideoSettings()
@@ -4088,11 +4117,7 @@ declare class ZoomSdk {
      *
      * *Running context*: inMainClient, inMeeting, inImmersive, inCollaborate, inCamera, inWebinar
      *
-     * *Scope label*: Write Scopes: Manage Settings
-     *
      * *Supports Guest Mode*: Yes
-     *
-     * *Scope hierarchy*: zoomapps.meetings / zoomapps.meetings.content
      *
      * ```
      * await zoomSdk.setAudioSettings({originalSound: true})
@@ -4112,13 +4137,9 @@ declare class ZoomSdk {
      *
      * *Running context*: inMainClient, inMeeting, inImmersive, inCollaborate, inCamera, inWebinar
      *
-     * *Scope label*: Read Scopes: Settings
-     *
      * *Supports Guest Mode*: Yes
      *
      * *Product*: Desktop
-     *
-     * *Scope hierarchy*: zoomapps.meetings / zoomapps.meetings.content
      *
      * ```
      * await zoomSdk.getAudioSettings()
@@ -4136,10 +4157,6 @@ declare class ZoomSdk {
      * *Supported roles*: Host, Co-Host, Participant, and Panelist
      *
      * *Supports Guest Mode*: Yes
-     *
-     * *Scope label*: Read Scopes: Product Usage
-     *
-     * *Scope hierarchy*: zoomapps.meetings / zoomapps.meetings.content
      *
      * *Product*: Desktop
      *
@@ -4160,10 +4177,6 @@ declare class ZoomSdk {
      *
      * *Supports Guest Mode*: Yes
      *
-     * *Scope label*: Read Scopes: Product Usage
-     *
-     * *Scope hierarchy*: zoomapps.meetings / zoomapps.meetings.content
-     *
      * *Product*: Desktop, Mobile
      *
      * ```
@@ -4183,10 +4196,6 @@ declare class ZoomSdk {
      *
      * *Supports Guest Mode*: Yes
      *
-     * *Scope label*: Write Scopes: Manage Settings
-     *
-     * *Scope hierarchy*: zoomapps.meetings / zoomapps.meetings.content
-     *
      * @category Meeting Views
      */
     setGalleryPage(options: SetGalleryPageOptions): Promise<GeneralMessageResponse>;
@@ -4201,10 +4210,6 @@ declare class ZoomSdk {
      *
      * *Supports Guest Mode*: Yes
      *
-     * *Scope label*: Write Scopes: Manage Settings
-     *
-     * *Scope hierarchy*: zoomapps.meetings / zoomapps.meetings.content
-     *
      * *Product*: desktop
      *
      * @category Meeting Views
@@ -4214,4 +4219,4 @@ declare class ZoomSdk {
 
 declare const _default: ZoomSdk;
 
-export { AddBreakoutRoomOptions, AddParticipantSpotlightOptions, AllowParticipantToRecordOptions, Apis, AppInvitationResponse, AssignParticipantToBreakoutRoomOptions, AttendeeSpeakingOptions, AudioMedia, AuthObject, AuthorizeOptions, BreakOutRoomParticipant, BreakoutRoomAssignmentMethods, BreakoutRoomsCreated, BreakoutRoomsParticipantsAssigned, BreakoutRoomsParticipantsJoined, BreakoutRoomsParticipantsLeft, BreakoutRoomsResponse, BreakoutRoomsUpdated, ChangeBreakoutRoomOptions, ClearImageOptions, ClearParticipantOptions, ClearWebViewOptions, CloudRecordingOptions, ConfigOptions, ConfigResponse, ConfigSize, ConfigureBreakoutRoomsOptions, ConfigureBreakoutRoomsResponse, CreateBreakoutRoomsOptions, DecryptedAppContextResponse, DrawImageOptions, DrawImageResponse, DrawParticipantOptions, DrawWebViewOptions, ExpandAppOptions, FeedbackReactionOptions, FeedbackReactions, GeneralMessage, GeneralMessageResponse, GenericEventHandler, GetAppContextResponse, GetAudioSettingsResponse, GetAudioStateResponse, GetGalleryPageResponse, GetIncomingParticipantAudioStateOptions, GetIncomingParticipantAudioStateResponse, GetMeetingContextResponse, GetMeetingJoinUrlResponse, GetMeetingParticipantsResponse, GetMeetingUUIDResponse, GetParticipantSpotlightsResponse, GetRecordingContextResponse, GetSupportedJsApisResponse, GetUserContextResponse, GetVideoSettingsResponse, GetVideoStateResponse, JSONObject, JSONValue, LaunchAppInMeetingOptions, ListCamerasResponse, NativeApiRequest, NativeApiRequestData, NativeApiResponseData, NativeConfigOptions, NativeMessage, NativeMessageData, NotificationOptions$1 as NotificationOptions, OnActiveSpeakerChangeEvent, OnActiveSpeakerChangeUserType, OnAppPopoutEvent, OnAuthorizedEvent, OnBreakoutRoomChangeEvent, OnCloudRecordingEvent, OnCollaborateChangeEvent, OnConnectEvent, OnExpandAppEvent, OnFeedbackReactionEvent, OnGalleryPageChangeEvent, OnIncomingParticipantAudioChangeEvent, OnMeetingEvent, OnMessageEvent, OnMyActiveSpeakerChangeEvent, OnMyMediaChangeEvent, OnMyReactionEvent, OnMyUserContextChangeEvent, OnParticipantChangeEvent, OnParticipantChangeParticipantType, OnReactionEvent, OnRemoveFeedbackReactionEvent, OnRenderedAppOpenedEvent, OnRunningContextChangeEvent, OnSendAppInvitationEvent, OnShareAppEvent, OnShareComputerAudioEvent, OnShareScreenEvent, OpenUrlOptions, Participant, ParticipantCutoutShape, ParticipantPinOptions, PixelValue, PromptShareScreenOptions, RemoveParticipantSpotlightsOptions, RemoveWebinarAttendeeOptions, RenameBreakoutRoomOptions, RenderingContextView, RunRenderingContextOptions, RunningContext, RunningContextResponse, SdkOptions, SdkVersion, SendAppInvitationOptions, SetAudioSettingsOptions, SetAudioStateOptions, SetCameraOptions, SetGalleryPageOptions, SetIncomingParticipantAudioStateOptions, SetVideoMirrorEffectOptions, SetVideoSettingsOptions, SetVideoStateOptions, ShareAppOptions, ShareComputerAudioOptions, StartCollaborateOptions, ToggleParticipantMediaAudioOptions, Uuid, VideoMedia, VirtualBackgroundOptions, VirtualForegroundOptions, _default as default, onMeetingConfigChangedEvent };
+export { AddBreakoutRoomOptions, AddParticipantSpotlightOptions, AllowParticipantToRecordOptions, Apis, AppInvitationResponse, AssignParticipantToBreakoutRoomOptions, AttendeeSpeakingOptions, AudioMedia, AuthObject, AuthorizeOptions, BreakOutRoomParticipant, BreakoutRoomAssignmentMethods, BreakoutRoomsCreated, BreakoutRoomsParticipantsAssigned, BreakoutRoomsParticipantsJoined, BreakoutRoomsParticipantsLeft, BreakoutRoomsResponse, BreakoutRoomsUpdated, ChangeBreakoutRoomOptions, ClearImageOptions, ClearParticipantOptions, ClearWebViewOptions, CloudRecordingOptions, ComposeCardOptions, ConfigOptions, ConfigResponse, ConfigSize, ConfigureBreakoutRoomsOptions, ConfigureBreakoutRoomsResponse, CreateBreakoutRoomsOptions, DecryptedAppContextResponse, DrawImageOptions, DrawImageResponse, DrawParticipantOptions, DrawWebViewOptions, ExpandAppOptions, FeedbackReactionOptions, FeedbackReactions, GeneralMessage, GeneralMessageResponse, GenericEventHandler, GetAppContextResponse, GetAudioSettingsResponse, GetAudioStateResponse, GetChatContextResponse, GetGalleryPageResponse, GetIncomingParticipantAudioStateOptions, GetIncomingParticipantAudioStateResponse, GetMeetingContextResponse, GetMeetingJoinUrlResponse, GetMeetingParticipantsResponse, GetMeetingUUIDResponse, GetParticipantSpotlightsResponse, GetRecordingContextResponse, GetSupportedJsApisResponse, GetUserContextResponse, GetVideoSettingsResponse, GetVideoStateResponse, JSONObject, JSONValue, LaunchAppInMeetingOptions, ListCamerasResponse, NativeApiRequest, NativeApiRequestData, NativeApiResponseData, NativeConfigOptions, NativeMessage, NativeMessageData, NotificationOptions$1 as NotificationOptions, OnActiveSpeakerChangeEvent, OnActiveSpeakerChangeUserType, OnAppPopoutEvent, OnAuthorizedEvent, OnBreakoutRoomChangeEvent, OnCloudRecordingEvent, OnCollaborateChangeEvent, OnConnectEvent, OnExpandAppEvent, OnFeedbackReactionEvent, OnGalleryPageChangeEvent, OnIncomingParticipantAudioChangeEvent, OnMeetingEvent, OnMessageEvent, OnMyActiveSpeakerChangeEvent, OnMyMediaChangeEvent, OnMyReactionEvent, OnMyUserContextChangeEvent, OnParticipantChangeEvent, OnParticipantChangeParticipantType, OnReactionEvent, OnRemoveFeedbackReactionEvent, OnRenderedAppOpenedEvent, OnRunningContextChangeEvent, OnSendAppInvitationEvent, OnShareAppEvent, OnShareComputerAudioEvent, OnShareScreenEvent, OpenUrlOptions, Participant, ParticipantCutoutShape, ParticipantPinOptions, PixelValue, PromptShareScreenOptions, RemoveParticipantSpotlightsOptions, RemoveWebinarAttendeeOptions, RenameBreakoutRoomOptions, RenderingContextView, RunRenderingContextOptions, RunningContext, RunningContextResponse, SdkOptions, SdkVersion, SendAppInvitationOptions, SetAudioSettingsOptions, SetAudioStateOptions, SetCameraOptions, SetGalleryPageOptions, SetIncomingParticipantAudioStateOptions, SetVideoMirrorEffectOptions, SetVideoSettingsOptions, SetVideoStateOptions, ShareAppOptions, ShareComputerAudioOptions, StartCollaborateOptions, ToggleParticipantMediaAudioOptions, Uuid, VideoMedia, VirtualBackgroundOptions, VirtualForegroundOptions, _default as default, onMeetingConfigChangedEvent };

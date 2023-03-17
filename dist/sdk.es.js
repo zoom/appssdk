@@ -1,4 +1,4 @@
-/* Zoom Apps SDK v0.16.9  */
+/* Zoom Apps SDK v0.16.10  */
 /**
  * Copyright (c) 2023 Zoom Video Communications, Inc.
  * 
@@ -21,7 +21,7 @@
  * SOFTWARE.
  */
 
-var version = "0.16.9";
+var version = "0.16.10";
 
 var extendStatics = function(d, b) {
     extendStatics = Object.setPrototypeOf ||
@@ -222,6 +222,8 @@ var NativeApis;
     NativeApis["GET_VIDEO_SETTINGS"] = "getVideoSettings";
     NativeApis["PROMPT_SHARE_SCREEN"] = "promptShareScreen";
     NativeApis["SHOW_MEETING_INVITATION_DIALOG"] = "showMeetingInvitationDialog";
+    NativeApis["GET_CHAT_CONTEXT"] = "getChatContext";
+    NativeApis["COMPOSE_CARD"] = "composeCard";
 })(NativeApis || (NativeApis = {}));
 var NativeEvents;
 (function (NativeEvents) {
@@ -1746,6 +1748,20 @@ var ZoomSdk =  (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 return [2 , this.callZoomApi(NativeApis.REMOVE_WEBINAR_ATTENDEES, options)];
+            });
+        });
+    };
+    ZoomSdk.prototype.getChatContext = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 , this.callZoomApi(NativeApis.GET_CHAT_CONTEXT)];
+            });
+        });
+    };
+    ZoomSdk.prototype.composeCard = function (options) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 , this.callZoomApi(NativeApis.COMPOSE_CARD, options)];
             });
         });
     };
