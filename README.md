@@ -10,7 +10,7 @@ There are two ways to install the Zoom Apps SDK into your frontend project
 
 You can install it from NPM, if you are using a module bundler such as Webpack:
 
-```
+```bash
 $ npm install @zoom/appssdk
 ```
 
@@ -18,13 +18,13 @@ $ npm install @zoom/appssdk
 
 Alternatively, you can load the SDK from a CDN, using a script tag in your HTML document:
 
-```
+```html
 <script src="https://appssdk.zoom.us/sdk.js"></script>
 ```
 
 You can also load a minified SDK, using a script tag in your HTML document:
 
-```
+```html
 <script src="https://appssdk.zoom.us/sdk.min.js"></script>
 ```
 
@@ -32,7 +32,7 @@ You can also load a minified SDK, using a script tag in your HTML document:
 
 If you installed Zoom Apps SDK from NPM, import `zoomSdk` into the component where you wanted to use the SDK and call `config` as your first call to verify your application with Zoom.
 
-```
+```javascript
 import zoomSdk from "@zoom/appssdk"
 
 async function configureApp() {
@@ -62,7 +62,7 @@ The cloud SDK is designed to provide on-demand patch updates, and it does not su
 
 `zoomSdk.config` response object. Read more about [zoomSdk.config](https://marketplace.zoom.us/docs/zoom-apps/js-sdk/reference/)
 
-```
+```json
 {
   "clientVersion": "5.11.1.8356",
   "browserVersion": "applewebkit/17613.2.7.1.8",
@@ -94,13 +94,13 @@ Your app is developed against the 3.4.0 client version and uses the `sendAppInvi
 
 Client version 3.4.0. The `sendAppInvitation` API schema is
 
-```
+```javascript
 sendAppInvitation ({ participantUUIDs: [participantUUID1, participantUUID2, ...], })
 ```
 
 Client version 4.0.0 introduces a breaking change to the `sendAppInvitation` API that requires one additional parameter `message` to customize your invitation. The new API schema is
  
- ```
+ ```javascript
  sendAppInvitation ({ participantUUIDs: [participantUUID1, participantUUID2, ...],  message: "This app is awesome, try it!"})
 ```
 
@@ -108,13 +108,13 @@ Apps based on the client version 3.4.0 will break when used on the 4.0.0 client 
 
 Original call from app to SDK
 
-```
+```javascript
 sendAppInvitation ({ participantUUIDs: [participantUUID1, participantUUID2, ...], })
 ```
 
 SDK transforms the call internally to
 
-```
+```javascript
 sendAppInvitation ({ participantUUIDs: [participantUUID1, participantUUID2, ...], message: ""})
 ```
 
