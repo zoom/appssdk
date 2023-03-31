@@ -937,7 +937,7 @@ declare type GetMeetingContextResponse = {
  * All the available JS APIs and events
  * @category Core
  * */
-declare type Apis = 'addBreakoutRoom' | 'allowParticipantToRecord' | 'assignParticipantsToBreakoutRoom' | 'assignParticipantToBreakoutRoom' | 'authorize' | 'changeBreakoutRoom' | 'clearImage' | 'clearParticipant' | 'clearWebView' | 'closeBreakoutRooms' | 'closeChannel' | 'closeLobby' | 'closeRenderingContext' | 'cloudRecording' | 'configureBreakoutRooms' | 'connect' | 'createBreakoutRooms' | 'deleteBreakoutRoom' | 'drawImage' | 'drawParticipant' | 'drawWebView' | 'endCollaborate' | 'endSyncData' | 'executeOnZoomAction' | 'expandApp' | 'getBreakoutRoomList' | 'getImmersiveViewContext' | 'getMeetingContext' | 'getMeetingJoinUrl' | 'getMeetingParticipants' | 'getMeetingUUID' | 'getOnZoomProperties' | 'getPairingStatus' | 'getRecordingContext' | 'getRunningContext' | 'getScreenshot' | 'getSupportedJsApis' | 'getUserContext' | 'getUserMediaAudio' | 'getUserMediaVideo' | 'joinCollaborate' | 'joinOnZoomEvent' | 'joinZoomRoom' | 'launchAppInMeeting' | 'leaveCollaborate' | 'listCameras' | 'onActiveSpeakerChange' | 'onAppPopout' | 'onAuthenticate' | 'onAuthorized' | 'onShareScreen' | 'onShareComputerAudio' | 'onBreakoutRoomChange' | 'onCloseAppForParticipants' | 'onCloudRecording' | 'onCollaborateChange' | 'onConnect' | 'onExpandApp' | 'onExtendedProcessing' | 'onFeedbackReaction' | 'onImmersiveViewChange' | 'onMeeting' | 'onMeetingConfigChanged' | 'onMessage' | 'onMyActiveSpeakerChange' | 'onMyMediaChange' | 'onMyReaction' | 'onMyUserContextChange' | 'onOnZoomJoinStatusChange' | 'onPairingStatusChange' | 'onParticipantChange' | 'onReaction' | 'onRemoveFeedbackReaction' | 'onRunningContextChange' | 'onSendAppInvitation' | 'onShareApp' | 'openBreakoutRooms' | 'openChannel' | 'openDM' | 'openUrl' | 'postMessage' | 'promptAuthorize' | 'pushState' | 'removeImmersiveView' | 'removeVirtualBackground' | 'removeVirtualForeground' | 'renameBreakoutRoom' | 'runRenderingContext' | 'sendAppInvitation' | 'sendAppInvitationToAllParticipants' | 'sendAppInvitationToMeetingOwner' | 'setCamera' | 'setImmersiveView' | 'setUserMediaAudio' | 'setUserMediaVideo' | 'setVideoMirrorEffect' | 'setVirtualBackground' | 'setVirtualForeground' | 'shareApp' | 'shareComputerAudio' | 'showAppInvitationDialog' | 'showNotification' | 'startCollaborate' | 'toggleParticipantMediaAudio' | 'onInviteCollaboration' | 'getAppContext' | 'getAudioState' | 'setAudioState' | 'getVideoState' | 'setVideoState' | 'addParticipantSpotlight' | 'removeParticipantSpotlights' | 'getParticipantSpotlights' | 'addParticipantPins' | 'removeParticipantPins' | 'setFeedbackReaction' | 'removeFeedbackReaction' | 'removeAllFeedbackReaction' | 'allowAttendeesToSpeak' | 'disallowAttendeesToSpeak' | 'removeWebinarAttendees' | 'setAudioSettings' | 'getAudioSettings' | 'getIncomingParticipantAudioState' | 'setIncomingParticipantAudioState' | 'onIncomingParticipantAudioChange' | 'setVideoSettings' | 'getVideoSettings' | 'promptShareScreen' | 'showMeetingInvitationDialog' | 'onGalleryPageChange' | 'setGalleryPage' | 'getGalleryPage' | 'getChatContext' | 'composeCard';
+declare type Apis = 'addBreakoutRoom' | 'allowParticipantToRecord' | 'assignParticipantsToBreakoutRoom' | 'assignParticipantToBreakoutRoom' | 'authorize' | 'changeBreakoutRoom' | 'clearImage' | 'clearParticipant' | 'clearWebView' | 'closeBreakoutRooms' | 'closeChannel' | 'closeLobby' | 'closeRenderingContext' | 'cloudRecording' | 'configureBreakoutRooms' | 'connect' | 'createBreakoutRooms' | 'deleteBreakoutRoom' | 'drawImage' | 'drawParticipant' | 'drawWebView' | 'endCollaborate' | 'endSyncData' | 'executeOnZoomAction' | 'expandApp' | 'getBreakoutRoomList' | 'getImmersiveViewContext' | 'getMeetingContext' | 'getMeetingJoinUrl' | 'getMeetingParticipants' | 'getMeetingUUID' | 'getOnZoomProperties' | 'getPairingStatus' | 'getRecordingContext' | 'getRunningContext' | 'getScreenshot' | 'getSupportedJsApis' | 'getUserContext' | 'getUserMediaAudio' | 'getUserMediaVideo' | 'joinCollaborate' | 'joinOnZoomEvent' | 'joinZoomRoom' | 'launchAppInMeeting' | 'leaveCollaborate' | 'listCameras' | 'onActiveSpeakerChange' | 'onAppPopout' | 'onAuthenticate' | 'onAuthorized' | 'onShareScreen' | 'onShareComputerAudio' | 'onBreakoutRoomChange' | 'onCloseAppForParticipants' | 'onCloudRecording' | 'onCollaborateChange' | 'onConnect' | 'onExpandApp' | 'onExtendedProcessing' | 'onFeedbackReaction' | 'onImmersiveViewChange' | 'onMeeting' | 'onMeetingConfigChanged' | 'onMessage' | 'onMyActiveSpeakerChange' | 'onMyMediaChange' | 'onMyReaction' | 'onMyUserContextChange' | 'onOnZoomJoinStatusChange' | 'onPairingStatusChange' | 'onParticipantChange' | 'onReaction' | 'onRemoveFeedbackReaction' | 'onRunningContextChange' | 'onSendAppInvitation' | 'onShareApp' | 'openBreakoutRooms' | 'openChannel' | 'openDM' | 'openUrl' | 'postMessage' | 'promptAuthorize' | 'pushState' | 'removeImmersiveView' | 'removeVirtualBackground' | 'removeVirtualForeground' | 'renameBreakoutRoom' | 'runRenderingContext' | 'sendAppInvitation' | 'sendAppInvitationToAllParticipants' | 'sendAppInvitationToMeetingOwner' | 'setCamera' | 'setImmersiveView' | 'setUserMediaAudio' | 'setUserMediaVideo' | 'setVideoMirrorEffect' | 'setVirtualBackground' | 'setVirtualForeground' | 'shareApp' | 'shareComputerAudio' | 'showAppInvitationDialog' | 'showNotification' | 'startCollaborate' | 'toggleParticipantMediaAudio' | 'onInviteCollaboration' | 'getAppContext' | 'getAudioState' | 'setAudioState' | 'getVideoState' | 'setVideoState' | 'addParticipantSpotlight' | 'removeParticipantSpotlights' | 'getParticipantSpotlights' | 'addParticipantPins' | 'removeParticipantPins' | 'setFeedbackReaction' | 'removeFeedbackReaction' | 'removeAllFeedbackReaction' | 'allowAttendeesToSpeak' | 'disallowAttendeesToSpeak' | 'removeWebinarAttendees' | 'setAudioSettings' | 'getAudioSettings' | 'getIncomingParticipantAudioState' | 'setIncomingParticipantAudioState' | 'onIncomingParticipantAudioChange' | 'setVideoSettings' | 'getVideoSettings' | 'promptShareScreen' | 'showMeetingInvitationDialog' | 'onGalleryPageChange' | 'setGalleryPage' | 'getGalleryPage' | 'getChatContext' | 'composeCard' | 'broadcastVoiceToBreakoutRooms' | 'stopShareScreen';
 /**
  * Example:
  * ```
@@ -1994,6 +1994,12 @@ declare type ComposeCardOptions = {
         description: string;
     };
 };
+/**
+ * @category Breakout Rooms
+ */
+declare type BroadcastVoiceToBreakoutRoomsOptions = {
+    action: 'start' | 'stop';
+};
 
 /**
  * # Zoom Apps SDK
@@ -2057,7 +2063,7 @@ declare type ComposeCardOptions = {
  *
  * The cloud SDK is designed to provide on-demand patch updates, and it does not support exact versions. You will always get the latest patch version within the major version specified in the version parameter of `zoomSdk.config`. In other words, if you supplied an exact version like `0.16.1`, you will get the latest patch within the `0.16` major version.
  *
- * `zoomSdk.config` response object. Read more about [zoomSdk.config](https://marketplace.zoom.us/docs/zoom-apps/js-sdk/reference/)
+ * `zoomSdk.config` response object. Read more about [zoomSdk.config](https://appssdk.zoom.us/classes/ZoomSdk.ZoomSdk.html#config)
  *
  * ```
  * {
@@ -2123,10 +2129,10 @@ declare type ComposeCardOptions = {
  *
  * ## Resources to create a Zoom App
  *
- * - Create your first Zoom App following these [steps](https://marketplace.zoom.us/docs/zoom-apps/getstarted).
- * - To help you start developing Zoom Apps we also provide sample reference [apps](https://marketplace.zoom.us/docs/zoom-apps/referenceapp#quick-start-reference-apps).
+ * - Create your first Zoom App following these [steps](https://developers.zoom.us/docs/zoom-apps/create/).
+ * - To help you start developing Zoom Apps we also provide sample reference [apps](https://developers.zoom.us/docs/zoom-apps/reference-apps/).
  * - Watch [How To Create a Zoom App](https://www.youtube.com/watch?v=otlyDxnU-RI) and [How To Configure the Basic Zoom App](https://www.youtube.com/watch?v=SS87nqO9ScQ).
- * - Discover more learning [resources](https://marketplace.zoom.us/docs/zoom-apps/introduction) for Zoom Apps Development.
+ * - Discover more learning [resources](https://developers.zoom.us/docs/zoom-apps/) for Zoom Apps Development.
  * - Zoom Apps SDK on [npm](https://www.npmjs.com/package/@zoom/appssdk).
  *
  * ## Need help?
@@ -3044,7 +3050,7 @@ declare class ZoomSdk {
     onExpandApp(handler: GenericEventHandler<OnExpandAppEvent>): void;
     /**
      * @zoomClientVersion 5.6.7
-     * In order to maintain state after a meeting, the instance of the app that is running in the meeting must communicate with the instance of the app running in the main client. The following events facilitate that process. For more information, see [an example of this process](https://marketplace.zoom.us/docs/beta-docs/zoom-apps/guides/maintaining-state/).
+     * In order to maintain state after a meeting, the instance of the app that is running in the meeting must communicate with the instance of the app running in the main client. The following events facilitate that process.
      *
      * Notify the event listener when the API call `connect` has finished attempting to connect to the app instance running in the main client. This event can only be received in meeting.
      *
@@ -3057,7 +3063,7 @@ declare class ZoomSdk {
     onConnect(handler: GenericEventHandler<OnConnectEvent>): void;
     /**
      * @zoomClientVersion 5.6.7
-     * In order to maintain state after a meeting, the instance of the app that is running in the meeting must communicate with the instance of the app running in the main client. The following events facilitate that process. For more information, see [an example of this process](https://marketplace.zoom.us/docs/beta-docs/zoom-apps/guides/maintaining-state/).
+     * In order to maintain state after a meeting, the instance of the app that is running in the meeting must communicate with the instance of the app running in the main client. The following events facilitate that process.
      *
      * Receive a sent message from the mirrored app. The structure of the payload depends on the needs of the app.
      *
@@ -3070,7 +3076,7 @@ declare class ZoomSdk {
     onMessage(handler: GenericEventHandler<OnMessageEvent>): void;
     /**
      * @zoomClientVersion 5.6.7
-     * In order to maintain state after a meeting, the instance of the app that is running in the meeting must communicate with the instance of the app running in the main client. The following events facilitate that process. For more information, see [an example of this process](https://marketplace.zoom.us/docs/beta-docs/zoom-apps/guides/maintaining-state/).
+     * In order to maintain state after a meeting, the instance of the app that is running in the meeting must communicate with the instance of the app running in the main client. The following events facilitate that process.
      *
      * Meeting is closed, then notify the mirrored app and update state one more time.
      *
@@ -3703,7 +3709,7 @@ declare class ZoomSdk {
      * @zoomClientVersion 5.11.3
      *
      * This API returns app context token that contains signed app context data for secure backend validation.
-     * See https://marketplace.zoom.us/docs/zoom-apps/zoomappcontext for more details.
+     * See https://developers.zoom.us/docs/zoom-apps/zoom-app-context/ for more details.
      *
      * *Running context*: all
      *
@@ -3987,7 +3993,6 @@ declare class ZoomSdk {
      * ```
      * @category Chat
      *
-     * @experimental
      */
     getChatContext(): Promise<GetChatContextResponse>;
     /**
@@ -4016,7 +4021,6 @@ declare class ZoomSdk {
      *
      * @category Chat
      *
-     * @experimental
      */
     composeCard(options: ComposeCardOptions): Promise<GeneralMessageResponse>;
     /**
@@ -4215,8 +4219,40 @@ declare class ZoomSdk {
      * @category Meeting Views
      */
     getGalleryPage(): Promise<GetGalleryPageResponse>;
+    /**
+     * @zoomClientVersion 5.14.0
+     *
+     * Starts or stops broadcasting voice to breakout rooms. Voice will be broadcasted to all rooms until it is stopped.
+     *
+     * *Running context*: inMeeting, inWebinar
+     *
+     * *Supported roles*: Host, Co-Host
+     *
+     * *Supports Guest Mode*: Yes
+     *
+     * *Product*: desktop
+     *
+     * @category Breakout Rooms
+     */
+    broadcastVoiceToBreakoutRooms(options: BroadcastVoiceToBreakoutRoomsOptions): Promise<GeneralMessageResponse>;
+    /**
+     * @zoomClientVersion 5.14.0
+     *
+     * Stops an ongoing share screen.
+     *
+     * *Running context*: inMeeting, inWebinar, inCamera
+     *
+     * *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     *
+     * *Supports Guest Mode*: Yes
+     *
+     * *Product*: desktop
+     *
+     * @category Sharing
+     */
+    stopShareScreen(): Promise<GeneralMessageResponse>;
 }
 
 declare const _default: ZoomSdk;
 
-export { AddBreakoutRoomOptions, AddParticipantSpotlightOptions, AllowParticipantToRecordOptions, Apis, AppInvitationResponse, AssignParticipantToBreakoutRoomOptions, AttendeeSpeakingOptions, AudioMedia, AuthObject, AuthorizeOptions, BreakOutRoomParticipant, BreakoutRoomAssignmentMethods, BreakoutRoomsCreated, BreakoutRoomsParticipantsAssigned, BreakoutRoomsParticipantsJoined, BreakoutRoomsParticipantsLeft, BreakoutRoomsResponse, BreakoutRoomsUpdated, ChangeBreakoutRoomOptions, ClearImageOptions, ClearParticipantOptions, ClearWebViewOptions, CloudRecordingOptions, ComposeCardOptions, ConfigOptions, ConfigResponse, ConfigSize, ConfigureBreakoutRoomsOptions, ConfigureBreakoutRoomsResponse, CreateBreakoutRoomsOptions, DecryptedAppContextResponse, DrawImageOptions, DrawImageResponse, DrawParticipantOptions, DrawWebViewOptions, ExpandAppOptions, FeedbackReactionOptions, FeedbackReactions, GeneralMessage, GeneralMessageResponse, GenericEventHandler, GetAppContextResponse, GetAudioSettingsResponse, GetAudioStateResponse, GetChatContextResponse, GetGalleryPageResponse, GetIncomingParticipantAudioStateOptions, GetIncomingParticipantAudioStateResponse, GetMeetingContextResponse, GetMeetingJoinUrlResponse, GetMeetingParticipantsResponse, GetMeetingUUIDResponse, GetParticipantSpotlightsResponse, GetRecordingContextResponse, GetSupportedJsApisResponse, GetUserContextResponse, GetVideoSettingsResponse, GetVideoStateResponse, JSONObject, JSONValue, LaunchAppInMeetingOptions, ListCamerasResponse, NativeApiRequest, NativeApiRequestData, NativeApiResponseData, NativeConfigOptions, NativeMessage, NativeMessageData, NotificationOptions$1 as NotificationOptions, OnActiveSpeakerChangeEvent, OnActiveSpeakerChangeUserType, OnAppPopoutEvent, OnAuthorizedEvent, OnBreakoutRoomChangeEvent, OnCloudRecordingEvent, OnCollaborateChangeEvent, OnConnectEvent, OnExpandAppEvent, OnFeedbackReactionEvent, OnGalleryPageChangeEvent, OnIncomingParticipantAudioChangeEvent, OnMeetingEvent, OnMessageEvent, OnMyActiveSpeakerChangeEvent, OnMyMediaChangeEvent, OnMyReactionEvent, OnMyUserContextChangeEvent, OnParticipantChangeEvent, OnParticipantChangeParticipantType, OnReactionEvent, OnRemoveFeedbackReactionEvent, OnRenderedAppOpenedEvent, OnRunningContextChangeEvent, OnSendAppInvitationEvent, OnShareAppEvent, OnShareComputerAudioEvent, OnShareScreenEvent, OpenUrlOptions, Participant, ParticipantCutoutShape, ParticipantPinOptions, PixelValue, PromptShareScreenOptions, RemoveParticipantSpotlightsOptions, RemoveWebinarAttendeeOptions, RenameBreakoutRoomOptions, RenderingContextView, RunRenderingContextOptions, RunningContext, RunningContextResponse, SdkOptions, SdkVersion, SendAppInvitationOptions, SetAudioSettingsOptions, SetAudioStateOptions, SetCameraOptions, SetGalleryPageOptions, SetIncomingParticipantAudioStateOptions, SetVideoMirrorEffectOptions, SetVideoSettingsOptions, SetVideoStateOptions, ShareAppOptions, ShareComputerAudioOptions, StartCollaborateOptions, ToggleParticipantMediaAudioOptions, Uuid, VideoMedia, VirtualBackgroundOptions, VirtualForegroundOptions, _default as default, onMeetingConfigChangedEvent };
+export { AddBreakoutRoomOptions, AddParticipantSpotlightOptions, AllowParticipantToRecordOptions, Apis, AppInvitationResponse, AssignParticipantToBreakoutRoomOptions, AttendeeSpeakingOptions, AudioMedia, AuthObject, AuthorizeOptions, BreakOutRoomParticipant, BreakoutRoomAssignmentMethods, BreakoutRoomsCreated, BreakoutRoomsParticipantsAssigned, BreakoutRoomsParticipantsJoined, BreakoutRoomsParticipantsLeft, BreakoutRoomsResponse, BreakoutRoomsUpdated, BroadcastVoiceToBreakoutRoomsOptions, ChangeBreakoutRoomOptions, ClearImageOptions, ClearParticipantOptions, ClearWebViewOptions, CloudRecordingOptions, ComposeCardOptions, ConfigOptions, ConfigResponse, ConfigSize, ConfigureBreakoutRoomsOptions, ConfigureBreakoutRoomsResponse, CreateBreakoutRoomsOptions, DecryptedAppContextResponse, DrawImageOptions, DrawImageResponse, DrawParticipantOptions, DrawWebViewOptions, ExpandAppOptions, FeedbackReactionOptions, FeedbackReactions, GeneralMessage, GeneralMessageResponse, GenericEventHandler, GetAppContextResponse, GetAudioSettingsResponse, GetAudioStateResponse, GetChatContextResponse, GetGalleryPageResponse, GetIncomingParticipantAudioStateOptions, GetIncomingParticipantAudioStateResponse, GetMeetingContextResponse, GetMeetingJoinUrlResponse, GetMeetingParticipantsResponse, GetMeetingUUIDResponse, GetParticipantSpotlightsResponse, GetRecordingContextResponse, GetSupportedJsApisResponse, GetUserContextResponse, GetVideoSettingsResponse, GetVideoStateResponse, JSONObject, JSONValue, LaunchAppInMeetingOptions, ListCamerasResponse, NativeApiRequest, NativeApiRequestData, NativeApiResponseData, NativeConfigOptions, NativeMessage, NativeMessageData, NotificationOptions$1 as NotificationOptions, OnActiveSpeakerChangeEvent, OnActiveSpeakerChangeUserType, OnAppPopoutEvent, OnAuthorizedEvent, OnBreakoutRoomChangeEvent, OnCloudRecordingEvent, OnCollaborateChangeEvent, OnConnectEvent, OnExpandAppEvent, OnFeedbackReactionEvent, OnGalleryPageChangeEvent, OnIncomingParticipantAudioChangeEvent, OnMeetingEvent, OnMessageEvent, OnMyActiveSpeakerChangeEvent, OnMyMediaChangeEvent, OnMyReactionEvent, OnMyUserContextChangeEvent, OnParticipantChangeEvent, OnParticipantChangeParticipantType, OnReactionEvent, OnRemoveFeedbackReactionEvent, OnRenderedAppOpenedEvent, OnRunningContextChangeEvent, OnSendAppInvitationEvent, OnShareAppEvent, OnShareComputerAudioEvent, OnShareScreenEvent, OpenUrlOptions, Participant, ParticipantCutoutShape, ParticipantPinOptions, PixelValue, PromptShareScreenOptions, RemoveParticipantSpotlightsOptions, RemoveWebinarAttendeeOptions, RenameBreakoutRoomOptions, RenderingContextView, RunRenderingContextOptions, RunningContext, RunningContextResponse, SdkOptions, SdkVersion, SendAppInvitationOptions, SetAudioSettingsOptions, SetAudioStateOptions, SetCameraOptions, SetGalleryPageOptions, SetIncomingParticipantAudioStateOptions, SetVideoMirrorEffectOptions, SetVideoSettingsOptions, SetVideoStateOptions, ShareAppOptions, ShareComputerAudioOptions, StartCollaborateOptions, ToggleParticipantMediaAudioOptions, Uuid, VideoMedia, VirtualBackgroundOptions, VirtualForegroundOptions, _default as default, onMeetingConfigChangedEvent };
