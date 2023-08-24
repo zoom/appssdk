@@ -75,6 +75,10 @@ The cloud SDK is designed to provide on-demand patch updates, and it does not su
 }
 ```
 
+## Role and running context change
+
+Listen to `zoomSdk.onMyUserContextChange` and `zoomSdk.onRunningContextChange` events for role and running context changes respectively. `zoomSdk.config` needs to be called again to update API permissions.
+
 ## Note
 
 - Zoom Desktop Client is a native application. Depending on the Zoom Desktop Client version a user has installed, they might have access to different Zoom Apps APIs and events. With the cloud version of the SDK, you automatically get the latest patches as we release new client versions, and your apps avoid potential breaks due to missing patches.

@@ -52,7 +52,17 @@ declare enum NativeEvents {
     ON_SHARE_COMPUTER_AUDIO = "onShareComputerAudio",
     ON_GALLERY_ORDER = "onGalleryOrder",
     ON_EMOJI_REACTION = "onEmojiReaction",
-    ON_MEETING_VIEW_CHANGE = "onMeetingViewChange"
+    ON_MEETING_VIEW_CHANGE = "onMeetingViewChange",
+    ON_PHONE_CALEE_ANSWERED = "onPhoneCalleeAnswered",
+    ON_PHONE_CALLER_ENDED = "onPhoneCallerEnded",
+    ON_PHONE_CALLEE_ENDED = "onPhoneCalleeEnded",
+    ON_PHONE_CALLEE_REJECTED = "onPhoneCalleeRejected",
+    ON_PHONE_CALLER_MEETING_INVITING = "onPhoneCallerMeetingInviting",
+    ON_PHONE_CALLEE_MEETING_INVITE = "onPhoneCalleeMeetingInvite",
+    ON_PHONE_CONTEXT = "onPhoneContext",
+    ON_SET_DYNAMIC_INDICATOR = "onSetDynamicIndicator",
+    ON_REMOVE_DYNAMIC_INDICATOR = "onRemoveDynamicIndicator",
+    ON_DYNAMIC_INDICATOR_STYLE_CHANGE = "onDynamicIndicatorStyleChange"
 }
 
 /**
@@ -109,7 +119,7 @@ declare type GeneralMessageResponse = {
  *
  * @category Core
  */
-declare type RunningContext = 'inChat' | 'inMeeting' | 'inImmersive' | 'inWebinar' | 'inMainClient' | 'inPhone' | 'inCollaborate' | 'inCamera' | 'inDigitalSignage';
+declare type RunningContext = 'inChat' | 'inMeeting' | 'inImmersive' | 'inWebinar' | 'inMainClient' | 'inPhone' | 'inCollaborate' | 'inCamera' | 'inDigitalSignage' | 'inPhone';
 /**
  * @category Utility
  */
@@ -456,6 +466,7 @@ declare type OnConnectEvent = {
 declare type OnMessageEvent = {
     timestamp: number;
     payload: JSONObject;
+    participantUUID?: string;
 };
 /**
  * Usage:
@@ -942,7 +953,7 @@ declare type GetMeetingContextResponse = {
  * All the available JS APIs and events
  * @category Core
  * */
-declare type Apis = 'addBreakoutRoom' | 'allowParticipantToRecord' | 'assignParticipantsToBreakoutRoom' | 'assignParticipantToBreakoutRoom' | 'authorize' | 'changeBreakoutRoom' | 'clearImage' | 'clearParticipant' | 'clearWebView' | 'closeBreakoutRooms' | 'closeChannel' | 'closeLobby' | 'closeRenderingContext' | 'cloudRecording' | 'configureBreakoutRooms' | 'connect' | 'createBreakoutRooms' | 'deleteBreakoutRoom' | 'drawImage' | 'drawParticipant' | 'drawWebView' | 'endCollaborate' | 'endSyncData' | 'executeOnZoomAction' | 'expandApp' | 'getBreakoutRoomList' | 'getImmersiveViewContext' | 'getMeetingContext' | 'getMeetingJoinUrl' | 'getMeetingParticipants' | 'getMeetingUUID' | 'getOnZoomProperties' | 'getPairingStatus' | 'getRecordingContext' | 'getRunningContext' | 'getScreenshot' | 'getSupportedJsApis' | 'getUserContext' | 'getUserMediaAudio' | 'getUserMediaVideo' | 'joinCollaborate' | 'joinOnZoomEvent' | 'joinZoomRoom' | 'launchAppInMeeting' | 'leaveCollaborate' | 'listCameras' | 'onActiveSpeakerChange' | 'onAppPopout' | 'onAuthenticate' | 'onAuthorized' | 'onShareScreen' | 'onShareComputerAudio' | 'onBreakoutRoomChange' | 'onCloseAppForParticipants' | 'onCloudRecording' | 'onCollaborateChange' | 'onConnect' | 'onExpandApp' | 'onExtendedProcessing' | 'onFeedbackReaction' | 'onImmersiveViewChange' | 'onMeeting' | 'onMeetingConfigChanged' | 'onMessage' | 'onMyActiveSpeakerChange' | 'onMyMediaChange' | 'onMyReaction' | 'onMyUserContextChange' | 'onOnZoomJoinStatusChange' | 'onPairingStatusChange' | 'onParticipantChange' | 'onReaction' | 'onRemoveFeedbackReaction' | 'onRunningContextChange' | 'onSendAppInvitation' | 'onShareApp' | 'openBreakoutRooms' | 'openChannel' | 'openDM' | 'openUrl' | 'postMessage' | 'promptAuthorize' | 'pushState' | 'removeImmersiveView' | 'removeVirtualBackground' | 'removeVirtualForeground' | 'renameBreakoutRoom' | 'runRenderingContext' | 'sendAppInvitation' | 'sendAppInvitationToAllParticipants' | 'sendAppInvitationToMeetingOwner' | 'setCamera' | 'setImmersiveView' | 'setUserMediaAudio' | 'setUserMediaVideo' | 'setVideoMirrorEffect' | 'setVirtualBackground' | 'setVirtualForeground' | 'shareApp' | 'shareComputerAudio' | 'showAppInvitationDialog' | 'showNotification' | 'startCollaborate' | 'toggleParticipantMediaAudio' | 'onInviteCollaboration' | 'getAppContext' | 'getAudioState' | 'setAudioState' | 'getVideoState' | 'setVideoState' | 'addParticipantSpotlight' | 'removeParticipantSpotlights' | 'getParticipantSpotlights' | 'addParticipantPins' | 'removeParticipantPins' | 'setFeedbackReaction' | 'removeFeedbackReaction' | 'removeAllFeedbackReaction' | 'allowAttendeesToSpeak' | 'disallowAttendeesToSpeak' | 'removeWebinarAttendees' | 'setAudioSettings' | 'getAudioSettings' | 'getIncomingParticipantAudioState' | 'setIncomingParticipantAudioState' | 'onIncomingParticipantAudioChange' | 'setVideoSettings' | 'getVideoSettings' | 'promptShareScreen' | 'showMeetingInvitationDialog' | 'onGalleryPageChange' | 'setGalleryPage' | 'getGalleryPage' | 'getChatContext' | 'composeCard' | 'broadcastVoiceToBreakoutRooms' | 'stopShareScreen' | 'getGalleryOrderList' | 'onGalleryOrder' | 'setScreenName' | 'setParticipantScreenName' | 'setEmojiReaction' | 'getEmojiConfiguration' | 'onEmojiReaction' | 'getMeetingView' | 'setMeetingView' | 'onMeetingViewChange' | 'setVideoFilter' | 'deleteVideoFilter' | 'leaveMeeting' | 'joinMeeting' | 'getZoomRoomContext' | 'getZoomRoomControllerCredentials' | 'toggleParticipantMediaVideo';
+declare type Apis = 'addBreakoutRoom' | 'allowParticipantToRecord' | 'assignParticipantsToBreakoutRoom' | 'assignParticipantToBreakoutRoom' | 'authorize' | 'changeBreakoutRoom' | 'clearImage' | 'clearParticipant' | 'clearWebView' | 'closeBreakoutRooms' | 'closeChannel' | 'closeLobby' | 'closeRenderingContext' | 'cloudRecording' | 'configureBreakoutRooms' | 'connect' | 'createBreakoutRooms' | 'deleteBreakoutRoom' | 'drawImage' | 'drawParticipant' | 'drawWebView' | 'endCollaborate' | 'endSyncData' | 'executeOnZoomAction' | 'expandApp' | 'getBreakoutRoomList' | 'getImmersiveViewContext' | 'getMeetingContext' | 'getMeetingJoinUrl' | 'getMeetingParticipants' | 'getMeetingUUID' | 'getOnZoomProperties' | 'getPairingStatus' | 'getRecordingContext' | 'getRunningContext' | 'getScreenshot' | 'getSupportedJsApis' | 'getUserContext' | 'getUserMediaAudio' | 'getUserMediaVideo' | 'joinCollaborate' | 'joinOnZoomEvent' | 'joinZoomRoom' | 'launchAppInMeeting' | 'leaveCollaborate' | 'listCameras' | 'onActiveSpeakerChange' | 'onAppPopout' | 'onAuthenticate' | 'onAuthorized' | 'onShareScreen' | 'onShareComputerAudio' | 'onBreakoutRoomChange' | 'onCloseAppForParticipants' | 'onCloudRecording' | 'onCollaborateChange' | 'onConnect' | 'onExpandApp' | 'onExtendedProcessing' | 'onFeedbackReaction' | 'onImmersiveViewChange' | 'onMeeting' | 'onMeetingConfigChanged' | 'onMessage' | 'onMyActiveSpeakerChange' | 'onMyMediaChange' | 'onMyReaction' | 'onMyUserContextChange' | 'onOnZoomJoinStatusChange' | 'onPairingStatusChange' | 'onParticipantChange' | 'onReaction' | 'onRemoveFeedbackReaction' | 'onRunningContextChange' | 'onSendAppInvitation' | 'onShareApp' | 'openBreakoutRooms' | 'openChannel' | 'openDM' | 'openUrl' | 'postMessage' | 'promptAuthorize' | 'pushState' | 'removeImmersiveView' | 'removeVirtualBackground' | 'removeVirtualForeground' | 'renameBreakoutRoom' | 'runRenderingContext' | 'sendAppInvitation' | 'sendAppInvitationToAllParticipants' | 'sendAppInvitationToMeetingOwner' | 'setCamera' | 'setImmersiveView' | 'setUserMediaAudio' | 'setUserMediaVideo' | 'setVideoMirrorEffect' | 'setVirtualBackground' | 'setVirtualForeground' | 'shareApp' | 'shareComputerAudio' | 'showAppInvitationDialog' | 'showNotification' | 'startCollaborate' | 'toggleParticipantMediaAudio' | 'onInviteCollaboration' | 'getAppContext' | 'getAudioState' | 'setAudioState' | 'getVideoState' | 'setVideoState' | 'addParticipantSpotlight' | 'removeParticipantSpotlights' | 'getParticipantSpotlights' | 'addParticipantPins' | 'removeParticipantPins' | 'setFeedbackReaction' | 'removeFeedbackReaction' | 'removeAllFeedbackReaction' | 'allowAttendeesToSpeak' | 'disallowAttendeesToSpeak' | 'removeWebinarAttendees' | 'setAudioSettings' | 'getAudioSettings' | 'getIncomingParticipantAudioState' | 'setIncomingParticipantAudioState' | 'onIncomingParticipantAudioChange' | 'setVideoSettings' | 'getVideoSettings' | 'promptShareScreen' | 'showMeetingInvitationDialog' | 'onGalleryPageChange' | 'setGalleryPage' | 'getGalleryPage' | 'getChatContext' | 'composeCard' | 'broadcastVoiceToBreakoutRooms' | 'stopShareScreen' | 'getGalleryOrderList' | 'onGalleryOrder' | 'setScreenName' | 'setParticipantScreenName' | 'setEmojiReaction' | 'getEmojiConfiguration' | 'onEmojiReaction' | 'getMeetingView' | 'setMeetingView' | 'onMeetingViewChange' | 'setVideoFilter' | 'deleteVideoFilter' | 'leaveMeeting' | 'joinMeeting' | 'getZoomRoomContext' | 'getZoomRoomControllerCredentials' | 'toggleParticipantMediaVideo' | 'sendMessage' | 'setDynamicIndicator' | 'removeDynamicIndicator' | 'getDynamicIndicator' | 'setDynamicIndicatorStyle' | 'onSetDynamicIndicator' | 'onRemoveDynamicIndicator' | 'onDynamicIndicatorStyleChange' | 'putParticipantToWaitingRoom' | 'admitParticipantFromWaitingRoom' | 'getWaitingRoomParticipants' | 'setWaitingRoomState' | 'getWaitingRoomState' | 'getPhoneContext' | 'onPhoneCalleeAnswered' | 'onPhoneCallerEnded' | 'onPhoneCalleeEnded' | 'onPhoneCalleeRejected' | 'onPhoneCallerMeetingInviting' | 'onPhoneCalleeMeetingInvite' | 'onPhoneContext';
 /**
  * Example:
  * ```
@@ -2233,6 +2244,237 @@ declare type ToggleParticipantMediaVideoOptions = {
     /** limit to 10 Ids.  */
     participantUUIDs: string[];
 };
+/**
+ * payload contains the message to be sent. Must be string JSON-stringifyable per JSON spec. Max of 1 Kb.
+ *
+ * @category App Instances Communication
+ */
+declare type SendMessageOptions = {
+    payload: JSONObject;
+};
+/**
+ * @category Zoom Phone
+ */
+declare type GetPhoneContextResponse = {
+    /** activeTab values : `history`, `voicemail`, `lines`, `sms` */
+    activeTab: string;
+    /** callStatus values : `incoming`, `outgoing`, `active`, `inactive` */
+    callStatus: string;
+    callId?: string;
+};
+/**
+ * @category Zoom Phone
+ */
+declare type OnPhoneContextEvent = {
+    /** activeTab values : `history`, `voicemail`, `lines`, `sms` */
+    activeTab: string;
+    /** callStatus values : `incoming`, `outgoing`, `active`, `inactive` */
+    callStatus: string;
+    callId?: string;
+    timestamp: string;
+};
+/**
+ * @category Zoom Phone
+ */
+declare type PhoneEvent = {
+    callObject: {
+        /** account ID of the callee */
+        accountId: string;
+        /** unique identifier of the call */
+        callId: string;
+        /** the GMT time at which the ringing started in  "yyyy-MM-dd'T'HH:mm:ss'Z'" format.*/
+        ringingStartTime: string;
+        /** the GMT timer (in "yyyy-MM-dd'T'HH:mm:ss'Z'" format) at which the call was answered */
+        answerStartTime?: string;
+        /** the GMT time (in "yyyy-MM-dd'T'HH:mm:ss'Z'" format) at which the call was ended by the callee. */
+        callEndTime: string;
+        /** represents the person who is called by the caller */
+        callee: {
+            deviceId?: string;
+            /** extension ID of the callee */
+            extensionId?: string;
+            /** extension number of the callee */
+            extensionNumber?: string;
+            /** extension type of a the callee. Values: `user` | `callQueue`| `autoReceptionist` ┃ `commonArea` ┃ `commonAreaPhone` ┃ `sharedLineGroup` ┃ `zoomRoom` ┃ `ciscoRoom/PolycomRoom` ┃ `contactCenter` ┃ `pstn` ┃ `five9` ┃ `twilio` */
+            extensionType?: string;
+            /** phone number of the callee in E164 format. Phone number and extension number can't be empty at the same time */
+            phoneNumber: string;
+            /** timezone of the callee */
+            timezone?: string;
+            /** Zoom User ID of the callee */
+            userId?: string;
+        };
+        /**  */
+        caller: {
+            /** extension ID of the caller */
+            extensionId?: string;
+            extensionNumber?: string;
+            /** extension type of a the caller. Values: `user` | `callQueue`| `autoReceptionist` ┃ `commonArea` ┃ `commonAreaPhone` ┃ `sharedLineGroup` ┃ `zoomRoom` ┃ `ciscoRoom/PolycomRoom` ┃ `contactCenter` ┃ `pstn` ┃ `five9` ┃ `twilio` */
+            extensionType?: string;
+            /** phone number of the caller in E164 format */
+            phoneNumber: string;
+            /** timezone of the caller */
+            timezone?: string;
+            /** Zoom User ID of the caller */
+            userId?: string;
+        };
+        forwardedBy?: {
+            /** the name of the extension the call was forwaded from */
+            name?: string;
+            /** extension number the call was forwarded from */
+            extensionNumber?: string;
+            /** type of extension the call was forwarded from. Values: `callQueue` | `sharedLineGroup` | `sharedLine` */
+            extensionType?: string;
+        };
+        eventTs?: string;
+        timestamp: string;
+    };
+};
+/**
+ * @category Waiting Room
+ */
+declare type GetWaitingRoomStateResponse = {
+    waitingRoom: boolean;
+};
+/**
+ * @category Waiting Room
+ */
+declare type SetWaitingRoomStateOptions = {
+    waitingRoom: boolean;
+};
+/**
+ * @category Waiting Room
+ */
+declare type PutParticipantToWaitingRoomOptions = {
+    /** Participant to be put in the waiting room */
+    participantUUID: string;
+};
+/**
+ * @category Waiting Room
+ */
+declare type AdmitParticipantFromWaitingRoomOptions = {
+    /** Participant to be admitted to the meeting */
+    participantUUID: string;
+};
+/**
+ * @category Waiting Room
+ */
+declare type GetWaitingRoomParticipantsResponse = {
+    participants: {
+        screenName?: string;
+        participantUUID?: string;
+        role?: string;
+    }[];
+};
+/**
+ * Accepts one of text and timer. At least one of these is required. text field is always prioritized over the timer field. Styling options are not required.
+ *
+ * @category Meeting Actions
+ */
+declare type SetDynamicIndicatorOptions = {
+    text?: string;
+    timer?: {
+        action?: 'start' | 'pause' | 'resume' | 'end';
+        direction?: 'up' | 'down';
+        /** in ms */
+        start?: number;
+        /** default is false. `withSound` can only be true if direction is down. Timer chime triggers when timer reaches 0. */
+        withSound?: boolean;
+    };
+    /** color code. example:  "#FF0000" when timer ends*/
+    textColor?: string;
+    /** color code. example:  "#FF0000" when timer pauses*/
+    borderColor?: string;
+    textStyle?: 'bold' | 'italic';
+};
+/**
+ * @category Meeting Actions
+ */
+declare type GetDynamicIndicatorResponse = {
+    /** participant that set the dynamic indicator */
+    participantUUID: string;
+    /** screen name of participant that set the dynamic indicator */
+    screenName: string;
+    text?: string;
+    timer?: {
+        action?: 'start' | 'pause' | 'resume' | 'end';
+        direction?: 'up' | 'down';
+        /** in ms, value that is currently displayed on the dynamic indicator */
+        current?: number;
+        /** in ms, start value that was passed into setDynamicIndicator */
+        start?: number;
+        /** Default is false. withSound can only be true if direction is down. Timer chime triggers when timer reaches 0.*/
+        withSound?: boolean;
+    };
+    /** color code. example:  "#FF0000" when timer ends*/
+    textColor?: string;
+    /** color code. example:  "#FF0000" when timer pauses*/
+    borderColor?: string;
+    textStyle?: 'bold' | 'italic';
+};
+/**
+ * @category Meeting Actions
+ */
+declare type OnSetDynamicIndicatorEvent = {
+    /** participant that set the dynamic indicator */
+    participantUUID: string;
+    /** screen name of participant that set the dynamic indicator */
+    screenName: string;
+    timestamp: number;
+    text?: string;
+    timer?: {
+        action?: 'start' | 'pause' | 'resume' | 'end';
+        direction?: 'up' | 'down';
+        /** in ms, value that is currently displayed on the dynamic indicator */
+        current?: number;
+        /** in ms, start value that was passed into setDynamicIndicator */
+        start?: number;
+        /** Default is false. withSound can only be true if direction is down. Timer chime triggers when timer reaches 0.*/
+        withSound?: boolean;
+    };
+    /** color code. example:  "#FF0000" when timer ends*/
+    textColor?: string;
+    /** color code. example:  "#FF0000" when timer pauses*/
+    borderColor?: string;
+    textStyle?: 'bold' | 'italic';
+};
+/**
+ * @category Meeting Actions
+ */
+declare type OnRemoveDynamicIndicatorEvent = {
+    /** host that removed the dynamic indicator */
+    participantUUID: string;
+    /** screen name of the host that removed the dynamic indicator */
+    screenName: string;
+    timestamp: number;
+};
+/**
+ * At least one of the style fields is required.
+ *
+ * @category Meeting Actions
+ */
+declare type SetDynamicIndicatorStyleOptions = {
+    /** color code. example:  "#FF0000" when timer ends*/
+    textColor?: string;
+    /** color code. example:  "#FF0000" when timer pauses*/
+    borderColor?: string;
+    textStyle?: 'bold' | 'italic';
+};
+/**
+ * @category Meeting Actions
+ */
+declare type OnDynamicIndicatorStyleChangeEvent = {
+    /** participant that set the dynamic indicator style */
+    participantUUID: string;
+    /** screen name of participant that set the dynamic indicator style*/
+    screenName: string;
+    /** color code. example:  "#FF0000" when timer ends*/
+    textColor?: string;
+    /** color code. example:  "#FF0000" when timer pauses*/
+    borderColor?: string;
+    textStyle?: 'bold' | 'italic';
+    timestamp: number;
+};
 
 /**
  * # Zoom Apps SDK
@@ -2471,6 +2713,10 @@ declare class ZoomSdk {
      * ```
      * await zoomSdk.getSupportedJsApis();
      * ```
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10013       | Request to get supported APIs list failed.[Error from web: xxxx]                                                                |
      *
      * @category Core
      */
@@ -2489,6 +2735,10 @@ declare class ZoomSdk {
      * ```
      *
      * *You must whitelist the URL domain in your Marketplace app configuration, otherwise the browser will show a warning "Accessing Untrusted Website". And the user has to manually click the link to trigger marketplace to redirect them to the specified url.*
+     *  *Error codes* {@link ZoomApiError}
+      | Status Code | Status Message                                                                                                                  |
+      | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+      | 10015       | Request to open URL failed, please make sure the domain has been whitelisted by the Zoom App.[Error from web: xxxx]             |
      *
      * @category Core
      */
@@ -2549,6 +2799,19 @@ declare class ZoomSdk {
      *
      * await zoomSdk.setVirtualBackground(myOptions);
      * ```
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10030       | Your device does not support setting virtual backgrounds.                                                                       |
+     | 10031       | Virtual backgrounds setting is not enabled in your web settings.                                                                |
+     | 10032       | Can't set virtual background in current immersive scene.                                                                        |
+     | 10044       | Failed to decode the virtual image data.                                                                                        |
+     | 10045       | No smart virtual backgrounds package, you need to download it.                                                                  |
+     | 10056       | Can't set virtual background because the video is merged by the share resource.                                                 |
+     | 10057       | Can't remove virtual background because your admin requires users to always use virtual background.                             |
+     | 10064       | This action has been flushed by the subsequent action when downloading smart virtual background package.                        |
+     | 10150	     | Meeting not ready, can’t call this api.	                                                                                       |
+     | 10151	     | Zoom App is disabled in Meeting.	                                                                                               |
      * @category Layers
      */
     setVirtualBackground(options: VirtualBackgroundOptions): Promise<GeneralMessageResponse>;
@@ -2604,6 +2867,11 @@ declare class ZoomSdk {
      *
      * On success, this returns an object with an imageId field (string/UUID) that uniquely identifies the image.
      *
+     *  *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10044       | Failed to decode the virtual image data.                                                                                        |
+     | 10068       | Failed to set or remove the image.                                                                                              |
      * @category Layers
      */
     setVirtualForeground(options: VirtualForegroundOptions): Promise<GeneralMessageResponse>;
@@ -2642,6 +2910,10 @@ declare class ZoomSdk {
      *  message: "This is an info notification"
      * });
      * ```
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10042       | Not allowed to show notification for do-not-disturb-mode.                                                                       |
      *
      * @category Invitations & Notifications
      */
@@ -2658,6 +2930,12 @@ declare class ZoomSdk {
      * ```
      * await zoomSdk.cloudRecording({ action: "start" });
      * ```
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10021       | You do not have privilege to start cloud recording.                                                                             |
+     | 10022       | Invalid cloud recording action.                                                                                                 |
+     | 10040       | Local recording is in progress                                                                                                  |
      *
      * @category Recording
      */
@@ -2674,6 +2952,15 @@ declare class ZoomSdk {
      * ```
      * await zoomSdk.shareApp({ action: "start", withSound: true });
      * ```
+     *  *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10018       | Failed to share the app.                                                                                                        |
+     | 10023       | Screen share is disabled in this meeting.                                                                                       |
+     | 10024       | Screen share has started in this meeting.                                                                                       |
+     | 10025       | Screen share did not start in this meeting.                                                                                     |
+     | 10059       | The client is sharing screen or other apps.                                                                                     |
+     | 10137       | API call succeeded, the user must choose to stop ongoing share to begin share.                                                  |
      *
      * @category Sharing
      */
@@ -2781,6 +3068,13 @@ declare class ZoomSdk {
      * ```
      * { "invitationUUID": "AnQlE6dxT9yx+jxeI8ZXuQ==" }
      * ```
+     *  *Error codes* {@link ZoomApiError}
+    | Status Code | Status Message                                                                                                                  |
+    | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+    | 10026       | Failed to send the app invitation.                                                                                              |
+    | 10027       | You do not have privilege to send app invitation!                                                                               |
+    | 10028       | A maximum of 10 individual invites can be sent at a time. Consider sending to everyone instead!                                 |
+    | 10049       | You haven't access the participant information.                                                                                 |
      *
      *
      * @category Invitations & Notifications
@@ -2905,12 +3199,18 @@ declare class ZoomSdk {
      * ```
      * await zoomSdk.connect()
      * ```
+     *  *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10039       | Failed to connect with the app in main client.                                                                                  |
      * @category App Instances Communication
      */
     connect(): Promise<GeneralMessageResponse>;
     /**
      * @zoomDesktopClientVersion 5.6.7
      * Send a message with the current state of the mirrored app. The structure of the payload depends on the needs of the app.
+     *
+     * Payload limit is <512KB
      *
      *  *Supported roles*: Host, Co-Host, Participant, Panelist
      *
@@ -2919,6 +3219,11 @@ declare class ZoomSdk {
      * ```
      * await zoomSdk.postMessage({ JSON })
      * ```
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10041       | Failed to do this action because app instances aren’t connected.                                                                |
+     | 10038       | Failed to post message to connect app.                                                                                          |
      * @category App Instances Communication
      */
     postMessage(options: JSONObject): Promise<GeneralMessageResponse>;
@@ -2933,6 +3238,11 @@ declare class ZoomSdk {
      * ```
      * await zoomSdk.endSyncData()
      * ```
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10041       | Failed to do this action because app instances aren’t connected.                                                                |
+     | 10053       | This API can only be used after meeting ends.                                                                                   |
      * @category App Instances Communication
      */
     endSyncData(): Promise<void>;
@@ -2946,14 +3256,24 @@ declare class ZoomSdk {
      *  *Supports Guest Mode*: No
      *
      * This API is not available in webinars.
+     *
+     * This API requires `participantUUID`
+     *
      * ```
      * await zoomSdk.allowParticipantToRecord({
      *   participantUUID: 'xxxx',
      *   action: "grant"
      * })
      * ```
-     *
-     * This API requires `participantUUID`
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10048       | Failed to allow participant to record                                                                                           |
+     | 10050       | The participant already has permission to do local recording.                                                                   |
+     | 10051       | Invalid user or can’t perform action on this user.                                                                              |
+     | 10052       | The participant doesn’t have the permission to do local recording. There’s no need to revoke.                                   |
+     | 10055       | Local record feature is disabled, please check your web settings.                                                               |
+     | 10061       | Only the host can perform this action.                                                                                          |
      *
      * @category Recording
      */
@@ -2970,11 +3290,16 @@ declare class ZoomSdk {
      * ```
      * await zoomSdk.launchAppInMeeting({ joinURL: 'xxx' })
      * ```
-     *
      * |                      | with joinURL  |	without joinURL|
      * | -------------------- | ------------- | -------- |
      * | inMainClient |	Joins meeting associated with the `joinURL` and launches app in it | Starts a new meeting and launches app in it |
      *
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10054       | This API can only be used in the main client.                                                                                   |
+     | 10058       | Launch app in meeting failed.                                                                                                   |
+     
      * @category Core
      */
     launchAppInMeeting(options?: LaunchAppInMeetingOptions): Promise<GeneralMessageResponse>;
@@ -3343,9 +3668,15 @@ declare class ZoomSdk {
      *
      * Receive a sent message from the mirrored app. The structure of the payload depends on the needs of the app.
      *
-     *  *Supported roles*: Host, Co-Host, Participant, Panelist
+     * *Updated in Desktop Client Version 5.15.5*: This event triggers when `sendMessage` is invoked on another participant's app instance, and receives the JSON data message payload sent. See `sendMessage` documentation for more information regrading message delivery guarantees.
      *
-     *  *Supports Guest Mode*: Yes
+     * *Running context*: inMeeting, inWebinar, inMainClient, inCollaborate
+     *
+     * *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     *
+     * *Supports Guest Mode*: Yes
+     *
+     * *Product*: desktop
      *
      * @category App Instances Communication
      */
@@ -3483,7 +3814,7 @@ declare class ZoomSdk {
      * @zoomIOSClientVersion 5.13.5
      * This event triggers when a user in the meeting starts or stops sharing their screen.
      *
-     *  *Supported roles*: Host, Co-Host, Panelist, Participant, and Attendee
+     * *Supported roles*: Host, Co-Host, Panelist, Participant, and Attendee
      *
      * *Running context*: inMeeting, inWebinar
      *
@@ -3655,6 +3986,13 @@ declare class ZoomSdk {
      *
      *  *Supports Guest Mode*: No
      *
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10122       | Bo count and the name size do not match.                                                                                        |
+     | 10095       | The count is over the max count.                                                                                                |
+     | 10096       | The assignment type is incorrect.                                                                                               |
+     | 10097       | Create Breakout Room failed.                                                                                                    |
      * @category Breakout Rooms
      */
     createBreakoutRooms(options: CreateBreakoutRoomsOptions): Promise<BreakoutRoomsResponse>;
@@ -3681,6 +4019,11 @@ declare class ZoomSdk {
      *  "automaticallyMoveParticipantsIntoMainRoom": false
      * }
      * ```
+     *
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10099       | Config Breakout Room failed.                                                                                                    |
      * @category Breakout Rooms
      */
     configureBreakoutRooms(options: ConfigureBreakoutRoomsOptions): Promise<ConfigureBreakoutRoomsResponse>;
@@ -3692,6 +4035,11 @@ declare class ZoomSdk {
      *
      * *Supports Guest Mode*: No
      *
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10121       | Breakout Rooms are already open.                                                                                                |
+     | 10100       | Start Breakout Rooms failed.                                                                                                    |
      * @category Breakout Rooms
      */
     openBreakoutRooms(): Promise<GeneralMessageResponse>;
@@ -3703,6 +4051,12 @@ declare class ZoomSdk {
      *  *Supported roles*: Host, Co-Host
      *
      * *Supports Guest Mode*: No
+     *
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10092       | Breakout Rooms are not open.                                                                                                    |
+     | 10101       | End Breakout Rooms failed.                                                                                                      |
      *
      * @category Breakout Rooms
      */
@@ -3736,6 +4090,11 @@ declare class ZoomSdk {
      * }
      * ```
      * Returns an array of breakout rooms with their names, UUID, and an array of participant id's.
+     *
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10092       | Breakout Rooms are not open.                                                                                                    |
      * @category Breakout Rooms
      */
     getBreakoutRoomList(): Promise<BreakoutRoomsResponse>;
@@ -3747,6 +4106,11 @@ declare class ZoomSdk {
      *
      * *Supports Guest Mode*: No
      *
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10095       | The count is over the max count.                                                                                                |
+     | 10098       | Update Breakout Room failed.                                                                                                    |
      * @category Breakout Rooms
      */
     addBreakoutRoom(options: AddBreakoutRoomOptions): Promise<Uuid>;
@@ -3757,6 +4121,12 @@ declare class ZoomSdk {
      *  *Supported roles*: Host, Co-Host
      *
      *  *Supports Guest Mode*: No
+     *
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10102       | Delete Breakout Room failed.                                                                                                    |
+     | 10093       | The id of the Breakout room is incorrect.                                                                                       |
      *
      * @category Breakout Rooms
      */
@@ -3769,6 +4139,12 @@ declare class ZoomSdk {
      *
      *  *Supports Guest Mode*: No
      *
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10093       | The id of the Breakout room is incorrect.                                                                                       |
+     | 10091       | Can not edit the Breakout Room.                                                                                                 |
+     | 10098       | Update Breakout Room failed.                                                                                                    |
      * @category Breakout Rooms
      */
     renameBreakoutRoom(options: RenameBreakoutRoomOptions): Promise<GeneralMessageResponse>;
@@ -3785,6 +4161,14 @@ declare class ZoomSdk {
      * - assignParticipantToBreakoutRoom cannot be executed while the current user is changing rooms.
      * - To assign yourself (as host / co-host) to a breakout room, use method changeBreakoutRoom.
      *
+     *  *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10075       | The participant ID is error, please get the newest participant ID.                                                              |
+     | 10078       | Participant is not in Breakout Room.                                                                                            |
+     | 10103       | Assign user to Breakout Room failed.                                                                                            |
+     | 10094       | The id of the user is incorrect.                                                                                                |
+     | 10093       | The id of the Breakout room is incorrect.                                                                                       |
      * @category Breakout Rooms
      */
     assignParticipantToBreakoutRoom(options: AssignParticipantToBreakoutRoomOptions): Promise<GeneralMessageResponse>;
@@ -3801,6 +4185,11 @@ declare class ZoomSdk {
      * 2. To use this method, rooms must be configured to allow participant to choose rooms (`allowParticipantsToChooseRoom=true` when using `configureBreakoutRooms`)
      * 3. This method returns `success` when changing breakout rooms is initiated, but the transition for the user might not be completed in some scenarios. Use `onBreakoutRoomChange` to confirm successful transition. If the event doesn’t fire, repeat `changeBreakoutRoom` call
      *
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10092       | Breakout Rooms are not open.                                                                                                    |
+     | 10093       | The id of the Breakout room is incorrect.                                                                                       |
      * @category Breakout Rooms
      */
     changeBreakoutRoom(options: ChangeBreakoutRoomOptions): Promise<GeneralMessageResponse>;
@@ -3808,7 +4197,9 @@ declare class ZoomSdk {
      * @zoomDesktopClientVersion 5.10.0
      * Starts Collaborate mode in a meeting. Can be initiated by Hosts or Co-Hosts. Use the optional shareScreen parameter to opt out of sharing the Host’s app screen with participants as a preview or when participants ignore the Collaborate invite.
      *
-     *  *Supported roles*: Host, Co-Host
+     *  *update*: API is extended to Participant from desktop client version 5.12.6
+     *
+     *  *Supported roles*: Host, Co-Host, Participant
      *
      *  *Supports Guest Mode*: No
      *
@@ -3820,7 +4211,12 @@ declare class ZoomSdk {
      *     // handle error
      *   })
      * ```
-     *
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10084       | The app is in collaborate mode.                                                                                                 |
+     | 10090       | Collaboration isn't supported in webinar and breakout meeting.                                                                  |
+     | 10089       | This app cannot support collaborate mode.                                                                                       |
      * @category Collaborate
      */
     startCollaborate(options: StartCollaborateOptions): Promise<GeneralMessageResponse>;
@@ -3828,7 +4224,9 @@ declare class ZoomSdk {
      * @zoomDesktopClientVersion 5.10.0
      * Ends Collaborate mode in a meeting. Can be initiated by hosts or co-hosts.
      *
-     *  *Supported roles*: Host, Co-Host
+     *  *update*: API is extended to Participant from desktop client version 5.12.6
+     *
+     *  *Supported roles*: Host, Co-Host, Participant
      *
      *  *Supports Guest Mode*: No
      *
@@ -3839,6 +4237,13 @@ declare class ZoomSdk {
      *     // handle error
      *  })
      * ```
+     *
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10087       | you aren‘t in collaborate mode.                                                                                                 |
+     | 10088       | You can only end collaboration.                                                                                                 |
+     | 10085       | The app isn't in collaborate mode.                                                                                              |
      *
      * @category Collaborate
      */
@@ -3859,6 +4264,11 @@ declare class ZoomSdk {
      *  })
      * ```
      *
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10087       | you aren‘t in collaborate mode.                                                                                                 |
+     | 10085       | The app isn't in collaborate mode.                                                                                              |
      * @category Collaborate
      */
     leaveCollaborate(): Promise<GeneralMessageResponse>;
@@ -3878,6 +4288,11 @@ declare class ZoomSdk {
      *  })
      * ```
      *
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10086       | you are already in collaborate mode.                                                                                            |
+     | 10085       | The app isn't in collaborate mode.                                                                                              |
      * @category Collaborate
      */
     joinCollaborate(): Promise<GeneralMessageResponse>;
@@ -4019,6 +4434,14 @@ declare class ZoomSdk {
      * .then((response) => { console.log(response); })
      * .catch((e) => { console.log(e); })
      * ```
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10105       | Fail to mute or unmute all participants.                                                                                        |
+     | 10106       | Fail to mute or unmute specific participants.                                                                                   |
+     | 10107       | A maximum of 10 participants can be muted or unmuted at a time. Consider mute/unmute all instead!                               |
+     | 10108       | Self participant is not allowed to include. Consider setAudioState instead!                                                 |
+     | 10109       | This participant didn't join audio.                                                                                             |
      * @category Meeting Actions
      */
     toggleParticipantMediaAudio(options: ToggleParticipantMediaAudioOptions): Promise<GeneralMessageResponse>;
@@ -4043,6 +4466,10 @@ declare class ZoomSdk {
      * .catch((err) => console.log(err))
      * ```
      *
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10118       | Failed to get app context                                                                                                       |
      * @category Core
      */
     getAppContext(): Promise<GetAppContextResponse>;
@@ -4065,6 +4492,14 @@ declare class ZoomSdk {
      * .catch((err) => console.log(err))
      * ```
      *
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10129       | Computer audio share is disabled in this meeting.                                                                               |
+     | 10130       | Computer audio share did not start in this meeting.                                                                             |
+     | 10131       | Failed to share computer audio.                                                                                                 |
+     | 10132       | Computer audio share is already started.                                                                                        |
+     | 10137       | API call succeeded, the user must choose to stop ongoing share to begin share.                                                  |
      * @category Sharing
      */
     shareComputerAudio(options: ShareComputerAudioOptions): Promise<GeneralMessageResponse>;
@@ -4090,6 +4525,14 @@ declare class ZoomSdk {
      *
      * ```
      *
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10211	     | Spotlight feature is not available in this room	                                                                               |
+     | 10212	     | Spotlighted user doesn’t have video                                                                                             |
+     | 10230	     | Too many users spotlighted (maximum: 9) 	                                                                                       |
+     | 10231	     | Spotlight feature is not available when number of panelists is less than 3 	                                                   |
+     | 10232	     | Webinar attendees cannot be spotlighted	                                                                                       |
      * @category Meeting Actions
      */
     addParticipantSpotlight(options: AddParticipantSpotlightOptions): Promise<GeneralMessageResponse>;
@@ -4158,6 +4601,11 @@ declare class ZoomSdk {
      * .then((response) => console.log(response))
      * .catch((err) => console.log(err))
      * ```
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10123       | User not permitted to pin multiple participants                                                                                 |
+     | 10124       | Multi-pinning is not allowed on second screen                                                                                   |
      * @category Meeting Actions
      */
     addParticipantPins(options: ParticipantPinOptions): Promise<GeneralMessageResponse>;
@@ -4198,6 +4646,11 @@ declare class ZoomSdk {
      * .catch((err) => console.log(err))
      * ```
      *
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10127       | Can not process the request. The feedback feature is disabled.                                                                  |
+     | 10128       | Can not process the request. The feedback is not supported in a webinar.                                                        |
      * @category Reactions
      */
     setFeedbackReaction(options: FeedbackReactionOptions): Promise<GeneralMessageResponse>;
@@ -4259,6 +4712,10 @@ declare class ZoomSdk {
      * .then((response) => console.log(response))
      * .catch((err) => console.log(err))
      * ```
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10134       | Unable to allow attendee(s) to speak.                                                                                           |
      * @category Webinar-only Actions
      */
     allowAttendeesToSpeak(options: AttendeeSpeakingOptions): Promise<GeneralMessageResponse>;
@@ -4278,6 +4735,10 @@ declare class ZoomSdk {
      * .then((response) => console.log(response))
      * .catch((err) => console.log(err))
      * ```
+     *  *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10135       | Unable to disallow attendee(s) to speak.                                                                                        |
      * @category Webinar-only Actions
      */
     disallowAttendeesToSpeak(options: AttendeeSpeakingOptions): Promise<GeneralMessageResponse>;
@@ -4297,6 +4758,10 @@ declare class ZoomSdk {
      * .then((response) => console.log(response))
      * .catch((err) => console.log(err))
      * ```
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10133       | Unable to remove webinar attendees.                                                                                             |
      * @category Webinar-only Actions
      */
     removeWebinarAttendees(options: RemoveWebinarAttendeeOptions): Promise<GeneralMessageResponse>;
@@ -4387,6 +4852,11 @@ declare class ZoomSdk {
      * .then((response) => console.log(response))
      * .catch((err) => console.log(err))
      * ```
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10119       | A maximum of 10 participants' speakers can be locally turned on/off at a time. Consider it for all participants instead!        |
+     | 10120       | Failed to set incoming speaker audio for participants.                                                                          |
      * @category Meeting Actions
      */
     setIncomingParticipantAudioState(options: SetIncomingParticipantAudioStateOptions): Promise<GeneralMessageResponse>;
@@ -4497,6 +4967,12 @@ declare class ZoomSdk {
      * ```
      * await zoomSdk.promptShareScreen()
      * ```
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10143       | Failed to prompt share screen.                                                                                                  |
+     | 10186	     | Only host and co-host can share screen to breakout rooms	                                                                       |
+     | 10187	     | Breakout rooms are not open	                                                                                                   |
      * @category Sharing
      */
     promptShareScreen(options?: PromptShareScreenOptions): Promise<GeneralMessageResponse>;
@@ -4516,6 +4992,10 @@ declare class ZoomSdk {
      * ```
      * await zoomSdk.showMeetingInvitationDialog()
      * ```
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10163	     | Can’t invite participants	                                                                                                     |
      * @category Invitations & Notifications
      */
     showMeetingInvitationDialog(): Promise<GeneralMessageResponse>;
@@ -4530,6 +5010,11 @@ declare class ZoomSdk {
      *
      * *Supports Guest Mode*: Yes
      *
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10139       | 	Invalid meeting page number.                                                                                                   |
+     | 10141       | 	Meeting View must be in gallery view.                                                                                          |
      * @category Meeting Views
      */
     setGalleryPage(options: SetGalleryPageOptions): Promise<GeneralMessageResponse>;
@@ -4546,6 +5031,10 @@ declare class ZoomSdk {
      *
      * *Product*: desktop
      *
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10141       | 	Meeting View must be in gallery view.                                                                                          |
      * @category Meeting Views
      */
     getGalleryPage(): Promise<GetGalleryPageResponse>;
@@ -4561,6 +5050,16 @@ declare class ZoomSdk {
      * *Supports Guest Mode*: Yes
      *
      * *Product*: desktop
+     *
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10191	      | Broadcast voice to breakout rooms failed	                                                                                     |
+     | 10192	      | Stop broadcast voice to breakout rooms failed	                                                                                 |
+     | 10193	      | muted, can’t broadcast voice to breakout rooms	                                                                               |
+     | 10194	      | broadcasting voice stopped	                                                                                                   |
+     | 10200	      | Can’t operate in Breakout Rooms.	                                                                                             |
+     | 10201        | Broadcast disabled by settting.	                                                                                               |
      *
      * @category Breakout Rooms
      */
@@ -4594,6 +5093,11 @@ declare class ZoomSdk {
      *
      * *Product*: desktop
      *
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10189	     | There is no ongoing screen share by this user.	                                                                                 |
+     | 10190	     | Collaboration in progress.	                                                                                                     |
      * @category Sharing
      */
     stopShareScreen(): Promise<GeneralMessageResponse>;
@@ -4636,6 +5140,18 @@ declare class ZoomSdk {
      *  await zoomSdk.setMeetingView({view: 'speaker'})
      *
      * ```
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10110       | Speaker view is not available during screen sharing. Use standardView, sidebysideSpeakerView, or sidebysideGalleryView instead. |
+     | 10111       | Gallery view is not available during screen sharing. Use standardView, sidebysideSpeakerView, or sidebysideGalleryView instead. |
+     | 10112       | Standard view is only available during screen sharing.                                                                          |
+     | 10113       | Gallery view is not available during screen sharing. Use speakerView or galleryView instead when not screen sharing.            |
+     | 10114       | Gallery view is not available during screen sharing. Use speakerView or galleryView instead when not screen sharing             |
+     | 10115       | This view is currently unsupported.                                                                                             |
+     | 10116       | This running context is currently unsupported.                                                                                  |
+     | 10117       | Already in this view                                                                                                            |
+     | 10202	      | Only host can enable followHostsVideoOrder	                                                                                   |
      * @category Meeting Views
      */
     setMeetingView(options: SetMeetingViewOptions): Promise<GeneralMessageResponse>;
@@ -4672,6 +5188,13 @@ declare class ZoomSdk {
      *
      * *Product*: desktop
      *
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10196	     | Failed to set or remove video filter.	                                                                                         |
+     | 10197	     | No video filter package, you need to download it.	                                                                             |
+     | 10198	     | Video filter feature is disabled.	                                                                                             |
+     | 10199	     | Video filter saved to Settings, but could not be applied.	                                                                     |
      * @category Layers
      */
     setVideoFilter(options: SetVideoFilterOptions): Promise<GeneralMessageResponse>;
@@ -4688,6 +5211,12 @@ declare class ZoomSdk {
      *
      * *Product*: desktop
      *
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10195	     | No video filter exists.	                                                                                                       |
+     | 10196	     | Failed to set or remove video filter.	                                                                                         |
+     | 10198	     | Video filter feature is disabled.	                                                                                             |
      * @category Layers
      */
     deleteVideoFilter(): Promise<GeneralMessageResponse>;
@@ -4736,6 +5265,13 @@ declare class ZoomSdk {
      *
      * *Product*: Desktop
      *
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10153	     | Cannot process the request. The meeting reactions feature is disabled.	                                                         |
+     | 10154	     | Cannot process the request. The webinar reactions feature is disabled.	                                                         |
+     | 10155	     | Cannot process the request - invalid reaction.	                                                                                 |
+     | 10156	     | Emoji, unicode, or name fields are not matching. Please use only one of these fields or make sure they are matched.
      * @category Reactions
      */
     setEmojiReaction(options: SetEmojiReactionOptions): Promise<GeneralMessageResponse>;
@@ -4751,6 +5287,11 @@ declare class ZoomSdk {
      * *Supports Guest Mode*: Yes
      *
      * *Product*: Desktop
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10153	     | Cannot process the request. The meeting reactions feature is disabled.	                                                         |
+     | 10154	     | Cannot process the request. The webinar reactions feature is disabled.	                                                         |
      *
      * @category Reactions
      */
@@ -4823,6 +5364,11 @@ declare class ZoomSdk {
      *
      * *Product*: Desktop
      *
+     *  *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10207	     | User leave meeting Failed.	                                                                                                     |
+     | 10209	     | Specified newHost participantUUID ignored because it is not applicable when the user is not in a meeting or a host.	           |
      * @category Meeting Actions
      */
     leaveMeeting(options?: LeaveMeetingOptions): Promise<GeneralMessageResponse>;
@@ -4845,6 +5391,13 @@ declare class ZoomSdk {
      *
      * *Product*: Desktop
      *
+     *  *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10207	     | User leave meeting Failed.	                                                                                                     |
+     | 10208	     | User join meeting Failed.	                                                                                                     |
+     | 10209	     | Specified newHost participantUUID ignored because it is not applicable when the user is not in a meeting or a host.	           |
+     | 10210	     | JoinUrl is invalid.	                                                                                                           |
      * @category Meeting Actions
      */
     joinMeeting(options?: JoinMeetingOptions): Promise<GeneralMessageResponse>;
@@ -4861,11 +5414,391 @@ declare class ZoomSdk {
      *
      * *product*: desktop
      *
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10213	      | Participants are not allowed to enable video by meeting security settings	                                                     |
+     | 10214	      | Webinar attendee cannot enable video	                                                                                         |
+     | 10215	      | Fail to turn off video for participants	                                                                                       |
+     | 10216	      | Fail to turn on video for participants	                                                                                       |
+     | 10217	      | A maximum of 10 participants' video can be started or stopped at a time	                                                       |
+     | 10218	      | Method doesn’t support current user as a parameter	                                                                           |
+     | 10219	      | Cannot detect participant’s camera	                                                                                           |
      * @category Meeting Actions
      */
     toggleParticipantMediaVideo(options: ToggleParticipantMediaVideoOptions): Promise<GeneralMessageResponse>;
+    /**
+     * @zoomDesktopClientVersion 5.15.5
+     *
+     * Triggers a broadcast of JSON message data to instances of the same app for all participants in a meeting. Participants with their apps open will receive an `onMessage` event containing a JSON payload.
+     *
+     * Message delivery is guranteed to current meeting participants; participants who leave the meeting before message send or who join after the message send will not see the message. Order delivery is not guranteed.
+     * A successful reponse upon invocation indicates the message was sent, but does not indicate delivery status or whether it was received by any participants.
+     *
+     * Apps that first call the `connect` API will be able to broadcast messages to instances of the same app in the main client.
+     *
+     * *Running context*: inMeeting, inWebinar, inCollaborate
+     *
+     * *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     *
+     * *Supports Guest Mode*: yes
+     *
+     * *product*: desktop
+     *
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10229	     | Message payload too large - exceeds 1Kb	                                                                                       |
+     * @category App Instances Communication
+     */
+    sendMessage(options: SendMessageOptions): Promise<GeneralMessageResponse>;
+    /**
+     * @zoomDesktopClientVersion 5.15.10
+     *
+     * Allows to get information on tabs accessed, current call status and an indentifier for the current call.
+     *
+     * *Running context*: inPhone
+     *
+     * *product*: desktop
+     *
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10001	     | The Zoom client encountered an error while processing the request	                                                             |
+     *
+     * @category Zoom Phone
+     */
+    getPhoneContext(): Promise<GetPhoneContextResponse>;
+    /**
+     * @zoomDesktopClientVersion 5.15.10
+     *
+     * Event triggers every time an incoming call is answered
+     *
+     * *Running context*: inPhone
+     *
+     * *Product*: Desktop
+     *
+     * @category Zoom Phone
+     */
+    onPhoneCalleeAnswered(handler: GenericEventHandler<PhoneEvent>): void;
+    /**
+     * @zoomDesktopClientVersion 5.15.10
+     *
+     * Event triggers every time an active call is ended by caller
+     *
+     * *Running context*: inPhone
+     *
+     * *Product*: Desktop
+     *
+     * @category Zoom Phone
+     */
+    onPhoneCallerEnded(handler: GenericEventHandler<PhoneEvent>): void;
+    /**
+     * @zoomDesktopClientVersion 5.15.10
+     *
+     * Event triggers every time an active call is ended by receiver
+     *
+     * *Running context*: inPhone
+     *
+     * *Product*: Desktop
+     *
+     * @category Zoom Phone
+     */
+    onPhoneCalleeEnded(handler: GenericEventHandler<PhoneEvent>): void;
+    /**
+     * @zoomDesktopClientVersion 5.15.10
+     *
+     * Event triggers  when caller rejects an incoming  phone call
+     *
+     * *Running context*: inPhone
+     *
+     * *Product*: Desktop
+     *
+     * @category Zoom Phone
+     */
+    onPhoneCalleeRejected(handler: GenericEventHandler<PhoneEvent>): void;
+    /**
+     * @zoomDesktopClientVersion 5.15.10
+     *
+     * Event triggers when a caller escalates a phone call to meeting.
+     *
+     * *Running context*: inPhone
+     *
+     * *Product*: Desktop
+     *
+     * @category Zoom Phone
+     */
+    onPhoneCallerMeetingInviting(handler: GenericEventHandler<PhoneEvent>): void;
+    /**
+     * @zoomDesktopClientVersion 5.15.10
+     *
+     * Event triggers when a callee escalates a zoom phone call to meeting.
+     *
+     * *Running context*: inPhone
+     *
+     * *Product*: Desktop
+     *
+     * @category Zoom Phone
+     */
+    onPhoneCalleeMeetingInvite(handler: GenericEventHandler<PhoneEvent>): void;
+    /**
+     * @zoomDesktopClientVersion 5.15.10
+     *
+     * Event triggers every time current phone status changes.
+     *
+     * *Running context*: inPhone
+     *
+     * *Product*: Desktop
+     *
+     * @category Zoom Phone
+     */
+    onPhoneContext(handler: GenericEventHandler<OnPhoneContextEvent>): void;
+    /**
+     * @zoomDesktopClientVersion 5.15.10
+     *
+     * Returns the status of the waiting room (whether it is enabled or disabled)
+     *
+     * *Running context*: inMeeting, inImmersive, inCollaborate, inCamera
+     *
+     * *Supported roles*: Host, Co-Host
+     *
+     * *Supports Guest Mode*: yes
+     *
+     * *product*: desktop
+     *
+     * @category Waiting Room
+     */
+    getWaitingRoomState(): Promise<GetWaitingRoomStateResponse>;
+    /**
+     * @zoomDesktopClientVersion 5.15.10
+     *
+     * Sets the status of the waiting room (whether it is enabled or disabled)
+     *
+     * *Running context*: inMeeting, inImmersive, inCollaborate, inCamera
+     *
+     * *Supported roles*: Host, Co-Host
+     *
+     * *Supports Guest Mode*: yes
+     *
+     * *product*: desktop
+     *
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10233	     | Waiting room is locked                                                                                                          |
+     | 10234       | Waiting room is enabled/disabled already                                                                                        |
+     | 10235       | Method is not supported in this meeting                                                                                         |
+     | 10236       | Method is not supported inside breakout room                                                                                    |
+     *
+     * @category Waiting Room
+     */
+    setWaitingRoomState(options: SetWaitingRoomStateOptions): Promise<GeneralMessageResponse>;
+    /**
+     * @zoomDesktopClientVersion 5.15.10
+     *
+     * Put participant from the meeting into waiting room.
+     *
+     * *Running context*: inMeeting, inImmersive, inCollaborate, inCamera
+     *
+     * *Supported roles*: Host, Co-Host
+     *
+     * *Supports Guest Mode*: yes
+     *
+     * *product*: desktop
+     *
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10237	     | Participant is already in the waiting room	                                                                                     |
+     | 10239       | Hosts and co-hosts cannot be put in waiting room                                                                                |
+     | 10240       | Waiting room is not supported for this meeting                                                                                  |
+     *
+     * @category Waiting Room
+     */
+    putParticipantToWaitingRoom(options: PutParticipantToWaitingRoomOptions): Promise<GeneralMessageResponse>;
+    /**
+     * @zoomDesktopClientVersion 5.15.10
+     *
+     * Admit participant from waiting room into the meeting.
+     *
+     * *Running context*: inMeeting, inImmersive, inCollaborate, inCamera
+     *
+     * *Supported roles*: Host, Co-Host
+     *
+     * *Supports Guest Mode*: yes
+     *
+     * *product*: desktop
+     *
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10238	     | Participant is not in a waiting room                                                                                            |
+     | 10240       | Waiting room is not supported for this meeting                                                                                  |
+     *
+     * @category Waiting Room
+     */
+    admitParticipantFromWaitingRoom(options: AdmitParticipantFromWaitingRoomOptions): Promise<GeneralMessageResponse>;
+    /**
+     * @zoomDesktopClientVersion 5.15.10
+     *
+     * List participants in the waiting room
+     *
+     * *Running context*: inMeeting, inImmersive, inCollaborate, inCamera
+     *
+     * *Supported roles*: Host, Co-Host
+     *
+     * *Supports Guest Mode*: yes
+     *
+     * *product*: desktop
+     *
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10240       | Waiting room is not supported for this meeting                                                                                  |
+     *
+     * @category Waiting Room
+     */
+    getWaitingRoomParticipants(): Promise<GetWaitingRoomParticipantsResponse>;
+    /**
+     * @zoomDesktopClientVersion 5.15.10
+     *
+     * set a dynamic indicator to be seen by all participants.
+     *
+     * *Running context*: inMeeting, inWebinar, inCollaborate, inCamera
+     *
+     * *Supported roles*: Host, Co-Host, Participant, Panelist
+     *
+     * *Supports Guest Mode*: yes
+     *
+     * *product*: desktop
+     *
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10144	     | Fail to set the dynamic indicator.	                                                                                             |
+     | 10148       | Timer setting is disabled                                                                                                       |
+     | 10149       | Exceeds maximum character limit.                                                                                                |
+     | 10188       | Meeting dropdown feature is disabled                                                                                            |
+     *
+     * @category Meeting Actions
+     */
+    setDynamicIndicator(options: SetDynamicIndicatorOptions): Promise<GeneralMessageResponse>;
+    /**
+     * @zoomDesktopClientVersion 5.15.10
+     *
+     * Returns the current dynamic indicator information. participantUUID is for the participant who set the current dynamic indicator.
+     *
+     * *Running context*: inMeeting, inWebinar, inCollaborate, inCamera
+     *
+     * *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     *
+     * *Supports Guest Mode*: yes
+     *
+     * *product*: desktop
+     *
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10146	     | No dynamic indicator is presently set.                                                                                          |
+     | 10188       | Meeting dropdown feature is disabled                                                                                            |
+     *
+     * @category Meeting Actions
+     */
+    getDynamicIndicator(): Promise<GetDynamicIndicatorResponse>;
+    /**
+     * @zoomDesktopClientVersion 5.15.10
+     *
+     * Removes the current dynamic indicator (including style) and the app option in the dropdown menu. If the dynamic indicator was active for a participant when it was removed, active view changes to Meeting Duration.
+     *
+     * *Running context*: inMeeting, inWebinar, inCollaborate, inCamera
+     *
+     * *Supported roles*: Host, Co-Host, Participant, Panelist
+     *
+     * *Supports Guest Mode*: yes
+     *
+     * *product*: desktop
+     *
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10145	     | No dynamic indicator to remove.                                                                                                 |
+     | 10147       | Participants can’t remove dynamic indicators set by other people.                                                               |
+     | 10188       | Meeting dropdown feature is disabled                                                                                            |
+     *
+     * @category Meeting Actions
+     */
+    removeDynamicIndicator(): Promise<GeneralMessageResponse>;
+    /**
+     * @zoomDesktopClientVersion 5.15.10
+     *
+     *  Event fired when the dynamic indicator is set or changed.
+     *
+     * *Running context*: inMeeting, inWebinar, inCollaborate, inCamera
+     *
+     * *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     *
+     * *Supports Guest Mode*: Yes
+     *
+     * *Product*: Desktop
+     *
+     * @category Meeting Actions
+     */
+    onSetDynamicIndicator(handler: GenericEventHandler<OnSetDynamicIndicatorEvent>): void;
+    /**
+     * @zoomDesktopClientVersion 5.15.10
+     *
+     * Event fired when the dynamic indicator is removed by calling `removeDynamicIndicator`
+     *
+     * *Running context*: inMeeting, inWebinar, inCollaborate, inCamera
+     *
+     * *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     *
+     * *Supports Guest Mode*: Yes
+     *
+     * *Product*: Desktop
+     *
+     * @category Meeting Actions
+     */
+    onRemoveDynamicIndicator(handler: GenericEventHandler<OnRemoveDynamicIndicatorEvent>): void;
+    /**
+     * @zoomDesktopClientVersion 5.15.10
+     *
+     * Set a dynamic indicator to be seen by all participants.
+     *
+     * *Running context*: inMeeting, inWebinar, inCollaborate, inCamera
+     *
+     * *Supported roles*: Host, Co-Host, Participant, Panelist
+     *
+     * *Supports Guest Mode*: yes
+     *
+     * *product*: desktop
+     *
+     * *Error codes* {@link ZoomApiError}
+     | Status Code | Status Message                                                                                                                  |
+     | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+     | 10222	     | Another participant already has control of the dynamic indicator. 	                                                             |
+     *
+     * @category Meeting Actions
+     */
+    setDynamicIndicatorStyle(options: SetDynamicIndicatorStyleOptions): Promise<GeneralMessageResponse>;
+    /**
+     * @zoomDesktopClientVersion 5.15.10
+     *
+     * Event fired when the dynamic indicator style is set or changed using `setDynamicIndicatorStyle`.
+     *
+     * *Running context*: inMeeting, inWebinar, inCollaborate, inCamera
+     *
+     * *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     *
+     * *Supports Guest Mode*: Yes
+     *
+     * *Product*: Desktop
+     *
+     * @category Meeting Actions
+     */
+    onDynamicIndicatorStyleChange(handler: GenericEventHandler<OnDynamicIndicatorStyleChangeEvent>): void;
 }
 
 declare const _default: ZoomSdk;
 
-export { AddBreakoutRoomOptions, AddParticipantSpotlightOptions, AllowParticipantToRecordOptions, Apis, AppInvitationResponse, AssignParticipantToBreakoutRoomOptions, AttendeeSpeakingOptions, AudioMedia, AuthObject, AuthorizeOptions, BreakOutRoomParticipant, BreakoutRoomAssignmentMethods, BreakoutRoomsCreated, BreakoutRoomsParticipantsAssigned, BreakoutRoomsParticipantsJoined, BreakoutRoomsParticipantsLeft, BreakoutRoomsResponse, BreakoutRoomsUpdated, BroadcastVoiceToBreakoutRoomsOptions, ChangeBreakoutRoomOptions, ClearImageOptions, ClearParticipantOptions, ClearWebViewOptions, CloudRecordingOptions, ComposeCardOptions, ConfigOptions, ConfigResponse, ConfigSize, ConfigureBreakoutRoomsOptions, ConfigureBreakoutRoomsResponse, CreateBreakoutRoomsOptions, DecryptedAppContextResponse, DrawImageOptions, DrawImageResponse, DrawParticipantOptions, DrawWebViewOptions, EmojiOptions, ExpandAppOptions, FeedbackReactionOptions, FeedbackReactions, GeneralMessage, GeneralMessageResponse, GenericEventHandler, GetAppContextResponse, GetAudioSettingsResponse, GetAudioStateResponse, GetChatContextResponse, GetEmojiConfigurationResponse, GetGalleryOrderListResponse, GetGalleryPageResponse, GetIncomingParticipantAudioStateOptions, GetIncomingParticipantAudioStateResponse, GetMeetingContextResponse, GetMeetingJoinUrlResponse, GetMeetingParticipantsResponse, GetMeetingUUIDResponse, GetMeetingViewResponse, GetParticipantSpotlightsResponse, GetRecordingContextResponse, GetSupportedJsApisResponse, GetUserContextResponse, GetVideoSettingsResponse, GetVideoStateResponse, GetZoomRoomContextResponse, GetZoomRoomControllerCredentialsResponse, JSONObject, JSONValue, JoinMeetingOptions, LaunchAppInMeetingOptions, LeaveMeetingOptions, ListCamerasResponse, MeetingView, NativeApiRequest, NativeApiRequestData, NativeApiResponseData, NativeConfigOptions, NativeMessage, NativeMessageData, NotificationOptions$1 as NotificationOptions, OnActiveSpeakerChangeEvent, OnActiveSpeakerChangeUserType, OnAppPopoutEvent, OnAuthorizedEvent, OnBreakoutRoomChangeEvent, OnCloudRecordingEvent, OnCollaborateChangeEvent, OnConnectEvent, OnEmojiReactionEvent, OnExpandAppEvent, OnFeedbackReactionEvent, OnGalleryOrderEvent, OnGalleryPageChangeEvent, OnIncomingParticipantAudioChangeEvent, OnMeetingEvent, OnMeetingViewChangeEvent, OnMessageEvent, OnMyActiveSpeakerChangeEvent, OnMyMediaChangeEvent, OnMyReactionEvent, OnMyUserContextChangeEvent, OnParticipantChangeEvent, OnParticipantChangeParticipantType, OnReactionEvent, OnRemoveFeedbackReactionEvent, OnRenderedAppOpenedEvent, OnRunningContextChangeEvent, OnSendAppInvitationEvent, OnShareAppEvent, OnShareComputerAudioEvent, OnShareScreenEvent, OpenUrlOptions, Participant, ParticipantCutoutShape, ParticipantPinOptions, PixelValue, PromptShareScreenOptions, RemoveParticipantSpotlightsOptions, RemoveWebinarAttendeeOptions, RenameBreakoutRoomOptions, RenderingContextView, RunRenderingContextOptions, RunningContext, RunningContextResponse, SdkOptions, SdkVersion, SendAppInvitationOptions, SetAudioSettingsOptions, SetAudioStateOptions, SetCameraOptions, SetEmojiReactionOptions, SetGalleryPageOptions, SetIncomingParticipantAudioStateOptions, SetMeetingViewOptions, SetScreenNameOptions, SetVideoFilterOptions, SetVideoMirrorEffectOptions, SetVideoSettingsOptions, SetVideoStateOptions, ShareAppOptions, ShareComputerAudioOptions, StartCollaborateOptions, ToggleParticipantMediaAudioOptions, ToggleParticipantMediaVideoOptions, Uuid, VideoMedia, VirtualBackgroundOptions, VirtualForegroundOptions, _default as default, onMeetingConfigChangedEvent, setParticipantScreenNameOptions };
+export { AddBreakoutRoomOptions, AddParticipantSpotlightOptions, AdmitParticipantFromWaitingRoomOptions, AllowParticipantToRecordOptions, Apis, AppInvitationResponse, AssignParticipantToBreakoutRoomOptions, AttendeeSpeakingOptions, AudioMedia, AuthObject, AuthorizeOptions, BreakOutRoomParticipant, BreakoutRoomAssignmentMethods, BreakoutRoomsCreated, BreakoutRoomsParticipantsAssigned, BreakoutRoomsParticipantsJoined, BreakoutRoomsParticipantsLeft, BreakoutRoomsResponse, BreakoutRoomsUpdated, BroadcastVoiceToBreakoutRoomsOptions, ChangeBreakoutRoomOptions, ClearImageOptions, ClearParticipantOptions, ClearWebViewOptions, CloudRecordingOptions, ComposeCardOptions, ConfigOptions, ConfigResponse, ConfigSize, ConfigureBreakoutRoomsOptions, ConfigureBreakoutRoomsResponse, CreateBreakoutRoomsOptions, DecryptedAppContextResponse, DrawImageOptions, DrawImageResponse, DrawParticipantOptions, DrawWebViewOptions, EmojiOptions, ExpandAppOptions, FeedbackReactionOptions, FeedbackReactions, GeneralMessage, GeneralMessageResponse, GenericEventHandler, GetAppContextResponse, GetAudioSettingsResponse, GetAudioStateResponse, GetChatContextResponse, GetDynamicIndicatorResponse, GetEmojiConfigurationResponse, GetGalleryOrderListResponse, GetGalleryPageResponse, GetIncomingParticipantAudioStateOptions, GetIncomingParticipantAudioStateResponse, GetMeetingContextResponse, GetMeetingJoinUrlResponse, GetMeetingParticipantsResponse, GetMeetingUUIDResponse, GetMeetingViewResponse, GetParticipantSpotlightsResponse, GetPhoneContextResponse, GetRecordingContextResponse, GetSupportedJsApisResponse, GetUserContextResponse, GetVideoSettingsResponse, GetVideoStateResponse, GetWaitingRoomParticipantsResponse, GetWaitingRoomStateResponse, GetZoomRoomContextResponse, GetZoomRoomControllerCredentialsResponse, JSONObject, JSONValue, JoinMeetingOptions, LaunchAppInMeetingOptions, LeaveMeetingOptions, ListCamerasResponse, MeetingView, NativeApiRequest, NativeApiRequestData, NativeApiResponseData, NativeConfigOptions, NativeMessage, NativeMessageData, NotificationOptions$1 as NotificationOptions, OnActiveSpeakerChangeEvent, OnActiveSpeakerChangeUserType, OnAppPopoutEvent, OnAuthorizedEvent, OnBreakoutRoomChangeEvent, OnCloudRecordingEvent, OnCollaborateChangeEvent, OnConnectEvent, OnDynamicIndicatorStyleChangeEvent, OnEmojiReactionEvent, OnExpandAppEvent, OnFeedbackReactionEvent, OnGalleryOrderEvent, OnGalleryPageChangeEvent, OnIncomingParticipantAudioChangeEvent, OnMeetingEvent, OnMeetingViewChangeEvent, OnMessageEvent, OnMyActiveSpeakerChangeEvent, OnMyMediaChangeEvent, OnMyReactionEvent, OnMyUserContextChangeEvent, OnParticipantChangeEvent, OnParticipantChangeParticipantType, OnPhoneContextEvent, OnReactionEvent, OnRemoveDynamicIndicatorEvent, OnRemoveFeedbackReactionEvent, OnRenderedAppOpenedEvent, OnRunningContextChangeEvent, OnSendAppInvitationEvent, OnSetDynamicIndicatorEvent, OnShareAppEvent, OnShareComputerAudioEvent, OnShareScreenEvent, OpenUrlOptions, Participant, ParticipantCutoutShape, ParticipantPinOptions, PhoneEvent, PixelValue, PromptShareScreenOptions, PutParticipantToWaitingRoomOptions, RemoveParticipantSpotlightsOptions, RemoveWebinarAttendeeOptions, RenameBreakoutRoomOptions, RenderingContextView, RunRenderingContextOptions, RunningContext, RunningContextResponse, SdkOptions, SdkVersion, SendAppInvitationOptions, SendMessageOptions, SetAudioSettingsOptions, SetAudioStateOptions, SetCameraOptions, SetDynamicIndicatorOptions, SetDynamicIndicatorStyleOptions, SetEmojiReactionOptions, SetGalleryPageOptions, SetIncomingParticipantAudioStateOptions, SetMeetingViewOptions, SetScreenNameOptions, SetVideoFilterOptions, SetVideoMirrorEffectOptions, SetVideoSettingsOptions, SetVideoStateOptions, SetWaitingRoomStateOptions, ShareAppOptions, ShareComputerAudioOptions, StartCollaborateOptions, ToggleParticipantMediaAudioOptions, ToggleParticipantMediaVideoOptions, Uuid, VideoMedia, VirtualBackgroundOptions, VirtualForegroundOptions, _default as default, onMeetingConfigChangedEvent, setParticipantScreenNameOptions };
