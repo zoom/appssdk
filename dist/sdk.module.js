@@ -1,4 +1,4 @@
-/* Zoom Apps SDK v0.16.14  */
+/* Zoom Apps SDK v0.16.15  */
 /**
  * Copyright (c) 2023 Zoom Video Communications, Inc.
  * 
@@ -23,7 +23,7 @@
 
 'use strict';
 
-var version = "0.16.14";
+var version = "0.16.15";
 
 var extendStatics = function(d, b) {
     extendStatics = Object.setPrototypeOf ||
@@ -243,16 +243,15 @@ var NativeApis;
     NativeApis["GET_ZOOM_ROOM_CONTROLLER_CREDENTIALS"] = "getZoomRoomControllerCredentials";
     NativeApis["TOGGLE_PARTICIPANT_MEDIA_VIDEO"] = "toggleParticipantMediaVideo";
     NativeApis["SEND_MESSAGE"] = "sendMessage";
-    NativeApis["SET_DYNAMIC_INDICATOR"] = "setDynamicIndicator";
-    NativeApis["GET_DYNAMIC_INDICATOR"] = "getDynamicIndicator";
-    NativeApis["REMOVE_DYNAMIC_INDICATOR"] = "removeDynamicIndicator";
-    NativeApis["SET_DYNAMIC_INDICATOR_STYLE"] = "setDynamicIndicatorStyle";
     NativeApis["PUT_PARTICIPANT_TO_WAITING_ROOM"] = "putParticipantToWaitingRoom";
     NativeApis["ADMIT_PARTICIPANT_FROM_WAITING_ROOM"] = "admitParticipantFromWaitingRoom";
     NativeApis["GET_WAITING_ROOM_PARTICIPANTS"] = "getWaitingRoomParticipants";
     NativeApis["GET_WAITING_ROOM_STATE"] = "getWaitingRoomState";
     NativeApis["SET_WAITING_ROOM_STATE"] = "setWaitingRoomState";
     NativeApis["GET_PHONE_CONTEXT"] = "getPhoneContext";
+    NativeApis["GET_ENGAGEMENT_CONTEXT"] = "getEngagementContext";
+    NativeApis["GET_ENGAGEMENT_SECURABLE_STATUS"] = "getEngagementSecurableStatus";
+    NativeApis["START_MEDIA_REDIRECTION"] = "startMediaRedirection";
 })(NativeApis || (NativeApis = {}));
 var NativeEvents;
 (function (NativeEvents) {
@@ -295,9 +294,9 @@ var NativeEvents;
     NativeEvents["ON_PHONE_CALLER_MEETING_INVITING"] = "onPhoneCallerMeetingInviting";
     NativeEvents["ON_PHONE_CALLEE_MEETING_INVITE"] = "onPhoneCalleeMeetingInvite";
     NativeEvents["ON_PHONE_CONTEXT"] = "onPhoneContext";
-    NativeEvents["ON_SET_DYNAMIC_INDICATOR"] = "onSetDynamicIndicator";
-    NativeEvents["ON_REMOVE_DYNAMIC_INDICATOR"] = "onRemoveDynamicIndicator";
-    NativeEvents["ON_DYNAMIC_INDICATOR_STYLE_CHANGE"] = "onDynamicIndicatorStyleChange";
+    NativeEvents["ON_ENGAGEMENT_END"] = "onEngagementEnd";
+    NativeEvents["ON_ENGAGEMENT_CONTEXT_CHANGE"] = "onEngagementContextChange";
+    NativeEvents["ON_ENGAGEMENT_MEDIA_REDIRECT"] = "onEngagementMediaRedirect";
 })(NativeEvents || (NativeEvents = {}));
 var Timeouts;
 (function (Timeouts) {
@@ -496,7 +495,7 @@ function wrapInMessageObject(value) {
     return value;
 }
 
-var _a$2, _b$1, _c$1, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28, _29, _30, _31, _32, _33, _34, _35, _36, _37, _38, _39, _40, _41, _42, _43, _44, _45, _46, _47, _48, _49, _50, _51, _52, _53, _54, _55, _56, _57, _58, _59, _60, _61, _62, _63, _64, _65, _66, _67, _68, _69, _70, _71, _72, _73, _74, _75, _76, _77, _78, _79, _80, _81, _82, _83, _84, _85, _86, _87, _88, _89, _90, _91, _92, _93, _94, _95, _96, _97, _98, _99, _100, _101, _102, _103, _104, _105, _106, _107, _108, _109, _110, _111, _112, _113, _114, _115, _116, _117, _118, _119, _120, _121, _122, _123, _124, _125, _126, _127;
+var _a$2, _b$1, _c$1, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28, _29, _30, _31, _32, _33, _34, _35, _36, _37, _38, _39, _40, _41, _42, _43, _44, _45, _46, _47, _48, _49, _50, _51, _52, _53, _54, _55, _56, _57, _58, _59, _60, _61, _62, _63, _64, _65, _66, _67, _68, _69, _70, _71, _72, _73, _74, _75, _76, _77, _78, _79, _80, _81, _82, _83, _84, _85, _86, _87, _88, _89, _90, _91, _92, _93, _94, _95, _96, _97, _98, _99, _100, _101, _102, _103, _104, _105, _106, _107, _108, _109, _110, _111, _112, _113, _114, _115, _116, _117, _118, _119, _120, _121;
 var compatibilityFnsApis = (_a$2 = {},
     _a$2[NativeApis.SEND_APP_INVITATION] = (_b$1 = {},
         _b$1[ZERO_SIXTEEN] = (_c$1 = {},
@@ -1069,33 +1068,6 @@ var compatibilityFnsApis = (_a$2 = {},
             },
             _121),
         _120),
-    _a$2[NativeApis.SET_DYNAMIC_INDICATOR] = (_122 = {},
-        _122[ZERO_SIXTEEN] = (_123 = {},
-            _123[BASE_VERSION] = {
-                mapOutput: function (value) {
-                    return wrapInObject({ key: 'message', value: value });
-                },
-            },
-            _123),
-        _122),
-    _a$2[NativeApis.REMOVE_DYNAMIC_INDICATOR] = (_124 = {},
-        _124[ZERO_SIXTEEN] = (_125 = {},
-            _125[BASE_VERSION] = {
-                mapOutput: function (value) {
-                    return wrapInObject({ key: 'message', value: value });
-                },
-            },
-            _125),
-        _124),
-    _a$2[NativeApis.SET_DYNAMIC_INDICATOR_STYLE] = (_126 = {},
-        _126[ZERO_SIXTEEN] = (_127 = {},
-            _127[BASE_VERSION] = {
-                mapOutput: function (value) {
-                    return wrapInObject({ key: 'message', value: value });
-                },
-            },
-            _127),
-        _126),
     _a$2);
 
 var _a$1, _b, _c;
@@ -2238,42 +2210,35 @@ var ZoomSdk =  (function () {
             });
         });
     };
-    ZoomSdk.prototype.setDynamicIndicator = function (options) {
+    ZoomSdk.prototype.getEngagementContext = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 , this.callZoomApi(NativeApis.SET_DYNAMIC_INDICATOR, options)];
+                return [2 , this.callZoomApi(NativeApis.GET_ENGAGEMENT_CONTEXT)];
             });
         });
     };
-    ZoomSdk.prototype.getDynamicIndicator = function () {
+    ZoomSdk.prototype.onEngagementEnd = function (handler) {
+        this.addEventListener(NativeEvents.ON_ENGAGEMENT_END, handler);
+    };
+    ZoomSdk.prototype.onEngagementContextChange = function (handler) {
+        this.addEventListener(NativeEvents.ON_ENGAGEMENT_CONTEXT_CHANGE, handler);
+    };
+    ZoomSdk.prototype.getEngagementSecurableStatus = function (options) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 , this.callZoomApi(NativeApis.GET_DYNAMIC_INDICATOR)];
+                return [2 , this.callZoomApi(NativeApis.GET_ENGAGEMENT_SECURABLE_STATUS, options)];
             });
         });
     };
-    ZoomSdk.prototype.removeDynamicIndicator = function () {
+    ZoomSdk.prototype.startMediaRedirection = function (options) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 , this.callZoomApi(NativeApis.REMOVE_DYNAMIC_INDICATOR)];
+                return [2 , this.callZoomApi(NativeApis.START_MEDIA_REDIRECTION, options)];
             });
         });
     };
-    ZoomSdk.prototype.onSetDynamicIndicator = function (handler) {
-        this.addEventListener(NativeEvents.ON_SET_DYNAMIC_INDICATOR, handler);
-    };
-    ZoomSdk.prototype.onRemoveDynamicIndicator = function (handler) {
-        this.addEventListener(NativeEvents.ON_REMOVE_DYNAMIC_INDICATOR, handler);
-    };
-    ZoomSdk.prototype.setDynamicIndicatorStyle = function (options) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 , this.callZoomApi(NativeApis.SET_DYNAMIC_INDICATOR_STYLE, options)];
-            });
-        });
-    };
-    ZoomSdk.prototype.onDynamicIndicatorStyleChange = function (handler) {
-        this.addEventListener(NativeEvents.ON_DYNAMIC_INDICATOR_STYLE_CHANGE, handler);
+    ZoomSdk.prototype.onEngagementMediaRedirect = function (handler) {
+        this.addEventListener(NativeEvents.ON_ENGAGEMENT_MEDIA_REDIRECT, handler);
     };
     return ZoomSdk;
 }());
