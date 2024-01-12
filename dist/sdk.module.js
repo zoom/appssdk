@@ -1,6 +1,6 @@
-/* Zoom Apps SDK v0.16.16  */
+/* Zoom Apps SDK v0.16.17  */
 /**
- * Copyright (c) 2023 Zoom Video Communications, Inc.
+ * Copyright (c) 2024 Zoom Video Communications, Inc.
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,7 @@
 
 'use strict';
 
-var version = "0.16.16";
+var version = "0.16.17";
 
 var extendStatics = function(d, b) {
     extendStatics = Object.setPrototypeOf ||
@@ -258,6 +258,7 @@ var NativeApis;
     NativeApis["SEND_APP_TO_BACKGROUND"] = "sendAppToBackground";
     NativeApis["CLOSE_APP"] = "closeApp";
     NativeApis["GET_MEETING_LANGUAGES"] = "getMeetingLanguages";
+    NativeApis["GET_MEETING_PARTICIPANTS_EMAIL"] = "getMeetingParticipantsEmail";
 })(NativeApis || (NativeApis = {}));
 var NativeEvents;
 (function (NativeEvents) {
@@ -307,6 +308,7 @@ var NativeEvents;
     NativeEvents["ON_WAITING_ROOM_STATE_CHANGE"] = "onWaitingRoomStateChange";
     NativeEvents["ON_WAITING_ROOM_PARTICIPANT_LEAVE"] = "onWaitingRoomParticipantLeave";
     NativeEvents["ON_WAITING_ROOM_PARTICIPANT_JOIN"] = "onWaitingRoomParticipantJoin";
+    NativeEvents["ON_PARTICIPANT_EMAIL"] = "onParticipantEmail";
 })(NativeEvents || (NativeEvents = {}));
 var Timeouts;
 (function (Timeouts) {
@@ -505,7 +507,7 @@ function wrapInMessageObject(value) {
     return value;
 }
 
-var _a$2, _b$1, _c$1, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28, _29, _30, _31, _32, _33, _34, _35, _36, _37, _38, _39, _40, _41, _42, _43, _44, _45, _46, _47, _48, _49, _50, _51, _52, _53, _54, _55, _56, _57, _58, _59, _60, _61, _62, _63, _64, _65, _66, _67, _68, _69, _70, _71, _72, _73, _74, _75, _76, _77, _78, _79, _80, _81, _82, _83, _84, _85, _86, _87, _88, _89, _90, _91, _92, _93, _94, _95, _96, _97, _98, _99, _100, _101, _102, _103, _104, _105, _106, _107, _108, _109, _110, _111, _112, _113, _114, _115, _116, _117, _118, _119, _120, _121, _122, _123, _124, _125, _126, _127, _128, _129;
+var _a$2, _b$1, _c$1, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28, _29, _30, _31, _32, _33, _34, _35, _36, _37, _38, _39, _40, _41, _42, _43, _44, _45, _46, _47, _48, _49, _50, _51, _52, _53, _54, _55, _56, _57, _58, _59, _60, _61, _62, _63, _64, _65, _66, _67, _68, _69, _70, _71, _72, _73, _74, _75, _76, _77, _78, _79, _80, _81, _82, _83, _84, _85, _86, _87, _88, _89, _90, _91, _92, _93, _94, _95, _96, _97, _98, _99, _100, _101, _102, _103, _104, _105, _106, _107, _108, _109, _110, _111, _112, _113, _114, _115, _116, _117, _118, _119, _120, _121, _122, _123, _124, _125, _126, _127, _128, _129, _130, _131;
 var compatibilityFnsApis = (_a$2 = {},
     _a$2[NativeApis.SEND_APP_INVITATION] = (_b$1 = {},
         _b$1[ZERO_SIXTEEN] = (_c$1 = {},
@@ -1147,6 +1149,15 @@ var compatibilityFnsApis = (_a$2 = {},
             },
             _129),
         _128),
+    _a$2[NativeApis.GET_MEETING_PARTICIPANTS_EMAIL] = (_130 = {},
+        _130[ZERO_SIXTEEN] = (_131 = {},
+            _131[BASE_VERSION] = {
+                mapOutput: function (value) {
+                    return wrapInObject({ key: 'message', value: value });
+                },
+            },
+            _131),
+        _130),
     _a$2);
 
 var _a$1, _b, _c;
@@ -2372,6 +2383,12 @@ var ZoomSdk =  (function () {
     };
     ZoomSdk.prototype.onMeetingLanguagesChange = function (handler) {
         this.addEventListener(NativeEvents.ON_MEETING_LANGUAGES_CHANGE, handler);
+    };
+    ZoomSdk.prototype.getMeetingParticipantsEmail = function (options) {
+        return this.callZoomApi(NativeApis.GET_MEETING_PARTICIPANTS_EMAIL, options);
+    };
+    ZoomSdk.prototype.onParticipantEmail = function (handler) {
+        this.addEventListener(NativeEvents.ON_PARTICIPANT_EMAIL, handler);
     };
     return ZoomSdk;
 }());
