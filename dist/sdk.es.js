@@ -1,4 +1,4 @@
-/* Zoom Apps SDK v0.16.17  */
+/* Zoom Apps SDK v0.16.18  */
 /**
  * Copyright (c) 2024 Zoom Video Communications, Inc.
  * 
@@ -21,7 +21,7 @@
  * SOFTWARE.
  */
 
-var version = "0.16.17";
+var version = "0.16.18";
 
 var extendStatics = function(d, b) {
     extendStatics = Object.setPrototypeOf ||
@@ -249,6 +249,7 @@ var NativeApis;
     NativeApis["GET_PHONE_CONTEXT"] = "getPhoneContext";
     NativeApis["MAKE_PHONE_CALL"] = "makePhoneCall";
     NativeApis["GET_ENGAGEMENT_CONTEXT"] = "getEngagementContext";
+    NativeApis["GET_ENGAGEMENT_STATUS"] = "getEngagementStatus";
     NativeApis["GET_ENGAGEMENT_SECURABLE_STATUS"] = "getEngagementSecurableStatus";
     NativeApis["START_MEDIA_REDIRECTION"] = "startMediaRedirection";
     NativeApis["APP_POPOUT"] = "appPopout";
@@ -257,6 +258,7 @@ var NativeApis;
     NativeApis["CLOSE_APP"] = "closeApp";
     NativeApis["GET_MEETING_LANGUAGES"] = "getMeetingLanguages";
     NativeApis["GET_MEETING_PARTICIPANTS_EMAIL"] = "getMeetingParticipantsEmail";
+    NativeApis["GET_MEETING_CHAT_CONTEXT"] = "getMeetingChatContext";
 })(NativeApis || (NativeApis = {}));
 var NativeEvents;
 (function (NativeEvents) {
@@ -299,8 +301,8 @@ var NativeEvents;
     NativeEvents["ON_PHONE_CALLER_MEETING_INVITING"] = "onPhoneCallerMeetingInviting";
     NativeEvents["ON_PHONE_CALLEE_MEETING_INVITE"] = "onPhoneCalleeMeetingInvite";
     NativeEvents["ON_PHONE_CONTEXT"] = "onPhoneContext";
-    NativeEvents["ON_ENGAGEMENT_END"] = "onEngagementEnd";
     NativeEvents["ON_ENGAGEMENT_CONTEXT_CHANGE"] = "onEngagementContextChange";
+    NativeEvents["ON_ENGAGEMENT_STATUS_CHANGE"] = "onEngagementStatusChange";
     NativeEvents["ON_ENGAGEMENT_MEDIA_REDIRECT"] = "onEngagementMediaRedirect";
     NativeEvents["ON_MEETING_LANGUAGES_CHANGE"] = "onMeetingLanguagesChange";
     NativeEvents["ON_WAITING_ROOM_STATE_CHANGE"] = "onWaitingRoomStateChange";
@@ -2333,11 +2335,18 @@ var ZoomSdk =  (function () {
             });
         });
     };
-    ZoomSdk.prototype.onEngagementEnd = function (handler) {
-        this.addEventListener(NativeEvents.ON_ENGAGEMENT_END, handler);
-    };
     ZoomSdk.prototype.onEngagementContextChange = function (handler) {
         this.addEventListener(NativeEvents.ON_ENGAGEMENT_CONTEXT_CHANGE, handler);
+    };
+    ZoomSdk.prototype.getEngagementStatus = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 , this.callZoomApi(NativeApis.GET_ENGAGEMENT_STATUS)];
+            });
+        });
+    };
+    ZoomSdk.prototype.onEngagementStatusChange = function (handler) {
+        this.addEventListener(NativeEvents.ON_ENGAGEMENT_STATUS_CHANGE, handler);
     };
     ZoomSdk.prototype.getEngagementSecurableStatus = function (options) {
         return __awaiter(this, void 0, void 0, function () {
@@ -2387,6 +2396,9 @@ var ZoomSdk =  (function () {
     };
     ZoomSdk.prototype.onParticipantEmail = function (handler) {
         this.addEventListener(NativeEvents.ON_PARTICIPANT_EMAIL, handler);
+    };
+    ZoomSdk.prototype.getMeetingChatContext = function () {
+        return this.callZoomApi(NativeApis.GET_MEETING_CHAT_CONTEXT);
     };
     return ZoomSdk;
 }());
