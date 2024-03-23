@@ -1,4 +1,4 @@
-/* Zoom Apps SDK v0.16.18  */
+/* Zoom Apps SDK v0.16.19  */
 /**
  * Copyright (c) 2024 Zoom Video Communications, Inc.
  * 
@@ -23,7 +23,7 @@
 
 'use strict';
 
-var version = "0.16.18";
+var version = "0.16.19";
 
 var extendStatics = function(d, b) {
     extendStatics = Object.setPrototypeOf ||
@@ -2330,20 +2330,20 @@ var ZoomSdk =  (function () {
             });
         });
     };
-    ZoomSdk.prototype.getEngagementContext = function () {
+    ZoomSdk.prototype.getEngagementContext = function (options) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 , this.callZoomApi(NativeApis.GET_ENGAGEMENT_CONTEXT)];
+                return [2 , this.callZoomApi(NativeApis.GET_ENGAGEMENT_CONTEXT, options)];
             });
         });
     };
     ZoomSdk.prototype.onEngagementContextChange = function (handler) {
         this.addEventListener(NativeEvents.ON_ENGAGEMENT_CONTEXT_CHANGE, handler);
     };
-    ZoomSdk.prototype.getEngagementStatus = function () {
+    ZoomSdk.prototype.getEngagementStatus = function (options) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 , this.callZoomApi(NativeApis.GET_ENGAGEMENT_STATUS)];
+                return [2 , this.callZoomApi(NativeApis.GET_ENGAGEMENT_STATUS, options)];
             });
         });
     };
