@@ -1,4 +1,4 @@
-/* Zoom Apps SDK v0.16.20  */
+/* Zoom Apps SDK v0.16.21  */
 /**
  * Copyright (c) 2024 Zoom Video Communications, Inc.
  * 
@@ -23,7 +23,7 @@
 
 'use strict';
 
-var version = "0.16.20";
+var version = "0.16.21";
 
 var extendStatics = function(d, b) {
     extendStatics = Object.setPrototypeOf ||
@@ -261,6 +261,11 @@ var NativeApis;
     NativeApis["GET_MEETING_LANGUAGES"] = "getMeetingLanguages";
     NativeApis["GET_MEETING_PARTICIPANTS_EMAIL"] = "getMeetingParticipantsEmail";
     NativeApis["GET_MEETING_CHAT_CONTEXT"] = "getMeetingChatContext";
+    NativeApis["GET_MAIL_CONTEXT"] = "getMailContext";
+    NativeApis["GET_MAIL_THREAD"] = "getMailThread";
+    NativeApis["GET_MAIL_MESSAGE"] = "getMailMessage";
+    NativeApis["TAKE_PARTICIPANT_PHOTO"] = "takeParticipantPhoto";
+    NativeApis["TAKE_MY_PHOTO"] = "takeMyPhoto";
 })(NativeApis || (NativeApis = {}));
 var NativeEvents;
 (function (NativeEvents) {
@@ -311,6 +316,7 @@ var NativeEvents;
     NativeEvents["ON_WAITING_ROOM_PARTICIPANT_LEAVE"] = "onWaitingRoomParticipantLeave";
     NativeEvents["ON_WAITING_ROOM_PARTICIPANT_JOIN"] = "onWaitingRoomParticipantJoin";
     NativeEvents["ON_PARTICIPANT_EMAIL"] = "onParticipantEmail";
+    NativeEvents["ON_PHOTO"] = "onPhoto";
 })(NativeEvents || (NativeEvents = {}));
 var Timeouts;
 (function (Timeouts) {
@@ -509,7 +515,7 @@ function wrapInMessageObject(value) {
     return value;
 }
 
-var _a$2, _b$1, _c$1, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28, _29, _30, _31, _32, _33, _34, _35, _36, _37, _38, _39, _40, _41, _42, _43, _44, _45, _46, _47, _48, _49, _50, _51, _52, _53, _54, _55, _56, _57, _58, _59, _60, _61, _62, _63, _64, _65, _66, _67, _68, _69, _70, _71, _72, _73, _74, _75, _76, _77, _78, _79, _80, _81, _82, _83, _84, _85, _86, _87, _88, _89, _90, _91, _92, _93, _94, _95, _96, _97, _98, _99, _100, _101, _102, _103, _104, _105, _106, _107, _108, _109, _110, _111, _112, _113, _114, _115, _116, _117, _118, _119, _120, _121, _122, _123, _124, _125, _126, _127, _128, _129, _130, _131;
+var _a$2, _b$1, _c$1, _d$1, _e$1, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28, _29, _30, _31, _32, _33, _34, _35, _36, _37, _38, _39, _40, _41, _42, _43, _44, _45, _46, _47, _48, _49, _50, _51, _52, _53, _54, _55, _56, _57, _58, _59, _60, _61, _62, _63, _64, _65, _66, _67, _68, _69, _70, _71, _72, _73, _74, _75, _76, _77, _78, _79, _80, _81, _82, _83, _84, _85, _86, _87, _88, _89, _90, _91, _92, _93, _94, _95, _96, _97, _98, _99, _100, _101, _102, _103, _104, _105, _106, _107, _108, _109, _110, _111, _112, _113, _114, _115, _116, _117, _118, _119, _120, _121, _122, _123, _124, _125, _126, _127, _128, _129, _130, _131, _132, _133, _134, _135;
 var compatibilityFnsApis = (_a$2 = {},
     _a$2[NativeApis.SEND_APP_INVITATION] = (_b$1 = {},
         _b$1[ZERO_SIXTEEN] = (_c$1 = {},
@@ -521,17 +527,17 @@ var compatibilityFnsApis = (_a$2 = {},
             },
             _c$1),
         _b$1),
-    _a$2[NativeApis.TOGGLE_PARTICIPANT_MEDIA_AUDIO] = (_d = {},
-        _d[ZERO_SIXTEEN] = (_e = {},
-            _e[BASE_VERSION] = {
+    _a$2[NativeApis.TOGGLE_PARTICIPANT_MEDIA_AUDIO] = (_d$1 = {},
+        _d$1[ZERO_SIXTEEN] = (_e$1 = {},
+            _e$1[BASE_VERSION] = {
                 mapInput: renameKeys({
                     participants: 'user_list',
                     participantUUIDs: 'user_UUID_list',
                 }),
                 mapOutput: function (value) { return wrapInMessageObject(value); },
             },
-            _e),
-        _d),
+            _e$1),
+        _d$1),
     _a$2[NativeApis.JOIN_MEETING] = (_f = {},
         _f[ZERO_SIXTEEN] = (_g = {},
             _g[BASE_VERSION] = {
@@ -1160,9 +1166,27 @@ var compatibilityFnsApis = (_a$2 = {},
             },
             _131),
         _130),
+    _a$2[NativeApis.TAKE_PARTICIPANT_PHOTO] = (_132 = {},
+        _132[ZERO_SIXTEEN] = (_133 = {},
+            _133[BASE_VERSION] = {
+                mapOutput: function (value) {
+                    return wrapInObject({ key: 'message', value: value });
+                },
+            },
+            _133),
+        _132),
+    _a$2[NativeApis.TAKE_MY_PHOTO] = (_134 = {},
+        _134[ZERO_SIXTEEN] = (_135 = {},
+            _135[BASE_VERSION] = {
+                mapOutput: function (value) {
+                    return wrapInObject({ key: 'message', value: value });
+                },
+            },
+            _135),
+        _134),
     _a$2);
 
-var _a$1, _b, _c;
+var _a$1, _b, _c, _d, _e;
 var compatibilityFnsEvents = (_a$1 = {},
     _a$1[NativeEvents.ON_MEETING_CONFIG_CHANGED] = (_b = {},
         _b[ZERO_FOURTEEN] = (_c = {},
@@ -1182,7 +1206,63 @@ var compatibilityFnsEvents = (_a$1 = {},
             },
             _c),
         _b),
+    _a$1[NativeEvents.ON_PHOTO] = (_d = {},
+        _d[ZERO_SIXTEEN] = (_e = {},
+            _e[BASE_VERSION] = {
+                mapEventData: function (data) { return __awaiter(void 0, void 0, void 0, function () {
+                    var participantUUID, videoOff, optedOut, timestamp, imageData, modifiedOnPhotoResponse;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                participantUUID = data.participantUUID, videoOff = data.videoOff, optedOut = data.optedOut, timestamp = data.timestamp, imageData = data.imageData;
+                                modifiedOnPhotoResponse = {
+                                    imageData: null,
+                                    optedOut: optedOut,
+                                    timestamp: timestamp,
+                                    participantUUID: participantUUID,
+                                    videoOff: videoOff,
+                                };
+                                if (!(imageData !== null)) return [3 , 2];
+                                return [4 , loadImagePromise(imageData).then(function (data) {
+                                        modifiedOnPhotoResponse.imageData = data;
+                                    })];
+                            case 1:
+                                _a.sent();
+                                return [2 , modifiedOnPhotoResponse];
+                            case 2: return [2 , modifiedOnPhotoResponse];
+                        }
+                    });
+                }); },
+            },
+            _e),
+        _d),
     _a$1);
+var loadImagePromise = function (clientAPIImageDataResponse) { return __awaiter(void 0, void 0, void 0, function () {
+    var canvas, context;
+    return __generator(this, function (_a) {
+        canvas = document.createElement('canvas');
+        context = canvas.getContext('2d');
+        return [2 , new Promise(function (resolve, reject) {
+                try {
+                    canvas.width = Math.floor(clientAPIImageDataResponse.width);
+                    canvas.height = Math.floor(clientAPIImageDataResponse.height);
+                    var imageEl_1 = document.createElement('img');
+                    imageEl_1.src = "data:image/jpeg;base64,".concat(clientAPIImageDataResponse.data);
+                    imageEl_1.onload = function () {
+                        var xCoord = canvas.width;
+                        var yCoord = canvas.height;
+                        context.drawImage(imageEl_1, 0, 0, xCoord, yCoord);
+                        resolve();
+                    };
+                }
+                catch (error) {
+                    reject(error);
+                }
+            }).then(function () {
+                return context.getImageData(0, 0, canvas.width, canvas.height);
+            })];
+    });
+}); };
 
 function getCompatibilitiesApis(apiName, sdkVersionInput, clientVersionInput) {
     var fns = {
@@ -1775,6 +1855,9 @@ var ZoomSdk =  (function () {
     };
     ZoomSdk.prototype.onGalleryOrder = function (handler) {
         this.addEventListener(NativeEvents.ON_GALLERY_ORDER, handler);
+    };
+    ZoomSdk.prototype.onPhoto = function (handler) {
+        this.addEventListener(NativeEvents.ON_PHOTO, handler);
     };
     ZoomSdk.prototype.addEventListener = function (event, handler) {
         if (!this._clientVersion || !this._version) {
@@ -2401,6 +2484,73 @@ var ZoomSdk =  (function () {
     };
     ZoomSdk.prototype.getMeetingChatContext = function () {
         return this.callZoomApi(NativeApis.GET_MEETING_CHAT_CONTEXT);
+    };
+    ZoomSdk.prototype.getMailContext = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 , this.callZoomApi(NativeApis.GET_MAIL_CONTEXT)];
+            });
+        });
+    };
+    ZoomSdk.prototype.getMailThread = function (options) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 , this.callZoomApi(NativeApis.GET_MAIL_THREAD, options)];
+            });
+        });
+    };
+    ZoomSdk.prototype.getMailMessage = function (options) {
+        var _a, _b;
+        return __awaiter(this, void 0, void 0, function () {
+            var response, doc;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0: return [4 , this.callZoomApi(NativeApis.GET_MAIL_MESSAGE, options)];
+                    case 1:
+                        response = _c.sent();
+                        if (response.body) {
+                            doc = new DOMParser().parseFromString(response.body, 'text/html');
+                            doc.querySelectorAll('[src^="cid:"]').forEach(function (el) {
+                                var _a;
+                                var cid = el.src.replace(/^cid:/, '');
+                                var index = ((_a = response.attachments) !== null && _a !== void 0 ? _a : []).findIndex(function (item) { return item.cid === cid; });
+                                if (index !== -1) {
+                                    el.src = response.attachments[index].url;
+                                    response.attachments.splice(index, 1);
+                                }
+                            });
+                            response.body = doc.documentElement.outerHTML;
+                        }
+                        if (((_a = options === null || options === void 0 ? void 0 : options.filter) === null || _a === void 0 ? void 0 : _a.length) &&
+                            !options.filter.includes('all') &&
+                            !options.filter.includes('attachments')) {
+                            delete response.attachments;
+                        }
+                        if ((_b = response.attachments) === null || _b === void 0 ? void 0 : _b.length) {
+                            response.attachments = response.attachments.map(function (item) { return ({
+                                attachmentId: item.attachmentId,
+                                fileName: item.fileName,
+                                size: item.size,
+                            }); });
+                        }
+                        return [2 , response];
+                }
+            });
+        });
+    };
+    ZoomSdk.prototype.takeParticipantPhoto = function (options) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 , this.callZoomApi(NativeApis.TAKE_PARTICIPANT_PHOTO, options)];
+            });
+        });
+    };
+    ZoomSdk.prototype.takeMyPhoto = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 , this.callZoomApi(NativeApis.TAKE_MY_PHOTO)];
+            });
+        });
     };
     return ZoomSdk;
 }());
