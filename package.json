@@ -1,6 +1,6 @@
 {
   "name": "@zoom/appssdk",
-  "version": "0.16.21",
+  "version": "0.16.22",
   "description": "Zoom Apps SDK",
   "license": "MIT",
   "files": [
@@ -10,7 +10,10 @@
     "dist/sdk.d.ts",
     "dist/sdk.es.js"
   ],
-  "repository": "https://www.github.com/zoom/appssdk",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zoom/appssdk.git"
+  },
   "main": "dist/sdk.module.js",
   "types": "dist/sdk.d.ts",
   "module": "dist/sdk.es.js",
