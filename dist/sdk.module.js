@@ -1,4 +1,4 @@
-/* Zoom Apps SDK v0.16.23  */
+/* Zoom Apps SDK v0.16.24  */
 /**
  * Copyright (c) 2024 Zoom Video Communications, Inc.
  * 
@@ -23,7 +23,9 @@
 
 'use strict';
 
-var version = "0.16.23";
+Object.defineProperty(exports, '__esModule', { value: true });
+
+var version = "0.16.24";
 
 var extendStatics = function(d, b) {
     extendStatics = Object.setPrototypeOf ||
@@ -271,6 +273,12 @@ var NativeApis;
     NativeApis["END_COLLABORATE_SIDECAR"] = "endCollaborateSidecar";
     NativeApis["GET_ENGAGEMENT_VARIABLE_VALUE"] = "getEngagementVariableValue";
     NativeApis["GET_APP_VARIABLE_LIST"] = "getAppVariableList";
+    NativeApis["SEND_MESSAGE_TO_CHAT"] = "sendMessageToChat";
+    NativeApis["SET_DYNAMIC_INDICATOR"] = "setDynamicIndicator";
+    NativeApis["GET_DYNAMIC_INDICATOR"] = "getDynamicIndicator";
+    NativeApis["REMOVE_DYNAMIC_INDICATOR"] = "removeDynamicIndicator";
+    NativeApis["SET_DYNAMIC_INDICATOR_STYLE"] = "setDynamicIndicatorStyle";
+    NativeApis["EXTEND_DYNAMIC_INDICATOR"] = "extendDynamicIndicator";
 })(NativeApis || (NativeApis = {}));
 var NativeEvents;
 (function (NativeEvents) {
@@ -325,6 +333,10 @@ var NativeEvents;
     NativeEvents["ON_PARTICIPANT_EMAIL"] = "onParticipantEmail";
     NativeEvents["ON_PHOTO"] = "onPhoto";
     NativeEvents["ON_ENGAGEMENT_VARIABLE_VALUE_CHANGE"] = "onEngagementVariableValueChange";
+    NativeEvents["ON_SET_DYNAMIC_INDICATOR"] = "onSetDynamicIndicator";
+    NativeEvents["ON_REMOVE_DYNAMIC_INDICATOR"] = "onRemoveDynamicIndicator";
+    NativeEvents["ON_DYNAMIC_INDICATOR_STYLE_CHANGE"] = "onDynamicIndicatorStyleChange";
+    NativeEvents["ON_EXTEND_DYNAMIC_INDICATOR"] = "onExtendDynamicIndicator";
 })(NativeEvents || (NativeEvents = {}));
 var Timeouts;
 (function (Timeouts) {
@@ -488,6 +500,7 @@ var helpers$1 = {
 
 var BASE_VERSION = '0.0.0';
 var FIVE_ELEVEN_ZERO = '5.11.0';
+var FIVE_SEVENTEEN_FIVE = '5.17.5';
 var SIX_TWO_FIVE = '6.2.5';
 var MAX_MAX_MAX = '999.999.999';
 
@@ -1405,10 +1418,10 @@ var helpers = {
 };
 
 var _a;
-var crypto;
+var browserCrypto;
 var nodeCrypto;
 if (typeof window !== 'undefined' && window.crypto) {
-    crypto = window.crypto;
+    browserCrypto = window.crypto;
 }
 else {
     nodeCrypto = require('crypto');
@@ -1423,6 +1436,42 @@ var compatibilityApisCache = (_a = {},
     },
     _a);
 var compatibilityEventsCache = {};
+var dynamicIndicatorApis = [
+    NativeApis.SET_DYNAMIC_INDICATOR,
+    NativeApis.REMOVE_DYNAMIC_INDICATOR,
+    NativeApis.EXTEND_DYNAMIC_INDICATOR,
+    NativeApis.GET_DYNAMIC_INDICATOR,
+];
+var dynamicIndicatorEvents = [
+    NativeEvents.ON_SET_DYNAMIC_INDICATOR,
+    NativeEvents.ON_REMOVE_DYNAMIC_INDICATOR,
+    NativeEvents.ON_DYNAMIC_INDICATOR_STYLE_CHANGE,
+    NativeEvents.ON_EXTEND_DYNAMIC_INDICATOR,
+];
+function isVersionCompatible(currentVersion, requiredVersion) {
+    var isValidVersion = function (version) {
+        return /^\d+(\.\d+)*$/.test(version);
+    };
+    if (!isValidVersion(currentVersion) || !isValidVersion(requiredVersion)) {
+        throw new Error('Invalid version format for currentVersion or requiredVersion');
+    }
+    var parseVersion = function (version) {
+        return version.split('.').map(Number);
+    };
+    var currentParts = parseVersion(currentVersion);
+    var requiredParts = parseVersion(requiredVersion);
+    for (var i = 0; i < Math.max(currentParts.length, requiredParts.length); i++) {
+        var currentPart = currentParts[i] || 0;
+        var requiredPart = requiredParts[i] || 0;
+        if (currentPart > requiredPart) {
+            return true;
+        }
+        else if (currentPart < requiredPart) {
+            return false;
+        }
+    }
+    return true;
+}
 var ZoomSdk =  (function () {
     function ZoomSdk(options) {
         this._timeout_for_all_apis = undefined;
@@ -1450,7 +1499,9 @@ var ZoomSdk =  (function () {
                 });
         }
     };
-    ZoomSdk.prototype.callZoomApi = function (apiName, data, timeout) {
+    ZoomSdk.prototype.callZoomApi = function (apiName, data, timeout, isTimerApp
+    ) {
+        if (isTimerApp === void 0) { isTimerApp = false; }
         return __awaiter(this, void 0, void 0, function () {
             var jsCallId, nativeApiRequest, compatibility, mapInput, mapOutput, validate;
             var _this = this;
@@ -1463,6 +1514,11 @@ var ZoomSdk =  (function () {
                 if (apiName !== NativeApis.CONFIG &&
                     (!isString(this._version) || !isString(this._clientVersion))) {
                     throw new Error('must call zoomSdk.config before using other API methods');
+                }
+                if (!isTimerApp &&
+                    dynamicIndicatorApis.includes(apiName) &&
+                    !isVersionCompatible(this._clientVersion, FIVE_SEVENTEEN_FIVE)) {
+                    throw new Error("".concat(apiName, " requires client version 5.17.5 or higher. Current version: ").concat(this._clientVersion));
                 }
                 compatibility = compatibilityApisCache[apiName];
                 if (!compatibility) {
@@ -1508,7 +1564,7 @@ var ZoomSdk =  (function () {
     ZoomSdk.prototype.config = function (_a) {
         var capabilities = _a.capabilities, popoutSize = _a.popoutSize, size = _a.size, _b = _a.version, version = _b === void 0 ? ZERO_FOURTEEN : _b, timeout = _a.timeout;
         return __awaiter(this, void 0, void 0, function () {
-            var newOptions, response;
+            var newOptions, response, dynamicApisAndEvents_1, matchingCapabilities, uniqueUnsupportedApis;
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
@@ -1534,6 +1590,16 @@ var ZoomSdk =  (function () {
                             this._clientVersion = response.clientVersion;
                             setupCompatibilityApisCache(compatibilityApisCache, this._version, this._clientVersion);
                             setupCompatibilityEventsCache(compatibilityEventsCache, this._version, this._clientVersion);
+                            dynamicApisAndEvents_1 = __spreadArray(__spreadArray([], dynamicIndicatorApis, true), dynamicIndicatorEvents, true);
+                            if (!isVersionCompatible(this._clientVersion, FIVE_SEVENTEEN_FIVE)) {
+                                matchingCapabilities = capabilities === null || capabilities === void 0 ? void 0 : capabilities.filter(function (capability) {
+                                    return dynamicApisAndEvents_1.includes(capability);
+                                });
+                                if (matchingCapabilities.length > 0) {
+                                    uniqueUnsupportedApis = new Set(__spreadArray(__spreadArray([], (response.unsupportedApis || []), true), matchingCapabilities, true));
+                                    response.unsupportedApis = Array.from(uniqueUnsupportedApis);
+                                }
+                            }
                         }
                         return [2 , response];
                 }
@@ -1542,8 +1608,21 @@ var ZoomSdk =  (function () {
     };
     ZoomSdk.prototype.getSupportedJsApis = function () {
         return __awaiter(this, void 0, void 0, function () {
+            var response, filteredApis;
             return __generator(this, function (_a) {
-                return [2 , this.callZoomApi(NativeApis.GET_SUPPORTED_JS_APIS, null, null)];
+                switch (_a.label) {
+                    case 0: return [4 , this.callZoomApi(NativeApis.GET_SUPPORTED_JS_APIS, null, null)];
+                    case 1:
+                        response = _a.sent();
+                        if (!isVersionCompatible(this._clientVersion, FIVE_SEVENTEEN_FIVE)) {
+                            filteredApis = response.supportedApis.filter(function (api) {
+                                return !dynamicIndicatorApis.includes(api) &&
+                                    !dynamicIndicatorEvents.includes(api);
+                            });
+                            return [2 , { supportedApis: filteredApis }];
+                        }
+                        return [2 , response];
+                }
             });
         });
     };
@@ -1941,15 +2020,26 @@ var ZoomSdk =  (function () {
     };
     ZoomSdk.prototype.addEventListener = function (event, handler) {
         if (!this._clientVersion || !this._version) {
-            console.warn('Must call zoomSdk.config before adding an event listener. This will become a thrown error in a future version of the sdk');
+            console.warn('Must call zoomSdk.config before adding an event listener. This will become a thrown error in a future version of the SDK');
         }
-        nativeEventHandlers[event]
-            ? nativeEventHandlers[event].push(handler)
-            : (nativeEventHandlers[event] = [handler]);
+        if (dynamicIndicatorEvents.includes(event) &&
+            !isVersionCompatible(this._clientVersion, FIVE_SEVENTEEN_FIVE)) {
+            throw new Error("".concat(event, " requires client version 5.17.5 or higher. Current version: ").concat(this._clientVersion));
+        }
+        if (nativeEventHandlers[event]) {
+            nativeEventHandlers[event].push(handler);
+        }
+        else {
+            nativeEventHandlers[event] = [handler];
+        }
     };
     ZoomSdk.prototype.removeEventListener = function (event, handler) {
         if (!this._clientVersion || !this._version) {
-            console.warn('Must call zoomSdk.config before adding an event listener. This will become a thrown error in a future version of the sdk');
+            console.warn('Must call zoomSdk.config before removing an event listener. This will become a thrown error in a future version of the SDK');
+        }
+        if (dynamicIndicatorEvents.includes(event) &&
+            !isVersionCompatible(this._clientVersion, FIVE_SEVENTEEN_FIVE)) {
+            throw new Error("".concat(event, " requires client version 5.17.5 or higher. Current version: ").concat(this._clientVersion));
         }
         if (!nativeEventHandlers[event])
             return;
@@ -1961,20 +2051,28 @@ var ZoomSdk =  (function () {
         });
     };
     ZoomSdk.prototype.on = function (event, handler) {
+        if (dynamicIndicatorEvents.includes(event) &&
+            !isVersionCompatible(this._clientVersion, FIVE_SEVENTEEN_FIVE)) {
+            throw new Error("".concat(event, " requires client version 5.17.5 or higher. Current version: ").concat(this._clientVersion));
+        }
         this.addEventListener(event, handler);
-        if (event == NativeEvents.ON_SHARE_APP) {
+        if (event === NativeEvents.ON_SHARE_APP) {
             this.addEventListener(NativeEvents.ON_SHARE_APP_COMPATIBILITY, handler);
         }
-        if (event == NativeEvents.ON_SEND_APP_INVITATION) {
+        if (event === NativeEvents.ON_SEND_APP_INVITATION) {
             this.addEventListener(NativeEvents.ON_SEND_APP_INVITATION_COMPATIBILITY, handler);
         }
     };
     ZoomSdk.prototype.off = function (event, handler) {
+        if (dynamicIndicatorEvents.includes(event) &&
+            !isVersionCompatible(this._clientVersion, FIVE_SEVENTEEN_FIVE)) {
+            throw new Error("".concat(event, " requires client version 5.17.5 or higher. Current version: ").concat(this._clientVersion));
+        }
         this.removeEventListener(event, handler);
-        if (event == NativeEvents.ON_SHARE_APP) {
+        if (event === NativeEvents.ON_SHARE_APP) {
             this.removeEventListener(NativeEvents.ON_SHARE_APP_COMPATIBILITY, handler);
         }
-        if (event == NativeEvents.ON_SEND_APP_INVITATION) {
+        if (event === NativeEvents.ON_SEND_APP_INVITATION) {
             this.removeEventListener(NativeEvents.ON_SEND_APP_INVITATION_COMPATIBILITY, handler);
         }
     };
@@ -2663,12 +2761,67 @@ var ZoomSdk =  (function () {
             });
         });
     };
+    ZoomSdk.prototype.sendMessageToChat = function (options) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 , this.callZoomApi(NativeApis.SEND_MESSAGE_TO_CHAT, options)];
+            });
+        });
+    };
+    ZoomSdk.prototype.setDynamicIndicator = function (options) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 , this.callZoomApi(NativeApis.SET_DYNAMIC_INDICATOR, options)];
+            });
+        });
+    };
+    ZoomSdk.prototype.getDynamicIndicator = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 , this.callZoomApi(NativeApis.GET_DYNAMIC_INDICATOR)];
+            });
+        });
+    };
+    ZoomSdk.prototype.removeDynamicIndicator = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 , this.callZoomApi(NativeApis.REMOVE_DYNAMIC_INDICATOR)];
+            });
+        });
+    };
+    ZoomSdk.prototype.onSetDynamicIndicator = function (handler) {
+        this.addEventListener(NativeEvents.ON_SET_DYNAMIC_INDICATOR, handler);
+    };
+    ZoomSdk.prototype.onRemoveDynamicIndicator = function (handler) {
+        this.addEventListener(NativeEvents.ON_REMOVE_DYNAMIC_INDICATOR, handler);
+    };
+    ZoomSdk.prototype.setDynamicIndicatorStyle = function (options) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 , this.callZoomApi(NativeApis.SET_DYNAMIC_INDICATOR_STYLE, options)];
+            });
+        });
+    };
+    ZoomSdk.prototype.onDynamicIndicatorStyleChange = function (handler) {
+        this.addEventListener(NativeEvents.ON_DYNAMIC_INDICATOR_STYLE_CHANGE, handler);
+    };
+    ZoomSdk.prototype.extendDynamicIndicator = function (options
+    ) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 , this.callZoomApi(NativeApis.EXTEND_DYNAMIC_INDICATOR, options)];
+            });
+        });
+    };
+    ZoomSdk.prototype.onExtendDynamicIndicator = function (handler) {
+        this.addEventListener(NativeEvents.ON_EXTEND_DYNAMIC_INDICATOR, handler);
+    };
     return ZoomSdk;
 }());
 function getJsCallId() {
     var array = new Uint8Array(16);
-    if (crypto) {
-        crypto.getRandomValues(array);
+    if (browserCrypto) {
+        browserCrypto.getRandomValues(array);
     }
     else if (nodeCrypto) {
         array.set(nodeCrypto.randomBytes(16));
@@ -2734,4 +2887,6 @@ function updateOptionsZIndex(options) {
 
 var module$1 = new ZoomSdk({ version: version });
 
-module.exports = module$1;
+exports.compatibilityApisCache = compatibilityApisCache;
+exports["default"] = module$1;
+exports.isVersionCompatible = isVersionCompatible;

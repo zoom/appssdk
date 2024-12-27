@@ -71,7 +71,11 @@ declare enum NativeEvents {
     ON_WAITING_ROOM_PARTICIPANT_JOIN = "onWaitingRoomParticipantJoin",
     ON_PARTICIPANT_EMAIL = "onParticipantEmail",
     ON_PHOTO = "onPhoto",
-    ON_ENGAGEMENT_VARIABLE_VALUE_CHANGE = "onEngagementVariableValueChange"
+    ON_ENGAGEMENT_VARIABLE_VALUE_CHANGE = "onEngagementVariableValueChange",
+    ON_SET_DYNAMIC_INDICATOR = "onSetDynamicIndicator",
+    ON_REMOVE_DYNAMIC_INDICATOR = "onRemoveDynamicIndicator",
+    ON_DYNAMIC_INDICATOR_STYLE_CHANGE = "onDynamicIndicatorStyleChange",
+    ON_EXTEND_DYNAMIC_INDICATOR = "onExtendDynamicIndicator"
 }
 
 /**
@@ -1073,7 +1077,7 @@ declare type GetMeetingContextResponse = {
  * All the available JS APIs and events
  * @category Core
  * */
-declare type Apis = 'addBreakoutRoom' | 'allowParticipantToRecord' | 'assignParticipantsToBreakoutRoom' | 'assignParticipantToBreakoutRoom' | 'authorize' | 'changeBreakoutRoom' | 'clearImage' | 'clearParticipant' | 'clearWebView' | 'closeBreakoutRooms' | 'closeChannel' | 'closeLobby' | 'closeRenderingContext' | 'cloudRecording' | 'configureBreakoutRooms' | 'connect' | 'createBreakoutRooms' | 'deleteBreakoutRoom' | 'drawImage' | 'drawParticipant' | 'drawWebView' | 'endCollaborate' | 'endSyncData' | 'executeOnZoomAction' | 'expandApp' | 'getBreakoutRoomList' | 'getImmersiveViewContext' | 'getMeetingContext' | 'getMeetingJoinUrl' | 'getMeetingParticipants' | 'getMeetingUUID' | 'getOnZoomProperties' | 'getPairingStatus' | 'getRecordingContext' | 'getRunningContext' | 'getScreenshot' | 'getSupportedJsApis' | 'getUserContext' | 'getUserMediaAudio' | 'getUserMediaVideo' | 'joinCollaborate' | 'joinOnZoomEvent' | 'joinZoomRoom' | 'launchAppInMeeting' | 'leaveCollaborate' | 'listCameras' | 'onActiveSpeakerChange' | 'onAppPopout' | 'onAuthenticate' | 'onAuthorized' | 'onShareScreen' | 'onShareComputerAudio' | 'onBreakoutRoomChange' | 'onCloseAppForParticipants' | 'onCloudRecording' | 'onCollaborateChange' | 'onConnect' | 'onExpandApp' | 'onExtendedProcessing' | 'onFeedbackReaction' | 'onImmersiveViewChange' | 'onMeeting' | 'onMeetingConfigChanged' | 'onMessage' | 'onMyActiveSpeakerChange' | 'onMyMediaChange' | 'onMyReaction' | 'onMyUserContextChange' | 'onOnZoomJoinStatusChange' | 'onPairingStatusChange' | 'onParticipantChange' | 'onReaction' | 'onRemoveFeedbackReaction' | 'onRunningContextChange' | 'onSendAppInvitation' | 'onShareApp' | 'openBreakoutRooms' | 'openChannel' | 'openDM' | 'openUrl' | 'postMessage' | 'promptAuthorize' | 'pushState' | 'removeImmersiveView' | 'removeVirtualBackground' | 'removeVirtualForeground' | 'renameBreakoutRoom' | 'runRenderingContext' | 'sendAppInvitation' | 'sendAppInvitationToAllParticipants' | 'sendAppInvitationToMeetingOwner' | 'setCamera' | 'setImmersiveView' | 'setUserMediaAudio' | 'setUserMediaVideo' | 'setVideoMirrorEffect' | 'setVirtualBackground' | 'setVirtualForeground' | 'shareApp' | 'shareComputerAudio' | 'showAppInvitationDialog' | 'showNotification' | 'startCollaborate' | 'toggleParticipantMediaAudio' | 'onInviteCollaboration' | 'getAppContext' | 'getAudioState' | 'setAudioState' | 'getVideoState' | 'setVideoState' | 'addParticipantSpotlight' | 'removeParticipantSpotlights' | 'getParticipantSpotlights' | 'addParticipantPins' | 'removeParticipantPins' | 'setFeedbackReaction' | 'removeFeedbackReaction' | 'removeAllFeedbackReaction' | 'allowAttendeesToSpeak' | 'disallowAttendeesToSpeak' | 'removeWebinarAttendees' | 'setAudioSettings' | 'getAudioSettings' | 'getIncomingParticipantAudioState' | 'setIncomingParticipantAudioState' | 'onIncomingParticipantAudioChange' | 'setVideoSettings' | 'getVideoSettings' | 'promptShareScreen' | 'showMeetingInvitationDialog' | 'onGalleryPageChange' | 'setGalleryPage' | 'getGalleryPage' | 'getChatContext' | 'composeCard' | 'broadcastVoiceToBreakoutRooms' | 'stopShareScreen' | 'getGalleryOrderList' | 'onGalleryOrder' | 'setScreenName' | 'setParticipantScreenName' | 'setEmojiReaction' | 'getEmojiConfiguration' | 'onEmojiReaction' | 'getMeetingView' | 'setMeetingView' | 'onMeetingViewChange' | 'setVideoFilter' | 'deleteVideoFilter' | 'leaveMeeting' | 'joinMeeting' | 'getZoomRoomContext' | 'getZoomRoomControllerCredentials' | 'toggleParticipantMediaVideo' | 'sendMessage' | 'putParticipantToWaitingRoom' | 'admitParticipantFromWaitingRoom' | 'getWaitingRoomParticipants' | 'setWaitingRoomState' | 'getWaitingRoomState' | 'getPhoneContext' | 'onPhoneCalleeAnswered' | 'onPhoneCallerEnded' | 'onPhoneCalleeEnded' | 'onPhoneCalleeRejected' | 'onPhoneCallerMeetingInviting' | 'onPhoneCalleeMeetingInvite' | 'onPhoneContext' | 'getEngagementContext' | 'onEngagementContextChange' | 'getEngagementStatus' | 'onEngagementStatusChange' | 'getEngagementSecurableStatus' | 'startMediaRedirection' | 'onEngagementMediaRedirect' | 'appPopout' | 'bringAppToFront' | 'sendAppToBackground' | 'closeApp' | 'getMeetingLanguages' | 'onMeetingLanguagesChange' | 'makePhoneCall' | 'onWaitingRoomStateChange' | 'onWaitingRoomParticipantLeave' | 'onWaitingRoomParticipantJoin' | 'getMeetingParticipantsEmail' | 'onParticipantEmail' | 'getMeetingChatContext' | 'getMailContext' | 'getMailThread' | 'getMailMessage' | 'takeParticipantPhoto' | 'takeMyPhoto' | 'onPhoto' | 'startCollaborateSidecar' | 'endCollaborateSidecar' | 'getAppVariableList' | 'getEngagementVariableValue' | 'onEngagementVariableValueChange';
+declare type Apis = 'addBreakoutRoom' | 'allowParticipantToRecord' | 'assignParticipantsToBreakoutRoom' | 'assignParticipantToBreakoutRoom' | 'authorize' | 'changeBreakoutRoom' | 'clearImage' | 'clearParticipant' | 'clearWebView' | 'closeBreakoutRooms' | 'closeChannel' | 'closeLobby' | 'closeRenderingContext' | 'cloudRecording' | 'configureBreakoutRooms' | 'connect' | 'createBreakoutRooms' | 'deleteBreakoutRoom' | 'drawImage' | 'drawParticipant' | 'drawWebView' | 'endCollaborate' | 'endSyncData' | 'executeOnZoomAction' | 'expandApp' | 'getBreakoutRoomList' | 'getImmersiveViewContext' | 'getMeetingContext' | 'getMeetingJoinUrl' | 'getMeetingParticipants' | 'getMeetingUUID' | 'getOnZoomProperties' | 'getPairingStatus' | 'getRecordingContext' | 'getRunningContext' | 'getScreenshot' | 'getSupportedJsApis' | 'getUserContext' | 'getUserMediaAudio' | 'getUserMediaVideo' | 'joinCollaborate' | 'joinOnZoomEvent' | 'joinZoomRoom' | 'launchAppInMeeting' | 'leaveCollaborate' | 'listCameras' | 'onActiveSpeakerChange' | 'onAppPopout' | 'onAuthenticate' | 'onAuthorized' | 'onShareScreen' | 'onShareComputerAudio' | 'onBreakoutRoomChange' | 'onCloseAppForParticipants' | 'onCloudRecording' | 'onCollaborateChange' | 'onConnect' | 'onExpandApp' | 'onExtendedProcessing' | 'onFeedbackReaction' | 'onImmersiveViewChange' | 'onMeeting' | 'onMeetingConfigChanged' | 'onMessage' | 'onMyActiveSpeakerChange' | 'onMyMediaChange' | 'onMyReaction' | 'onMyUserContextChange' | 'onOnZoomJoinStatusChange' | 'onPairingStatusChange' | 'onParticipantChange' | 'onReaction' | 'onRemoveFeedbackReaction' | 'onRunningContextChange' | 'onSendAppInvitation' | 'onShareApp' | 'openBreakoutRooms' | 'openChannel' | 'openDM' | 'openUrl' | 'postMessage' | 'promptAuthorize' | 'pushState' | 'removeImmersiveView' | 'removeVirtualBackground' | 'removeVirtualForeground' | 'renameBreakoutRoom' | 'runRenderingContext' | 'sendAppInvitation' | 'sendAppInvitationToAllParticipants' | 'sendAppInvitationToMeetingOwner' | 'setCamera' | 'setImmersiveView' | 'setUserMediaAudio' | 'setUserMediaVideo' | 'setVideoMirrorEffect' | 'setVirtualBackground' | 'setVirtualForeground' | 'shareApp' | 'shareComputerAudio' | 'showAppInvitationDialog' | 'showNotification' | 'startCollaborate' | 'toggleParticipantMediaAudio' | 'onInviteCollaboration' | 'getAppContext' | 'getAudioState' | 'setAudioState' | 'getVideoState' | 'setVideoState' | 'addParticipantSpotlight' | 'removeParticipantSpotlights' | 'getParticipantSpotlights' | 'addParticipantPins' | 'removeParticipantPins' | 'setFeedbackReaction' | 'removeFeedbackReaction' | 'removeAllFeedbackReaction' | 'allowAttendeesToSpeak' | 'disallowAttendeesToSpeak' | 'removeWebinarAttendees' | 'setAudioSettings' | 'getAudioSettings' | 'getIncomingParticipantAudioState' | 'setIncomingParticipantAudioState' | 'onIncomingParticipantAudioChange' | 'setVideoSettings' | 'getVideoSettings' | 'promptShareScreen' | 'showMeetingInvitationDialog' | 'onGalleryPageChange' | 'setGalleryPage' | 'getGalleryPage' | 'getChatContext' | 'composeCard' | 'broadcastVoiceToBreakoutRooms' | 'stopShareScreen' | 'getGalleryOrderList' | 'onGalleryOrder' | 'setScreenName' | 'setParticipantScreenName' | 'setEmojiReaction' | 'getEmojiConfiguration' | 'onEmojiReaction' | 'getMeetingView' | 'setMeetingView' | 'onMeetingViewChange' | 'setVideoFilter' | 'deleteVideoFilter' | 'leaveMeeting' | 'joinMeeting' | 'getZoomRoomContext' | 'getZoomRoomControllerCredentials' | 'toggleParticipantMediaVideo' | 'sendMessage' | 'putParticipantToWaitingRoom' | 'admitParticipantFromWaitingRoom' | 'getWaitingRoomParticipants' | 'setWaitingRoomState' | 'getWaitingRoomState' | 'getPhoneContext' | 'onPhoneCalleeAnswered' | 'onPhoneCallerEnded' | 'onPhoneCalleeEnded' | 'onPhoneCalleeRejected' | 'onPhoneCallerMeetingInviting' | 'onPhoneCalleeMeetingInvite' | 'onPhoneContext' | 'getEngagementContext' | 'onEngagementContextChange' | 'getEngagementStatus' | 'onEngagementStatusChange' | 'getEngagementSecurableStatus' | 'startMediaRedirection' | 'onEngagementMediaRedirect' | 'appPopout' | 'bringAppToFront' | 'sendAppToBackground' | 'closeApp' | 'getMeetingLanguages' | 'onMeetingLanguagesChange' | 'makePhoneCall' | 'onWaitingRoomStateChange' | 'onWaitingRoomParticipantLeave' | 'onWaitingRoomParticipantJoin' | 'getMeetingParticipantsEmail' | 'onParticipantEmail' | 'getMeetingChatContext' | 'getMailContext' | 'getMailThread' | 'getMailMessage' | 'takeParticipantPhoto' | 'takeMyPhoto' | 'onPhoto' | 'startCollaborateSidecar' | 'endCollaborateSidecar' | 'getAppVariableList' | 'getEngagementVariableValue' | 'onEngagementVariableValueChange' | 'sendMessageToChat' | 'setDynamicIndicator' | 'getDynamicIndicator' | 'removeDynamicIndicator' | 'onSetDynamicIndicator' | 'onRemoveDynamicIndicator' | 'setDynamicIndicatorStyle' | 'onDynamicIndicatorStyleChange' | 'extendDynamicIndicator' | 'onExtendDynamicIndicator';
 /**
  * Example:
  * ```
@@ -2987,7 +2991,160 @@ declare type GetAppVariableListResponse = {
         defaultValue?: any;
     }[];
 };
+/**
+ * @category Meeting Actions
+ */
+declare type SendMessageToChatOptions = {
+    /** Message to be sent */
+    message: string;
+};
+/**
+ * @category Meeting Actions
+ */
+declare type SendMessageToChatResponse = {
+    /** Where message was sent */
+    result: {
+        channelId: string;
+        messageId: string;
+    }[];
+};
+/**
+ * @category Dynamic Indicator
+ * Timer-related options for dynamic indicator.
+ */
+declare type DynamicIndicatorTimerOptions = {
+    action?: 'start' | 'pause' | 'resume' | 'end';
+    direction?: 'up' | 'down';
+    current?: number;
+    start?: number;
+    withSound?: boolean;
+    countNegativeAfterAlarm?: boolean;
+    showNotification?: boolean;
+    songChoice?: number;
+};
+/**
+ * @category Dynamic Indicator
+ * Style-related options for dynamic indicator.
+ */
+declare type SetDynamicIndicatorStyleInput = {
+    textColor?: string;
+    borderColor?: string;
+    backgroundColor?: string;
+    textStyle?: 'bold' | 'italic';
+};
+/**
+ * @category Dynamic Indicator
+ */
+declare type DynamicIndicatorOptions = {
+    text?: string;
+    timer?: {
+        action?: 'start' | 'pause' | 'resume' | 'end';
+        direction?: 'up' | 'down';
+        start?: number;
+        withSound?: boolean;
+        countNegativeAfterAlarm?: boolean;
+        showNotification?: boolean;
+        songChoice?: number;
+    };
+    textColor?: string;
+    borderColor?: string;
+    backgroundColor?: string;
+    textStyle?: 'bold' | 'italic';
+};
+/**
+ * @category Dynamic Indicator
+ * Output type for getting the current dynamic indicator status.
+ */
+declare type GetDynamicIndicatorOutput = {
+    participantUUID: string;
+    screenName: string;
+    text?: string;
+    timer?: DynamicIndicatorTimerOptions;
+    textColor?: string;
+    borderColor?: string;
+    backgroundColor?: string;
+    textStyle?: 'bold' | 'italic';
+};
+/**
+ * @category Dynamic Indicator
+ * Styles for dynamic indicator, including text, border, and background colors.
+ */
+declare type DynamicIndicatorStyles = {
+    textColor?: string;
+    borderColor?: string;
+    backgroundColor?: string;
+    textStyle?: 'bold' | 'italic';
+};
+/**
+ * @category Dynamic Indicator
+ * Event data for when a dynamic indicator is set, including the indicator's text, colors, and timer.
+ */
+declare type OnSetDynamicIndicatorEvent = {
+    participantUUID: string;
+    screenName: string;
+    timestamp: number;
+    text?: string;
+    timer?: {
+        action?: 'start' | 'pause' | 'resume' | 'end';
+        direction?: 'up' | 'down';
+        current?: number;
+        start?: number;
+        withSound?: boolean;
+        countNegativeAfterAlarm?: boolean;
+        showNotification?: boolean;
+        songChoice?: number;
+    };
+    textColor?: string;
+    borderColor?: string;
+    backgroundColor?: string;
+    textStyle?: 'bold' | 'italic';
+};
+/**
+ * @category Dynamic Indicator
+ * Event data for when a dynamic indicator is removed.
+ */
+declare type OnRemoveDynamicIndicatorEvent = {
+    participantUUID: string;
+    screenName: string;
+    timestamp: number;
+};
+/**
+ * @category Dynamic Indicator
+ * Event data for when the style of a dynamic indicator is changed (e.g., text style, colors).
+ */
+declare type OnDynamicIndicatorStyleChangeEvent = {
+    participantUUID: string;
+    screenName: string;
+    textColor?: string;
+    borderColor?: string;
+    backgroundColor?: string;
+    textStyle?: 'bold' | 'italic';
+    timestamp: number;
+};
+/**
+ * @category Dynamic Indicator
+ * Event data for when a dynamic indicator is extended, typically by updating or prolonging the timer.
+ */
+declare type OnExtendDynamicIndicatorEvent = {
+    extendDuration: number;
+    timestamp: number;
+};
 
+declare const compatibilityApisCache: {
+    config: {
+        mapInput: (d: any) => any;
+        mapOutput: (d: any) => any;
+        validate: (d: any) => any;
+    };
+};
+/**
+ * Compares two version strings to determine if the client version meets the minimum requirement.
+ *
+ * @param currentVersion - The current client version (e.g., "5.17.5").
+ * @param requiredVersion - The minimum required version (e.g., "5.17.5").
+ * @returns `true` if the client version is greater than or equal to the required version, otherwise `false`.
+ */
+declare function isVersionCompatible(currentVersion: string, requiredVersion: string): boolean;
 /**
  * # Zoom Apps SDK
  *
@@ -3152,7 +3309,7 @@ declare class ZoomSdk {
      *
      * This method will return an error if the client does not provide a response within the timeout specified or the default of 10000ms (10 seconds).
      */
-    callZoomApi(apiName: string, data?: NativeApiRequestData, timeout?: number): Promise<any>;
+    callZoomApi(apiName: string, data?: NativeApiRequestData, timeout?: number, isTimerApp?: boolean): Promise<any>;
     /**
      * @zoomZRCVersion 5.14.0
      *
@@ -6726,8 +6883,165 @@ declare class ZoomSdk {
      * @category Zoom Contact Center
      */
     getAppVariableList(): Promise<GetAppVariableListResponse>;
+    /**
+     * @zoomDesktopClientVersion 6.2.5
+     *
+     * Sends a message to a chat channel or meeting chat channel.  There are three contexts this can be used in:
+     * For CMC contexts, the message will be sent to the chat channel linked to the meeting
+     * For non-CMC contexts, the message will be posted to the legacy meeting chat
+     * For Zoom Apps opened in the sidebar, the message will be posted to a channel of the user’s choosing. The API will render a dialog that allows users to search their chat channels.
+     *
+     * Running context*: inMeeting, inChat, inMeetingChat
+     *
+     * *Supported roles*: Host, Co-host, Participant, and Panelist
+     *
+     * *Supports Guest Mode*: Yes
+     *
+     * *product*: desktop
+     *
+     * @category Meeting Actions
+     */
+    sendMessageToChat(options: SendMessageToChatOptions): Promise<SendMessageToChatResponse>;
+    /**
+     * @zoomDesktopClientVersion 5.17.5
+     *
+     * Set a dynamic indicator to be seen by all participants.
+     *
+     * *Running context*: inMeeting, inCollaborate, inCamera, inWebinar
+     *
+     * *Supported roles*: Host, Co-host, Participant, and Panelist
+     *
+     * *Supports Guest Mode*: Yes
+     *
+     * *product*: desktop
+     *
+     * @category Dynamic Indicator
+     */
+    setDynamicIndicator(options: DynamicIndicatorOptions): Promise<GeneralMessageResponse>;
+    /**
+     * @zoomDesktopClientVersion 5.17.5
+     *
+     * Returns the current dynamic indicator information.
+     *
+     * *Running context*: inMeeting, inCollaborate, inCamera, inWebinar
+     *
+     * *Supported roles*: Host, Co-host, Panelist, Participant, and Attendee
+     *
+     * *Supports Guest Mode*: Yes
+     *
+     * *product*: desktop
+     *
+     * @category Dynamic Indicator
+     */
+    getDynamicIndicator(): Promise<GetDynamicIndicatorOutput>;
+    /**
+     * @zoomDesktopClientVersion 5.17.5
+     *
+     * Removes the current dynamic indicator (including style) and the app option in the dropdown menu.
+     *
+     * *Running context*: inMeeting, inCollaborate, inCamera, inWebinar
+     *
+     * *Supported roles*: Host, Co-host, Participant, and Panelist
+     *
+     * *Supports Guest Mode*: Yes
+     *
+     * *product*: desktop
+     *
+     * @category Dynamic Indicator
+     */
+    removeDynamicIndicator(): Promise<GeneralMessageResponse>;
+    /**
+     * @zoomDesktopClientVersion 5.17.5
+     *
+     * Event fired when the dynamic indicator is set or changed.
+     *
+     * *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
+     *
+     * *Supports Guest Mode*: Yes
+     *
+     * *product*: desktop
+     *
+     * @category Dynamic Indicator
+     */
+    onSetDynamicIndicator(handler: GenericEventHandler<OnSetDynamicIndicatorEvent>): void;
+    /**
+     * @zoomDesktopClientVersion 5.17.5
+     *
+     * Event fired when the dynamic indicator is removed by calling removeDynamicIndicator.
+     *
+     * *Supported roles*: Host, Co-Host, Participant, Panelist
+     *
+     * *Supports Guest Mode*: Yes
+     *
+     * *product*: desktop
+     *
+     * @category Dynamic Indicator
+     */
+    onRemoveDynamicIndicator(handler: GenericEventHandler<OnRemoveDynamicIndicatorEvent>): void;
+    /**
+     * @zoomDesktopClientVersion 5.17.5
+     *
+     * Called by the host to set the dynamic indicator style to be seen by all participants.
+     *
+     * *Running context*: inMeeting, inCollaborate, inCamera, inWebinar
+     *
+     * *Supported roles*: Host, Co-host, Participant, and Panelist
+     *
+     * *Supports Guest Mode*: Yes
+     *
+     * *product*: desktop
+     *
+     * @category Dynamic Indicator
+     */
+    setDynamicIndicatorStyle(options: SetDynamicIndicatorStyleInput): Promise<GeneralMessageResponse>;
+    /**
+     * @zoomDesktopClientVersion 5.17.5
+     *
+     * Event fired when the dynamic indicator style is set or changed using setDynamicIndicatorStyle.
+     *
+     * *Supported roles*: Host, Co-Host, Participant, Panelist, and Attendee
+     *
+     * *Supports Guest Mode*: Yes
+     *
+     * *product*: desktop
+     *
+     * @category Dynamic Indicator
+     */
+    onDynamicIndicatorStyleChange(handler: GenericEventHandler<OnDynamicIndicatorStyleChangeEvent>): void;
+    /**
+     * @zoomDesktopClientVersion 5.17.5
+     *
+     * Adds additional time to an existing dynamic indicator timer. Only works for timers with a down direction.
+     *
+     * *Running context*: inMeeting, inCollaborate, inCamera, inWebinar
+     *
+     * *Supported roles*: Host, Co-host, Participant, and Panelist
+     *
+     * *Supports Guest Mode*: Yes
+     *
+     * *product*: desktop
+     *
+     * @category Dynamic Indicator
+     */
+    extendDynamicIndicator(options: {
+        extendDuration: number;
+    }): Promise<GeneralMessageResponse>;
+    /**
+     * @zoomDesktopClientVersion 5.17.5
+     *
+     * Event fired when the dynamic indicator timer is extended using extendDynamicIndicator.
+     *
+     * *Supported roles*: Host, Co-Host, Participant, Panelist
+     *
+     * *Supports Guest Mode*: Yes
+     *
+     * *product*: desktop
+     *
+     * @category Dynamic Indicator
+     */
+    onExtendDynamicIndicator(handler: GenericEventHandler<OnExtendDynamicIndicatorEvent>): void;
 }
 
 declare const _default: ZoomSdk;
 
-export { AddBreakoutRoomOptions, AddParticipantSpotlightOptions, AdmitParticipantFromWaitingRoomOptions, AllowParticipantToRecordOptions, Apis, AppInvitationResponse, AppPopoutOptions, AppPopoutResponse, AssignParticipantToBreakoutRoomOptions, AttendeeSpeakingOptions, AudioMedia, AuthObject, AuthorizeOptions, BreakOutRoomParticipant, BreakoutRoomAssignmentMethods, BreakoutRoomsCreated, BreakoutRoomsParticipantsAssigned, BreakoutRoomsParticipantsJoined, BreakoutRoomsParticipantsLeft, BreakoutRoomsResponse, BreakoutRoomsUpdated, BringAppToFrontResponse, BroadcastVoiceToBreakoutRoomsOptions, ChangeBreakoutRoomOptions, ClearImageOptions, ClearParticipantOptions, ClearWebViewOptions, CloudRecordingOptions, ComposeCardOptions, ConfigOptions, ConfigResponse, ConfigSize, ConfigureBreakoutRoomsOptions, ConfigureBreakoutRoomsResponse, CreateBreakoutRoomsOptions, DecryptedAppContextResponse, DrawImageOptions, DrawImageResponse, DrawParticipantOptions, DrawWebViewOptions, EmojiOptions, EngagementContext, EngagementContextEvent, EngagementStatus, EngagementStatusEvent, ExpandAppOptions, FeedbackReactionOptions, FeedbackReactions, GeneralMessage, GeneralMessageResponse, GenericEventHandler, GetAppContextResponse, GetAppVariableListResponse, GetAudioSettingsResponse, GetAudioStateResponse, GetChatContextResponse, GetEmojiConfigurationResponse, GetEngagementContextOptions, GetEngagementSecurableStatusOptions, GetEngagementSecurableStatusResponse, GetEngagementStatusOptions, GetEngagementVariableValueOptions, GetEngagementVariableValueResponse, GetGalleryOrderListResponse, GetGalleryPageResponse, GetIncomingParticipantAudioStateOptions, GetIncomingParticipantAudioStateResponse, GetMailContextResponse, GetMailMessageOptions, GetMailMessageResponse, GetMailThreadOptions, GetMailThreadResponse, GetMeetingChatContextResponse, GetMeetingContextResponse, GetMeetingJoinUrlResponse, GetMeetingLanguagesResponse, GetMeetingParticipantsEmailOptions, GetMeetingParticipantsResponse, GetMeetingUUIDResponse, GetMeetingViewResponse, GetParticipantSpotlightsResponse, GetPhoneContextResponse, GetRecordingContextResponse, GetSupportedJsApisResponse, GetUserContextResponse, GetVideoSettingsResponse, GetVideoStateResponse, GetWaitingRoomParticipantsResponse, GetWaitingRoomStateResponse, GetZoomRoomContextResponse, GetZoomRoomControllerCredentialsResponse, JSONObject, JSONValue, JoinMeetingOptions, LaunchAppInMeetingOptions, LaunchContext, LeaveMeetingOptions, ListCamerasResponse, MakePhoneCallOptions, MeetingView, NativeApiRequest, NativeApiRequestData, NativeApiResponseData, NativeConfigOptions, NativeMessage, NativeMessageData, NotificationOptions$1 as NotificationOptions, OnActiveSpeakerChangeEvent, OnActiveSpeakerChangeUserType, OnAppPopoutEvent, OnAuthorizedEvent, OnBreakoutRoomChangeEvent, OnCloudRecordingEvent, OnCollaborateChangeEvent, OnConnectEvent, OnEmojiReactionEvent, OnEngagementMediaRedirectEvent, OnExpandAppEvent, OnFeedbackReactionEvent, OnGalleryOrderEvent, OnGalleryPageChangeEvent, OnIncomingParticipantAudioChangeEvent, OnMeetingEvent, OnMeetingLanguagesChangeEvent, OnMeetingViewChangeEvent, OnMessageEvent, OnMyActiveSpeakerChangeEvent, OnMyMediaChangeEvent, OnMyReactionEvent, OnMyUserContextChangeEvent, OnParticipantChangeEvent, OnParticipantChangeParticipantType, OnParticipantEmailEvent, OnPhoneContextEvent, OnPhotoEvent, OnPhotoEventOriginal, OnReactionEvent, OnRemoveFeedbackReactionEvent, OnRenderedAppOpenedEvent, OnRunningContextChangeEvent, OnSendAppInvitationEvent, OnShareAppEvent, OnShareComputerAudioEvent, OnShareScreenEvent, OnWaitingRoomParticipantJoinEvent, OnWaitingRoomParticipantLeaveEvent, OnWaitingRoomStateChangeEvent, OpenUrlOptions, Participant, ParticipantCutoutShape, ParticipantPinOptions, PhoneEvent, PixelValue, PromptShareScreenOptions, PutParticipantToWaitingRoomOptions, RemoveParticipantSpotlightsOptions, RemoveWebinarAttendeeOptions, RenameBreakoutRoomOptions, RenderingContextView, RunRenderingContextOptions, RunningContext, RunningContextResponse, SdkOptions, SdkVersion, SendAppInvitationOptions, SendAppToBackgroundResponse, SendMessageOptions, SetAudioSettingsOptions, SetAudioStateOptions, SetCameraOptions, SetEmojiReactionOptions, SetGalleryPageOptions, SetIncomingParticipantAudioStateOptions, SetMeetingViewOptions, SetScreenNameOptions, SetVideoFilterOptions, SetVideoMirrorEffectOptions, SetVideoSettingsOptions, SetVideoStateOptions, SetWaitingRoomStateOptions, ShareAppOptions, ShareComputerAudioOptions, ShowAppInvitationDialogOptions, StartCollaborateOptions, StartMediaRedirectionOptions, StartMediaRedirectionResponse, TakeParticipantPhotoOptions, ToggleParticipantMediaAudioOptions, ToggleParticipantMediaVideoOptions, Uuid, VideoMedia, VirtualBackgroundOptions, VirtualForegroundOptions, WarningReponse, _default as default, onEngagementVariableValueChangeEvent, onMeetingConfigChangedEvent, setParticipantScreenNameOptions };
+export { AddBreakoutRoomOptions, AddParticipantSpotlightOptions, AdmitParticipantFromWaitingRoomOptions, AllowParticipantToRecordOptions, Apis, AppInvitationResponse, AppPopoutOptions, AppPopoutResponse, AssignParticipantToBreakoutRoomOptions, AttendeeSpeakingOptions, AudioMedia, AuthObject, AuthorizeOptions, BreakOutRoomParticipant, BreakoutRoomAssignmentMethods, BreakoutRoomsCreated, BreakoutRoomsParticipantsAssigned, BreakoutRoomsParticipantsJoined, BreakoutRoomsParticipantsLeft, BreakoutRoomsResponse, BreakoutRoomsUpdated, BringAppToFrontResponse, BroadcastVoiceToBreakoutRoomsOptions, ChangeBreakoutRoomOptions, ClearImageOptions, ClearParticipantOptions, ClearWebViewOptions, CloudRecordingOptions, ComposeCardOptions, ConfigOptions, ConfigResponse, ConfigSize, ConfigureBreakoutRoomsOptions, ConfigureBreakoutRoomsResponse, CreateBreakoutRoomsOptions, DecryptedAppContextResponse, DrawImageOptions, DrawImageResponse, DrawParticipantOptions, DrawWebViewOptions, DynamicIndicatorOptions, DynamicIndicatorStyles, DynamicIndicatorTimerOptions, EmojiOptions, EngagementContext, EngagementContextEvent, EngagementStatus, EngagementStatusEvent, ExpandAppOptions, FeedbackReactionOptions, FeedbackReactions, GeneralMessage, GeneralMessageResponse, GenericEventHandler, GetAppContextResponse, GetAppVariableListResponse, GetAudioSettingsResponse, GetAudioStateResponse, GetChatContextResponse, GetDynamicIndicatorOutput, GetEmojiConfigurationResponse, GetEngagementContextOptions, GetEngagementSecurableStatusOptions, GetEngagementSecurableStatusResponse, GetEngagementStatusOptions, GetEngagementVariableValueOptions, GetEngagementVariableValueResponse, GetGalleryOrderListResponse, GetGalleryPageResponse, GetIncomingParticipantAudioStateOptions, GetIncomingParticipantAudioStateResponse, GetMailContextResponse, GetMailMessageOptions, GetMailMessageResponse, GetMailThreadOptions, GetMailThreadResponse, GetMeetingChatContextResponse, GetMeetingContextResponse, GetMeetingJoinUrlResponse, GetMeetingLanguagesResponse, GetMeetingParticipantsEmailOptions, GetMeetingParticipantsResponse, GetMeetingUUIDResponse, GetMeetingViewResponse, GetParticipantSpotlightsResponse, GetPhoneContextResponse, GetRecordingContextResponse, GetSupportedJsApisResponse, GetUserContextResponse, GetVideoSettingsResponse, GetVideoStateResponse, GetWaitingRoomParticipantsResponse, GetWaitingRoomStateResponse, GetZoomRoomContextResponse, GetZoomRoomControllerCredentialsResponse, JSONObject, JSONValue, JoinMeetingOptions, LaunchAppInMeetingOptions, LaunchContext, LeaveMeetingOptions, ListCamerasResponse, MakePhoneCallOptions, MeetingView, NativeApiRequest, NativeApiRequestData, NativeApiResponseData, NativeConfigOptions, NativeMessage, NativeMessageData, NotificationOptions$1 as NotificationOptions, OnActiveSpeakerChangeEvent, OnActiveSpeakerChangeUserType, OnAppPopoutEvent, OnAuthorizedEvent, OnBreakoutRoomChangeEvent, OnCloudRecordingEvent, OnCollaborateChangeEvent, OnConnectEvent, OnDynamicIndicatorStyleChangeEvent, OnEmojiReactionEvent, OnEngagementMediaRedirectEvent, OnExpandAppEvent, OnExtendDynamicIndicatorEvent, OnFeedbackReactionEvent, OnGalleryOrderEvent, OnGalleryPageChangeEvent, OnIncomingParticipantAudioChangeEvent, OnMeetingEvent, OnMeetingLanguagesChangeEvent, OnMeetingViewChangeEvent, OnMessageEvent, OnMyActiveSpeakerChangeEvent, OnMyMediaChangeEvent, OnMyReactionEvent, OnMyUserContextChangeEvent, OnParticipantChangeEvent, OnParticipantChangeParticipantType, OnParticipantEmailEvent, OnPhoneContextEvent, OnPhotoEvent, OnPhotoEventOriginal, OnReactionEvent, OnRemoveDynamicIndicatorEvent, OnRemoveFeedbackReactionEvent, OnRenderedAppOpenedEvent, OnRunningContextChangeEvent, OnSendAppInvitationEvent, OnSetDynamicIndicatorEvent, OnShareAppEvent, OnShareComputerAudioEvent, OnShareScreenEvent, OnWaitingRoomParticipantJoinEvent, OnWaitingRoomParticipantLeaveEvent, OnWaitingRoomStateChangeEvent, OpenUrlOptions, Participant, ParticipantCutoutShape, ParticipantPinOptions, PhoneEvent, PixelValue, PromptShareScreenOptions, PutParticipantToWaitingRoomOptions, RemoveParticipantSpotlightsOptions, RemoveWebinarAttendeeOptions, RenameBreakoutRoomOptions, RenderingContextView, RunRenderingContextOptions, RunningContext, RunningContextResponse, SdkOptions, SdkVersion, SendAppInvitationOptions, SendAppToBackgroundResponse, SendMessageOptions, SendMessageToChatOptions, SendMessageToChatResponse, SetAudioSettingsOptions, SetAudioStateOptions, SetCameraOptions, SetDynamicIndicatorStyleInput, SetEmojiReactionOptions, SetGalleryPageOptions, SetIncomingParticipantAudioStateOptions, SetMeetingViewOptions, SetScreenNameOptions, SetVideoFilterOptions, SetVideoMirrorEffectOptions, SetVideoSettingsOptions, SetVideoStateOptions, SetWaitingRoomStateOptions, ShareAppOptions, ShareComputerAudioOptions, ShowAppInvitationDialogOptions, StartCollaborateOptions, StartMediaRedirectionOptions, StartMediaRedirectionResponse, TakeParticipantPhotoOptions, ToggleParticipantMediaAudioOptions, ToggleParticipantMediaVideoOptions, Uuid, VideoMedia, VirtualBackgroundOptions, VirtualForegroundOptions, WarningReponse, compatibilityApisCache, _default as default, isVersionCompatible, onEngagementVariableValueChangeEvent, onMeetingConfigChangedEvent, setParticipantScreenNameOptions };
