@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2024 Zoom Video Communications, Inc.
+ * Copyright (c) 2025 Zoom Video Communications, Inc.
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -75,7 +75,13 @@ declare enum NativeEvents {
     ON_SET_DYNAMIC_INDICATOR = "onSetDynamicIndicator",
     ON_REMOVE_DYNAMIC_INDICATOR = "onRemoveDynamicIndicator",
     ON_DYNAMIC_INDICATOR_STYLE_CHANGE = "onDynamicIndicatorStyleChange",
-    ON_EXTEND_DYNAMIC_INDICATOR = "onExtendDynamicIndicator"
+    ON_EXTEND_DYNAMIC_INDICATOR = "onExtendDynamicIndicator",
+    ON_MAIL_ACTIVE_EDITOR_CHANGE = "onMailActiveEditorChange",
+    ON_MAIL_ACTIVE_EDITOR_TYPE_CHANGE = "onMailActiveEditorTypeChange",
+    ON_MAIL_ACTIVE_EDITOR_DATA_CHANGE = "onMailActiveEditorDataChange",
+    ON_APP_TOGGLE_IN_MAIL_ACTIVE_EDITOR = "onAppToggleInMailActiveEditor",
+    ON_APP_UI_ACTION_IN_MAIL = "onAppUIActionInMail",
+    ON_BEFORE_MAIL_SEND = "onBeforeMailSend"
 }
 
 /**
@@ -1077,7 +1083,7 @@ declare type GetMeetingContextResponse = {
  * All the available JS APIs and events
  * @category Core
  * */
-declare type Apis = 'addBreakoutRoom' | 'allowParticipantToRecord' | 'assignParticipantsToBreakoutRoom' | 'assignParticipantToBreakoutRoom' | 'authorize' | 'changeBreakoutRoom' | 'clearImage' | 'clearParticipant' | 'clearWebView' | 'closeBreakoutRooms' | 'closeChannel' | 'closeLobby' | 'closeRenderingContext' | 'cloudRecording' | 'configureBreakoutRooms' | 'connect' | 'createBreakoutRooms' | 'deleteBreakoutRoom' | 'drawImage' | 'drawParticipant' | 'drawWebView' | 'endCollaborate' | 'endSyncData' | 'executeOnZoomAction' | 'expandApp' | 'getBreakoutRoomList' | 'getImmersiveViewContext' | 'getMeetingContext' | 'getMeetingJoinUrl' | 'getMeetingParticipants' | 'getMeetingUUID' | 'getOnZoomProperties' | 'getPairingStatus' | 'getRecordingContext' | 'getRunningContext' | 'getScreenshot' | 'getSupportedJsApis' | 'getUserContext' | 'getUserMediaAudio' | 'getUserMediaVideo' | 'joinCollaborate' | 'joinOnZoomEvent' | 'joinZoomRoom' | 'launchAppInMeeting' | 'leaveCollaborate' | 'listCameras' | 'onActiveSpeakerChange' | 'onAppPopout' | 'onAuthenticate' | 'onAuthorized' | 'onShareScreen' | 'onShareComputerAudio' | 'onBreakoutRoomChange' | 'onCloseAppForParticipants' | 'onCloudRecording' | 'onCollaborateChange' | 'onConnect' | 'onExpandApp' | 'onExtendedProcessing' | 'onFeedbackReaction' | 'onImmersiveViewChange' | 'onMeeting' | 'onMeetingConfigChanged' | 'onMessage' | 'onMyActiveSpeakerChange' | 'onMyMediaChange' | 'onMyReaction' | 'onMyUserContextChange' | 'onOnZoomJoinStatusChange' | 'onPairingStatusChange' | 'onParticipantChange' | 'onReaction' | 'onRemoveFeedbackReaction' | 'onRunningContextChange' | 'onSendAppInvitation' | 'onShareApp' | 'openBreakoutRooms' | 'openChannel' | 'openDM' | 'openUrl' | 'postMessage' | 'promptAuthorize' | 'pushState' | 'removeImmersiveView' | 'removeVirtualBackground' | 'removeVirtualForeground' | 'renameBreakoutRoom' | 'runRenderingContext' | 'sendAppInvitation' | 'sendAppInvitationToAllParticipants' | 'sendAppInvitationToMeetingOwner' | 'setCamera' | 'setImmersiveView' | 'setUserMediaAudio' | 'setUserMediaVideo' | 'setVideoMirrorEffect' | 'setVirtualBackground' | 'setVirtualForeground' | 'shareApp' | 'shareComputerAudio' | 'showAppInvitationDialog' | 'showNotification' | 'startCollaborate' | 'toggleParticipantMediaAudio' | 'onInviteCollaboration' | 'getAppContext' | 'getAudioState' | 'setAudioState' | 'getVideoState' | 'setVideoState' | 'addParticipantSpotlight' | 'removeParticipantSpotlights' | 'getParticipantSpotlights' | 'addParticipantPins' | 'removeParticipantPins' | 'setFeedbackReaction' | 'removeFeedbackReaction' | 'removeAllFeedbackReaction' | 'allowAttendeesToSpeak' | 'disallowAttendeesToSpeak' | 'removeWebinarAttendees' | 'setAudioSettings' | 'getAudioSettings' | 'getIncomingParticipantAudioState' | 'setIncomingParticipantAudioState' | 'onIncomingParticipantAudioChange' | 'setVideoSettings' | 'getVideoSettings' | 'promptShareScreen' | 'showMeetingInvitationDialog' | 'onGalleryPageChange' | 'setGalleryPage' | 'getGalleryPage' | 'getChatContext' | 'composeCard' | 'broadcastVoiceToBreakoutRooms' | 'stopShareScreen' | 'getGalleryOrderList' | 'onGalleryOrder' | 'setScreenName' | 'setParticipantScreenName' | 'setEmojiReaction' | 'getEmojiConfiguration' | 'onEmojiReaction' | 'getMeetingView' | 'setMeetingView' | 'onMeetingViewChange' | 'setVideoFilter' | 'deleteVideoFilter' | 'leaveMeeting' | 'joinMeeting' | 'getZoomRoomContext' | 'getZoomRoomControllerCredentials' | 'toggleParticipantMediaVideo' | 'sendMessage' | 'putParticipantToWaitingRoom' | 'admitParticipantFromWaitingRoom' | 'getWaitingRoomParticipants' | 'setWaitingRoomState' | 'getWaitingRoomState' | 'getPhoneContext' | 'onPhoneCalleeAnswered' | 'onPhoneCallerEnded' | 'onPhoneCalleeEnded' | 'onPhoneCalleeRejected' | 'onPhoneCallerMeetingInviting' | 'onPhoneCalleeMeetingInvite' | 'onPhoneContext' | 'getEngagementContext' | 'onEngagementContextChange' | 'getEngagementStatus' | 'onEngagementStatusChange' | 'getEngagementSecurableStatus' | 'startMediaRedirection' | 'onEngagementMediaRedirect' | 'appPopout' | 'bringAppToFront' | 'sendAppToBackground' | 'closeApp' | 'getMeetingLanguages' | 'onMeetingLanguagesChange' | 'makePhoneCall' | 'onWaitingRoomStateChange' | 'onWaitingRoomParticipantLeave' | 'onWaitingRoomParticipantJoin' | 'getMeetingParticipantsEmail' | 'onParticipantEmail' | 'getMeetingChatContext' | 'getMailContext' | 'getMailThread' | 'getMailMessage' | 'takeParticipantPhoto' | 'takeMyPhoto' | 'onPhoto' | 'startCollaborateSidecar' | 'endCollaborateSidecar' | 'getAppVariableList' | 'getEngagementVariableValue' | 'onEngagementVariableValueChange' | 'sendMessageToChat' | 'setDynamicIndicator' | 'getDynamicIndicator' | 'removeDynamicIndicator' | 'onSetDynamicIndicator' | 'onRemoveDynamicIndicator' | 'setDynamicIndicatorStyle' | 'onDynamicIndicatorStyleChange' | 'extendDynamicIndicator' | 'onExtendDynamicIndicator';
+declare type Apis = 'addBreakoutRoom' | 'allowParticipantToRecord' | 'assignParticipantsToBreakoutRoom' | 'assignParticipantToBreakoutRoom' | 'authorize' | 'changeBreakoutRoom' | 'clearImage' | 'clearParticipant' | 'clearWebView' | 'closeBreakoutRooms' | 'closeChannel' | 'closeLobby' | 'closeRenderingContext' | 'cloudRecording' | 'configureBreakoutRooms' | 'connect' | 'createBreakoutRooms' | 'deleteBreakoutRoom' | 'drawImage' | 'drawParticipant' | 'drawWebView' | 'endCollaborate' | 'endSyncData' | 'executeOnZoomAction' | 'expandApp' | 'getBreakoutRoomList' | 'getImmersiveViewContext' | 'getMeetingContext' | 'getMeetingJoinUrl' | 'getMeetingParticipants' | 'getMeetingUUID' | 'getOnZoomProperties' | 'getPairingStatus' | 'getRecordingContext' | 'getRunningContext' | 'getScreenshot' | 'getSupportedJsApis' | 'getUserContext' | 'getUserMediaAudio' | 'getUserMediaVideo' | 'joinCollaborate' | 'joinOnZoomEvent' | 'joinZoomRoom' | 'launchAppInMeeting' | 'leaveCollaborate' | 'listCameras' | 'onActiveSpeakerChange' | 'onAppPopout' | 'onAuthenticate' | 'onAuthorized' | 'onShareScreen' | 'onShareComputerAudio' | 'onBreakoutRoomChange' | 'onCloseAppForParticipants' | 'onCloudRecording' | 'onCollaborateChange' | 'onConnect' | 'onExpandApp' | 'onExtendedProcessing' | 'onFeedbackReaction' | 'onImmersiveViewChange' | 'onMeeting' | 'onMeetingConfigChanged' | 'onMessage' | 'onMyActiveSpeakerChange' | 'onMyMediaChange' | 'onMyReaction' | 'onMyUserContextChange' | 'onOnZoomJoinStatusChange' | 'onPairingStatusChange' | 'onParticipantChange' | 'onReaction' | 'onRemoveFeedbackReaction' | 'onRunningContextChange' | 'onSendAppInvitation' | 'onShareApp' | 'openBreakoutRooms' | 'openChannel' | 'openDM' | 'openUrl' | 'postMessage' | 'promptAuthorize' | 'pushState' | 'removeImmersiveView' | 'removeVirtualBackground' | 'removeVirtualForeground' | 'renameBreakoutRoom' | 'runRenderingContext' | 'sendAppInvitation' | 'sendAppInvitationToAllParticipants' | 'sendAppInvitationToMeetingOwner' | 'setCamera' | 'setImmersiveView' | 'setUserMediaAudio' | 'setUserMediaVideo' | 'setVideoMirrorEffect' | 'setVirtualBackground' | 'setVirtualForeground' | 'shareApp' | 'shareComputerAudio' | 'showAppInvitationDialog' | 'showNotification' | 'startCollaborate' | 'toggleParticipantMediaAudio' | 'onInviteCollaboration' | 'getAppContext' | 'getAudioState' | 'setAudioState' | 'getVideoState' | 'setVideoState' | 'addParticipantSpotlight' | 'removeParticipantSpotlights' | 'getParticipantSpotlights' | 'addParticipantPins' | 'removeParticipantPins' | 'setFeedbackReaction' | 'removeFeedbackReaction' | 'removeAllFeedbackReaction' | 'allowAttendeesToSpeak' | 'disallowAttendeesToSpeak' | 'removeWebinarAttendees' | 'setAudioSettings' | 'getAudioSettings' | 'getIncomingParticipantAudioState' | 'setIncomingParticipantAudioState' | 'onIncomingParticipantAudioChange' | 'setVideoSettings' | 'getVideoSettings' | 'promptShareScreen' | 'showMeetingInvitationDialog' | 'onGalleryPageChange' | 'setGalleryPage' | 'getGalleryPage' | 'getChatContext' | 'composeCard' | 'broadcastVoiceToBreakoutRooms' | 'stopShareScreen' | 'getGalleryOrderList' | 'onGalleryOrder' | 'setScreenName' | 'setParticipantScreenName' | 'setEmojiReaction' | 'getEmojiConfiguration' | 'onEmojiReaction' | 'getMeetingView' | 'setMeetingView' | 'onMeetingViewChange' | 'setVideoFilter' | 'deleteVideoFilter' | 'leaveMeeting' | 'joinMeeting' | 'getZoomRoomContext' | 'getZoomRoomControllerCredentials' | 'toggleParticipantMediaVideo' | 'sendMessage' | 'putParticipantToWaitingRoom' | 'admitParticipantFromWaitingRoom' | 'getWaitingRoomParticipants' | 'setWaitingRoomState' | 'getWaitingRoomState' | 'getPhoneContext' | 'onPhoneCalleeAnswered' | 'onPhoneCallerEnded' | 'onPhoneCalleeEnded' | 'onPhoneCalleeRejected' | 'onPhoneCallerMeetingInviting' | 'onPhoneCalleeMeetingInvite' | 'onPhoneContext' | 'getEngagementContext' | 'onEngagementContextChange' | 'getEngagementStatus' | 'onEngagementStatusChange' | 'getEngagementSecurableStatus' | 'startMediaRedirection' | 'onEngagementMediaRedirect' | 'appPopout' | 'bringAppToFront' | 'sendAppToBackground' | 'closeApp' | 'getMeetingLanguages' | 'onMeetingLanguagesChange' | 'makePhoneCall' | 'onWaitingRoomStateChange' | 'onWaitingRoomParticipantLeave' | 'onWaitingRoomParticipantJoin' | 'getMeetingParticipantsEmail' | 'onParticipantEmail' | 'getMeetingChatContext' | 'getMailContext' | 'getMailThread' | 'getMailMessage' | 'getMailActiveEditorData' | 'setMailActiveEditorData' | 'registerMailEditorComponent' | 'insertContentToMailActiveEditor' | 'renderInMailActiveEditor' | 'subscribeBeforeMailSend' | 'callbackToMail' | 'onMailActiveEditorChange' | 'onMailActiveEditorTypeChange' | 'onMailActiveEditorDataChange' | 'onAppToggleInMailActiveEditor' | 'onAppUIActionInMail' | 'onBeforeMailSend' | 'takeParticipantPhoto' | 'takeMyPhoto' | 'onPhoto' | 'startCollaborateSidecar' | 'endCollaborateSidecar' | 'getAppVariableList' | 'getEngagementVariableValue' | 'onEngagementVariableValueChange' | 'sendMessageToChat' | 'setDynamicIndicator' | 'getDynamicIndicator' | 'removeDynamicIndicator' | 'onSetDynamicIndicator' | 'onRemoveDynamicIndicator' | 'setDynamicIndicatorStyle' | 'onDynamicIndicatorStyleChange' | 'extendDynamicIndicator' | 'onExtendDynamicIndicator';
 /**
  * Example:
  * ```
@@ -2935,6 +2941,285 @@ declare type GetMailMessageResponse = {
     }[];
 };
 /**
+ * @category Zoom Mail
+ */
+declare type GetMailActiveEditorDataOptions = {
+    /** Specify which fields to include. By default, all fields are included. */
+    filter?: ('draftId' | 'from' | 'to' | 'cc' | 'bcc' | 'subject' | 'body' | 'editorState')[];
+};
+/**
+ * @category Zoom Mail
+ */
+declare type GetMailActiveEditorDataResponse = {
+    /** email draft id */
+    draftId?: string | null;
+    /** sender */
+    from?: {
+        name: string;
+        email: string;
+    };
+    /** recipients */
+    to?: {
+        name: string;
+        email: string;
+    }[];
+    /** cc recipients */
+    cc?: {
+        name: string;
+        email: string;
+    }[];
+    /** bcc recipients */
+    bcc?: {
+        name: string;
+        email: string;
+    }[];
+    /** email subject */
+    subject?: string;
+    /** email body */
+    body?: string;
+    /** Any app local state associated with the editor instance */
+    editorState?: any;
+};
+/**
+ * @category Zoom Mail
+ */
+declare type SetMailActiveEditorDataOptions = {
+    /** recipients */
+    to?: {
+        email: string;
+    }[];
+    /** cc recipients */
+    cc?: {
+        email: string;
+    }[];
+    /** bcc recipients */
+    bcc?: {
+        email: string;
+    }[];
+    /** email subject */
+    subject?: string;
+    /** email body */
+    body?: string;
+    /**
+     *  - `name`: file name
+     *  - `type`: file MIME type
+     *  - `content`: file base64 encoded content, **doesn't contain the data URI prefix**
+     */
+    attachments?: {
+        name: string;
+        type: string;
+        content: string;
+    }[];
+    /** Any app local state associated with the editor instance, **it will replace the previous editorState** */
+    editorState?: any;
+};
+/**
+ * @category Zoom Mail
+ */
+declare type RegisterMailEditorComponentOptions = {
+    /** Component name, component names cannot be dulpicated in the same app. */
+    name: string;
+    /**
+     * The [AdaptiveCards template schema](https://learn.microsoft.com/en-us/adaptive-cards/templating/) to render the component ui.
+     * We can bind data in the template, the data will be passed by the component props.
+     * And the template language support many [built-in functions](https://learn.microsoft.com/en-us/azure/bot-service/bot-builder-concept-adaptive-expressions?view=azure-bot-service-4.0&tabs=logical),
+     * such as parse json, format date, etc.
+     * We support all adaptive card elements up to version 1.6.
+     * **Please do not use actions in the schema, because actions require js support, but js cannot be contained in the emails sent.**
+     */
+    schema: {
+        /** default is AdaptiveCard */
+        type?: 'AdaptiveCard';
+        /** range is ['1.0', '1.6'], default is '1.6' */
+        version?: string;
+        body: Record<string, any>[];
+        [key: string]: any;
+    };
+};
+/**
+ * @category Zoom Mail
+ */
+declare type InsertContentToMailActiveEditorOptions = {
+    /** content html, such as email snippet, dangerous content will be ignored */
+    html: string;
+};
+/**
+ * @category Zoom Mail
+ */
+declare type RenderInMailActiveEditorOptions = {
+    /** ui location, currently only supports footer */
+    position: 'footer';
+    /** The id of previously rendered ui, only needed when updating or deleting the ui*/
+    id?: string;
+    /**
+     * We use [AdaptiveCards v3](https://www.npmjs.com/package/adaptivecards/v/3.0.5) to render custom ui, the schema is [AdaptiveCards Schema](https://adaptivecards.io/explorer/AdaptiveCard.html).
+     * Such as
+     * ```json
+     * {
+     *   "type": "AdaptiveCard",
+     *   "version": "xxx",
+     *   "body": [...]
+     * }
+     * ```
+     * Don't support templating in this case, and support all adaptive card elements up to version 1.6
+     *
+     * If schema is empty or not exist, means delete the ui specified by id,
+     * otherwise means updating the ui specified by id or creating new ui when id is not specified.
+     */
+    schema?: {
+        /** default is AdaptiveCard */
+        type?: 'AdaptiveCard';
+        /** range is ['1.0', '1.6'], default is '1.6' */
+        version?: string;
+        body: Record<string, any>[];
+        [key: string]: any;
+    };
+};
+/**
+ * @category Zoom Mail
+ */
+declare type RenderInMailActiveEditorResponse = {
+    /** Only returned when creating a new ui, mark the rendered ui for subsequent update or delete */
+    id?: string;
+};
+/**
+ * @category Zoom Mail
+ */
+declare type SubscribeBeforeMailSendOptions = {
+    /**
+     * Priority is an integer in the range of [-10000, 10000], and the default is 0.
+     * The larger the number, the higher the priority.
+     * If the priority are the same, they are sorted by the time of this API call.
+     * The beforeMailSend event will be triggered to all subscribed apps in order of priority,
+     * or the order in which the method was called when the priorities are the same.
+     */
+    priority?: number;
+    /**
+     * Timeout for the callback (call `callbackToMail`) of `onBeforeMailSend` event.
+     * Unit is `ms`, default value is 5000, 0 means no timeout.
+     */
+    timeout?: number;
+};
+/**
+ * @category Zoom Mail
+ */
+declare type CallbackToMailOptions = {
+    /**
+     * Some mail events may require the app to return a response,
+     * in which case the callId will be included in that event data.
+     */
+    callId: string;
+    /** The response data from apps */
+    data?: any;
+};
+/**
+ * @category Zoom Mail
+ */
+declare type OnMailActiveEditorChangeEvent = {
+    timestamp: number;
+    /** Is there any active editor? */
+    noActive: boolean;
+};
+/**
+ * @category Zoom Mail
+ */
+declare type OnMailActiveEditorTypeChangeEvent = {
+    timestamp: number;
+    /** current type of compose editor */
+    type: 'new' | 'reply' | 'replyAll' | 'forward';
+};
+/**
+ * Only the fields that have changed will be returned.
+ * @category Zoom Mail
+ */
+declare type OnMailActiveEditorDataChangeEvent = {
+    timestamp: number;
+    from?: {
+        name: string;
+        email: string;
+    };
+    to?: {
+        name: string;
+        email: string;
+    }[];
+    cc?: {
+        name: string;
+        email: string;
+    }[];
+    bcc?: {
+        name: string;
+        email: string;
+    }[];
+    subject?: string;
+};
+/**
+ * @category Zoom Mail
+ */
+declare type OnAppToggleInMailActiveEditorEvent = {
+    timestamp: number;
+    /** Are apps currently enabled? */
+    enabled: boolean;
+};
+/**
+ * @category Zoom Mail
+ */
+declare type OnAppUIActionInMailEvent = {
+    timestamp: number;
+    /** the id of ui which trigger the action */
+    uiId: string;
+    /** action data */
+    action: {
+        /** action type */
+        type: 'Action.Execute' | 'Action.OpenUrl' | 'Action.ToggleVisibility' | 'Action.Submit';
+        /** action id */
+        id?: string;
+        /** the text of action button */
+        title?: string;
+        /** only exist when type is Action.OpenUrl */
+        url?: string;
+        /** only exist when type is Action.Execute */
+        verb?: string;
+        /** only exist when type is Action.Execute or Action.Submit */
+        data?: Record<string, any>;
+    };
+};
+/**
+ * @category Zoom Mail
+ */
+declare type OnBeforeMailSendEvent = {
+    timestamp: number;
+    /** request id */
+    callId: string;
+    /** mail data */
+    data: {
+        from: {
+            name: string;
+            email: string;
+        };
+        to: {
+            name: string;
+            email: string;
+        }[];
+        cc?: {
+            name: string;
+            email: string;
+        }[];
+        bcc?: {
+            name: string;
+            email: string;
+        }[];
+        subject: string;
+        body: string;
+        /** app custom headers */
+        headers?: {
+            name: string;
+            value: string;
+        }[];
+        /** app local state associated with the editor instance */
+        editorState?: any;
+    };
+};
+/**
  * @category Meeting Actions
  */
 declare type TakeParticipantPhotoOptions = {
@@ -3314,6 +3599,7 @@ declare class ZoomSdk {
      * @zoomZRCVersion 5.14.0
      *
      * @zoomIOSClientVersion 5.10.6
+     * @zoomAndroidClientVersion 5.14.0
      * To initialize and start using the SDK, you must first call `zoomSdk.config` to verify your application with Zoom. Without completing this step, your application won’t be able to use any of the APIs or event listeners provided by the SDK. In the request body of this API call, specify the list of APIs and event listeners that you plan to use in your app as shown below. Ensure that the list of capabilities provided in this request corresponds to the list of APIs and events that you have added in your app build flow on Marketplace (Zoom App > Feature > Zoom App SDK).
      *
      * The Zoom Apps SDK relies on a token that is generated and used internally by the Zoom client to authorize API calls on behalf of the app. This token is bound to the openURL that you provide when you call `zoomSdk.config`. If your URL changes, your configuration will be invalidated, and you will need to call `zoomSdk.config` with the new URL again.
@@ -3376,6 +3662,7 @@ declare class ZoomSdk {
      * @zoomDesktopClientVersion 5.6.7
      * @zoomZRCVersion 5.14.0
      * @zoomIOSClientVersion 5.10.6
+     * @zoomAndroidClientVersion 5.14.0
      * Returns an array of APIs and events supported by the current running context.
      *
      * *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
@@ -3396,6 +3683,7 @@ declare class ZoomSdk {
     /**
      * @zoomDesktopClientVersion 5.6.7
      * @zoomIOSClientVersion 5.10.6
+     * @zoomAndroidClientVersion 5.14.0
      * Opens a URL in the system browser of a user's device.
      *
      * *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
@@ -3419,6 +3707,7 @@ declare class ZoomSdk {
      * @zoomDesktopClientVersion 5.6.7
      * @zoomZRCVersion 5.14.0
      * @zoomIOSClientVersion 5.10.6
+     * @zoomAndroidClientVersion 5.14.0
      * Returns the context in which the Zoom App is launched. This is useful for controlling your app's behavior based on the presence of a single user or multiple collaborative users.
      *
      * *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
@@ -3435,6 +3724,7 @@ declare class ZoomSdk {
      * @zoomDesktopClientVersion 5.6.7
      * @zoomZRCVersion 5.14.0
      * @zoomIOSClientVersion 5.10.6
+     * @zoomAndroidClientVersion 5.14.0
      * This API is only available in meetings. It returns an object containing basic information about the meeting.
      *
      * *Supported roles*: Host, Co-Host
@@ -3452,6 +3742,7 @@ declare class ZoomSdk {
     /**
      * @zoomDesktopClientVersion 5.6.7
      * @zoomIOSClientVersion 5.10.6/5.14.0(mainClient)
+     * @zoomAndroidClientVersion 5.16.0
      *
      * This sets a virtual background or blur the user's native background.
      *
@@ -3490,6 +3781,7 @@ declare class ZoomSdk {
     /**
      * @zoomDesktopClientVersion 5.6.7
      * @zoomIOSClientVersion 5.10.6/5.14.0(mainClient)
+     * @zoomAndroidClientVersion 5.16.0
      * Removes current virtual background and resets to use the camera.
      *
      * Note that when calling removeVirtualBackground, the client will pop up a confirmation dialog to let the user allow or disallow. If the user does not allow the action, the client will return an error code of 10017 to the app.
@@ -3517,6 +3809,7 @@ declare class ZoomSdk {
     /**
      * @zoomDesktopClientVersion 5.9.0
      * @zoomIOSClientVersion 5.14.10
+     * @zoomAndroidClientVersion 5.15.0
      * Draws an image in the foreground of the user’s video.
      *
      * *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
@@ -3550,6 +3843,7 @@ declare class ZoomSdk {
     /**
      * @zoomDesktopClientVersion 5.9.0
      * @zoomIOSClientVersion 5.14.10
+     * @zoomAndroidClientVersion 5.15.0
      * Removes the image which was set using setVirtualForeground from the foreground of the user’s video.
      *
      *  *Supported roles*: Host, Co-Host, Participant,  Panelist, Attendee
@@ -3569,6 +3863,7 @@ declare class ZoomSdk {
     /**
      * @zoomDesktopClientVersion 5.6.7
      * @zoomIOSClientVersion 5.10.6
+     * @zoomAndroidClientVersion 5.14.0
      * Triggers a push notification. The embedded browser does not support the Web Notification API, so we have provided a similar API via the JS SDK.
      *
      *  *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
@@ -3593,6 +3888,7 @@ declare class ZoomSdk {
     /**
      * @zoomDesktopClientVersion 5.6.7
      * @zoomIOSClientVersion 5.10.6
+     * @zoomAndroidClientVersion 5.14.0
      * The cloud recording API allows you to control cloud recording actions during a meeting.
      *
      *  *Supported roles*: Host, Co-Host
@@ -3615,6 +3911,7 @@ declare class ZoomSdk {
     /**
      * @zoomDesktopClientVersion 5.6.7
      * @zoomIOSClientVersion 5.10.6
+     * @zoomAndroidClientVersion 5.14.0
      * Screenshare current app. Optionally share sound as well.
      *
      *  *Supported roles*: Host, Co-Host, Participant, Panelist
@@ -3641,6 +3938,7 @@ declare class ZoomSdk {
      * @zoomDesktopClientVersion 5.6.7
      * @zoomZRCVersion 5.14.0
      * @zoomIOSClientVersion 5.10.6
+     * @zoomAndroidClientVersion 5.14.0
      * Get all available cameras.
      *
      *  *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
@@ -3669,6 +3967,7 @@ declare class ZoomSdk {
      * @zoomDesktopClientVersion 5.6.7
      * @zoomZRCVersion 5.14.0
      * @zoomIOSClientVersion 5.10.6
+     * @zoomAndroidClientVersion 5.14.0
      * Choose a camera input to use.
      *
      *  *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
@@ -3689,6 +3988,7 @@ declare class ZoomSdk {
      * @zoomDesktopClientVersion 5.6.7
      * @zoomZRCVersion 5.14.0
      * @zoomIOSClientVersion 5.10.6
+     * @zoomAndroidClientVersion 5.14.0
      * Mirror my video/virtual background.
      *
      *  *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
@@ -3707,6 +4007,7 @@ declare class ZoomSdk {
     /**
      * @zoomDesktopClientVersion 5.6.7
      * @zoomIOSClientVersion 5.10.6
+     * @zoomAndroidClientVersion 5.14.0
      * Get information of the participants in the current meeting. Note that for breakout rooms, the participants in the current room will be returned, not those of the parent meeting.
      *
      *  *Supported roles*: Host, Co-Host
@@ -3723,6 +4024,7 @@ declare class ZoomSdk {
     /**
      * @zoomDesktopClientVersion 5.6.7
      * @zoomIOSClientVersion 5.10.6
+     * @zoomAndroidClientVersion 5.14.0
      * Send app to list of participants in the meeting.
      *
      *  *Supported roles*: Host, Co-Host
@@ -3755,6 +4057,7 @@ declare class ZoomSdk {
     /**
      * @zoomDesktopClientVersion 5.6.7
      * @zoomIOSClientVersion 5.10.6
+     * @zoomAndroidClientVersion 5.14.0
      * It returns basic information about the meeting participant while in a meeting.
      *
      *  *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
@@ -3776,6 +4079,7 @@ declare class ZoomSdk {
     /**
      * @zoomDesktopClientVersion 5.6.7
      * @zoomIOSClientVersion 5.10.6
+     * @zoomAndroidClientVersion 5.14.0
      * This API endpoint is only available in meetings. It returns basic information about the meeting recording while in a meeting.
      *
      *  *Supported roles*: Host, Co-Host
@@ -3798,6 +4102,7 @@ declare class ZoomSdk {
      * @zoomDesktopClientVersion 5.6.7
      * @zoomZRCVersion 5.14.0
      * @zoomIOSClientVersion 5.10.6
+     * @zoomAndroidClientVersion 5.14.0
      * This API endpoint is only available in meetings. It allows the app to access the JoinUrl while in a meeting.
      *
      *  *Supported roles*: Host, Co-Host
@@ -3821,6 +4126,7 @@ declare class ZoomSdk {
      * @zoomDesktopClientVersion 5.6.7
      * @zoomZRCVersion 5.14.0
      * @zoomIOSClientVersion 5.10.6
+     * @zoomAndroidClientVersion 5.14.0
      * This API endpoint is only available in meetings. It allows the app to access the meetingUUID while in a meeting.
      *
      * In breakout rooms,meetingUUID identifies the specific breakout room, and parentUUID helps connect individual rooms to the main meeting. Note that the value of parentUUID must be used for REST API calls inside of breakout rooms, while meetingUUID is otherwise used.
@@ -3862,6 +4168,7 @@ declare class ZoomSdk {
     expandApp(options: ExpandAppOptions): Promise<GeneralMessageResponse>;
     /**
      * @zoomDesktopClientVersion 5.6.7
+     * @zoomIOSClientVersion 6.1.0
      * The API can only be called in meeting. Allows the App to communicate with the instance of the app running on the main client.
      *
      *  *Supported roles*: Host, Co-Host, Participant, Panelist
@@ -3880,6 +4187,7 @@ declare class ZoomSdk {
     connect(): Promise<GeneralMessageResponse>;
     /**
      * @zoomDesktopClientVersion 5.6.7
+     * @zoomIOSClientVersion 6.1.0
      * Send a message with the current state of the mirrored app. The structure of the payload depends on the needs of the app.
      *
      * Payload limit is <512KB
@@ -3901,6 +4209,7 @@ declare class ZoomSdk {
     postMessage(options: JSONObject): Promise<GeneralMessageResponse>;
     /**
      * @zoomDesktopClientVersion 5.7.3
+     * @zoomIOSClientVersion 6.1.0
      * Tells the client to end the data communication between connected apps. Note that the client will close the connection between the apps when endSyncData is called or 10 seconds after the onMeeting event with event.action == 'ended' is received, whichever comes first.
      *
      *  *Supported roles*: Host, Co-Host, Participant, Panelist
@@ -3921,6 +4230,7 @@ declare class ZoomSdk {
     /**
      * @zoomDesktopClientVersion 5.8.3
      * @zoomIOSClientVersion 5.10.6
+     * @zoomAndroidClientVersion 5.14.0
      * Allow a specific participant to start a local recording. This API will trigger a pop-up consent dialog in the client to let the host allow or not allow.
      *
      *  *Supported roles*: Host, Co-Host
@@ -3953,6 +4263,7 @@ declare class ZoomSdk {
     /**
      * @zoomDesktopClientVersion 5.8.3
      * @zoomIOSClientVersion 5.10.6
+     * @zoomAndroidClientVersion 5.14.0
      * Starts a new meeting or joins an existing meeting and launches the app in the meeting.
      *
      *  *Supported roles*: Host, Co-Host, Participant, Panelist
@@ -3978,6 +4289,7 @@ declare class ZoomSdk {
     /**
      * @zoomDesktopClientVersion 5.7.3
      * @zoomIOSClientVersion 5.10.6
+     * @zoomAndroidClientVersion 5.14.0
      * Shows client participant selection dialog window for sending an app invitation.
      *
      * Triggers client built in participant selection UI, so that apps running in non-owner context that do not have screen names can invite specific users.
@@ -4003,6 +4315,7 @@ declare class ZoomSdk {
     /**
      * @zoomDesktopClientVersion 5.7.3
      * @zoomIOSClientVersion 5.10.6
+     * @zoomAndroidClientVersion 5.14.0
      * Sends invitation of current app to the meeting owner (person who scheduled the meeting).
      *
      * Sends app invitations specifically to the meeting owner. Sent to both meeting & persistent chat when the meeting owner is in the meeting. Sent to persistent chat when the meeting owner is not in the meeting that might be ongoing.
@@ -4021,6 +4334,7 @@ declare class ZoomSdk {
     /**
      * @zoomDesktopClientVersion 5.7.6
      * @zoomIOSClientVersion 5.10.6
+     * @zoomAndroidClientVersion 5.14.0
      * Sends invitation for the current app to all participants currently in the meeting.
      *
      * In breakout rooms, this will only send invitations to participants within the current room.
@@ -4235,6 +4549,7 @@ declare class ZoomSdk {
     /**
      * @zoomDesktopClientVersion 5.6.7
      * @zoomIOSClientVersion 5.10.6
+     * @zoomAndroidClientVersion 5.14.0
      * This event occurs when the user clicks the share icon from the Zoom App sidebar during a meeting, and when the user stops the share.
      *
      *  *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
@@ -4247,6 +4562,7 @@ declare class ZoomSdk {
     /**
      * @zoomDesktopClientVersion 5.6.7
      * @zoomIOSClientVersion 5.10.6
+     * @zoomAndroidClientVersion 5.14.0
      * This event occurs when the user clicks the invite icon from the Zoom App sidebar during a meeting. All attendees and participants receive an invitation. The sender receives an event.
      *
      *  *Supported roles*: Host, Co-Host
@@ -4259,6 +4575,7 @@ declare class ZoomSdk {
     /**
      * @zoomDesktopClientVersion 5.6.7
      * @zoomIOSClientVersion 5.10.6
+     * @zoomAndroidClientVersion 5.14.0
      * The cloud recording events occur when a user starts, pauses, stops or resumes recording a Zoom meeting (where your app is being run) to the cloud using the Zoom UI or programmatically using the JS APIs. Additionally, the `"connecting"` event action will be trigered prior to the start of a cloud recording.
      *
      *  *Supported roles*: Host, Co-Host
@@ -4271,6 +4588,7 @@ declare class ZoomSdk {
     /**
      * @zoomDesktopClientVersion 5.6.7
      * @zoomIOSClientVersion 5.10.6
+     * @zoomAndroidClientVersion 5.15.0
      * This event occurs when a meeting participant sends a reaction.
      *
      *  *Supported roles*: Host, Co-Host
@@ -4283,6 +4601,7 @@ declare class ZoomSdk {
     /**
      * @zoomDesktopClientVersion 5.6.7
      * @zoomIOSClientVersion 5.10.6
+     * @zoomAndroidClientVersion 5.14.0
      * This event is triggered when a user joins or leaves a meeting or when a participant's role changes for that meeting.
      *
      * **Note** The event triggers twice in some situations, such as when a participant leaves a meeting with one role and rejoins the meeting with a new role. The participantUUID of the user might change when the role changes.
@@ -4297,6 +4616,7 @@ declare class ZoomSdk {
     /**
      * @zoomDesktopClientVersion 5.6.7
      * @zoomIOSClientVersion 5.10.6
+     * @zoomAndroidClientVersion 5.14.0
      * This event occurs when the active speaker changes in a meeting. The response array contains all active speakers.
      *
      *  *Supported roles*: Host, Co-Host
@@ -4333,6 +4653,7 @@ declare class ZoomSdk {
     onExpandApp(handler: GenericEventHandler<OnExpandAppEvent>): void;
     /**
      * @zoomDesktopClientVersion 5.6.7
+     * @zoomIOSClientVersion 6.1.0
      * In order to maintain state after a meeting, the instance of the app that is running in the meeting must communicate with the instance of the app running in the main client. The following events facilitate that process.
      *
      * Notify the event listener when the API call `connect` has finished attempting to connect to the app instance running in the main client. This event can only be received in meeting.
@@ -4346,6 +4667,7 @@ declare class ZoomSdk {
     onConnect(handler: GenericEventHandler<OnConnectEvent>): void;
     /**
      * @zoomDesktopClientVersion 5.6.7
+     * @zoomIOSClientVersion 6.1.0
      * In order to maintain state after a meeting, the instance of the app that is running in the meeting must communicate with the instance of the app running in the main client. The following events facilitate that process.
      *
      * Receive a sent message from the mirrored app. The structure of the payload depends on the needs of the app.
@@ -4379,6 +4701,7 @@ declare class ZoomSdk {
     /**
      * @zoomDesktopClientVersion 5.8.6
      * @zoomIOSClientVersion 5.10.6
+     * @zoomAndroidClientVersion 5.14.5
      * The event is triggered when any change happens to breakout rooms configuration. This method informs the app when the host changes the configuration manually, or when another app changes the configuration.
      *
      * The event does not provide detailed information about the specific change, so the app needs to make an additional API request to retrieve the updated data.
@@ -4393,6 +4716,7 @@ declare class ZoomSdk {
     /**
      * @zoomDesktopClientVersion 5.8.3
      * @zoomIOSClientVersion 5.10.6
+     * @zoomAndroidClientVersion 5.14.5
      * Notifies Zoom App when a user leaves or joins a breakout room.
      *
      *  *Supported roles*: Host, Co-Host, Participant
@@ -4470,6 +4794,7 @@ declare class ZoomSdk {
     /**
      * @zoomDesktopClientVersion 5.7.3
      * @zoomIOSClientVersion 5.10.6
+     * @zoomAndroidClientVersion 5.14.5
      * Notifies Zoom App when current user reacts with a reaction in a meeting.
      *
      *  *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
@@ -4482,6 +4807,7 @@ declare class ZoomSdk {
     /**
      * @zoomDesktopClientVersion 5.7.3
      * @zoomIOSClientVersion 5.10.6
+     * @zoomAndroidClientVersion 5.14.0
      * Notifies Zoom App when current user starts or stops speaking.
      *
      *  *Supported roles*: Host, Co-Host, Participant, Panelist
@@ -4494,6 +4820,7 @@ declare class ZoomSdk {
     /**
      * @zoomDesktopClientVersion 5.7.3
      * @zoomIOSClientVersion 5.10.6
+     * @zoomAndroidClientVersion 5.14.0
      * This event is triggered when the current user’s role changes.
      *
      * `onMyUserContextChange` will be available to apps regardless of whether the app user is an owner, host or attendee in a meeting, but would only provide data for the user that’s running the app (and not the other participants in the meeting).
@@ -4510,6 +4837,7 @@ declare class ZoomSdk {
     /**
      * @zoomDesktopClientVersion 5.9.0
      * @zoomZRCVersion 5.14.0
+     * @zoomAndroidClientVersion 5.14.0
      * Notifies the app when the current user's video settings change, when it’s toggled on or off, and when the audio is muted or unmuted.
      *
      * For example, when the user chooses a different camera, mutes or unmutes their primary audio, or toggles: "Original ratio", "HD" in video settings, or primary camera on or off.
@@ -4524,6 +4852,7 @@ declare class ZoomSdk {
     /**
      * @zoomDesktopClientVersion 5.9.0
      * @zoomIOSClientVersion 5.10.6
+     * @zoomAndroidClientVersion 5.14.5
      * Notifies the third-party app that the user has finished the in-client OAuth.
      *
      *  *Supported roles*: Host, Co-Host, Participant, Panelist
@@ -4537,6 +4866,7 @@ declare class ZoomSdk {
      * @zoomDesktopClientVersion 5.13.5
      * @zoomZRCVersion 5.14.0
      * @zoomIOSClientVersion 5.13.5
+     * @zoomAndroidClientVersion 5.14.0
      * This event triggers when a user in the meeting starts or stops sharing their screen.
      *
      * *Supported roles*: Host, Co-Host, Panelist, Participant, and Attendee
@@ -4679,6 +5009,8 @@ declare class ZoomSdk {
     onGalleryOrder(handler: GenericEventHandler<OnGalleryOrderEvent>): void;
     /**
      * @zoomDesktopClientVersion 5.13.10
+     * @zoomIOSClientVersion 5.14.10
+     * @zoomAndroidClientVersion 5.14.5
      *
      * Fired when a photo is successfully taken. For non-hosts only returns the result of takeMyPhoto.
      *
@@ -4801,6 +5133,7 @@ declare class ZoomSdk {
     /**
      * @zoomDesktopClientVersion 5.8.6
      * @zoomIOSClientVersion 5.10.6
+     * @zoomAndroidClientVersion 5.14.5
      * Close breakout rooms.
      *
      *  *Supported roles*: Host, Co-Host
@@ -4819,6 +5152,7 @@ declare class ZoomSdk {
     /**
      * @zoomDesktopClientVersion 5.9.3
      * @zoomIOSClientVersion 5.10.6
+     * @zoomAndroidClientVersion 5.14.5
      * List all breakout rooms. Host and Co-Host get list of rooms and participants for each breakout room. Participants get only list of rooms. The method works for participants only when breakout rooms are open.
      *
      * *Supported roles*: Host, Co-Host, Participant
@@ -4929,6 +5263,7 @@ declare class ZoomSdk {
     assignParticipantToBreakoutRoom(options: AssignParticipantToBreakoutRoomOptions): Promise<GeneralMessageResponse>;
     /**
      * @zoomDesktopClientVersion 5.8.6
+     * @zoomAndroidClientVersion 5.14.5
      * Called by a host / co-host / participant. Allows single participant user to join or leave a breakout room.
      *
      *  *Supported roles*: Host, Co-Host, Participant
@@ -5054,6 +5389,7 @@ declare class ZoomSdk {
     /**
      * @zoomDesktopClientVersion 5.10.0
      * @zoomIOSClientVersion 5.10.6
+     * @zoomAndroidClientVersion 5.14.5
      *
      * This method is part of in-client OAuth feature. It initiates on OAuth authorization request from the Zoom Client - Zoom Apps tab - to the Zoom marketplace.
      *
@@ -5086,6 +5422,7 @@ declare class ZoomSdk {
     /**
      * @zoomDesktopClientVersion 5.10.6
      * @zoomIOSClientVersion 5.14.0
+     * @zoomAndroidClientVersion 5.14.5
      * Triggers a contextual prompt for the user to sign in with Zoom (if the user context status is not "authenticated"), or add the app (if the user context status is "authenticated"). The prompt is asynchronous and non-blocking, users can continue using the app while it is visible, or close the prompt.
      *
      * If user context is "unauthenticated", Zoom does not know the user, and only some Zoom APIs are allowed. Invoking `promptAuthorize` will ask the user to log in to Zoom, upon which user context status will update to "authenticated".
@@ -5111,6 +5448,7 @@ declare class ZoomSdk {
      * @zoomDesktopClientVersion 5.11.6
      * @zoomZRCVersion 5.14.0
      * @zoomIOSClientVersion 5.11.6
+     * @zoomAndroidClientVersion 5.14.0
      * Turn on or off the primary video.
      *
      *  *Supported roles*: Host, Co-Host, Participant, Panelist
@@ -5124,6 +5462,7 @@ declare class ZoomSdk {
      * @zoomDesktopClientVersion 5.11.6
      * @zoomZRCVersion 5.14.0
      * @zoomIOSClientVersion 5.11.6
+     * @zoomAndroidClientVersion 5.14.0
      * Mute or unmute the primary audio.
      *
      *  *Supported roles*: Host, Co-Host, Participant, Panelist
@@ -5137,6 +5476,7 @@ declare class ZoomSdk {
      * @zoomDesktopClientVersion 5.11.6
      * @zoomZRCVersion 5.14.0
      * @zoomIOSClientVersion 5.11.6
+     * @zoomAndroidClientVersion 5.14.0
      * Gets the on or off status of the primary video.
      *
      *  *Supported roles*: Host, Co-Host, Participant, Panelist
@@ -5150,6 +5490,7 @@ declare class ZoomSdk {
      * @zoomDesktopClientVersion 5.11.6
      * @zoomZRCVersion 5.14.0
      * @zoomIOSClientVersion 5.11.6
+     * @zoomAndroidClientVersion 5.14.0
      * 	Gets the mute or unmute status of the primary audio.
      *
      *  *Supported roles*: Host, Co-Host, Participant, Panelist
@@ -5162,6 +5503,7 @@ declare class ZoomSdk {
     /**
      * @zoomDesktopClientVersion 5.10.3
      * @zoomIOSClientVersion 5.10.6
+     * @zoomAndroidClientVersion 5.14.0
      * Allows hosts and co-hosts to mute and unmute all, or specific, meeting participants. The action doesn't affect the person initiating the request.
      *
      * *Running context*: inMeeting, inWebinar
@@ -5205,6 +5547,7 @@ declare class ZoomSdk {
      * @zoomDesktopClientVersion 5.11.3
      * @zoomZRCVersion 5.14.0
      * @zoomIOSClientVersion 5.11.3
+     * @zoomAndroidClientVersion 5.14.0
      *
      * This API returns app context token that contains signed app context data for secure backend validation.
      * See https://developers.zoom.us/docs/zoom-apps/zoom-app-context/ for more details.
@@ -5705,6 +6048,7 @@ declare class ZoomSdk {
     /**
      * @zoomDesktopClientVersion 5.13.5
      * @zoomIOSClientVersion 5.14.0
+     * @zoomAndroidClientVersion 5.15.0
      *
      * Called by any participant to open the share screen modal.
      *
@@ -5730,6 +6074,7 @@ declare class ZoomSdk {
     promptShareScreen(options?: PromptShareScreenOptions): Promise<GeneralMessageResponse>;
     /**
      * @zoomDesktopClientVersion 5.13.10
+     * @zoomIOSClientVersion 5.14.5
      *
      * Called by any participant to open the invite-people modal.
      *
@@ -6444,7 +6789,7 @@ declare class ZoomSdk {
      * If the app is not in view (for example, behind Chat or if the app is not in view but webview is running),
      * then this API will make the app visible to the user.
      *
-     * *Running context*: inMeeting, inCollaborate, inCamera, inWebinar, inMainClient
+     * *Running context*: inMeeting, inCollaborate, inCamera, inWebinar, inMainClient, inMail(v6.3.6+)
      *
      * *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
      *
@@ -6469,7 +6814,7 @@ declare class ZoomSdk {
      * the Apps panel will also be hidden from view for the user. When executed inMainClient context,
      * the user will remain on the My Apps list under the Apps tab.
      *
-     * *Running context*: inMeeting, inCollaborate, inCamera, inWebinar, inMainClient
+     * *Running context*: inMeeting, inCollaborate, inCamera, inWebinar, inMainClient, inMail(v6.3.6+)
      *
      * *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
      *
@@ -6827,8 +7172,247 @@ declare class ZoomSdk {
      */
     getMailMessage(options: GetMailMessageOptions): Promise<GetMailMessageResponse>;
     /**
-     * @zoomDesktopClientVersion 5.13.10
+     * @zoomDesktopClientVersion 6.3.6
      *
+     * Get the data of the currently activated compose editor in mail.
+     *
+     * *Running context*: inMail
+     *
+     * *Supported roles*: N/A
+     *
+     * *Supports Guest Mode*: No
+     *
+     * *product*: desktop
+     *
+     * @category Zoom Mail
+     */
+    getMailActiveEditorData(options: GetMailActiveEditorDataOptions): Promise<GetMailActiveEditorDataResponse>;
+    /**
+     * @zoomDesktopClientVersion 6.3.6
+     *
+     * Set the data of the currently activated compose editor in mail.
+     *
+     * *Running context*: inMail
+     *
+     * *Supported roles*: N/A
+     *
+     * *Supports Guest Mode*: No
+     *
+     * *product*: desktop
+     *
+     * @category Zoom Mail
+     */
+    setMailActiveEditorData(options: SetMailActiveEditorDataOptions): Promise<GeneralMessageResponse>;
+    /**
+     * @zoomDesktopClientVersion 6.3.6
+     *
+     * Register the custom component in zmail's compose editor so that the app can insert custom UI to the editor by `insertContentToMailActiveEditor`.
+     * Usage in `insertContentToMailActiveEditor`: `<app-component name="xxxx" prop1='{"key": "value"}' prop2="234" ... />`.
+     * The prop name will be transformed to camelCase, the prop value (except name prop) will be parsed by JSON.parse (If an error occurs when parsing, the original string value will be used),
+     * and the props will be used as the $root data of adaptive card template.
+     *
+     * *Running context*: inMail
+     *
+     * *Supported roles*: N/A
+     *
+     * *Supports Guest Mode*: No
+     *
+     * *product*: desktop
+     *
+     * @category Zoom Mail
+     */
+    registerMailEditorComponent(options: RegisterMailEditorComponentOptions): Promise<GeneralMessageResponse>;
+    /**
+     * @zoomDesktopClientVersion 6.3.6
+     *
+     * Insert body content into the currently active compose editor in mail.
+     *
+     * *Running context*: inMail
+     *
+     * *Supported roles*: N/A
+     *
+     * *Supports Guest Mode*: No
+     *
+     * *product*: desktop
+     *
+     * @category Zoom Mail
+     */
+    insertContentToMailActiveEditor(options: InsertContentToMailActiveEditorOptions): Promise<GeneralMessageResponse>;
+    /**
+     * @zoomDesktopClientVersion 6.3.6
+     *
+     * Render the ui in the currently active compose editor in mail
+     *
+     * *Running context*: inMail
+     *
+     * *Supported roles*: N/A
+     *
+     * *Supports Guest Mode*: No
+     *
+     * *product*: desktop
+     *
+     * @category Zoom Mail
+     */
+    renderInMailActiveEditor(options: RenderInMailActiveEditorOptions): Promise<RenderInMailActiveEditorResponse>;
+    /**
+     * @zoomDesktopClientVersion 6.3.6
+     *
+     * Listen to beforeMailSend event of the compose editor in mail.
+     * Because the beforeMailSend event is only sent to the specified app, rather than broadcasting to all opened apps.
+     * **So the app must call this method, otherwise it cannot receive the `onBeforeMailSend` event.**
+     * When sending mail, trigger the `onBeforeMailSend` event to the corresponding app in the order of priority.
+     * If the priorities are the same, the order in which this method was called is used.
+     *
+     * *Running context*: inMail
+     *
+     * *Supported roles*: N/A
+     *
+     * *Supports Guest Mode*: No
+     *
+     * *product*: desktop
+     *
+     * @category Zoom Mail
+     */
+    subscribeBeforeMailSend(options: SubscribeBeforeMailSendOptions): Promise<GeneralMessageResponse>;
+    /**
+     * @zoomDesktopClientVersion 6.3.6
+     *
+     * This is a general method. The purpose is to allow the app to return the corresponding response after receiving some mail events (such as beforeMailSend).
+     *
+     * *Running context*: inMail
+     *
+     * *Supported roles*: N/A
+     *
+     * *Supports Guest Mode*: No
+     *
+     * *product*: desktop
+     *
+     * @category Zoom Mail
+     */
+    callbackToMail(options: CallbackToMailOptions): Promise<GeneralMessageResponse>;
+    /**
+     * @zoomDesktopClientVersion 6.3.6
+     *
+     * Event triggered when the activated compose editor in mail is changed.
+     *
+     * *Running context*: inMail
+     *
+     * *Supported roles*: N/A
+     *
+     * *Supports Guest Mode*: No
+     *
+     * *product*: desktop
+     *
+     * @category Zoom Mail
+     */
+    onMailActiveEditorChange(handler: GenericEventHandler<OnMailActiveEditorChangeEvent>): void;
+    /**
+     * @zoomDesktopClientVersion 6.3.6
+     *
+     * The mail active compose editor may have the following types, and may switch type. This event is triggered when the type changed.
+     *
+     * - new - Create a new email
+     * - reply - Reply to an email, reply only to the sender by default
+     * - replyAll - Reply to an email, reply to the sender and cc to the recipients by default
+     * - forward - Forward an email
+     *
+     * *Running context*: inMail
+     *
+     * *Supported roles*: N/A
+     *
+     * *Supports Guest Mode*: No
+     *
+     * *product*: desktop
+     *
+     * @category Zoom Mail
+     */
+    onMailActiveEditorTypeChange(handler: GenericEventHandler<OnMailActiveEditorTypeChangeEvent>): void;
+    /**
+     * @zoomDesktopClientVersion 6.3.6
+     *
+     * Event triggered when the data of the activated compose editor in mail is changed.
+     *
+     * *Running context*: inMail
+     *
+     * *Supported roles*: N/A
+     *
+     * *Supports Guest Mode*: No
+     *
+     * *product*: desktop
+     *
+     * @category Zoom Mail
+     */
+    onMailActiveEditorDataChange(handler: GenericEventHandler<OnMailActiveEditorDataChangeEvent>): void;
+    /**
+     * @zoomDesktopClientVersion 6.3.6
+     *
+     * Event triggered when the activated compose editor in mail enable or disable apps.
+     *
+     * *Running context*: inMail
+     *
+     * *Supported roles*: N/A
+     *
+     * *Supports Guest Mode*: No
+     *
+     * *product*: desktop
+     *
+     * @category Zoom Mail
+     */
+    onAppToggleInMailActiveEditor(handler: GenericEventHandler<OnAppToggleInMailActiveEditorEvent>): void;
+    /**
+     * @zoomDesktopClientVersion 6.3.6
+     *
+     * The app's custom UI is rendered using AdaptiveCards.
+     * This event is triggered when the action in the UI is executed (i.e. adaptiveCardInstance.onExecuteAction).
+     *
+     * *Running context*: inMail
+     *
+     * *Supported roles*: N/A
+     *
+     * *Supports Guest Mode*: No
+     *
+     * *product*: desktop
+     *
+     * @category Zoom Mail
+     */
+    onAppUIActionInMail(handler: GenericEventHandler<OnAppUIActionInMailEvent>): void;
+    /**
+     * @zoomDesktopClientVersion 6.3.6
+     *
+     * The purpose of this method is to allow the app to modify the mail data before sending the mail.
+     * It is triggered when we click the send button of a mail compose editor and before sending the mail, it will carry the current mail data.
+     * **The app must call `subscribeBeforeMailSend` method before it can receive this event**, and apps receive the event in the order of priority or the order in which they call `subscribeBeforeMailSend` when the priorities are the same.
+     * When the app receives this event, **it can modify the mail data or cancel sending mail by calling the `callbackToMail` method to return the result.
+     * If the result data is `'cancel'`, it means canceling the sending, and the `onBeforeMailSend` event of subsequent apps will not be triggered.
+     * Otherwise, it means modifying the mail data. In this case, the result data contains the modified mail fields (not all fields are required).**
+     * The modified data will be passed to the `onBeforeMailSend` event of the subsequent apps.
+     * If `callbackToMail` is not called, this app will be ignored, and the data returned by the previous app will be passed to the `onBeforeMailSend` event of the next app after the timeout (set in the `subscribeBeforeMailSend` method).
+     *
+     * The structure of the returned data is as follows:
+     * ```ts
+     * type CallbackToMailOptions = {
+     *   // the same as the callId of onBeforeMailSend event
+     *   callId: OnBeforeMailSendEvent['callId']
+     *   // 'cancel' means canceling the sending, otherwise, it means modifying the mail data
+     *   data: 'cancel' | Partial<Omit<OnBeforeMailSendEvent['data'], 'from' | 'editorState'>>
+     * }
+     * ```
+     *
+     * *Running context*: inMail
+     *
+     * *Supported roles*: N/A
+     *
+     * *Supports Guest Mode*: No
+     *
+     * *product*: desktop
+     *
+     * @category Zoom Mail
+     */
+    onBeforeMailSend(handler: GenericEventHandler<OnBeforeMailSendEvent>): void;
+    /**
+     * @zoomDesktopClientVersion 5.13.10
+     * @zoomIOSClientVersion 5.14.10
+     * @zoomAndroidClientVersion 5.14.5
      * Allows a host to take high quality photos of an array of participants.
      *
      * *Running context*: inMeeting, inWebinar, inCamera, inCollaborate
@@ -6842,7 +7426,8 @@ declare class ZoomSdk {
     takeParticipantPhoto(options: TakeParticipantPhotoOptions): Promise<GeneralMessageResponse>;
     /**
      * @zoomDesktopClientVersion 5.13.10
-     *
+     * @zoomIOSClientVersion 5.14.10
+     * @zoomAndroidClientVersion 5.14.5
      * Allows a participant to take a high quality photo of themselves.
      *
      * *Running context*: inMeeting, inWebinar, inCamera, inCollaborate
@@ -6904,7 +7489,8 @@ declare class ZoomSdk {
     sendMessageToChat(options: SendMessageToChatOptions): Promise<SendMessageToChatResponse>;
     /**
      * @zoomDesktopClientVersion 5.17.5
-     *
+     * @zoomIOSClientVersion 5.16.0
+     * @zoomAndroidClientVersion 5.16.0
      * Set a dynamic indicator to be seen by all participants.
      *
      * *Running context*: inMeeting, inCollaborate, inCamera, inWebinar
@@ -6920,7 +7506,8 @@ declare class ZoomSdk {
     setDynamicIndicator(options: DynamicIndicatorOptions): Promise<GeneralMessageResponse>;
     /**
      * @zoomDesktopClientVersion 5.17.5
-     *
+     * @zoomIOSClientVersion 5.16.0
+     * @zoomAndroidClientVersion 5.16.0
      * Returns the current dynamic indicator information.
      *
      * *Running context*: inMeeting, inCollaborate, inCamera, inWebinar
@@ -6936,7 +7523,8 @@ declare class ZoomSdk {
     getDynamicIndicator(): Promise<GetDynamicIndicatorOutput>;
     /**
      * @zoomDesktopClientVersion 5.17.5
-     *
+     * @zoomIOSClientVersion 5.16.0
+     * @zoomAndroidClientVersion 5.16.0
      * Removes the current dynamic indicator (including style) and the app option in the dropdown menu.
      *
      * *Running context*: inMeeting, inCollaborate, inCamera, inWebinar
@@ -6952,7 +7540,8 @@ declare class ZoomSdk {
     removeDynamicIndicator(): Promise<GeneralMessageResponse>;
     /**
      * @zoomDesktopClientVersion 5.17.5
-     *
+     * @zoomIOSClientVersion 5.16.0
+     * @zoomAndroidClientVersion 5.16.0
      * Event fired when the dynamic indicator is set or changed.
      *
      * *Supported roles*: Host, Co-Host, Participant, Panelist, Attendee
@@ -6966,7 +7555,8 @@ declare class ZoomSdk {
     onSetDynamicIndicator(handler: GenericEventHandler<OnSetDynamicIndicatorEvent>): void;
     /**
      * @zoomDesktopClientVersion 5.17.5
-     *
+     * @zoomIOSClientVersion 5.16.0
+     * @zoomAndroidClientVersion 5.16.0
      * Event fired when the dynamic indicator is removed by calling removeDynamicIndicator.
      *
      * *Supported roles*: Host, Co-Host, Participant, Panelist
@@ -7044,4 +7634,4 @@ declare class ZoomSdk {
 
 declare const _default: ZoomSdk;
 
-export { AddBreakoutRoomOptions, AddParticipantSpotlightOptions, AdmitParticipantFromWaitingRoomOptions, AllowParticipantToRecordOptions, Apis, AppInvitationResponse, AppPopoutOptions, AppPopoutResponse, AssignParticipantToBreakoutRoomOptions, AttendeeSpeakingOptions, AudioMedia, AuthObject, AuthorizeOptions, BreakOutRoomParticipant, BreakoutRoomAssignmentMethods, BreakoutRoomsCreated, BreakoutRoomsParticipantsAssigned, BreakoutRoomsParticipantsJoined, BreakoutRoomsParticipantsLeft, BreakoutRoomsResponse, BreakoutRoomsUpdated, BringAppToFrontResponse, BroadcastVoiceToBreakoutRoomsOptions, ChangeBreakoutRoomOptions, ClearImageOptions, ClearParticipantOptions, ClearWebViewOptions, CloudRecordingOptions, ComposeCardOptions, ConfigOptions, ConfigResponse, ConfigSize, ConfigureBreakoutRoomsOptions, ConfigureBreakoutRoomsResponse, CreateBreakoutRoomsOptions, DecryptedAppContextResponse, DrawImageOptions, DrawImageResponse, DrawParticipantOptions, DrawWebViewOptions, DynamicIndicatorOptions, DynamicIndicatorStyles, DynamicIndicatorTimerOptions, EmojiOptions, EngagementContext, EngagementContextEvent, EngagementStatus, EngagementStatusEvent, ExpandAppOptions, FeedbackReactionOptions, FeedbackReactions, GeneralMessage, GeneralMessageResponse, GenericEventHandler, GetAppContextResponse, GetAppVariableListResponse, GetAudioSettingsResponse, GetAudioStateResponse, GetChatContextResponse, GetDynamicIndicatorOutput, GetEmojiConfigurationResponse, GetEngagementContextOptions, GetEngagementSecurableStatusOptions, GetEngagementSecurableStatusResponse, GetEngagementStatusOptions, GetEngagementVariableValueOptions, GetEngagementVariableValueResponse, GetGalleryOrderListResponse, GetGalleryPageResponse, GetIncomingParticipantAudioStateOptions, GetIncomingParticipantAudioStateResponse, GetMailContextResponse, GetMailMessageOptions, GetMailMessageResponse, GetMailThreadOptions, GetMailThreadResponse, GetMeetingChatContextResponse, GetMeetingContextResponse, GetMeetingJoinUrlResponse, GetMeetingLanguagesResponse, GetMeetingParticipantsEmailOptions, GetMeetingParticipantsResponse, GetMeetingUUIDResponse, GetMeetingViewResponse, GetParticipantSpotlightsResponse, GetPhoneContextResponse, GetRecordingContextResponse, GetSupportedJsApisResponse, GetUserContextResponse, GetVideoSettingsResponse, GetVideoStateResponse, GetWaitingRoomParticipantsResponse, GetWaitingRoomStateResponse, GetZoomRoomContextResponse, GetZoomRoomControllerCredentialsResponse, JSONObject, JSONValue, JoinMeetingOptions, LaunchAppInMeetingOptions, LaunchContext, LeaveMeetingOptions, ListCamerasResponse, MakePhoneCallOptions, MeetingView, NativeApiRequest, NativeApiRequestData, NativeApiResponseData, NativeConfigOptions, NativeMessage, NativeMessageData, NotificationOptions$1 as NotificationOptions, OnActiveSpeakerChangeEvent, OnActiveSpeakerChangeUserType, OnAppPopoutEvent, OnAuthorizedEvent, OnBreakoutRoomChangeEvent, OnCloudRecordingEvent, OnCollaborateChangeEvent, OnConnectEvent, OnDynamicIndicatorStyleChangeEvent, OnEmojiReactionEvent, OnEngagementMediaRedirectEvent, OnExpandAppEvent, OnExtendDynamicIndicatorEvent, OnFeedbackReactionEvent, OnGalleryOrderEvent, OnGalleryPageChangeEvent, OnIncomingParticipantAudioChangeEvent, OnMeetingEvent, OnMeetingLanguagesChangeEvent, OnMeetingViewChangeEvent, OnMessageEvent, OnMyActiveSpeakerChangeEvent, OnMyMediaChangeEvent, OnMyReactionEvent, OnMyUserContextChangeEvent, OnParticipantChangeEvent, OnParticipantChangeParticipantType, OnParticipantEmailEvent, OnPhoneContextEvent, OnPhotoEvent, OnPhotoEventOriginal, OnReactionEvent, OnRemoveDynamicIndicatorEvent, OnRemoveFeedbackReactionEvent, OnRenderedAppOpenedEvent, OnRunningContextChangeEvent, OnSendAppInvitationEvent, OnSetDynamicIndicatorEvent, OnShareAppEvent, OnShareComputerAudioEvent, OnShareScreenEvent, OnWaitingRoomParticipantJoinEvent, OnWaitingRoomParticipantLeaveEvent, OnWaitingRoomStateChangeEvent, OpenUrlOptions, Participant, ParticipantCutoutShape, ParticipantPinOptions, PhoneEvent, PixelValue, PromptShareScreenOptions, PutParticipantToWaitingRoomOptions, RemoveParticipantSpotlightsOptions, RemoveWebinarAttendeeOptions, RenameBreakoutRoomOptions, RenderingContextView, RunRenderingContextOptions, RunningContext, RunningContextResponse, SdkOptions, SdkVersion, SendAppInvitationOptions, SendAppToBackgroundResponse, SendMessageOptions, SendMessageToChatOptions, SendMessageToChatResponse, SetAudioSettingsOptions, SetAudioStateOptions, SetCameraOptions, SetDynamicIndicatorStyleInput, SetEmojiReactionOptions, SetGalleryPageOptions, SetIncomingParticipantAudioStateOptions, SetMeetingViewOptions, SetScreenNameOptions, SetVideoFilterOptions, SetVideoMirrorEffectOptions, SetVideoSettingsOptions, SetVideoStateOptions, SetWaitingRoomStateOptions, ShareAppOptions, ShareComputerAudioOptions, ShowAppInvitationDialogOptions, StartCollaborateOptions, StartMediaRedirectionOptions, StartMediaRedirectionResponse, TakeParticipantPhotoOptions, ToggleParticipantMediaAudioOptions, ToggleParticipantMediaVideoOptions, Uuid, VideoMedia, VirtualBackgroundOptions, VirtualForegroundOptions, WarningReponse, compatibilityApisCache, _default as default, isVersionCompatible, onEngagementVariableValueChangeEvent, onMeetingConfigChangedEvent, setParticipantScreenNameOptions };
+export { AddBreakoutRoomOptions, AddParticipantSpotlightOptions, AdmitParticipantFromWaitingRoomOptions, AllowParticipantToRecordOptions, Apis, AppInvitationResponse, AppPopoutOptions, AppPopoutResponse, AssignParticipantToBreakoutRoomOptions, AttendeeSpeakingOptions, AudioMedia, AuthObject, AuthorizeOptions, BreakOutRoomParticipant, BreakoutRoomAssignmentMethods, BreakoutRoomsCreated, BreakoutRoomsParticipantsAssigned, BreakoutRoomsParticipantsJoined, BreakoutRoomsParticipantsLeft, BreakoutRoomsResponse, BreakoutRoomsUpdated, BringAppToFrontResponse, BroadcastVoiceToBreakoutRoomsOptions, CallbackToMailOptions, ChangeBreakoutRoomOptions, ClearImageOptions, ClearParticipantOptions, ClearWebViewOptions, CloudRecordingOptions, ComposeCardOptions, ConfigOptions, ConfigResponse, ConfigSize, ConfigureBreakoutRoomsOptions, ConfigureBreakoutRoomsResponse, CreateBreakoutRoomsOptions, DecryptedAppContextResponse, DrawImageOptions, DrawImageResponse, DrawParticipantOptions, DrawWebViewOptions, DynamicIndicatorOptions, DynamicIndicatorStyles, DynamicIndicatorTimerOptions, EmojiOptions, EngagementContext, EngagementContextEvent, EngagementStatus, EngagementStatusEvent, ExpandAppOptions, FeedbackReactionOptions, FeedbackReactions, GeneralMessage, GeneralMessageResponse, GenericEventHandler, GetAppContextResponse, GetAppVariableListResponse, GetAudioSettingsResponse, GetAudioStateResponse, GetChatContextResponse, GetDynamicIndicatorOutput, GetEmojiConfigurationResponse, GetEngagementContextOptions, GetEngagementSecurableStatusOptions, GetEngagementSecurableStatusResponse, GetEngagementStatusOptions, GetEngagementVariableValueOptions, GetEngagementVariableValueResponse, GetGalleryOrderListResponse, GetGalleryPageResponse, GetIncomingParticipantAudioStateOptions, GetIncomingParticipantAudioStateResponse, GetMailActiveEditorDataOptions, GetMailActiveEditorDataResponse, GetMailContextResponse, GetMailMessageOptions, GetMailMessageResponse, GetMailThreadOptions, GetMailThreadResponse, GetMeetingChatContextResponse, GetMeetingContextResponse, GetMeetingJoinUrlResponse, GetMeetingLanguagesResponse, GetMeetingParticipantsEmailOptions, GetMeetingParticipantsResponse, GetMeetingUUIDResponse, GetMeetingViewResponse, GetParticipantSpotlightsResponse, GetPhoneContextResponse, GetRecordingContextResponse, GetSupportedJsApisResponse, GetUserContextResponse, GetVideoSettingsResponse, GetVideoStateResponse, GetWaitingRoomParticipantsResponse, GetWaitingRoomStateResponse, GetZoomRoomContextResponse, GetZoomRoomControllerCredentialsResponse, InsertContentToMailActiveEditorOptions, JSONObject, JSONValue, JoinMeetingOptions, LaunchAppInMeetingOptions, LaunchContext, LeaveMeetingOptions, ListCamerasResponse, MakePhoneCallOptions, MeetingView, NativeApiRequest, NativeApiRequestData, NativeApiResponseData, NativeConfigOptions, NativeMessage, NativeMessageData, NotificationOptions$1 as NotificationOptions, OnActiveSpeakerChangeEvent, OnActiveSpeakerChangeUserType, OnAppPopoutEvent, OnAppToggleInMailActiveEditorEvent, OnAppUIActionInMailEvent, OnAuthorizedEvent, OnBeforeMailSendEvent, OnBreakoutRoomChangeEvent, OnCloudRecordingEvent, OnCollaborateChangeEvent, OnConnectEvent, OnDynamicIndicatorStyleChangeEvent, OnEmojiReactionEvent, OnEngagementMediaRedirectEvent, OnExpandAppEvent, OnExtendDynamicIndicatorEvent, OnFeedbackReactionEvent, OnGalleryOrderEvent, OnGalleryPageChangeEvent, OnIncomingParticipantAudioChangeEvent, OnMailActiveEditorChangeEvent, OnMailActiveEditorDataChangeEvent, OnMailActiveEditorTypeChangeEvent, OnMeetingEvent, OnMeetingLanguagesChangeEvent, OnMeetingViewChangeEvent, OnMessageEvent, OnMyActiveSpeakerChangeEvent, OnMyMediaChangeEvent, OnMyReactionEvent, OnMyUserContextChangeEvent, OnParticipantChangeEvent, OnParticipantChangeParticipantType, OnParticipantEmailEvent, OnPhoneContextEvent, OnPhotoEvent, OnPhotoEventOriginal, OnReactionEvent, OnRemoveDynamicIndicatorEvent, OnRemoveFeedbackReactionEvent, OnRenderedAppOpenedEvent, OnRunningContextChangeEvent, OnSendAppInvitationEvent, OnSetDynamicIndicatorEvent, OnShareAppEvent, OnShareComputerAudioEvent, OnShareScreenEvent, OnWaitingRoomParticipantJoinEvent, OnWaitingRoomParticipantLeaveEvent, OnWaitingRoomStateChangeEvent, OpenUrlOptions, Participant, ParticipantCutoutShape, ParticipantPinOptions, PhoneEvent, PixelValue, PromptShareScreenOptions, PutParticipantToWaitingRoomOptions, RegisterMailEditorComponentOptions, RemoveParticipantSpotlightsOptions, RemoveWebinarAttendeeOptions, RenameBreakoutRoomOptions, RenderInMailActiveEditorOptions, RenderInMailActiveEditorResponse, RenderingContextView, RunRenderingContextOptions, RunningContext, RunningContextResponse, SdkOptions, SdkVersion, SendAppInvitationOptions, SendAppToBackgroundResponse, SendMessageOptions, SendMessageToChatOptions, SendMessageToChatResponse, SetAudioSettingsOptions, SetAudioStateOptions, SetCameraOptions, SetDynamicIndicatorStyleInput, SetEmojiReactionOptions, SetGalleryPageOptions, SetIncomingParticipantAudioStateOptions, SetMailActiveEditorDataOptions, SetMeetingViewOptions, SetScreenNameOptions, SetVideoFilterOptions, SetVideoMirrorEffectOptions, SetVideoSettingsOptions, SetVideoStateOptions, SetWaitingRoomStateOptions, ShareAppOptions, ShareComputerAudioOptions, ShowAppInvitationDialogOptions, StartCollaborateOptions, StartMediaRedirectionOptions, StartMediaRedirectionResponse, SubscribeBeforeMailSendOptions, TakeParticipantPhotoOptions, ToggleParticipantMediaAudioOptions, ToggleParticipantMediaVideoOptions, Uuid, VideoMedia, VirtualBackgroundOptions, VirtualForegroundOptions, WarningReponse, compatibilityApisCache, _default as default, isVersionCompatible, onEngagementVariableValueChangeEvent, onMeetingConfigChangedEvent, setParticipantScreenNameOptions };

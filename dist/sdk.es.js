@@ -1,6 +1,6 @@
-/* Zoom Apps SDK v0.16.24  */
+/* Zoom Apps SDK v0.16.25  */
 /**
- * Copyright (c) 2024 Zoom Video Communications, Inc.
+ * Copyright (c) 2025 Zoom Video Communications, Inc.
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,7 +21,7 @@
  * SOFTWARE.
  */
 
-var version = "0.16.24";
+var version = "0.16.25";
 
 var extendStatics = function(d, b) {
     extendStatics = Object.setPrototypeOf ||
@@ -263,6 +263,13 @@ var NativeApis;
     NativeApis["GET_MAIL_CONTEXT"] = "getMailContext";
     NativeApis["GET_MAIL_THREAD"] = "getMailThread";
     NativeApis["GET_MAIL_MESSAGE"] = "getMailMessage";
+    NativeApis["GET_MAIL_ACTIVE_EDITOR_DATA"] = "getMailActiveEditorData";
+    NativeApis["SET_MAIL_ACTIVE_EDITOR_DATA"] = "setMailActiveEditorData";
+    NativeApis["REGISTER_MAIL_EDITOR_COMPONENT"] = "registerMailEditorComponent";
+    NativeApis["INSERT_CONTENT_TO_MAIL_ACTIVE_EDITOR"] = "insertContentToMailActiveEditor";
+    NativeApis["RENDER_IN_MAIL_ACTIVE_EDITOR"] = "renderInMailActiveEditor";
+    NativeApis["SUBSCRIBE_BEFORE_MAIL_SEND"] = "subscribeBeforeMailSend";
+    NativeApis["CALLBACK_TO_MAIL"] = "callbackToMail";
     NativeApis["TAKE_PARTICIPANT_PHOTO"] = "takeParticipantPhoto";
     NativeApis["TAKE_MY_PHOTO"] = "takeMyPhoto";
     NativeApis["START_COLLABORATE_SIDECAR"] = "startCollaborateSidecar";
@@ -333,6 +340,12 @@ var NativeEvents;
     NativeEvents["ON_REMOVE_DYNAMIC_INDICATOR"] = "onRemoveDynamicIndicator";
     NativeEvents["ON_DYNAMIC_INDICATOR_STYLE_CHANGE"] = "onDynamicIndicatorStyleChange";
     NativeEvents["ON_EXTEND_DYNAMIC_INDICATOR"] = "onExtendDynamicIndicator";
+    NativeEvents["ON_MAIL_ACTIVE_EDITOR_CHANGE"] = "onMailActiveEditorChange";
+    NativeEvents["ON_MAIL_ACTIVE_EDITOR_TYPE_CHANGE"] = "onMailActiveEditorTypeChange";
+    NativeEvents["ON_MAIL_ACTIVE_EDITOR_DATA_CHANGE"] = "onMailActiveEditorDataChange";
+    NativeEvents["ON_APP_TOGGLE_IN_MAIL_ACTIVE_EDITOR"] = "onAppToggleInMailActiveEditor";
+    NativeEvents["ON_APP_UI_ACTION_IN_MAIL"] = "onAppUIActionInMail";
+    NativeEvents["ON_BEFORE_MAIL_SEND"] = "onBeforeMailSend";
 })(NativeEvents || (NativeEvents = {}));
 var Timeouts;
 (function (Timeouts) {
@@ -2728,6 +2741,73 @@ var ZoomSdk =  (function () {
                 }
             });
         });
+    };
+    ZoomSdk.prototype.getMailActiveEditorData = function (options) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 , this.callZoomApi(NativeApis.GET_MAIL_ACTIVE_EDITOR_DATA, options)];
+            });
+        });
+    };
+    ZoomSdk.prototype.setMailActiveEditorData = function (options) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 , this.callZoomApi(NativeApis.SET_MAIL_ACTIVE_EDITOR_DATA, options)];
+            });
+        });
+    };
+    ZoomSdk.prototype.registerMailEditorComponent = function (options) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 , this.callZoomApi(NativeApis.REGISTER_MAIL_EDITOR_COMPONENT, options)];
+            });
+        });
+    };
+    ZoomSdk.prototype.insertContentToMailActiveEditor = function (options) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 , this.callZoomApi(NativeApis.INSERT_CONTENT_TO_MAIL_ACTIVE_EDITOR, options)];
+            });
+        });
+    };
+    ZoomSdk.prototype.renderInMailActiveEditor = function (options) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 , this.callZoomApi(NativeApis.RENDER_IN_MAIL_ACTIVE_EDITOR, options)];
+            });
+        });
+    };
+    ZoomSdk.prototype.subscribeBeforeMailSend = function (options) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 , this.callZoomApi(NativeApis.SUBSCRIBE_BEFORE_MAIL_SEND, options)];
+            });
+        });
+    };
+    ZoomSdk.prototype.callbackToMail = function (options) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 , this.callZoomApi(NativeApis.CALLBACK_TO_MAIL, options)];
+            });
+        });
+    };
+    ZoomSdk.prototype.onMailActiveEditorChange = function (handler) {
+        this.addEventListener(NativeEvents.ON_MAIL_ACTIVE_EDITOR_CHANGE, handler);
+    };
+    ZoomSdk.prototype.onMailActiveEditorTypeChange = function (handler) {
+        this.addEventListener(NativeEvents.ON_MAIL_ACTIVE_EDITOR_TYPE_CHANGE, handler);
+    };
+    ZoomSdk.prototype.onMailActiveEditorDataChange = function (handler) {
+        this.addEventListener(NativeEvents.ON_MAIL_ACTIVE_EDITOR_DATA_CHANGE, handler);
+    };
+    ZoomSdk.prototype.onAppToggleInMailActiveEditor = function (handler) {
+        this.addEventListener(NativeEvents.ON_APP_TOGGLE_IN_MAIL_ACTIVE_EDITOR, handler);
+    };
+    ZoomSdk.prototype.onAppUIActionInMail = function (handler) {
+        this.addEventListener(NativeEvents.ON_APP_UI_ACTION_IN_MAIL, handler);
+    };
+    ZoomSdk.prototype.onBeforeMailSend = function (handler) {
+        this.addEventListener(NativeEvents.ON_BEFORE_MAIL_SEND, handler);
     };
     ZoomSdk.prototype.takeParticipantPhoto = function (options) {
         return __awaiter(this, void 0, void 0, function () {
