@@ -71,34 +71,14 @@ The cloud SDK is designed to provide on-demand patch updates, and it does not su
     "upgradable": true
   },
   "unsupportedApis": [],
-  "runningContext": "inMainClient"
+  "runningContext": "inMainClient",
+  "product": "desktop"
 }
 ```
 
 ## Role and running context change
 
 Listen to `zoomSdk.onMyUserContextChange` and `zoomSdk.onRunningContextChange` events for role and running context changes respectively. `zoomSdk.config` needs to be called again to update API permissions.
-
-## Product config response
-
-The product parameter is implemented mainly to support apps running on various devices. The running context tells the app whether the device is in a meeting or not, and the product parameter tells the app the device type (desktop, mobile, personal or shared ZRs).
-
-| Client                | OS              | Running Context (Parameter)         | Product (Parameter)                |
-|-----------------------|-----------------|-------------------------------------|------------------------------------|
-| Desktop Client        | Win/Mac         | inMainClient                        | desktop                            |
-| Desktop Client        | Win/Mac         | inMeeting                           | desktop                            |
-| Mobile Client         | iOS/Android     | inMainClient                        | mobile                             |
-| Mobile Client         | iOS/Android     | inMeeting                           | mobile                             |
-| Personal Zoom Room    | Win/Android     | inMainClient                        | personalZoomRoom                   |
-| Personal Zoom Room    | Win/Android     | inMeeting                           | personalZoomRoom                   |
-| Desktop Client        | Win/Mac         | inChat                              | desktop                            |
-| Zoom Room             | Win/Android     | inMainClient                        | sharedZoomRoom                     |
-| Zoom Room             | Win/Android     | inMeeting                           | sharedZoomRoom                     |
-| Digital Signage       | Win/Android     | inDigitalSignage                    | sharedZoomRoom                     |
-| Zoom Room Controller  | iOS/Android     | inMainClient                        | zoomRoomController                 |
-| Zoom Room Controller  | iOS/Android     | inMeeting                           | zoomRoomController                 |
-| Web Client            | Win/Mac         | inMeeting/inWebinar                 | desktop/web                        |
-
 
 ## Note
 

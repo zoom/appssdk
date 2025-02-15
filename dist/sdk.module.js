@@ -1,4 +1,4 @@
-/* Zoom Apps SDK v0.16.25  */
+/* Zoom Apps SDK v0.16.26  */
 /**
  * Copyright (c) 2025 Zoom Video Communications, Inc.
  * 
@@ -25,7 +25,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var version = "0.16.25";
+var version = "0.16.26";
 
 var extendStatics = function(d, b) {
     extendStatics = Object.setPrototypeOf ||
@@ -1492,14 +1492,15 @@ var ZoomSdk =  (function () {
         return interceptUndefinedMethod(this);
     }
     ZoomSdk.prototype.native2js = function (message) {
-        if (message.data.type === 'apiResponse') {
+        var _a, _b;
+        if (((_a = message === null || message === void 0 ? void 0 : message.data) === null || _a === void 0 ? void 0 : _a.type) === 'apiResponse') {
             var jsCallId = message.data.data.jsCallId;
             var callback = nativeApiCallbacks[jsCallId];
             if (callback) {
                 callback(message.data.data);
             }
         }
-        else if (message.data.type === 'event') {
+        else if (((_b = message === null || message === void 0 ? void 0 : message.data) === null || _b === void 0 ? void 0 : _b.type) === 'event') {
             var eventName_1 = message.data.name;
             var inputData_1 = message.data.data;
             nativeEventHandlers[eventName_1] &&

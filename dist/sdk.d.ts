@@ -126,9 +126,9 @@ declare type GeneralMessageResponse = {
  *
  * _inImmersive_	The app is running in immersive mode, occupying the main meeting window.
  *
- * _inWebinar_	The app is running is in a webinar.
+ * _inWebinar_	The app is running in a webinar.
  *
- * _inMainClient_	The app is running is in the main client.
+ * _inMainClient_	The app is running in the main client.
  *
  * _inPhone_	The app is running in the right side panel of Zoom Phone Client.
  *
@@ -1014,6 +1014,24 @@ declare type LaunchContext = {
     openBy: 'user' | 'apiAuto' | 'uiToggleAuto' | 'deeplink';
 };
 /**
+ * The product parameter is implemented mainly to support apps running on various devices. The running context tells the app whether the device is in a meeting or not, and the product parameter tells the app the device type (desktop, mobile, personal or shared ZRs).
+
+| Client                | OS              | Running Context (Parameter)         | Product (Parameter)                |
+|-----------------------|-----------------|-------------------------------------|------------------------------------|
+| Desktop Client        | Win/Mac         | inMainClient                        | desktop                            |
+| Desktop Client        | Win/Mac         | inMeeting                           | desktop                            |
+| Mobile Client         | iOS/Android     | inMainClient                        | mobile                             |
+| Mobile Client         | iOS/Android     | inMeeting                           | mobile                             |
+| Personal Zoom Room    | Win/Android     | inMainClient                        | personalZoomRoom                   |
+| Personal Zoom Room    | Win/Android     | inMeeting                           | personalZoomRoom                   |
+| Desktop Client        | Win/Mac         | inChat                              | desktop                            |
+| Zoom Room             | Win/Android     | inMainClient                        | sharedZoomRoom                     |
+| Zoom Room             | Win/Android     | inMeeting                           | sharedZoomRoom                     |
+| Digital Signage       | Win/Android     | inDigitalSignage                    | sharedZoomRoom                     |
+| Zoom Room Controller  | iOS/Android     | inMainClient                        | zoomRoomController                 |
+| Zoom Room Controller  | iOS/Android     | inMeeting                           | zoomRoomController                 |
+| Web Client            | Win/Mac         | inMeeting/inWebinar                 | desktop/web                        |
+
  * @category Core
  */
 declare type ConfigResponse = {
@@ -1040,11 +1058,21 @@ declare type ConfigResponse = {
     userAgent: string;
     launchContext: LaunchContext;
     /**
-     * @hidden
-     * (Supported starting in client version 5.11.0)
      * the product that this app is being run on
+     *
+     * _desktop_	The app is running on a desktop client.
+     *
+     * _mobile_	The app is running on a mobile client.
+     *
+     *  _web_	The app is running on a web client.
+     *
+     * _personalZoomRoom_	The app is running on a personal Zoom Room device.
+     *
+     * _sharedZoomRoom_	The app is running is on a shared Zoom Room device.
+     *
+     * _zoomRoomController_	The app is running on a Zoom Room controller.
      * */
-    product?: 'desktop' | 'mobile' | 'personalZoomRoom' | 'web' | 'sharedZoomRoom';
+    product?: 'desktop' | 'mobile' | 'web' | 'personalZoomRoom' | 'sharedZoomRoom' | 'zoomRoomController';
 };
 /**
  * URL of the endpoint
@@ -3294,8 +3322,9 @@ declare type SendMessageToChatResponse = {
     }[];
 };
 /**
- * @category Dynamic Indicator
  * Timer-related options for dynamic indicator.
+ *
+ * @category Dynamic Indicator
  */
 declare type DynamicIndicatorTimerOptions = {
     action?: 'start' | 'pause' | 'resume' | 'end';
@@ -3308,8 +3337,9 @@ declare type DynamicIndicatorTimerOptions = {
     songChoice?: number;
 };
 /**
- * @category Dynamic Indicator
  * Style-related options for dynamic indicator.
+ *
+ * @category Dynamic Indicator
  */
 declare type SetDynamicIndicatorStyleInput = {
     textColor?: string;
@@ -3337,8 +3367,9 @@ declare type DynamicIndicatorOptions = {
     textStyle?: 'bold' | 'italic';
 };
 /**
- * @category Dynamic Indicator
  * Output type for getting the current dynamic indicator status.
+ *
+ * @category Dynamic Indicator
  */
 declare type GetDynamicIndicatorOutput = {
     participantUUID: string;
@@ -3351,8 +3382,9 @@ declare type GetDynamicIndicatorOutput = {
     textStyle?: 'bold' | 'italic';
 };
 /**
- * @category Dynamic Indicator
  * Styles for dynamic indicator, including text, border, and background colors.
+ *
+ * @category Dynamic Indicator
  */
 declare type DynamicIndicatorStyles = {
     textColor?: string;
@@ -3361,8 +3393,9 @@ declare type DynamicIndicatorStyles = {
     textStyle?: 'bold' | 'italic';
 };
 /**
- * @category Dynamic Indicator
  * Event data for when a dynamic indicator is set, including the indicator's text, colors, and timer.
+ *
+ * @category Dynamic Indicator
  */
 declare type OnSetDynamicIndicatorEvent = {
     participantUUID: string;
@@ -3385,8 +3418,9 @@ declare type OnSetDynamicIndicatorEvent = {
     textStyle?: 'bold' | 'italic';
 };
 /**
- * @category Dynamic Indicator
  * Event data for when a dynamic indicator is removed.
+ *
+ * @category Dynamic Indicator
  */
 declare type OnRemoveDynamicIndicatorEvent = {
     participantUUID: string;
@@ -3394,8 +3428,9 @@ declare type OnRemoveDynamicIndicatorEvent = {
     timestamp: number;
 };
 /**
- * @category Dynamic Indicator
  * Event data for when the style of a dynamic indicator is changed (e.g., text style, colors).
+ *
+ * @category Dynamic Indicator
  */
 declare type OnDynamicIndicatorStyleChangeEvent = {
     participantUUID: string;
@@ -3407,14 +3442,16 @@ declare type OnDynamicIndicatorStyleChangeEvent = {
     timestamp: number;
 };
 /**
- * @category Dynamic Indicator
  * Event data for when a dynamic indicator is extended, typically by updating or prolonging the timer.
+ *
+ *  @category Dynamic Indicator
  */
 declare type OnExtendDynamicIndicatorEvent = {
     extendDuration: number;
     timestamp: number;
 };
 
+/** @hidden */
 declare const compatibilityApisCache: {
     config: {
         mapInput: (d: any) => any;
@@ -3428,6 +3465,8 @@ declare const compatibilityApisCache: {
  * @param currentVersion - The current client version (e.g., "5.17.5").
  * @param requiredVersion - The minimum required version (e.g., "5.17.5").
  * @returns `true` if the client version is greater than or equal to the required version, otherwise `false`.
+ *
+ * @hidden
  */
 declare function isVersionCompatible(currentVersion: string, requiredVersion: string): boolean;
 /**
