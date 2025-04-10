@@ -1,4 +1,4 @@
-/* Zoom Apps SDK v0.16.26  */
+/* Zoom Apps SDK v0.16.27  */
 /**
  * Copyright (c) 2025 Zoom Video Communications, Inc.
  * 
@@ -25,7 +25,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var version = "0.16.26";
+var version = "0.16.27";
 
 var extendStatics = function(d, b) {
     extendStatics = Object.setPrototypeOf ||
@@ -286,6 +286,7 @@ var NativeApis;
     NativeApis["REMOVE_DYNAMIC_INDICATOR"] = "removeDynamicIndicator";
     NativeApis["SET_DYNAMIC_INDICATOR_STYLE"] = "setDynamicIndicatorStyle";
     NativeApis["EXTEND_DYNAMIC_INDICATOR"] = "extendDynamicIndicator";
+    NativeApis["PROMPT_UPGRADE_REQUEST"] = "promptUpgradeRequest";
 })(NativeApis || (NativeApis = {}));
 var NativeEvents;
 (function (NativeEvents) {
@@ -350,6 +351,7 @@ var NativeEvents;
     NativeEvents["ON_APP_TOGGLE_IN_MAIL_ACTIVE_EDITOR"] = "onAppToggleInMailActiveEditor";
     NativeEvents["ON_APP_UI_ACTION_IN_MAIL"] = "onAppUIActionInMail";
     NativeEvents["ON_BEFORE_MAIL_SEND"] = "onBeforeMailSend";
+    NativeEvents["ON_UPGRADE_REQUEST"] = "onUpgradeRequest";
 })(NativeEvents || (NativeEvents = {}));
 var Timeouts;
 (function (Timeouts) {
@@ -2896,6 +2898,16 @@ var ZoomSdk =  (function () {
     };
     ZoomSdk.prototype.onExtendDynamicIndicator = function (handler) {
         this.addEventListener(NativeEvents.ON_EXTEND_DYNAMIC_INDICATOR, handler);
+    };
+    ZoomSdk.prototype.promptUpgradeRequest = function (options) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 , this.callZoomApi(NativeApis.PROMPT_UPGRADE_REQUEST, options)];
+            });
+        });
+    };
+    ZoomSdk.prototype.onUpgradeRequest = function (handler) {
+        this.addEventListener(NativeEvents.ON_UPGRADE_REQUEST, handler);
     };
     return ZoomSdk;
 }());
