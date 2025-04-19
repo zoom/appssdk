@@ -26,6 +26,7 @@ declare enum NativeEvents {
     ON_CLOUD_RECORDING = "onCloudRecording",
     ON_CONNECT = "onConnect",
     ON_EXPAND_APP = "onExpandApp",
+    ON_APP_VISIBILITY_CHANGE = "onAppVisibilityChange",
     ON_MEETING = "onMeeting",
     ON_MESSAGE = "onMessage",
     ON_MY_ACTIVE_SPEAKER_CHANGE = "onMyActiveSpeakerChange",
@@ -79,6 +80,7 @@ declare enum NativeEvents {
     ON_MAIL_ACTIVE_EDITOR_CHANGE = "onMailActiveEditorChange",
     ON_MAIL_ACTIVE_EDITOR_TYPE_CHANGE = "onMailActiveEditorTypeChange",
     ON_MAIL_ACTIVE_EDITOR_DATA_CHANGE = "onMailActiveEditorDataChange",
+    ON_MAIL_EDITOR_DESTROY = "onMailEditorDestroy",
     ON_APP_TOGGLE_IN_MAIL_ACTIVE_EDITOR = "onAppToggleInMailActiveEditor",
     ON_APP_UI_ACTION_IN_MAIL = "onAppUIActionInMail",
     ON_BEFORE_MAIL_SEND = "onBeforeMailSend",
@@ -452,6 +454,14 @@ declare type OnAppPopoutEvent = {
 declare type OnExpandAppEvent = {
     timestamp: number;
     action: 'expand' | 'collapse';
+};
+/**
+ * @category App Window
+ */
+declare type OnAppVisibilityChangeEvent = {
+    timestamp: number;
+    /** Is the app currently visible? */
+    visible: boolean;
 };
 /**
  * Usage:
@@ -1112,7 +1122,7 @@ declare type GetMeetingContextResponse = {
  * All the available JS APIs and events
  * @category Core
  * */
-declare type Apis = 'addBreakoutRoom' | 'allowParticipantToRecord' | 'assignParticipantsToBreakoutRoom' | 'assignParticipantToBreakoutRoom' | 'authorize' | 'changeBreakoutRoom' | 'clearImage' | 'clearParticipant' | 'clearWebView' | 'closeBreakoutRooms' | 'closeChannel' | 'closeLobby' | 'closeRenderingContext' | 'cloudRecording' | 'configureBreakoutRooms' | 'connect' | 'createBreakoutRooms' | 'deleteBreakoutRoom' | 'drawImage' | 'drawParticipant' | 'drawWebView' | 'endCollaborate' | 'endSyncData' | 'executeOnZoomAction' | 'expandApp' | 'getBreakoutRoomList' | 'getImmersiveViewContext' | 'getMeetingContext' | 'getMeetingJoinUrl' | 'getMeetingParticipants' | 'getMeetingUUID' | 'getOnZoomProperties' | 'getPairingStatus' | 'getRecordingContext' | 'getRunningContext' | 'getScreenshot' | 'getSupportedJsApis' | 'getUserContext' | 'getUserMediaAudio' | 'getUserMediaVideo' | 'joinCollaborate' | 'joinOnZoomEvent' | 'joinZoomRoom' | 'launchAppInMeeting' | 'leaveCollaborate' | 'listCameras' | 'onActiveSpeakerChange' | 'onAppPopout' | 'onAuthenticate' | 'onAuthorized' | 'onShareScreen' | 'onShareComputerAudio' | 'onBreakoutRoomChange' | 'onCloseAppForParticipants' | 'onCloudRecording' | 'onCollaborateChange' | 'onConnect' | 'onExpandApp' | 'onExtendedProcessing' | 'onFeedbackReaction' | 'onImmersiveViewChange' | 'onMeeting' | 'onMeetingConfigChanged' | 'onMessage' | 'onMyActiveSpeakerChange' | 'onMyMediaChange' | 'onMyReaction' | 'onMyUserContextChange' | 'onOnZoomJoinStatusChange' | 'onPairingStatusChange' | 'onParticipantChange' | 'onReaction' | 'onRemoveFeedbackReaction' | 'onRunningContextChange' | 'onSendAppInvitation' | 'onShareApp' | 'openBreakoutRooms' | 'openChannel' | 'openDM' | 'openUrl' | 'postMessage' | 'promptAuthorize' | 'pushState' | 'removeImmersiveView' | 'removeVirtualBackground' | 'removeVirtualForeground' | 'renameBreakoutRoom' | 'runRenderingContext' | 'sendAppInvitation' | 'sendAppInvitationToAllParticipants' | 'sendAppInvitationToMeetingOwner' | 'setCamera' | 'setImmersiveView' | 'setUserMediaAudio' | 'setUserMediaVideo' | 'setVideoMirrorEffect' | 'setVirtualBackground' | 'setVirtualForeground' | 'shareApp' | 'shareComputerAudio' | 'showAppInvitationDialog' | 'showNotification' | 'startCollaborate' | 'toggleParticipantMediaAudio' | 'onInviteCollaboration' | 'getAppContext' | 'getAudioState' | 'setAudioState' | 'getVideoState' | 'setVideoState' | 'addParticipantSpotlight' | 'removeParticipantSpotlights' | 'getParticipantSpotlights' | 'addParticipantPins' | 'removeParticipantPins' | 'setFeedbackReaction' | 'removeFeedbackReaction' | 'removeAllFeedbackReaction' | 'allowAttendeesToSpeak' | 'disallowAttendeesToSpeak' | 'removeWebinarAttendees' | 'setAudioSettings' | 'getAudioSettings' | 'getIncomingParticipantAudioState' | 'setIncomingParticipantAudioState' | 'onIncomingParticipantAudioChange' | 'setVideoSettings' | 'getVideoSettings' | 'promptShareScreen' | 'showMeetingInvitationDialog' | 'onGalleryPageChange' | 'setGalleryPage' | 'getGalleryPage' | 'getChatContext' | 'composeCard' | 'broadcastVoiceToBreakoutRooms' | 'stopShareScreen' | 'getGalleryOrderList' | 'onGalleryOrder' | 'setScreenName' | 'setParticipantScreenName' | 'setEmojiReaction' | 'getEmojiConfiguration' | 'onEmojiReaction' | 'getMeetingView' | 'setMeetingView' | 'onMeetingViewChange' | 'setVideoFilter' | 'deleteVideoFilter' | 'leaveMeeting' | 'joinMeeting' | 'getZoomRoomContext' | 'getZoomRoomControllerCredentials' | 'toggleParticipantMediaVideo' | 'sendMessage' | 'putParticipantToWaitingRoom' | 'admitParticipantFromWaitingRoom' | 'getWaitingRoomParticipants' | 'setWaitingRoomState' | 'getWaitingRoomState' | 'getPhoneContext' | 'onPhoneCalleeAnswered' | 'onPhoneCallerEnded' | 'onPhoneCalleeEnded' | 'onPhoneCalleeRejected' | 'onPhoneCallerMeetingInviting' | 'onPhoneCalleeMeetingInvite' | 'onPhoneContext' | 'getEngagementContext' | 'onEngagementContextChange' | 'getEngagementStatus' | 'onEngagementStatusChange' | 'getEngagementSecurableStatus' | 'startMediaRedirection' | 'onEngagementMediaRedirect' | 'appPopout' | 'bringAppToFront' | 'sendAppToBackground' | 'closeApp' | 'getMeetingLanguages' | 'onMeetingLanguagesChange' | 'makePhoneCall' | 'onWaitingRoomStateChange' | 'onWaitingRoomParticipantLeave' | 'onWaitingRoomParticipantJoin' | 'getMeetingParticipantsEmail' | 'onParticipantEmail' | 'getMeetingChatContext' | 'getMailContext' | 'getMailThread' | 'getMailMessage' | 'getMailActiveEditorData' | 'setMailActiveEditorData' | 'registerMailEditorComponent' | 'insertContentToMailActiveEditor' | 'renderInMailActiveEditor' | 'subscribeBeforeMailSend' | 'callbackToMail' | 'onMailActiveEditorChange' | 'onMailActiveEditorTypeChange' | 'onMailActiveEditorDataChange' | 'onAppToggleInMailActiveEditor' | 'onAppUIActionInMail' | 'onBeforeMailSend' | 'takeParticipantPhoto' | 'takeMyPhoto' | 'onPhoto' | 'startCollaborateSidecar' | 'endCollaborateSidecar' | 'getAppVariableList' | 'getEngagementVariableValue' | 'onEngagementVariableValueChange' | 'sendMessageToChat' | 'setDynamicIndicator' | 'getDynamicIndicator' | 'removeDynamicIndicator' | 'onSetDynamicIndicator' | 'onRemoveDynamicIndicator' | 'setDynamicIndicatorStyle' | 'onDynamicIndicatorStyleChange' | 'extendDynamicIndicator' | 'onExtendDynamicIndicator' | 'promptUpgradeRequest' | 'onUpgradeRequest';
+declare type Apis = 'addBreakoutRoom' | 'allowParticipantToRecord' | 'assignParticipantsToBreakoutRoom' | 'assignParticipantToBreakoutRoom' | 'authorize' | 'changeBreakoutRoom' | 'clearImage' | 'clearParticipant' | 'clearWebView' | 'closeBreakoutRooms' | 'closeChannel' | 'closeLobby' | 'closeRenderingContext' | 'cloudRecording' | 'configureBreakoutRooms' | 'connect' | 'createBreakoutRooms' | 'deleteBreakoutRoom' | 'drawImage' | 'drawParticipant' | 'drawWebView' | 'endCollaborate' | 'endSyncData' | 'executeOnZoomAction' | 'expandApp' | 'getBreakoutRoomList' | 'getImmersiveViewContext' | 'getMeetingContext' | 'getMeetingJoinUrl' | 'getMeetingParticipants' | 'getMeetingUUID' | 'getOnZoomProperties' | 'getPairingStatus' | 'getRecordingContext' | 'getRunningContext' | 'getScreenshot' | 'getSupportedJsApis' | 'getUserContext' | 'getUserMediaAudio' | 'getUserMediaVideo' | 'joinCollaborate' | 'joinOnZoomEvent' | 'joinZoomRoom' | 'launchAppInMeeting' | 'leaveCollaborate' | 'listCameras' | 'onActiveSpeakerChange' | 'onAppPopout' | 'onAuthenticate' | 'onAuthorized' | 'onShareScreen' | 'onShareComputerAudio' | 'onBreakoutRoomChange' | 'onCloseAppForParticipants' | 'onCloudRecording' | 'onCollaborateChange' | 'onConnect' | 'onExpandApp' | 'onAppVisibilityChange' | 'onExtendedProcessing' | 'onFeedbackReaction' | 'onImmersiveViewChange' | 'onMeeting' | 'onMeetingConfigChanged' | 'onMessage' | 'onMyActiveSpeakerChange' | 'onMyMediaChange' | 'onMyReaction' | 'onMyUserContextChange' | 'onOnZoomJoinStatusChange' | 'onPairingStatusChange' | 'onParticipantChange' | 'onReaction' | 'onRemoveFeedbackReaction' | 'onRunningContextChange' | 'onSendAppInvitation' | 'onShareApp' | 'openBreakoutRooms' | 'openChannel' | 'openDM' | 'openUrl' | 'postMessage' | 'promptAuthorize' | 'pushState' | 'removeImmersiveView' | 'removeVirtualBackground' | 'removeVirtualForeground' | 'renameBreakoutRoom' | 'runRenderingContext' | 'sendAppInvitation' | 'sendAppInvitationToAllParticipants' | 'sendAppInvitationToMeetingOwner' | 'setCamera' | 'setImmersiveView' | 'setUserMediaAudio' | 'setUserMediaVideo' | 'setVideoMirrorEffect' | 'setVirtualBackground' | 'setVirtualForeground' | 'shareApp' | 'shareComputerAudio' | 'showAppInvitationDialog' | 'showNotification' | 'startCollaborate' | 'toggleParticipantMediaAudio' | 'onInviteCollaboration' | 'getAppContext' | 'getAudioState' | 'setAudioState' | 'getVideoState' | 'setVideoState' | 'addParticipantSpotlight' | 'removeParticipantSpotlights' | 'getParticipantSpotlights' | 'addParticipantPins' | 'removeParticipantPins' | 'setFeedbackReaction' | 'removeFeedbackReaction' | 'removeAllFeedbackReaction' | 'allowAttendeesToSpeak' | 'disallowAttendeesToSpeak' | 'removeWebinarAttendees' | 'setAudioSettings' | 'getAudioSettings' | 'getIncomingParticipantAudioState' | 'setIncomingParticipantAudioState' | 'onIncomingParticipantAudioChange' | 'setVideoSettings' | 'getVideoSettings' | 'promptShareScreen' | 'showMeetingInvitationDialog' | 'onGalleryPageChange' | 'setGalleryPage' | 'getGalleryPage' | 'getChatContext' | 'composeCard' | 'broadcastVoiceToBreakoutRooms' | 'stopShareScreen' | 'getGalleryOrderList' | 'onGalleryOrder' | 'setScreenName' | 'setParticipantScreenName' | 'setEmojiReaction' | 'getEmojiConfiguration' | 'onEmojiReaction' | 'getMeetingView' | 'setMeetingView' | 'onMeetingViewChange' | 'setVideoFilter' | 'deleteVideoFilter' | 'leaveMeeting' | 'joinMeeting' | 'getZoomRoomContext' | 'getZoomRoomControllerCredentials' | 'toggleParticipantMediaVideo' | 'sendMessage' | 'putParticipantToWaitingRoom' | 'admitParticipantFromWaitingRoom' | 'getWaitingRoomParticipants' | 'setWaitingRoomState' | 'getWaitingRoomState' | 'getPhoneContext' | 'onPhoneCalleeAnswered' | 'onPhoneCallerEnded' | 'onPhoneCalleeEnded' | 'onPhoneCalleeRejected' | 'onPhoneCallerMeetingInviting' | 'onPhoneCalleeMeetingInvite' | 'onPhoneContext' | 'getEngagementContext' | 'onEngagementContextChange' | 'getEngagementStatus' | 'onEngagementStatusChange' | 'getEngagementSecurableStatus' | 'startMediaRedirection' | 'onEngagementMediaRedirect' | 'appPopout' | 'bringAppToFront' | 'sendAppToBackground' | 'closeApp' | 'getMeetingLanguages' | 'onMeetingLanguagesChange' | 'makePhoneCall' | 'onWaitingRoomStateChange' | 'onWaitingRoomParticipantLeave' | 'onWaitingRoomParticipantJoin' | 'getMeetingParticipantsEmail' | 'onParticipantEmail' | 'getMeetingChatContext' | 'getMailContext' | 'getMailThread' | 'getMailMessage' | 'getMailActiveEditorData' | 'setMailActiveEditorData' | 'registerMailEditorComponent' | 'insertContentToMailActiveEditor' | 'renderInMailActiveEditor' | 'renderInMail' | 'subscribeBeforeMailSend' | 'unsubscribeBeforeMailSend' | 'callbackToMail' | 'onMailActiveEditorChange' | 'onMailActiveEditorTypeChange' | 'onMailActiveEditorDataChange' | 'onMailEditorDestroy' | 'onAppToggleInMailActiveEditor' | 'onAppUIActionInMail' | 'onBeforeMailSend' | 'takeParticipantPhoto' | 'takeMyPhoto' | 'onPhoto' | 'startCollaborateSidecar' | 'endCollaborateSidecar' | 'getAppVariableList' | 'getEngagementVariableValue' | 'onEngagementVariableValueChange' | 'sendMessageToChat' | 'setDynamicIndicator' | 'getDynamicIndicator' | 'removeDynamicIndicator' | 'onSetDynamicIndicator' | 'onRemoveDynamicIndicator' | 'setDynamicIndicatorStyle' | 'onDynamicIndicatorStyleChange' | 'extendDynamicIndicator' | 'onExtendDynamicIndicator' | 'promptUpgradeRequest' | 'onUpgradeRequest';
 /**
  * Example:
  * ```
@@ -2973,8 +2983,16 @@ declare type GetMailMessageResponse = {
  * @category Zoom Mail
  */
 declare type GetMailActiveEditorDataOptions = {
-    /** Specify which fields to include. By default, all fields are included. */
-    filter?: ('draftId' | 'from' | 'to' | 'cc' | 'bcc' | 'subject' | 'body' | 'editorState')[];
+    /**
+     * Specify which fields to include. By default, all fields are included.
+     *
+     * @since
+     * `headers` is supported since desktop client v6.4.5.
+     *
+     * @deprecated
+     * `editorState` is deprecated since desktop client v6.4.5, will be removed later, not recommended to use.
+     */
+    filter?: ('draftId' | 'from' | 'to' | 'cc' | 'bcc' | 'subject' | 'body' | 'headers' | 'editorState')[];
 };
 /**
  * @category Zoom Mail
@@ -3006,6 +3024,11 @@ declare type GetMailActiveEditorDataResponse = {
     subject?: string;
     /** email body */
     body?: string;
+    /** app custom headers */
+    headers?: {
+        name: `X-Zoom-App-${string}`;
+        value: string;
+    }[];
     /** Any app local state associated with the editor instance */
     editorState?: any;
 };
@@ -3039,7 +3062,22 @@ declare type SetMailActiveEditorDataOptions = {
         type: string;
         content: string;
     }[];
-    /** Any app local state associated with the editor instance, **it will replace the previous editorState** */
+    /**
+     * App custom headers, it can be used to store metadata bound with mail.
+     * If a header name starts with `X-Zoom-App-Private-`, the header will only be saved in the draft and will not be included when sending the email.
+     * **Be sure to use your own unique prefix in the header name to avoid conflicts with other app headers.**
+     *
+     * @since desktop client v6.4.5
+     */
+    headers?: {
+        name: `X-Zoom-App-${string}`;
+        value: string;
+    }[];
+    /**
+     * Any app local state associated with the editor instance, **it will replace the previous editorState**.
+     *
+     * @deprecated Since desktop client v6.4.5, will be removed later, not recommended to use.
+     */
     editorState?: any;
 };
 /**
@@ -3053,8 +3091,10 @@ declare type RegisterMailEditorComponentOptions = {
      * We can bind data in the template, the data will be passed by the component props.
      * And the template language support many [built-in functions](https://learn.microsoft.com/en-us/azure/bot-service/bot-builder-concept-adaptive-expressions?view=azure-bot-service-4.0&tabs=logical),
      * such as parse json, format date, etc.
-     * We support all adaptive card elements up to version 1.6.
-     * **Please do not use actions in the schema, because actions require js support, but js cannot be contained in the emails sent.**
+     * We support all adaptive card elements up to schema version 1.6, and some elements also support markdown.
+     * **Please do not use actions or other functions that need to execute js in the schema, because js cannot be contained in the emails sent.**
+     *
+     * We also support some custom elements, please see [RenderInMailOptions](./ZoomSdkTypes.RenderInMailOptions.html) for details.
      */
     schema: {
         /** default is AdaptiveCard */
@@ -3069,7 +3109,13 @@ declare type RegisterMailEditorComponentOptions = {
  * @category Zoom Mail
  */
 declare type InsertContentToMailActiveEditorOptions = {
-    /** content html, such as email snippet, dangerous content will be ignored */
+    /**
+     * content html, such as email snippet, dangerous content will be ignored.
+     *
+     * Because Zmail uses [Tiptap](https://tiptap.dev) to implement the editor,
+     * the content html also needs to comply with Tiptap's specifications (for example, it is best to wrap the text in p tags, etc.),
+     * otherwise it will not be inserted into the editor as is, but will be converted accordingly.
+     */
     html: string;
 };
 /**
@@ -3114,6 +3160,54 @@ declare type RenderInMailActiveEditorResponse = {
 /**
  * @category Zoom Mail
  */
+declare type RenderInMailOptions = {
+    /** ui position */
+    position: 'modal' | 'activeEditorFooter';
+    /** The id of previously rendered ui, only needed when updating or deleting the ui*/
+    id?: string;
+    /**
+     * We use [AdaptiveCards v3](https://www.npmjs.com/package/adaptivecards/v/3.0.5) to render custom ui,
+     * the schema is [AdaptiveCards Schema](https://adaptivecards.io/explorer/AdaptiveCard.html),
+     * and the schema version we support is 1.6.
+     * Such as
+     * ```json
+     * {
+     *   "body": [...]
+     *   "actions": [...]
+     *   ...
+     * }
+     * ```
+     * Don't support templating in this case, and support all adaptive card elements up to version 1.6.
+     *
+     * If schema is empty or not exist, means delete the ui specified by id,
+     * otherwise means updating the ui specified by id or creating new ui when id is not specified.
+     *
+     * We also customized some elements, as follows:
+     *
+     * **Link** - The link element generated by the `a` tag, since desktop client v6.4.5.
+     *
+     * | property   | type       | required       | description  |
+     * | :--------: | :--------: | :--------: | :-------- |
+     * | type       | 'Link'  |  yes    | must be 'Link' |
+     * | mode       | 'button' \| 'text'   | no     | display mode, default is 'text' |
+     * | url        | string     | yes     | link url |
+     * | text       | string     | no      | link text, default is link url |
+     */
+    schema?: {
+        body: Record<string, any>[];
+        [key: string]: any;
+    };
+};
+/**
+ * @category Zoom Mail
+ */
+declare type RenderInMailResponse = {
+    /** Only returned when creating a new ui, mark the rendered ui for subsequent update or delete */
+    id?: string;
+};
+/**
+ * @category Zoom Mail
+ */
 declare type SubscribeBeforeMailSendOptions = {
     /**
      * Priority is an integer in the range of [-10000, 10000], and the default is 0.
@@ -3148,6 +3242,50 @@ declare type OnMailActiveEditorChangeEvent = {
     timestamp: number;
     /** Is there any active editor? */
     noActive: boolean;
+    /**
+     * only exist when noActive is false
+     *
+     * @since desktop client v6.4.5
+     */
+    editorId?: string;
+    /**
+     * editor type, only exist when noActive is false
+     *
+     * @since desktop client v6.4.5
+     */
+    editorType?: 'new' | 'reply' | 'replyAll' | 'forward';
+    /**
+     * editor data, only exist when noActive is false
+     *
+     * @since desktop client v6.4.5
+     */
+    data?: {
+        /** email draft id */
+        draftId: string | null;
+        from: {
+            name: string;
+            email: string;
+        };
+        to: {
+            name: string;
+            email: string;
+        }[];
+        cc: {
+            name: string;
+            email: string;
+        }[];
+        bcc: {
+            name: string;
+            email: string;
+        }[];
+        subject: string;
+        body: string;
+        /** app custom headers */
+        headers: {
+            name: `X-Zoom-App-${string}`;
+            value: string;
+        }[];
+    };
 };
 /**
  * @category Zoom Mail
@@ -3163,6 +3301,12 @@ declare type OnMailActiveEditorTypeChangeEvent = {
  */
 declare type OnMailActiveEditorDataChangeEvent = {
     timestamp: number;
+    /**
+     * mail draft id
+     *
+     * @since desktop client v6.4.5
+     */
+    draftId?: string;
     from?: {
         name: string;
         email: string;
@@ -3180,6 +3324,22 @@ declare type OnMailActiveEditorDataChangeEvent = {
         email: string;
     }[];
     subject?: string;
+    /**
+     * app custom headers
+     *
+     * @since desktop client v6.4.5
+     */
+    headers?: {
+        name: `X-Zoom-App-${string}`;
+        value: string;
+    }[];
+};
+/**
+ * @category Zoom Mail
+ */
+declare type OnMailEditorDestroyEvent = {
+    timestamp: number;
+    editorId: string;
 };
 /**
  * @category Zoom Mail
@@ -3221,6 +3381,14 @@ declare type OnBeforeMailSendEvent = {
     callId: string;
     /** mail data */
     data: {
+        /**
+         * @since desktop client v6.4.5
+         */
+        draftId: string;
+        /**
+         * @since desktop client v6.4.5
+         */
+        editorId: string;
         from: {
             name: string;
             email: string;
@@ -3229,23 +3397,27 @@ declare type OnBeforeMailSendEvent = {
             name: string;
             email: string;
         }[];
-        cc?: {
+        cc: {
             name: string;
             email: string;
         }[];
-        bcc?: {
+        bcc: {
             name: string;
             email: string;
         }[];
         subject: string;
         body: string;
-        /** app custom headers */
-        headers?: {
-            name: string;
+        /** app custom headers, the header name need to meet the `X-Zoom-App-${string}` format since desktop client v6.4.5 */
+        headers: {
+            name: `X-Zoom-App-${string}`;
             value: string;
         }[];
-        /** app local state associated with the editor instance */
-        editorState?: any;
+        /**
+         * app local state associated with the editor instance.
+         *
+         * @deprecated Since desktop client v6.4.5, it will be removed later, not recommended to use.
+         */
+        editorState: any;
     };
 };
 /**
@@ -4706,6 +4878,22 @@ declare class ZoomSdk {
      * @category App Window
      */
     onExpandApp(handler: GenericEventHandler<OnExpandAppEvent>): void;
+    /**
+     * @zoomDesktopClientVersion 6.4.5
+     *
+     * Notifies app when its visibility changes.
+     *
+     * *Running context*: inMail
+     *
+     * *Supported roles*: N/A
+     *
+     * *Supports Guest Mode*: N/A
+     *
+     * *Product*: desktop
+     *
+     * @category App Window
+     */
+    onAppVisibilityChange(handler: GenericEventHandler<OnAppVisibilityChangeEvent>): void;
     /**
      * @zoomDesktopClientVersion 5.6.7
      * @zoomIOSClientVersion 6.1.0
@@ -7237,7 +7425,7 @@ declare class ZoomSdk {
      *
      * *Supports Guest Mode*: No
      *
-     * *product*: desktop
+     * *Product*: desktop
      *
      * @category Zoom Mail
      */
@@ -7253,7 +7441,7 @@ declare class ZoomSdk {
      *
      * *Supports Guest Mode*: No
      *
-     * *product*: desktop
+     * *Product*: desktop
      *
      * @category Zoom Mail
      */
@@ -7272,7 +7460,7 @@ declare class ZoomSdk {
      *
      * *Supports Guest Mode*: No
      *
-     * *product*: desktop
+     * *Product*: desktop
      *
      * @category Zoom Mail
      */
@@ -7288,7 +7476,7 @@ declare class ZoomSdk {
      *
      * *Supports Guest Mode*: No
      *
-     * *product*: desktop
+     * *Product*: desktop
      *
      * @category Zoom Mail
      */
@@ -7296,7 +7484,7 @@ declare class ZoomSdk {
     /**
      * @zoomDesktopClientVersion 6.3.6
      *
-     * Render the ui in the currently active compose editor in mail
+     * Render the ui in the currently active compose editor in mail.
      *
      * *Running context*: inMail
      *
@@ -7304,11 +7492,29 @@ declare class ZoomSdk {
      *
      * *Supports Guest Mode*: No
      *
-     * *product*: desktop
+     * *Product*: desktop
+     *
+     * @deprecated Since desktop client v6.4.5, it will be removed later, please use `renderInMail` instead.
      *
      * @category Zoom Mail
      */
     renderInMailActiveEditor(options: RenderInMailActiveEditorOptions): Promise<RenderInMailActiveEditorResponse>;
+    /**
+     * @zoomDesktopClientVersion 6.4.5
+     *
+     * Render custom ui in mail.
+     *
+     * *Running context*: inMail
+     *
+     * *Supported roles*: N/A
+     *
+     * *Supports Guest Mode*: No
+     *
+     * *Product*: desktop
+     *
+     * @category Zoom Mail
+     */
+    renderInMail(options: RenderInMailOptions): Promise<RenderInMailResponse>;
     /**
      * @zoomDesktopClientVersion 6.3.6
      *
@@ -7324,11 +7530,27 @@ declare class ZoomSdk {
      *
      * *Supports Guest Mode*: No
      *
-     * *product*: desktop
+     * *Product*: desktop
      *
      * @category Zoom Mail
      */
     subscribeBeforeMailSend(options: SubscribeBeforeMailSendOptions): Promise<GeneralMessageResponse>;
+    /**
+     * @zoomDesktopClientVersion 6.4.5
+     *
+     * Unsubscribe from the before mail send event. After unsubscribing, the app will no longer trigger `onBeforeMailSend` event when sending mails.
+     *
+     * *Running context*: inMail
+     *
+     * *Supported roles*: N/A
+     *
+     * *Supports Guest Mode*: No
+     *
+     * *Product*: desktop
+     *
+     * @category Zoom Mail
+     */
+    unsubscribeBeforeMailSend(): Promise<GeneralMessageResponse>;
     /**
      * @zoomDesktopClientVersion 6.3.6
      *
@@ -7340,7 +7562,7 @@ declare class ZoomSdk {
      *
      * *Supports Guest Mode*: No
      *
-     * *product*: desktop
+     * *Product*: desktop
      *
      * @category Zoom Mail
      */
@@ -7356,7 +7578,7 @@ declare class ZoomSdk {
      *
      * *Supports Guest Mode*: No
      *
-     * *product*: desktop
+     * *Product*: desktop
      *
      * @category Zoom Mail
      */
@@ -7377,7 +7599,7 @@ declare class ZoomSdk {
      *
      * *Supports Guest Mode*: No
      *
-     * *product*: desktop
+     * *Product*: desktop
      *
      * @category Zoom Mail
      */
@@ -7393,11 +7615,27 @@ declare class ZoomSdk {
      *
      * *Supports Guest Mode*: No
      *
-     * *product*: desktop
+     * *Product*: desktop
      *
      * @category Zoom Mail
      */
     onMailActiveEditorDataChange(handler: GenericEventHandler<OnMailActiveEditorDataChangeEvent>): void;
+    /**
+     * @zoomDesktopClientVersion 6.4.5
+     *
+     * Event triggered when the editor in mail is destroyed.
+     *
+     * *Running context*: inMail
+     *
+     * *Supported roles*: N/A
+     *
+     * *Supports Guest Mode*: No
+     *
+     * *Product*: desktop
+     *
+     * @category Zoom Mail
+     */
+    onMailEditorDestroy(handler: GenericEventHandler<OnMailEditorDestroyEvent>): void;
     /**
      * @zoomDesktopClientVersion 6.3.6
      *
@@ -7409,7 +7647,11 @@ declare class ZoomSdk {
      *
      * *Supports Guest Mode*: No
      *
-     * *product*: desktop
+     * *Product*: desktop
+     *
+     * @deprecated
+     * Since desktop client v6.4.5, apps are always enabled in the currently activated editor, and this event will no longer be triggered.
+     * It will be removed later, not recommended to use.
      *
      * @category Zoom Mail
      */
@@ -7426,7 +7668,7 @@ declare class ZoomSdk {
      *
      * *Supports Guest Mode*: No
      *
-     * *product*: desktop
+     * *Product*: desktop
      *
      * @category Zoom Mail
      */
@@ -7449,7 +7691,7 @@ declare class ZoomSdk {
      *   // the same as the callId of onBeforeMailSend event
      *   callId: OnBeforeMailSendEvent['callId']
      *   // 'cancel' means canceling the sending, otherwise, it means modifying the mail data
-     *   data: 'cancel' | Partial<Omit<OnBeforeMailSendEvent['data'], 'from' | 'editorState'>>
+     *   data: 'cancel' | Partial<Omit<OnBeforeMailSendEvent['data'], 'draftId' | 'editorId' | 'from' | 'editorState'>>
      * }
      * ```
      *
@@ -7459,7 +7701,7 @@ declare class ZoomSdk {
      *
      * *Supports Guest Mode*: No
      *
-     * *product*: desktop
+     * *Product*: desktop
      *
      * @category Zoom Mail
      */
@@ -7733,4 +7975,4 @@ declare class ZoomSdk {
 
 declare const _default: ZoomSdk;
 
-export { AddBreakoutRoomOptions, AddParticipantSpotlightOptions, AdmitParticipantFromWaitingRoomOptions, AllowParticipantToRecordOptions, Apis, AppInvitationResponse, AppPopoutOptions, AppPopoutResponse, AssignParticipantToBreakoutRoomOptions, AttendeeSpeakingOptions, AudioMedia, AuthObject, AuthorizeOptions, BreakOutRoomParticipant, BreakoutRoomAssignmentMethods, BreakoutRoomsCreated, BreakoutRoomsParticipantsAssigned, BreakoutRoomsParticipantsJoined, BreakoutRoomsParticipantsLeft, BreakoutRoomsResponse, BreakoutRoomsUpdated, BringAppToFrontResponse, BroadcastVoiceToBreakoutRoomsOptions, CallbackToMailOptions, ChangeBreakoutRoomOptions, ClearImageOptions, ClearParticipantOptions, ClearWebViewOptions, CloudRecordingOptions, ComposeCardOptions, ConfigOptions, ConfigResponse, ConfigSize, ConfigureBreakoutRoomsOptions, ConfigureBreakoutRoomsResponse, CreateBreakoutRoomsOptions, DecryptedAppContextResponse, DrawImageOptions, DrawImageResponse, DrawParticipantOptions, DrawWebViewOptions, DynamicIndicatorOptions, DynamicIndicatorStyles, DynamicIndicatorTimerOptions, EmojiOptions, EngagementContext, EngagementContextEvent, EngagementStatus, EngagementStatusEvent, ExpandAppOptions, FeedbackReactionOptions, FeedbackReactions, GeneralMessage, GeneralMessageResponse, GenericEventHandler, GetAppContextResponse, GetAppVariableListResponse, GetAudioSettingsResponse, GetAudioStateResponse, GetChatContextResponse, GetDynamicIndicatorOutput, GetEmojiConfigurationResponse, GetEngagementContextOptions, GetEngagementSecurableStatusOptions, GetEngagementSecurableStatusResponse, GetEngagementStatusOptions, GetEngagementVariableValueOptions, GetEngagementVariableValueResponse, GetGalleryOrderListResponse, GetGalleryPageResponse, GetIncomingParticipantAudioStateOptions, GetIncomingParticipantAudioStateResponse, GetMailActiveEditorDataOptions, GetMailActiveEditorDataResponse, GetMailContextResponse, GetMailMessageOptions, GetMailMessageResponse, GetMailThreadOptions, GetMailThreadResponse, GetMeetingChatContextResponse, GetMeetingContextResponse, GetMeetingJoinUrlResponse, GetMeetingLanguagesResponse, GetMeetingParticipantsEmailOptions, GetMeetingParticipantsResponse, GetMeetingUUIDResponse, GetMeetingViewResponse, GetParticipantSpotlightsResponse, GetPhoneContextResponse, GetRecordingContextResponse, GetSupportedJsApisResponse, GetUserContextResponse, GetVideoSettingsResponse, GetVideoStateResponse, GetWaitingRoomParticipantsResponse, GetWaitingRoomStateResponse, GetZoomRoomContextResponse, GetZoomRoomControllerCredentialsResponse, InsertContentToMailActiveEditorOptions, JSONObject, JSONValue, JoinMeetingOptions, LaunchAppInMeetingOptions, LaunchContext, LeaveMeetingOptions, ListCamerasResponse, MakePhoneCallOptions, MeetingView, NativeApiRequest, NativeApiRequestData, NativeApiResponseData, NativeConfigOptions, NativeMessage, NativeMessageData, NotificationOptions$1 as NotificationOptions, OnActiveSpeakerChangeEvent, OnActiveSpeakerChangeUserType, OnAppPopoutEvent, OnAppToggleInMailActiveEditorEvent, OnAppUIActionInMailEvent, OnAuthorizedEvent, OnBeforeMailSendEvent, OnBreakoutRoomChangeEvent, OnCloudRecordingEvent, OnCollaborateChangeEvent, OnConnectEvent, OnDynamicIndicatorStyleChangeEvent, OnEmojiReactionEvent, OnEngagementMediaRedirectEvent, OnExpandAppEvent, OnExtendDynamicIndicatorEvent, OnFeedbackReactionEvent, OnGalleryOrderEvent, OnGalleryPageChangeEvent, OnIncomingParticipantAudioChangeEvent, OnMailActiveEditorChangeEvent, OnMailActiveEditorDataChangeEvent, OnMailActiveEditorTypeChangeEvent, OnMeetingEvent, OnMeetingLanguagesChangeEvent, OnMeetingViewChangeEvent, OnMessageEvent, OnMyActiveSpeakerChangeEvent, OnMyMediaChangeEvent, OnMyReactionEvent, OnMyUserContextChangeEvent, OnParticipantChangeEvent, OnParticipantChangeParticipantType, OnParticipantEmailEvent, OnPhoneContextEvent, OnPhotoEvent, OnPhotoEventOriginal, OnReactionEvent, OnRemoveDynamicIndicatorEvent, OnRemoveFeedbackReactionEvent, OnRenderedAppOpenedEvent, OnRunningContextChangeEvent, OnSendAppInvitationEvent, OnSetDynamicIndicatorEvent, OnShareAppEvent, OnShareComputerAudioEvent, OnShareScreenEvent, OnUpgradeRequestEvent, OnWaitingRoomParticipantJoinEvent, OnWaitingRoomParticipantLeaveEvent, OnWaitingRoomStateChangeEvent, OpenUrlOptions, Participant, ParticipantCutoutShape, ParticipantPinOptions, PhoneEvent, PixelValue, PromptShareScreenOptions, PromptUpgradeRequestOptions, PutParticipantToWaitingRoomOptions, RegisterMailEditorComponentOptions, RemoveParticipantSpotlightsOptions, RemoveWebinarAttendeeOptions, RenameBreakoutRoomOptions, RenderInMailActiveEditorOptions, RenderInMailActiveEditorResponse, RenderingContextView, RunRenderingContextOptions, RunningContext, RunningContextResponse, SdkOptions, SdkVersion, SendAppInvitationOptions, SendAppToBackgroundResponse, SendMessageOptions, SendMessageToChatOptions, SendMessageToChatResponse, SetAudioSettingsOptions, SetAudioStateOptions, SetCameraOptions, SetDynamicIndicatorStyleInput, SetEmojiReactionOptions, SetGalleryPageOptions, SetIncomingParticipantAudioStateOptions, SetMailActiveEditorDataOptions, SetMeetingViewOptions, SetScreenNameOptions, SetVideoFilterOptions, SetVideoMirrorEffectOptions, SetVideoSettingsOptions, SetVideoStateOptions, SetWaitingRoomStateOptions, ShareAppOptions, ShareComputerAudioOptions, ShowAppInvitationDialogOptions, StartCollaborateOptions, StartMediaRedirectionOptions, StartMediaRedirectionResponse, SubscribeBeforeMailSendOptions, TakeParticipantPhotoOptions, ToggleParticipantMediaAudioOptions, ToggleParticipantMediaVideoOptions, Uuid, VideoMedia, VirtualBackgroundOptions, VirtualForegroundOptions, WarningReponse, compatibilityApisCache, _default as default, isVersionCompatible, onEngagementVariableValueChangeEvent, onMeetingConfigChangedEvent, setParticipantScreenNameOptions };
+export { AddBreakoutRoomOptions, AddParticipantSpotlightOptions, AdmitParticipantFromWaitingRoomOptions, AllowParticipantToRecordOptions, Apis, AppInvitationResponse, AppPopoutOptions, AppPopoutResponse, AssignParticipantToBreakoutRoomOptions, AttendeeSpeakingOptions, AudioMedia, AuthObject, AuthorizeOptions, BreakOutRoomParticipant, BreakoutRoomAssignmentMethods, BreakoutRoomsCreated, BreakoutRoomsParticipantsAssigned, BreakoutRoomsParticipantsJoined, BreakoutRoomsParticipantsLeft, BreakoutRoomsResponse, BreakoutRoomsUpdated, BringAppToFrontResponse, BroadcastVoiceToBreakoutRoomsOptions, CallbackToMailOptions, ChangeBreakoutRoomOptions, ClearImageOptions, ClearParticipantOptions, ClearWebViewOptions, CloudRecordingOptions, ComposeCardOptions, ConfigOptions, ConfigResponse, ConfigSize, ConfigureBreakoutRoomsOptions, ConfigureBreakoutRoomsResponse, CreateBreakoutRoomsOptions, DecryptedAppContextResponse, DrawImageOptions, DrawImageResponse, DrawParticipantOptions, DrawWebViewOptions, DynamicIndicatorOptions, DynamicIndicatorStyles, DynamicIndicatorTimerOptions, EmojiOptions, EngagementContext, EngagementContextEvent, EngagementStatus, EngagementStatusEvent, ExpandAppOptions, FeedbackReactionOptions, FeedbackReactions, GeneralMessage, GeneralMessageResponse, GenericEventHandler, GetAppContextResponse, GetAppVariableListResponse, GetAudioSettingsResponse, GetAudioStateResponse, GetChatContextResponse, GetDynamicIndicatorOutput, GetEmojiConfigurationResponse, GetEngagementContextOptions, GetEngagementSecurableStatusOptions, GetEngagementSecurableStatusResponse, GetEngagementStatusOptions, GetEngagementVariableValueOptions, GetEngagementVariableValueResponse, GetGalleryOrderListResponse, GetGalleryPageResponse, GetIncomingParticipantAudioStateOptions, GetIncomingParticipantAudioStateResponse, GetMailActiveEditorDataOptions, GetMailActiveEditorDataResponse, GetMailContextResponse, GetMailMessageOptions, GetMailMessageResponse, GetMailThreadOptions, GetMailThreadResponse, GetMeetingChatContextResponse, GetMeetingContextResponse, GetMeetingJoinUrlResponse, GetMeetingLanguagesResponse, GetMeetingParticipantsEmailOptions, GetMeetingParticipantsResponse, GetMeetingUUIDResponse, GetMeetingViewResponse, GetParticipantSpotlightsResponse, GetPhoneContextResponse, GetRecordingContextResponse, GetSupportedJsApisResponse, GetUserContextResponse, GetVideoSettingsResponse, GetVideoStateResponse, GetWaitingRoomParticipantsResponse, GetWaitingRoomStateResponse, GetZoomRoomContextResponse, GetZoomRoomControllerCredentialsResponse, InsertContentToMailActiveEditorOptions, JSONObject, JSONValue, JoinMeetingOptions, LaunchAppInMeetingOptions, LaunchContext, LeaveMeetingOptions, ListCamerasResponse, MakePhoneCallOptions, MeetingView, NativeApiRequest, NativeApiRequestData, NativeApiResponseData, NativeConfigOptions, NativeMessage, NativeMessageData, NotificationOptions$1 as NotificationOptions, OnActiveSpeakerChangeEvent, OnActiveSpeakerChangeUserType, OnAppPopoutEvent, OnAppToggleInMailActiveEditorEvent, OnAppUIActionInMailEvent, OnAppVisibilityChangeEvent, OnAuthorizedEvent, OnBeforeMailSendEvent, OnBreakoutRoomChangeEvent, OnCloudRecordingEvent, OnCollaborateChangeEvent, OnConnectEvent, OnDynamicIndicatorStyleChangeEvent, OnEmojiReactionEvent, OnEngagementMediaRedirectEvent, OnExpandAppEvent, OnExtendDynamicIndicatorEvent, OnFeedbackReactionEvent, OnGalleryOrderEvent, OnGalleryPageChangeEvent, OnIncomingParticipantAudioChangeEvent, OnMailActiveEditorChangeEvent, OnMailActiveEditorDataChangeEvent, OnMailActiveEditorTypeChangeEvent, OnMailEditorDestroyEvent, OnMeetingEvent, OnMeetingLanguagesChangeEvent, OnMeetingViewChangeEvent, OnMessageEvent, OnMyActiveSpeakerChangeEvent, OnMyMediaChangeEvent, OnMyReactionEvent, OnMyUserContextChangeEvent, OnParticipantChangeEvent, OnParticipantChangeParticipantType, OnParticipantEmailEvent, OnPhoneContextEvent, OnPhotoEvent, OnPhotoEventOriginal, OnReactionEvent, OnRemoveDynamicIndicatorEvent, OnRemoveFeedbackReactionEvent, OnRenderedAppOpenedEvent, OnRunningContextChangeEvent, OnSendAppInvitationEvent, OnSetDynamicIndicatorEvent, OnShareAppEvent, OnShareComputerAudioEvent, OnShareScreenEvent, OnUpgradeRequestEvent, OnWaitingRoomParticipantJoinEvent, OnWaitingRoomParticipantLeaveEvent, OnWaitingRoomStateChangeEvent, OpenUrlOptions, Participant, ParticipantCutoutShape, ParticipantPinOptions, PhoneEvent, PixelValue, PromptShareScreenOptions, PromptUpgradeRequestOptions, PutParticipantToWaitingRoomOptions, RegisterMailEditorComponentOptions, RemoveParticipantSpotlightsOptions, RemoveWebinarAttendeeOptions, RenameBreakoutRoomOptions, RenderInMailActiveEditorOptions, RenderInMailActiveEditorResponse, RenderInMailOptions, RenderInMailResponse, RenderingContextView, RunRenderingContextOptions, RunningContext, RunningContextResponse, SdkOptions, SdkVersion, SendAppInvitationOptions, SendAppToBackgroundResponse, SendMessageOptions, SendMessageToChatOptions, SendMessageToChatResponse, SetAudioSettingsOptions, SetAudioStateOptions, SetCameraOptions, SetDynamicIndicatorStyleInput, SetEmojiReactionOptions, SetGalleryPageOptions, SetIncomingParticipantAudioStateOptions, SetMailActiveEditorDataOptions, SetMeetingViewOptions, SetScreenNameOptions, SetVideoFilterOptions, SetVideoMirrorEffectOptions, SetVideoSettingsOptions, SetVideoStateOptions, SetWaitingRoomStateOptions, ShareAppOptions, ShareComputerAudioOptions, ShowAppInvitationDialogOptions, StartCollaborateOptions, StartMediaRedirectionOptions, StartMediaRedirectionResponse, SubscribeBeforeMailSendOptions, TakeParticipantPhotoOptions, ToggleParticipantMediaAudioOptions, ToggleParticipantMediaVideoOptions, Uuid, VideoMedia, VirtualBackgroundOptions, VirtualForegroundOptions, WarningReponse, compatibilityApisCache, _default as default, isVersionCompatible, onEngagementVariableValueChangeEvent, onMeetingConfigChangedEvent, setParticipantScreenNameOptions };
