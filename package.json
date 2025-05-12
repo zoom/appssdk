@@ -1,6 +1,6 @@
 {
   "name": "@zoom/appssdk",
-  "version": "0.16.28",
+  "version": "0.16.29",
   "description": "Zoom Apps SDK",
   "license": "MIT",
   "files": [
@@ -17,6 +17,9 @@
   "main": "dist/sdk.module.js",
   "types": "dist/sdk.d.ts",
   "module": "dist/sdk.es.js",
+  "browser": {
+    "crypto": false
+  },
   "scripts": {
     "prepublishOnly": "npm run build",
     "clean": "rm -rf dist/dts",
