@@ -56,7 +56,7 @@ declare enum NativeEvents {
     ON_GALLERY_ORDER = "onGalleryOrder",
     ON_EMOJI_REACTION = "onEmojiReaction",
     ON_MEETING_VIEW_CHANGE = "onMeetingViewChange",
-    ON_PHONE_CALEE_ANSWERED = "onPhoneCalleeAnswered",
+    ON_PHONE_CALLEE_ANSWERED = "onPhoneCalleeAnswered",
     ON_PHONE_CALLER_ENDED = "onPhoneCallerEnded",
     ON_PHONE_CALLEE_ENDED = "onPhoneCalleeEnded",
     ON_PHONE_CALLEE_REJECTED = "onPhoneCalleeRejected",
@@ -2479,6 +2479,11 @@ declare type PhoneEvent = {
             extensionType?: string;
             /** phone number of the callee in E164 format. Phone number and extension number can't be empty at the same time */
             phoneNumber: string;
+            /**
+             * @deprecated
+             * This field is introduced to have a bug fix and backward compatibility.This field serves exactly as phoneNumber field above. It just has an additional whitespace " " at the end of the name "phoneNumber "
+             */
+            'phoneNumber ': string;
             /** timezone of the callee */
             timezone?: string;
             /** Zoom User ID of the callee */
@@ -2763,6 +2768,8 @@ declare type OnMeetingLanguagesChangeEvent = {
 declare type MakePhoneCallOptions = {
     /** (E164 number format expected)  */
     phoneNumber: string;
+    /** An Intepreter */
+    phoneUserName: string;
     /** The selected outbound callerid of the person making the call */
     callerId: string;
     /** Allows for autodial when set to true */
@@ -3522,6 +3529,8 @@ declare type SetDynamicIndicatorStyleInput = {
     textStyle?: 'bold' | 'italic';
 };
 /**
+ *  * **Note:** Dynamic indicators must enhance the meeting experience for all participants, such as showing timers or relevant status cues. Promotional content, app install prompts, or distracting visuals (e.g., bright colors or persistent banners) are not allowed. Any misuse of dynamic indicators and the dynamic indicator APIs, as determined by Zoom, may lead to app rejection or removal from the Zoom App Marketplace.
+ *
  * @category Dynamic Indicator
  */
 declare type DynamicIndicatorOptions = {

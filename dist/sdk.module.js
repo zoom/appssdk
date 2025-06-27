@@ -1,4 +1,4 @@
-/* Zoom Apps SDK v0.16.30  */
+/* Zoom Apps SDK v0.16.31  */
 /**
  * Copyright (c) 2025 Zoom Video Communications, Inc.
  * 
@@ -25,7 +25,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var version = "0.16.30";
+var version = "0.16.31";
 
 var extendStatics = function(d, b) {
     extendStatics = Object.setPrototypeOf ||
@@ -332,7 +332,7 @@ var NativeEvents;
     NativeEvents["ON_GALLERY_ORDER"] = "onGalleryOrder";
     NativeEvents["ON_EMOJI_REACTION"] = "onEmojiReaction";
     NativeEvents["ON_MEETING_VIEW_CHANGE"] = "onMeetingViewChange";
-    NativeEvents["ON_PHONE_CALEE_ANSWERED"] = "onPhoneCalleeAnswered";
+    NativeEvents["ON_PHONE_CALLEE_ANSWERED"] = "onPhoneCalleeAnswered";
     NativeEvents["ON_PHONE_CALLER_ENDED"] = "onPhoneCallerEnded";
     NativeEvents["ON_PHONE_CALLEE_ENDED"] = "onPhoneCalleeEnded";
     NativeEvents["ON_PHONE_CALLEE_REJECTED"] = "onPhoneCalleeRejected";
@@ -579,7 +579,7 @@ function wrapInMessageObject(value) {
     return value;
 }
 
-var _a$2, _b$1, _c$1, _d$1, _e$1, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28, _29, _30, _31, _32, _33, _34, _35, _36, _37, _38, _39, _40, _41, _42, _43, _44, _45, _46, _47, _48, _49, _50, _51, _52, _53, _54, _55, _56, _57, _58, _59, _60, _61, _62, _63, _64, _65, _66, _67, _68, _69, _70, _71, _72, _73, _74, _75, _76, _77, _78, _79, _80, _81, _82, _83, _84, _85, _86, _87, _88, _89, _90, _91, _92, _93, _94, _95, _96, _97, _98, _99, _100, _101, _102, _103, _104, _105, _106, _107, _108, _109, _110, _111, _112, _113, _114, _115, _116, _117, _118, _119, _120, _121, _122, _123, _124, _125, _126, _127, _128, _129, _130, _131, _132, _133, _134, _135, _136, _137, _138, _139, _140, _141, _142, _143, _144, _145, _146, _147, _148, _149;
+var _a$2, _b$1, _c$1, _d$1, _e$1, _f$1, _g$1, _h$1, _j$1, _k$1, _l$1, _m$1, _o$1, _p$1, _q$1, _r$1, _s$1, _t$1, _u$1, _v, _w, _x, _y, _z, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28, _29, _30, _31, _32, _33, _34, _35, _36, _37, _38, _39, _40, _41, _42, _43, _44, _45, _46, _47, _48, _49, _50, _51, _52, _53, _54, _55, _56, _57, _58, _59, _60, _61, _62, _63, _64, _65, _66, _67, _68, _69, _70, _71, _72, _73, _74, _75, _76, _77, _78, _79, _80, _81, _82, _83, _84, _85, _86, _87, _88, _89, _90, _91, _92, _93, _94, _95, _96, _97, _98, _99, _100, _101, _102, _103, _104, _105, _106, _107, _108, _109, _110, _111, _112, _113, _114, _115, _116, _117, _118, _119, _120, _121, _122, _123, _124, _125, _126, _127, _128, _129, _130, _131, _132, _133, _134, _135, _136, _137, _138, _139, _140, _141, _142, _143, _144, _145, _146, _147, _148, _149;
 var compatibilityFnsApis = (_a$2 = {},
     _a$2[NativeApis.GET_APP_VARIABLE_LIST] = (_b$1 = {},
         _b$1[ZERO_SIXTEEN] = (_c$1 = {},
@@ -600,74 +600,74 @@ var compatibilityFnsApis = (_a$2 = {},
             },
             _e$1),
         _d$1),
-    _a$2[NativeApis.TOGGLE_PARTICIPANT_MEDIA_AUDIO] = (_f = {},
-        _f[ZERO_SIXTEEN] = (_g = {},
-            _g[BASE_VERSION] = {
+    _a$2[NativeApis.TOGGLE_PARTICIPANT_MEDIA_AUDIO] = (_f$1 = {},
+        _f$1[ZERO_SIXTEEN] = (_g$1 = {},
+            _g$1[BASE_VERSION] = {
                 mapInput: renameKeys({
                     participants: 'user_list',
                     participantUUIDs: 'user_UUID_list',
                 }),
                 mapOutput: function (value) { return wrapInMessageObject(value); },
             },
-            _g),
-        _f),
-    _a$2[NativeApis.JOIN_MEETING] = (_h = {},
-        _h[ZERO_SIXTEEN] = (_j = {},
-            _j[BASE_VERSION] = {
+            _g$1),
+        _f$1),
+    _a$2[NativeApis.JOIN_MEETING] = (_h$1 = {},
+        _h$1[ZERO_SIXTEEN] = (_j$1 = {},
+            _j$1[BASE_VERSION] = {
                 mapInput: mapJoinMeetingInputs(),
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'message', value: value });
                 },
             },
-            _j),
-        _h),
-    _a$2[NativeApis.GET_RUNNING_CONTEXT] = (_k = {},
-        _k[ZERO_SIXTEEN] = (_l = {},
-            _l[BASE_VERSION] = {
+            _j$1),
+        _h$1),
+    _a$2[NativeApis.GET_RUNNING_CONTEXT] = (_k$1 = {},
+        _k$1[ZERO_SIXTEEN] = (_l$1 = {},
+            _l$1[BASE_VERSION] = {
                 mapOutput: function (value) {
                     return wrapInObject({ key: 'context', value: value });
                 },
             },
-            _l),
-        _k),
-    _a$2[NativeApis.OPEN_URL] = (_m = {},
-        _m[ZERO_FOURTEEN] = (_o = {},
-            _o[BASE_VERSION] = {
+            _l$1),
+        _k$1),
+    _a$2[NativeApis.OPEN_URL] = (_m$1 = {},
+        _m$1[ZERO_FOURTEEN] = (_o$1 = {},
+            _o$1[BASE_VERSION] = {
                 validate: function (data) {
                     new URL(data.url);
                 },
             },
-            _o),
-        _m[ZERO_SIXTEEN] = (_p = {},
-            _p[BASE_VERSION] = {
+            _o$1),
+        _m$1[ZERO_SIXTEEN] = (_p$1 = {},
+            _p$1[BASE_VERSION] = {
                 mapOutput: function (value) { return wrapInMessageObject(value); },
                 validate: function (data) {
                     new URL(data.url);
                 },
             },
-            _p),
-        _m),
-    _a$2[NativeApis.SET_VIRTUAL_BACKGROUND] = (_q = {},
-        _q[ZERO_SIXTEEN] = (_r = {},
-            _r[BASE_VERSION] = {
+            _p$1),
+        _m$1),
+    _a$2[NativeApis.SET_VIRTUAL_BACKGROUND] = (_q$1 = {},
+        _q$1[ZERO_SIXTEEN] = (_r$1 = {},
+            _r$1[BASE_VERSION] = {
                 mapOutput: function (value) { return wrapInMessageObject(value); },
             },
-            _r),
-        _q),
-    _a$2[NativeApis.REMOVE_VIRTUAL_BACKGROUND] = (_s = {},
-        _s[ZERO_SIXTEEN] = (_t = {},
-            _t[BASE_VERSION] = {
+            _r$1),
+        _q$1),
+    _a$2[NativeApis.REMOVE_VIRTUAL_BACKGROUND] = (_s$1 = {},
+        _s$1[ZERO_SIXTEEN] = (_t$1 = {},
+            _t$1[BASE_VERSION] = {
                 mapOutput: function (value) { return wrapInMessageObject(value); },
             },
-            _t),
-        _s),
-    _a$2[NativeApis.SET_VIRTUAL_FOREGROUND] = (_u = {},
-        _u[ZERO_SIXTEEN] = (_v = {},
+            _t$1),
+        _s$1),
+    _a$2[NativeApis.SET_VIRTUAL_FOREGROUND] = (_u$1 = {},
+        _u$1[ZERO_SIXTEEN] = (_v = {},
             _v[BASE_VERSION] = {
                 mapOutput: function (value) { return wrapInMessageObject(value); },
             },
             _v),
-        _u),
+        _u$1),
     _a$2[NativeApis.REMOVE_VIRTUAL_FOREGROUND] = (_w = {},
         _w[ZERO_SIXTEEN] = (_x = {},
             _x[BASE_VERSION] = {
@@ -1313,7 +1313,16 @@ var compatibilityFnsApis = (_a$2 = {},
         _148),
     _a$2);
 
-var _a$1, _b, _c, _d, _e;
+var _a$1, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u;
+var handlePhoneNumberCompatibility = function (data) {
+    var callObject = data.callObject;
+    if (callObject && callObject.callee) {
+        var phoneNumber = callObject.callee.phoneNumber || callObject.callee['phoneNumber '] || '';
+        var modifiedCallee = __assign(__assign({}, callObject.callee), { phoneNumber: phoneNumber, 'phoneNumber ': phoneNumber });
+        return __assign(__assign({}, data), { callObject: __assign(__assign({}, callObject), { callee: modifiedCallee }) });
+    }
+    return data;
+};
 var compatibilityFnsEvents = (_a$1 = {},
     _a$1[NativeEvents.ON_MEETING_CONFIG_CHANGED] = (_b = {},
         _b[ZERO_FOURTEEN] = (_c = {},
@@ -1363,6 +1372,55 @@ var compatibilityFnsEvents = (_a$1 = {},
             },
             _e),
         _d),
+    _a$1[NativeEvents.ON_PHONE_CALLEE_ANSWERED] = (_f = {},
+        _f[ZERO_SIXTEEN] = (_g = {},
+            _g[BASE_VERSION] = {
+                mapEventData: handlePhoneNumberCompatibility,
+            },
+            _g),
+        _f),
+    _a$1[NativeEvents.ON_PHONE_CALLER_ENDED] = (_h = {},
+        _h[ZERO_SIXTEEN] = (_j = {},
+            _j[BASE_VERSION] = {
+                mapEventData: handlePhoneNumberCompatibility,
+            },
+            _j),
+        _h),
+    _a$1[NativeEvents.ON_PHONE_CALLEE_ENDED] = (_k = {},
+        _k[ZERO_SIXTEEN] = (_l = {},
+            _l[BASE_VERSION] = {
+                mapEventData: handlePhoneNumberCompatibility,
+            },
+            _l),
+        _k),
+    _a$1[NativeEvents.ON_PHONE_CALLEE_REJECTED] = (_m = {},
+        _m[ZERO_SIXTEEN] = (_o = {},
+            _o[BASE_VERSION] = {
+                mapEventData: handlePhoneNumberCompatibility,
+            },
+            _o),
+        _m),
+    _a$1[NativeEvents.ON_PHONE_CALLER_MEETING_INVITING] = (_p = {},
+        _p[ZERO_SIXTEEN] = (_q = {},
+            _q[BASE_VERSION] = {
+                mapEventData: handlePhoneNumberCompatibility,
+            },
+            _q),
+        _p),
+    _a$1[NativeEvents.ON_PHONE_CALLEE_MEETING_INVITE] = (_r = {},
+        _r[ZERO_SIXTEEN] = (_s = {},
+            _s[BASE_VERSION] = {
+                mapEventData: handlePhoneNumberCompatibility,
+            },
+            _s),
+        _r),
+    _a$1[NativeEvents.ON_PHONE_CONTEXT] = (_t = {},
+        _t[ZERO_SIXTEEN] = (_u = {},
+            _u[BASE_VERSION] = {
+                mapEventData: handlePhoneNumberCompatibility,
+            },
+            _u),
+        _t),
     _a$1);
 var loadImagePromise = function (clientAPIImageDataResponse) { return __awaiter(void 0, void 0, void 0, function () {
     var canvas, context;
@@ -1579,6 +1637,7 @@ var ZoomSdk =  (function () {
                 }
                 if (!isTimerApp &&
                     dynamicIndicatorApis.includes(apiName) &&
+                    this._clientVersion &&
                     !isVersionCompatible(this._clientVersion, FIVE_SEVENTEEN_FIVE)) {
                     throw new Error("".concat(apiName, " requires client version 5.17.5 or higher. Current version: ").concat(this._clientVersion));
                 }
@@ -1653,7 +1712,8 @@ var ZoomSdk =  (function () {
                             setupCompatibilityApisCache(compatibilityApisCache, this._version, this._clientVersion);
                             setupCompatibilityEventsCache(compatibilityEventsCache, this._version, this._clientVersion);
                             dynamicApisAndEvents_1 = __spreadArray(__spreadArray([], dynamicIndicatorApis, true), dynamicIndicatorEvents, true);
-                            if (!isVersionCompatible(this._clientVersion, FIVE_SEVENTEEN_FIVE)) {
+                            if (this._clientVersion &&
+                                !isVersionCompatible(this._clientVersion, FIVE_SEVENTEEN_FIVE)) {
                                 matchingCapabilities = capabilities === null || capabilities === void 0 ? void 0 : capabilities.filter(function (capability) {
                                     return dynamicApisAndEvents_1.includes(capability);
                                 });
@@ -1676,7 +1736,8 @@ var ZoomSdk =  (function () {
                     case 0: return [4 , this.callZoomApi(NativeApis.GET_SUPPORTED_JS_APIS, null, null)];
                     case 1:
                         response = _a.sent();
-                        if (!isVersionCompatible(this._clientVersion, FIVE_SEVENTEEN_FIVE)) {
+                        if (this._clientVersion &&
+                            !isVersionCompatible(this._clientVersion, FIVE_SEVENTEEN_FIVE)) {
                             filteredApis = response.supportedApis.filter(function (api) {
                                 return !dynamicIndicatorApis.includes(api) &&
                                     !dynamicIndicatorEvents.includes(api);
@@ -2088,6 +2149,7 @@ var ZoomSdk =  (function () {
             console.warn('Must call zoomSdk.config before adding an event listener. This will become a thrown error in a future version of the SDK');
         }
         if (dynamicIndicatorEvents.includes(event) &&
+            this._clientVersion &&
             !isVersionCompatible(this._clientVersion, FIVE_SEVENTEEN_FIVE)) {
             throw new Error("".concat(event, " requires client version 5.17.5 or higher. Current version: ").concat(this._clientVersion));
         }
@@ -2103,6 +2165,7 @@ var ZoomSdk =  (function () {
             console.warn('Must call zoomSdk.config before removing an event listener. This will become a thrown error in a future version of the SDK');
         }
         if (dynamicIndicatorEvents.includes(event) &&
+            this._clientVersion &&
             !isVersionCompatible(this._clientVersion, FIVE_SEVENTEEN_FIVE)) {
             throw new Error("".concat(event, " requires client version 5.17.5 or higher. Current version: ").concat(this._clientVersion));
         }
@@ -2117,6 +2180,7 @@ var ZoomSdk =  (function () {
     };
     ZoomSdk.prototype.on = function (event, handler) {
         if (dynamicIndicatorEvents.includes(event) &&
+            this._clientVersion &&
             !isVersionCompatible(this._clientVersion, FIVE_SEVENTEEN_FIVE)) {
             throw new Error("".concat(event, " requires client version 5.17.5 or higher. Current version: ").concat(this._clientVersion));
         }
@@ -2130,6 +2194,7 @@ var ZoomSdk =  (function () {
     };
     ZoomSdk.prototype.off = function (event, handler) {
         if (dynamicIndicatorEvents.includes(event) &&
+            this._clientVersion &&
             !isVersionCompatible(this._clientVersion, FIVE_SEVENTEEN_FIVE)) {
             throw new Error("".concat(event, " requires client version 5.17.5 or higher. Current version: ").concat(this._clientVersion));
         }
@@ -2590,7 +2655,7 @@ var ZoomSdk =  (function () {
         });
     };
     ZoomSdk.prototype.onPhoneCalleeAnswered = function (handler) {
-        this.addEventListener(NativeEvents.ON_PHONE_CALEE_ANSWERED, handler);
+        this.addEventListener(NativeEvents.ON_PHONE_CALLEE_ANSWERED, handler);
     };
     ZoomSdk.prototype.onPhoneCallerEnded = function (handler) {
         this.addEventListener(NativeEvents.ON_PHONE_CALLER_ENDED, handler);
