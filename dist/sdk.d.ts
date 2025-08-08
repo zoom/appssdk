@@ -2435,12 +2435,74 @@ declare type SendMessageOptions = {
 /**
  * @category Zoom Phone
  */
+declare type CallObject = {
+    /** account ID of the callee */
+    accountId: string;
+    /** unique identifier of the call */
+    callId: string;
+    /** the GMT time at which the ringing started in  "yyyy-MM-dd'T'HH:mm:ss'Z'" format.*/
+    ringingStartTime: string;
+    /** the GMT timer (in "yyyy-MM-dd'T'HH:mm:ss'Z'" format) at which the call was answered */
+    answerStartTime?: string;
+    /** the GMT time (in "yyyy-MM-dd'T'HH:mm:ss'Z'" format) at which the call was ended by the callee. */
+    callEndTime: string;
+    /** represents the person who is called by the caller */
+    callee: {
+        deviceId?: string;
+        /** extension ID of the callee */
+        extensionId?: string;
+        /** extension number of the callee */
+        extensionNumber?: string;
+        /** extension type of a the callee. Values: `user` | `callQueue`| `autoReceptionist` ┃ `commonArea` ┃ `commonAreaPhone` ┃ `sharedLineGroup` ┃ `zoomRoom` ┃ `ciscoRoom/PolycomRoom` ┃ `contactCenter` ┃ `pstn` ┃ `five9` ┃ `twilio` */
+        extensionType?: string;
+        /** phone number of the callee in E164 format. Phone number and extension number can't be empty at the same time */
+        phoneNumber: string;
+        /**
+         * @deprecated
+         * This field is introduced to have a bug fix and backward compatibility.This field serves exactly as phoneNumber field above. It just has an additional whitespace " " at the end of the name "phoneNumber "
+         */
+        'phoneNumber ': string;
+        /** timezone of the callee */
+        timezone?: string;
+        /** Zoom User ID of the callee */
+        userId?: string;
+    };
+    /**  */
+    caller: {
+        /** extension ID of the caller */
+        extensionId?: string;
+        extensionNumber?: string;
+        /** extension type of a the caller. Values: `user` | `callQueue`| `autoReceptionist` ┃ `commonArea` ┃ `commonAreaPhone` ┃ `sharedLineGroup` ┃ `zoomRoom` ┃ `ciscoRoom/PolycomRoom` ┃ `contactCenter` ┃ `pstn` ┃ `five9` ┃ `twilio` */
+        extensionType?: string;
+        /** phone number of the caller in E164 format */
+        phoneNumber: string;
+        /** timezone of the caller */
+        timezone?: string;
+        /** Zoom User ID of the caller */
+        userId?: string;
+    };
+    forwardedBy?: {
+        /** the name of the extension the call was forwaded from */
+        name?: string;
+        /** extension number the call was forwarded from */
+        extensionNumber?: string;
+        /** type of extension the call was forwarded from. Values: `callQueue` | `sharedLineGroup` | `sharedLine` */
+        extensionType?: string;
+    };
+    eventTs?: string;
+    timestamp: string;
+};
+/**
+ * @category Zoom Phone
+ */
 declare type GetPhoneContextResponse = {
     /** activeTab values : `history`, `voicemail`, `lines`, `sms` */
     activeTab: string;
     /** callStatus values : `Incomming`, `Outgoing`, `Active`, `Idle`, `Hold`, `Not Registered` */
     callStatus: string;
     callId?: string;
+    direction?: string;
+    callObject?: CallObject;
 };
 /**
  * @category Zoom Phone
@@ -2457,63 +2519,7 @@ declare type OnPhoneContextEvent = {
  * @category Zoom Phone
  */
 declare type PhoneEvent = {
-    callObject: {
-        /** account ID of the callee */
-        accountId: string;
-        /** unique identifier of the call */
-        callId: string;
-        /** the GMT time at which the ringing started in  "yyyy-MM-dd'T'HH:mm:ss'Z'" format.*/
-        ringingStartTime: string;
-        /** the GMT timer (in "yyyy-MM-dd'T'HH:mm:ss'Z'" format) at which the call was answered */
-        answerStartTime?: string;
-        /** the GMT time (in "yyyy-MM-dd'T'HH:mm:ss'Z'" format) at which the call was ended by the callee. */
-        callEndTime: string;
-        /** represents the person who is called by the caller */
-        callee: {
-            deviceId?: string;
-            /** extension ID of the callee */
-            extensionId?: string;
-            /** extension number of the callee */
-            extensionNumber?: string;
-            /** extension type of a the callee. Values: `user` | `callQueue`| `autoReceptionist` ┃ `commonArea` ┃ `commonAreaPhone` ┃ `sharedLineGroup` ┃ `zoomRoom` ┃ `ciscoRoom/PolycomRoom` ┃ `contactCenter` ┃ `pstn` ┃ `five9` ┃ `twilio` */
-            extensionType?: string;
-            /** phone number of the callee in E164 format. Phone number and extension number can't be empty at the same time */
-            phoneNumber: string;
-            /**
-             * @deprecated
-             * This field is introduced to have a bug fix and backward compatibility.This field serves exactly as phoneNumber field above. It just has an additional whitespace " " at the end of the name "phoneNumber "
-             */
-            'phoneNumber ': string;
-            /** timezone of the callee */
-            timezone?: string;
-            /** Zoom User ID of the callee */
-            userId?: string;
-        };
-        /**  */
-        caller: {
-            /** extension ID of the caller */
-            extensionId?: string;
-            extensionNumber?: string;
-            /** extension type of a the caller. Values: `user` | `callQueue`| `autoReceptionist` ┃ `commonArea` ┃ `commonAreaPhone` ┃ `sharedLineGroup` ┃ `zoomRoom` ┃ `ciscoRoom/PolycomRoom` ┃ `contactCenter` ┃ `pstn` ┃ `five9` ┃ `twilio` */
-            extensionType?: string;
-            /** phone number of the caller in E164 format */
-            phoneNumber: string;
-            /** timezone of the caller */
-            timezone?: string;
-            /** Zoom User ID of the caller */
-            userId?: string;
-        };
-        forwardedBy?: {
-            /** the name of the extension the call was forwaded from */
-            name?: string;
-            /** extension number the call was forwarded from */
-            extensionNumber?: string;
-            /** type of extension the call was forwarded from. Values: `callQueue` | `sharedLineGroup` | `sharedLine` */
-            extensionType?: string;
-        };
-        eventTs?: string;
-        timestamp: string;
-    };
+    callObject: CallObject;
 };
 /**
  * @category Waiting Room
@@ -8204,4 +8210,4 @@ declare class ZoomSdk {
 
 declare const _default: ZoomSdk;
 
-export { AddBreakoutRoomOptions, AddParticipantSpotlightOptions, AdmitParticipantFromWaitingRoomOptions, AllowParticipantToRecordOptions, Apis, AppInvitationResponse, AppPopoutOptions, AppPopoutResponse, AssignParticipantToBreakoutRoomOptions, AttendeeSpeakingOptions, AudioMedia, AuthObject, AuthorizeOptions, BreakOutRoomParticipant, BreakoutRoomAssignmentMethods, BreakoutRoomsCreated, BreakoutRoomsParticipantsAssigned, BreakoutRoomsParticipantsJoined, BreakoutRoomsParticipantsLeft, BreakoutRoomsResponse, BreakoutRoomsUpdated, BringAppToFrontResponse, BroadcastVoiceToBreakoutRoomsOptions, CallbackToMailOptions, ChangeBreakoutRoomOptions, ClearImageOptions, ClearParticipantOptions, ClearWebViewOptions, CloudRecordingOptions, ComposeCardOptions, ConfigOptions, ConfigResponse, ConfigSize, ConfigureBreakoutRoomsOptions, ConfigureBreakoutRoomsResponse, CreateBreakoutRoomsOptions, DecryptedAppContextResponse, DrawImageOptions, DrawImageResponse, DrawParticipantOptions, DrawWebViewOptions, DynamicIndicatorOptions, DynamicIndicatorStyles, DynamicIndicatorTimerOptions, EmojiOptions, EngagementContext, EngagementContextEvent, EngagementStatus, EngagementStatusEvent, ExpandAppOptions, FeedbackReactionOptions, FeedbackReactions, GeneralMessage, GeneralMessageResponse, GenericEventHandler, GetAppContextResponse, GetAppVariableListResponse, GetAudioSettingsResponse, GetAudioStateResponse, GetChatContextResponse, GetDynamicIndicatorOutput, GetEmojiConfigurationResponse, GetEngagementContextOptions, GetEngagementSecurableStatusOptions, GetEngagementSecurableStatusResponse, GetEngagementStatusOptions, GetEngagementVariableValueOptions, GetEngagementVariableValueResponse, GetGalleryOrderListResponse, GetGalleryPageResponse, GetIncomingParticipantAudioStateOptions, GetIncomingParticipantAudioStateResponse, GetMailActiveEditorDataOptions, GetMailActiveEditorDataResponse, GetMailContextResponse, GetMailMessageOptions, GetMailMessageResponse, GetMailThreadOptions, GetMailThreadResponse, GetMeetingChatContextResponse, GetMeetingContextResponse, GetMeetingJoinUrlResponse, GetMeetingLanguagesResponse, GetMeetingParticipantsEmailOptions, GetMeetingParticipantsResponse, GetMeetingUUIDResponse, GetMeetingViewResponse, GetParticipantSpotlightsResponse, GetPhoneContextResponse, GetRTMSStatusResponse, GetRecordingContextResponse, GetSupportedJsApisResponse, GetUserContextResponse, GetVideoSettingsResponse, GetVideoStateResponse, GetWaitingRoomParticipantsResponse, GetWaitingRoomStateResponse, GetZoomRoomContextResponse, GetZoomRoomControllerCredentialsResponse, GetZoomRoomDeviceDetails, InsertContentToMailActiveEditorOptions, JSONObject, JSONValue, JoinMeetingOptions, LaunchAppInMeetingOptions, LaunchContext, LeaveMeetingOptions, ListCamerasResponse, MakePhoneCallOptions, MeetingView, NativeApiRequest, NativeApiRequestData, NativeApiResponseData, NativeConfigOptions, NativeMessage, NativeMessageData, NotificationOptions$1 as NotificationOptions, OnActiveSpeakerChangeEvent, OnActiveSpeakerChangeUserType, OnAppPopoutEvent, OnAppToggleInMailActiveEditorEvent, OnAppUIActionInMailEvent, OnAppVisibilityChangeEvent, OnAuthorizedEvent, OnBeforeMailSendEvent, OnBreakoutRoomChangeEvent, OnCloudRecordingEvent, OnCollaborateChangeEvent, OnConnectEvent, OnDynamicIndicatorStyleChangeEvent, OnEmojiReactionEvent, OnEngagementMediaRedirectEvent, OnExpandAppEvent, OnExtendDynamicIndicatorEvent, OnFeedbackReactionEvent, OnGalleryOrderEvent, OnGalleryPageChangeEvent, OnIncomingParticipantAudioChangeEvent, OnMailActiveEditorChangeEvent, OnMailActiveEditorDataChangeEvent, OnMailActiveEditorTypeChangeEvent, OnMailEditorDestroyEvent, OnMeetingEvent, OnMeetingLanguagesChangeEvent, OnMeetingViewChangeEvent, OnMessageEvent, OnMyActiveSpeakerChangeEvent, OnMyMediaChangeEvent, OnMyReactionEvent, OnMyUserContextChangeEvent, OnParticipantChangeEvent, OnParticipantChangeParticipantType, OnParticipantEmailEvent, OnPhoneContextEvent, OnPhotoEvent, OnPhotoEventOriginal, OnReactionEvent, OnRemoveDynamicIndicatorEvent, OnRemoveFeedbackReactionEvent, OnRenderedAppOpenedEvent, OnRunningContextChangeEvent, OnSendAppInvitationEvent, OnSetDynamicIndicatorEvent, OnShareAppEvent, OnShareComputerAudioEvent, OnShareScreenEvent, OnUpgradeRequestEvent, OnWaitingRoomParticipantJoinEvent, OnWaitingRoomParticipantLeaveEvent, OnWaitingRoomStateChangeEvent, OnZoomRoomEventResponse, OpenUrlOptions, Participant, ParticipantCutoutShape, ParticipantPinOptions, PhoneEvent, PixelValue, PromptShareScreenOptions, PromptUpgradeRequestOptions, PutParticipantToWaitingRoomOptions, RegisterMailEditorComponentOptions, RemoveParticipantOptions, RemoveParticipantSpotlightsOptions, RemoveWebinarAttendeeOptions, RenameBreakoutRoomOptions, RenderInMailActiveEditorOptions, RenderInMailActiveEditorResponse, RenderInMailOptions, RenderInMailResponse, RenderingContextView, RunRenderingContextOptions, RunningContext, RunningContextResponse, SdkOptions, SdkVersion, SendAppInvitationOptions, SendAppToBackgroundResponse, SendKeypadControlsOptions, SendMessageOptions, SendMessageToChatOptions, SendMessageToChatResponse, SetAudioSettingsOptions, SetAudioStateOptions, SetCameraOptions, SetDynamicIndicatorStyleInput, SetEmojiReactionOptions, SetGalleryPageOptions, SetIncomingParticipantAudioStateOptions, SetMailActiveEditorDataOptions, SetMeetingViewOptions, SetScreenNameOptions, SetVideoFilterOptions, SetVideoMirrorEffectOptions, SetVideoSettingsOptions, SetVideoStateOptions, SetWaitingRoomStateOptions, ShareAppOptions, ShareComputerAudioOptions, ShowAppInvitationDialogOptions, StartCollaborateOptions, StartMediaRedirectionOptions, StartMediaRedirectionResponse, SubscribeBeforeMailSendOptions, TakeParticipantPhotoOptions, ToggleParticipantMediaAudioOptions, ToggleParticipantMediaVideoOptions, Uuid, VideoMedia, VirtualBackgroundOptions, VirtualForegroundOptions, WarningReponse, compatibilityApisCache, _default as default, isVersionCompatible, onEngagementVariableValueChangeEvent, onMeetingConfigChangedEvent, setParticipantScreenNameOptions };
+export { AddBreakoutRoomOptions, AddParticipantSpotlightOptions, AdmitParticipantFromWaitingRoomOptions, AllowParticipantToRecordOptions, Apis, AppInvitationResponse, AppPopoutOptions, AppPopoutResponse, AssignParticipantToBreakoutRoomOptions, AttendeeSpeakingOptions, AudioMedia, AuthObject, AuthorizeOptions, BreakOutRoomParticipant, BreakoutRoomAssignmentMethods, BreakoutRoomsCreated, BreakoutRoomsParticipantsAssigned, BreakoutRoomsParticipantsJoined, BreakoutRoomsParticipantsLeft, BreakoutRoomsResponse, BreakoutRoomsUpdated, BringAppToFrontResponse, BroadcastVoiceToBreakoutRoomsOptions, CallObject, CallbackToMailOptions, ChangeBreakoutRoomOptions, ClearImageOptions, ClearParticipantOptions, ClearWebViewOptions, CloudRecordingOptions, ComposeCardOptions, ConfigOptions, ConfigResponse, ConfigSize, ConfigureBreakoutRoomsOptions, ConfigureBreakoutRoomsResponse, CreateBreakoutRoomsOptions, DecryptedAppContextResponse, DrawImageOptions, DrawImageResponse, DrawParticipantOptions, DrawWebViewOptions, DynamicIndicatorOptions, DynamicIndicatorStyles, DynamicIndicatorTimerOptions, EmojiOptions, EngagementContext, EngagementContextEvent, EngagementStatus, EngagementStatusEvent, ExpandAppOptions, FeedbackReactionOptions, FeedbackReactions, GeneralMessage, GeneralMessageResponse, GenericEventHandler, GetAppContextResponse, GetAppVariableListResponse, GetAudioSettingsResponse, GetAudioStateResponse, GetChatContextResponse, GetDynamicIndicatorOutput, GetEmojiConfigurationResponse, GetEngagementContextOptions, GetEngagementSecurableStatusOptions, GetEngagementSecurableStatusResponse, GetEngagementStatusOptions, GetEngagementVariableValueOptions, GetEngagementVariableValueResponse, GetGalleryOrderListResponse, GetGalleryPageResponse, GetIncomingParticipantAudioStateOptions, GetIncomingParticipantAudioStateResponse, GetMailActiveEditorDataOptions, GetMailActiveEditorDataResponse, GetMailContextResponse, GetMailMessageOptions, GetMailMessageResponse, GetMailThreadOptions, GetMailThreadResponse, GetMeetingChatContextResponse, GetMeetingContextResponse, GetMeetingJoinUrlResponse, GetMeetingLanguagesResponse, GetMeetingParticipantsEmailOptions, GetMeetingParticipantsResponse, GetMeetingUUIDResponse, GetMeetingViewResponse, GetParticipantSpotlightsResponse, GetPhoneContextResponse, GetRTMSStatusResponse, GetRecordingContextResponse, GetSupportedJsApisResponse, GetUserContextResponse, GetVideoSettingsResponse, GetVideoStateResponse, GetWaitingRoomParticipantsResponse, GetWaitingRoomStateResponse, GetZoomRoomContextResponse, GetZoomRoomControllerCredentialsResponse, GetZoomRoomDeviceDetails, InsertContentToMailActiveEditorOptions, JSONObject, JSONValue, JoinMeetingOptions, LaunchAppInMeetingOptions, LaunchContext, LeaveMeetingOptions, ListCamerasResponse, MakePhoneCallOptions, MeetingView, NativeApiRequest, NativeApiRequestData, NativeApiResponseData, NativeConfigOptions, NativeMessage, NativeMessageData, NotificationOptions$1 as NotificationOptions, OnActiveSpeakerChangeEvent, OnActiveSpeakerChangeUserType, OnAppPopoutEvent, OnAppToggleInMailActiveEditorEvent, OnAppUIActionInMailEvent, OnAppVisibilityChangeEvent, OnAuthorizedEvent, OnBeforeMailSendEvent, OnBreakoutRoomChangeEvent, OnCloudRecordingEvent, OnCollaborateChangeEvent, OnConnectEvent, OnDynamicIndicatorStyleChangeEvent, OnEmojiReactionEvent, OnEngagementMediaRedirectEvent, OnExpandAppEvent, OnExtendDynamicIndicatorEvent, OnFeedbackReactionEvent, OnGalleryOrderEvent, OnGalleryPageChangeEvent, OnIncomingParticipantAudioChangeEvent, OnMailActiveEditorChangeEvent, OnMailActiveEditorDataChangeEvent, OnMailActiveEditorTypeChangeEvent, OnMailEditorDestroyEvent, OnMeetingEvent, OnMeetingLanguagesChangeEvent, OnMeetingViewChangeEvent, OnMessageEvent, OnMyActiveSpeakerChangeEvent, OnMyMediaChangeEvent, OnMyReactionEvent, OnMyUserContextChangeEvent, OnParticipantChangeEvent, OnParticipantChangeParticipantType, OnParticipantEmailEvent, OnPhoneContextEvent, OnPhotoEvent, OnPhotoEventOriginal, OnReactionEvent, OnRemoveDynamicIndicatorEvent, OnRemoveFeedbackReactionEvent, OnRenderedAppOpenedEvent, OnRunningContextChangeEvent, OnSendAppInvitationEvent, OnSetDynamicIndicatorEvent, OnShareAppEvent, OnShareComputerAudioEvent, OnShareScreenEvent, OnUpgradeRequestEvent, OnWaitingRoomParticipantJoinEvent, OnWaitingRoomParticipantLeaveEvent, OnWaitingRoomStateChangeEvent, OnZoomRoomEventResponse, OpenUrlOptions, Participant, ParticipantCutoutShape, ParticipantPinOptions, PhoneEvent, PixelValue, PromptShareScreenOptions, PromptUpgradeRequestOptions, PutParticipantToWaitingRoomOptions, RegisterMailEditorComponentOptions, RemoveParticipantOptions, RemoveParticipantSpotlightsOptions, RemoveWebinarAttendeeOptions, RenameBreakoutRoomOptions, RenderInMailActiveEditorOptions, RenderInMailActiveEditorResponse, RenderInMailOptions, RenderInMailResponse, RenderingContextView, RunRenderingContextOptions, RunningContext, RunningContextResponse, SdkOptions, SdkVersion, SendAppInvitationOptions, SendAppToBackgroundResponse, SendKeypadControlsOptions, SendMessageOptions, SendMessageToChatOptions, SendMessageToChatResponse, SetAudioSettingsOptions, SetAudioStateOptions, SetCameraOptions, SetDynamicIndicatorStyleInput, SetEmojiReactionOptions, SetGalleryPageOptions, SetIncomingParticipantAudioStateOptions, SetMailActiveEditorDataOptions, SetMeetingViewOptions, SetScreenNameOptions, SetVideoFilterOptions, SetVideoMirrorEffectOptions, SetVideoSettingsOptions, SetVideoStateOptions, SetWaitingRoomStateOptions, ShareAppOptions, ShareComputerAudioOptions, ShowAppInvitationDialogOptions, StartCollaborateOptions, StartMediaRedirectionOptions, StartMediaRedirectionResponse, SubscribeBeforeMailSendOptions, TakeParticipantPhotoOptions, ToggleParticipantMediaAudioOptions, ToggleParticipantMediaVideoOptions, Uuid, VideoMedia, VirtualBackgroundOptions, VirtualForegroundOptions, WarningReponse, compatibilityApisCache, _default as default, isVersionCompatible, onEngagementVariableValueChangeEvent, onMeetingConfigChangedEvent, setParticipantScreenNameOptions };
