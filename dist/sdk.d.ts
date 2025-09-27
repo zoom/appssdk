@@ -4964,7 +4964,7 @@ declare class ZoomSdk {
      *
      * Notifies app when its visibility changes.
      *
-     * *Running context*: inMail
+     * *Running context*: inMail, inMeeting, inMainClient, inWebinar, and inPhone
      *
      * *Supported roles*: N/A
      *
@@ -7357,11 +7357,15 @@ declare class ZoomSdk {
      * When invoked from the Meetings context, this method allows you to invite participants into an active meeting via Zoom Phone automatically.
      * When used from the Phone context, it enables making voice calls directly from Zoom Phone.
      *
+     * IOS Client Version (Applicable only to inMeeting context)
+     *
+     * Android Client Version(Applicable only to inMeeting context)
+     *
      * *Updated in Desktop Client Version: 6.2.10 to support in meeting context*
      *
      * *Running context*: inPhone, inMeeting
      *
-     * *product*: desktop
+     * *product*: desktop, mobile
      *
      * @category Zoom Phone
      */
