@@ -1,4 +1,4 @@
-/* Zoom Apps SDK v0.16.35  */
+/* Zoom Apps SDK v0.16.36  */
 /**
  * Copyright (c) 2025 Zoom Video Communications, Inc.
  * 
@@ -21,7 +21,7 @@
  * SOFTWARE.
  */
 
-var version = "0.16.35";
+var version = "0.16.36";
 
 var extendStatics = function(d, b) {
     extendStatics = Object.setPrototypeOf ||
@@ -434,7 +434,13 @@ var addedNativeInterfaceEventListener = false;
 var addedWebClientEventListener = false;
 function detectBrowser(window) {
     var _a, _b, _c;
-    if (window.android) {
+    if (inIframe()) {
+        return {
+            type: 'webClient',
+            nativeInterface: window.parent,
+        };
+    }
+    else if (window.android) {
         return {
             type: 'android',
             nativeInterface: window.android,
@@ -450,12 +456,6 @@ function detectBrowser(window) {
         return {
             type: 'webkit',
             nativeInterface: window.webkit.messageHandlers.jsOCHelper,
-        };
-    }
-    else if (inIframe()) {
-        return {
-            type: 'webClient',
-            nativeInterface: window.parent,
         };
     }
 }
