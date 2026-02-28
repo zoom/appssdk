@@ -1,6 +1,6 @@
-/* Zoom Apps SDK v0.16.36  */
+/* Zoom Apps SDK v0.16.37  */
 /**
- * Copyright (c) 2025 Zoom Video Communications, Inc.
+ * Copyright (c) 2026 Zoom Video Communications, Inc.
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,7 +21,7 @@
  * SOFTWARE.
  */
 
-var version = "0.16.36";
+var version = "0.16.37";
 
 var extendStatics = function(d, b) {
     extendStatics = Object.setPrototypeOf ||
