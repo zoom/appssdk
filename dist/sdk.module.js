@@ -1,4 +1,4 @@
-/* Zoom Apps SDK v0.16.37  */
+/* Zoom Apps SDK v0.16.38  */
 /**
  * Copyright (c) 2026 Zoom Video Communications, Inc.
  * 
@@ -25,7 +25,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var version = "0.16.37";
+var version = "0.16.38";
 
 var extendStatics = function(d, b) {
     extendStatics = Object.setPrototypeOf ||
