@@ -1,4 +1,4 @@
-/* Zoom Apps SDK v0.16.40  */
+/* Zoom Apps SDK v0.16.41  */
 /**
  * Copyright (c) 2026 Zoom Video Communications, Inc.
  * 
@@ -25,7 +25,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var version = "0.16.40";
+var version = "0.16.41";
 
 var extendStatics = function(d, b) {
     extendStatics = Object.setPrototypeOf ||
@@ -252,6 +252,7 @@ var NativeApis;
     NativeApis["GET_WAITING_ROOM_STATE"] = "getWaitingRoomState";
     NativeApis["SET_WAITING_ROOM_STATE"] = "setWaitingRoomState";
     NativeApis["GET_PHONE_CONTEXT"] = "getPhoneContext";
+    NativeApis["GET_PHONE_VARIABLE_VALUE"] = "getPhoneVariableValue";
     NativeApis["MAKE_PHONE_CALL"] = "makePhoneCall";
     NativeApis["GET_ENGAGEMENT_CONTEXT"] = "getEngagementContext";
     NativeApis["GET_ENGAGEMENT_STATUS"] = "getEngagementStatus";
@@ -2673,6 +2674,13 @@ var ZoomSdk =  (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 return [2 , this.callZoomApi(NativeApis.GET_PHONE_CONTEXT)];
+            });
+        });
+    };
+    ZoomSdk.prototype.getPhoneVariableValue = function (options) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 , this.callZoomApi(NativeApis.GET_PHONE_VARIABLE_VALUE, options)];
             });
         });
     };
